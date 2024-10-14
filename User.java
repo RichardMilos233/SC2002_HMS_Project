@@ -10,12 +10,10 @@ public class User {
 
 	Scanner scanner = new Scanner(System.in);
 	public User() {
-		// TODO - implement User.User
 		throw new UnsupportedOperationException();
 	}
 
 	public User(String hospitalID, String password, String name, boolean gender, int age) {
-		// TODO - implement User.User
 		this.hospitalID = hospitalID;
 		this.password = password;
 		this.name = name;
@@ -27,7 +25,13 @@ public class User {
 	public void login() {
 		// TODO - implement User.login
 		String enteredPassword = "";
-		
+		enteredPassword = scanner.nextLine();
+		if (enteredPassword.equals(this.password)){
+			System.out.println("Logged in successfully");// only for illustration, haven't settled how to tell the role yet
+		}
+		else{
+			System.out.println("Try again");
+		}
 		throw new UnsupportedOperationException();
 	}
 
@@ -37,7 +41,6 @@ public class User {
 	}
 
 	public void changePassword() {
-		// TODO - implement User.changePassword
 		String newPassword = "";
 		System.out.print("Enter new password: ");
 		newPassword = scanner.nextLine();
@@ -45,4 +48,19 @@ public class User {
 		throw new UnsupportedOperationException();
 	}
 
+	public String getHospitalID(){
+		return this.hospitalID;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public boolean getGender(){
+		return this.gender;
+	}
+
+	public int getAge(){
+		return this.age;
+	}
 }

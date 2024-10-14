@@ -1,4 +1,7 @@
+import java.util.*;
+
 public class Doctor extends Staff {
+	LinkedList<Patient> patients;
 
 	public Doctor() {
 		// TODO - implement Doctor.Doctor
@@ -10,8 +13,12 @@ public class Doctor extends Staff {
 		throw new UnsupportedOperationException();
 	}
 
-	public void updatePatientMedicalRecord() {
-		// TODO - implement Doctor.updatePatientMedicalRecord
+	public void updatePatientMedicalRecord(Patient patient) {
+		for (Patient docPatient : patients){
+			if (patient.getHospitalID() == docPatient.getHospitalID()){
+				patient.viewMedicalRecord();
+			}
+		}
 		throw new UnsupportedOperationException();
 	}
 
@@ -35,8 +42,16 @@ public class Doctor extends Staff {
 		throw new UnsupportedOperationException();
 	}
 
-	public void recordAppointmentOutcome() {
-		// TODO - implement Doctor.recordAppointmentOutcome
+	public void recordAppointmentOutcome(Appointment appointment) {
+		String medication;
+		System.out.println("Enter medication: ");
+		medication = scanner.nextLine();//only 1 med for each appointment, for now
+		PrescribedMedication prescribedMedication = new PrescribedMedication(medication, 0);
+		String consultationNotes;
+		System.out.println("Enter consultation notes: ");
+		consultationNotes = scanner.nextLine();
+		AppointmentOutcome appointmentOutcome = new AppointmentOutcome(appointment.getDate(), "face2face", prescribedMedication, consultationNotes);//haven't thought of a type for consultation
+		appointment.setAppointmentOutcome(appointmentOutcome);
 		throw new UnsupportedOperationException();
 	}
 

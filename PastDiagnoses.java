@@ -10,7 +10,9 @@ public class PastDiagnoses {
 	}
 
 	public void displayPastDiagnoses() {
-		// TODO - implement PastDiagnoses.displayPastDiagnoses
+		for (AppointmentOutcome appointmentOutcome: appointmentOutcomes){
+			appointmentOutcome.displayAppointmentOutcome();
+		}
 		throw new UnsupportedOperationException();
 	}
 
