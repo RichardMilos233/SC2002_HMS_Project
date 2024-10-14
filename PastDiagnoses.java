@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class PastDiagnoses {
 
 	private LinkedList<AppointmentOutcome> appointmentOutcomes;

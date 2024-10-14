@@ -2,9 +2,9 @@ import java.util.*;
 
 public class User {
 
-	private String hospitalID = '';
-	private String password = '114514';
-	private String name = '';
+	private String hospitalID = "P1000";
+	private String password = "11414";
+	private String name = "Richard Milos";
 	private boolean gender = false; // false for male, true for female
 	private int age = -1;
 
@@ -26,7 +26,7 @@ public class User {
 
 	public void login() {
 		// TODO - implement User.login
-		String enteredPassword = '';
+		String enteredPassword = "";
 		
 		throw new UnsupportedOperationException();
 	}
@@ -38,7 +38,7 @@ public class User {
 
 	public void changePassword() {
 		// TODO - implement User.changePassword
-		String newPassword = '';
+		String newPassword = "";
 		System.out.print("Enter new password: ");
 		newPassword = scanner.nextLine();
 		this.password = newPassword;

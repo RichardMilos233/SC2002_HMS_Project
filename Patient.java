@@ -1,9 +1,9 @@
 public class Patient extends User {
 
-	private string birth;
+	private String birth;
 	private int contactNumber;
-	private string email;
-	private string bloodType;
+	private String email;
+	private String bloodType;
 
 	public Patient() {
 		// TODO - implement Patient.Patient
@@ -62,7 +62,7 @@ public class Patient extends User {
 		this.contactNumber = newcontactNumber;
 	}
 
-	private string getEmail() {
+	private String getEmail() {
 		return this.email;
 	}
 
@@ -70,7 +70,7 @@ public class Patient extends User {
 	 * 
 	 * @param newEmail
 	 */
-	private void setEmail(string newEmail) {
+	private void setEmail(String newEmail) {
 		this.email = newEmail;
 	}
 

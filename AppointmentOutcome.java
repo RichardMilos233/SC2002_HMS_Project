@@ -1,9 +1,9 @@
 public class AppointmentOutcome {
 
-	private string date;
-	private string type;
+	private String date;
+	private String type;
 	private PrescribedMedication prescribedMedication;
-	private string consultationNotes;
+	private String consultationNotes;
 
 	public AppointmentOutcome() {
 		// TODO - implement AppointmentOutcome.AppointmentOutcome
