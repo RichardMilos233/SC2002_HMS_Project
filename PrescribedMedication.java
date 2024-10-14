@@ -12,7 +12,7 @@ public class PrescribedMedication {
 	 * 
 	 * @param newStatus
 	 */
-	public void setStatus(string newStatus) {
+	public void setStatus(String newStatus) {
 		// TODO - implement PrescribedMedication.setStatus
 		throw new UnsupportedOperationException();
 	}

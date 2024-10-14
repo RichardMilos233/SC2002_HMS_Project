@@ -1,6 +1,6 @@
 public class Medication {
 
-	private string medicationName;
+	private String medicationName;
 	private int stock;
 	private int stockAlert;
 

@@ -1,18 +1,34 @@
 public class Appointment {
 
-	private string patientID;
-	private string doctorID;
-	private string status;
-	private string date;
-	private string time;
+	private String patientID;
+	private String doctorID;
+	private String status;
+	private String date;
+	private String time;
 
 	public Appointment() {
 		// TODO - implement Appointment.Appointment
 		throw new UnsupportedOperationException();
 	}
 
+	public Appointment(String patientID, String doctorID, String status, String date, String time) {
+		// TODO - implement Appointment.Appointment
+		this.patientID = patientID;
+		this.doctorID = doctorID;
+		this.status = status;
+		this.date = date;
+		this.time = time;
+		throw new UnsupportedOperationException();
+	}
+
 	public void displayAppointment() {
 		// TODO - implement Appointment.displayAppointment
+		System.out.println();
+		System.out.println("Patient ID: " + patientID);
+		System.out.println("Doctor ID: " + doctorID);
+		System.out.println("Appointment status: " + status);
+		System.out.println("Appointment date & time: " + date + ' ' + time);
+		System.out.println();
 		throw new UnsupportedOperationException();
 	}
 
