@@ -1,5 +1,7 @@
 public class Appointment {
 
+	private Patient patient;
+	private Doctor doctor;
 	private String patientID;
 	private String doctorID;
 	private String status;
@@ -12,10 +14,12 @@ public class Appointment {
 		throw new UnsupportedOperationException();
 	}
 
-	public Appointment(String patientID, String doctorID, String status, String date, String time) {
+	public Appointment(Patient patient, Doctor doctor, String status, String date, String time) {
 		// TODO - implement Appointment.Appointment
-		this.patientID = patientID;
-		this.doctorID = doctorID;
+		this.patient = patient;
+		this.doctor = doctor;
+		this.patientID = this.patient.hospitalID;
+		this.doctorID = this.doctor.hospitalID;
 		this.status = status;
 		this.date = date;
 		this.time = time;
@@ -37,5 +41,9 @@ public class Appointment {
 
 	public String getDate(){
 		return this.date;
+	}
+
+	public Patient getPatient(){
+		return this.patient;
 	}
 }

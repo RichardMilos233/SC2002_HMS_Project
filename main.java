@@ -73,7 +73,7 @@ public class main {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    doctor.viewPatientMedicalRecord();
+                    doctor.viewPatientMedicalRecord(patient);
                     break;
                 case 2:
                     doctor.updatePatientMedicalRecord(patient);

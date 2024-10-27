@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Doctor extends User {//ignore the Staff class first
-	ArrayList<Patient> patients;
+	ArrayList<Patient> patients = new ArrayList<>();
 
 	public Doctor() {
 		super();
@@ -11,17 +11,17 @@ public class Doctor extends User {//ignore the Staff class first
 		super(staffID, password, name, gender, age);
 	}
 
-	public void viewPatientMedicalRecord() {
-		// TODO - implement Doctor.viewPatientMedicalRecord
-		throw new UnsupportedOperationException();
-	}
-
-	public void updatePatientMedicalRecord(Patient patient) {
+	public void viewPatientMedicalRecord(Patient patient) {
 		for (Patient docPatient : patients){
 			if (patient.getHospitalID() == docPatient.getHospitalID()){
 				patient.viewMedicalRecord();
 			}
 		}
+	}
+
+	public void updatePatientMedicalRecord(Patient patient) {
+		// TODO - implement Doctor.viewPatientMedicalRecord
+		throw new UnsupportedOperationException();
 	}
 
 	public void viewPersonalSchedule() {
@@ -54,6 +54,7 @@ public class Doctor extends User {//ignore the Staff class first
 		consultationNotes = scanner.nextLine();
 		AppointmentOutcome appointmentOutcome = new AppointmentOutcome(appointment.getDate(), "face2face", prescribedMedication, consultationNotes);//haven't thought of a type for consultation
 		appointment.setAppointmentOutcome(appointmentOutcome);
+		appointment.getPatient().getPastDiagnoses().updatePastDiagnoses(appointmentOutcome);
 	}
 
 }

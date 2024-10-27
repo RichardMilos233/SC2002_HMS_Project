@@ -76,6 +76,10 @@ public class Patient extends User {
 		throw new UnsupportedOperationException();
 	}
 
+	public PastDiagnoses getPastDiagnoses(){
+		return this.pastDiagnoses;
+	}
+
 	private int getContactNumber() {
 		return this.contactNumber;
 	}
