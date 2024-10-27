@@ -5,6 +5,7 @@ public class Appointment {
 	private String status;
 	private String date;
 	private String time;
+	private AppointmentOutcome appointmentOutcome;
 
 	public Appointment() {
 		// TODO - implement Appointment.Appointment
@@ -18,18 +19,23 @@ public class Appointment {
 		this.status = status;
 		this.date = date;
 		this.time = time;
-		throw new UnsupportedOperationException();
 	}
 
 	public void displayAppointment() {
-		// TODO - implement Appointment.displayAppointment
 		System.out.println();
 		System.out.println("Patient ID: " + patientID);
 		System.out.println("Doctor ID: " + doctorID);
 		System.out.println("Appointment status: " + status);
 		System.out.println("Appointment date & time: " + date + ' ' + time);
+		appointmentOutcome.displayAppointmentOutcome();
 		System.out.println();
-		throw new UnsupportedOperationException();
 	}
 
+	public void setAppointmentOutcome(AppointmentOutcome appointmentOutcome){
+		this.appointmentOutcome = appointmentOutcome;
+	}
+
+	public String getDate(){
+		return this.date;
+	}
 }

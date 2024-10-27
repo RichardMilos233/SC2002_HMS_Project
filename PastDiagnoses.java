@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PastDiagnoses {
 
-	private LinkedList<AppointmentOutcome> appointmentOutcomes;
+	private ArrayList<AppointmentOutcome> appointmentOutcomes;
 
 	public PastDiagnoses() {
 		// TODO - implement PastDiagnoses.PastDiagnoses
@@ -10,8 +10,9 @@ public class PastDiagnoses {
 	}
 
 	public void displayPastDiagnoses() {
-		// TODO - implement PastDiagnoses.displayPastDiagnoses
-		throw new UnsupportedOperationException();
+		for (AppointmentOutcome appointmentOutcome: appointmentOutcomes){
+			appointmentOutcome.displayAppointmentOutcome();
+		}
 	}
 
 }

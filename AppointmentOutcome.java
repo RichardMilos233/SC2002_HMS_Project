@@ -6,8 +6,14 @@ public class AppointmentOutcome {
 	private String consultationNotes;
 
 	public AppointmentOutcome() {
-		// TODO - implement AppointmentOutcome.AppointmentOutcome
 		throw new UnsupportedOperationException();
+	}
+
+	public AppointmentOutcome(String date, String type, PrescribedMedication prescribedMedication, String cosultationNotes){
+		this.date = date;
+		this.type = type;
+		this.prescribedMedication = prescribedMedication;
+		this.consultationNotes = cosultationNotes;
 	}
 
 	public void updatePastDiagnoses() {
@@ -16,8 +22,10 @@ public class AppointmentOutcome {
 	}
 
 	public void displayAppointmentOutcome() {
-		// TODO - implement AppointmentOutcome.displayAppointmentOutcome
-		throw new UnsupportedOperationException();
+		System.out.println("Appointment date: " + date);
+		System.out.println("Type: " + type);
+		prescribedMedication.displayPrescribedMedication();
+		System.out.println("Consultation notes: " + consultationNotes);
 	}
 
 }

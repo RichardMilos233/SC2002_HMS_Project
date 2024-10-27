@@ -1,8 +1,11 @@
-public class Administrator extends Staff {
+public class Administrator extends User {//ignore Staff first
 
 	public Administrator() {
-		// TODO - implement Administrator.Administrator
-		throw new UnsupportedOperationException();
+		super();
+	}
+
+	public Administrator(String staffID, String password, String name, boolean gender, int age){
+		super(staffID, password, name, gender, age);
 	}
 
 	public void displayStaffList() {

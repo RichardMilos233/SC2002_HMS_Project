@@ -1,8 +1,14 @@
-public class Doctor extends Staff {
+import java.util.*;
+
+public class Doctor extends User {//ignore the Staff class first
+	ArrayList<Patient> patients;
 
 	public Doctor() {
-		// TODO - implement Doctor.Doctor
-		throw new UnsupportedOperationException();
+		super();
+	}
+
+	public Doctor(String staffID, String password, String name, boolean gender, int age){
+		super(staffID, password, name, gender, age);
 	}
 
 	public void viewPatientMedicalRecord() {
@@ -10,9 +16,12 @@ public class Doctor extends Staff {
 		throw new UnsupportedOperationException();
 	}
 
-	public void updatePatientMedicalRecord() {
-		// TODO - implement Doctor.updatePatientMedicalRecord
-		throw new UnsupportedOperationException();
+	public void updatePatientMedicalRecord(Patient patient) {
+		for (Patient docPatient : patients){
+			if (patient.getHospitalID() == docPatient.getHospitalID()){
+				patient.viewMedicalRecord();
+			}
+		}
 	}
 
 	public void viewPersonalSchedule() {
@@ -35,9 +44,16 @@ public class Doctor extends Staff {
 		throw new UnsupportedOperationException();
 	}
 
-	public void recordAppointmentOutcome() {
-		// TODO - implement Doctor.recordAppointmentOutcome
-		throw new UnsupportedOperationException();
+	public void recordAppointmentOutcome(Appointment appointment) {
+		String medication;
+		System.out.println("Enter medication: ");
+		medication = scanner.nextLine();//only 1 med for each appointment, for now
+		PrescribedMedication prescribedMedication = new PrescribedMedication(medication, 0);
+		String consultationNotes;
+		System.out.println("Enter consultation notes: ");
+		consultationNotes = scanner.nextLine();
+		AppointmentOutcome appointmentOutcome = new AppointmentOutcome(appointment.getDate(), "face2face", prescribedMedication, consultationNotes);//haven't thought of a type for consultation
+		appointment.setAppointmentOutcome(appointmentOutcome);
 	}
 
 }
