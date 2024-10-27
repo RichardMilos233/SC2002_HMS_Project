@@ -15,8 +15,8 @@ public class Patient extends User {
 		throw new UnsupportedOperationException();
 	}
 
-	public Patient(String hospitalID, String password, String name, boolean gender, int age, String birth, int contactNumber, String email, String bloodType){
-		super(hospitalID, password, name, gender, age);
+	public Patient(String patientID, String password, String name, boolean gender, int age, String birth, int contactNumber, String email, String bloodType){
+		super(patientID, password, name, gender, age);
 		this.birth = birth;
 		this.contactNumber = contactNumber;
 		this.email = email;

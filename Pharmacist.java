@@ -1,7 +1,12 @@
-public class Pharmacist extends Staff {
+public class Pharmacist extends User {//ignore the staff first
 
 	public Pharmacist() {
-		// TODO - implement Pharmacist.Pharmacist
+		super();
+		throw new UnsupportedOperationException();
+	}
+
+	public Pharmacist(String staffID, String password, String name, boolean gender, int age){
+		super(staffID, password, name, gender, age);
 		throw new UnsupportedOperationException();
 	}
 

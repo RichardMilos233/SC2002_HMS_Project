@@ -1,10 +1,15 @@
 import java.util.*;
 
-public class Doctor extends Staff {
-	LinkedList<Patient> patients;
+public class Doctor extends User {//ignore the Staff class first
+	ArrayList<Patient> patients;
 
 	public Doctor() {
-		// TODO - implement Doctor.Doctor
+		super();
+		throw new UnsupportedOperationException();
+	}
+
+	public Doctor(String staffID, String password, String name, boolean gender, int age){
+		super(staffID, password, name, gender, age);
 		throw new UnsupportedOperationException();
 	}
 

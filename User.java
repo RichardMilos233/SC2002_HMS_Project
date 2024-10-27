@@ -2,11 +2,11 @@ import java.util.*;
 
 public class User {
 
-	private String hospitalID = "P1000";
-	private String password = "11414";
-	private String name = "Richard Milos";
-	private boolean gender = false; // false for male, true for female
-	private int age = -1;
+	protected String hospitalID = "P1000";
+	protected String password = "114514";
+	protected String name = "Richard Milos";
+	protected boolean gender = false; // false for male, true for female
+	protected int age = -1;
 
 	Scanner scanner = new Scanner(System.in);
 	public User() {

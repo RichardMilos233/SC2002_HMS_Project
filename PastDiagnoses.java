@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PastDiagnoses {
 
-	private LinkedList<AppointmentOutcome> appointmentOutcomes;
+	private ArrayList<AppointmentOutcome> appointmentOutcomes;
 
 	public PastDiagnoses() {
 		// TODO - implement PastDiagnoses.PastDiagnoses
