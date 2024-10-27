@@ -12,10 +12,8 @@ public class Doctor extends User {//ignore the Staff class first
 	}
 
 	public void viewPatientMedicalRecord(Patient patient) {
-		for (Patient docPatient : patients){
-			if (patient.getHospitalID() == docPatient.getHospitalID()){
-				patient.viewMedicalRecord();
-			}
+		if (patients.contains(patient)){
+			patient.viewMedicalRecord();
 		}
 	}
 
