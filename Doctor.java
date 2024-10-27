@@ -5,12 +5,10 @@ public class Doctor extends User {//ignore the Staff class first
 
 	public Doctor() {
 		super();
-		throw new UnsupportedOperationException();
 	}
 
 	public Doctor(String staffID, String password, String name, boolean gender, int age){
 		super(staffID, password, name, gender, age);
-		throw new UnsupportedOperationException();
 	}
 
 	public void viewPatientMedicalRecord() {
@@ -24,7 +22,6 @@ public class Doctor extends User {//ignore the Staff class first
 				patient.viewMedicalRecord();
 			}
 		}
-		throw new UnsupportedOperationException();
 	}
 
 	public void viewPersonalSchedule() {
@@ -57,7 +54,6 @@ public class Doctor extends User {//ignore the Staff class first
 		consultationNotes = scanner.nextLine();
 		AppointmentOutcome appointmentOutcome = new AppointmentOutcome(appointment.getDate(), "face2face", prescribedMedication, consultationNotes);//haven't thought of a type for consultation
 		appointment.setAppointmentOutcome(appointmentOutcome);
-		throw new UnsupportedOperationException();
 	}
 
 }

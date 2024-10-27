@@ -26,7 +26,6 @@ public class AppointmentOutcome {
 		System.out.println("Type: " + type);
 		prescribedMedication.displayPrescribedMedication();
 		System.out.println("Consultation notes: " + consultationNotes);
-		throw new UnsupportedOperationException();
 	}
 
 }

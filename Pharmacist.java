@@ -7,7 +7,6 @@ public class Pharmacist extends User {//ignore the staff first
 
 	public Pharmacist(String staffID, String password, String name, boolean gender, int age){
 		super(staffID, password, name, gender, age);
-		throw new UnsupportedOperationException();
 	}
 
 	public void viewAppointmentOutcomeRecord() {

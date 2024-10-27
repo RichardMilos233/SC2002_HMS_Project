@@ -1,0 +1,6 @@
+TODO - implement Appointment.Appointment
+throw new UnsupportedOperationException();
+keep these two when there is no implementation, but delete this when there is already an implementation, whether valid or not
+When this exception is thrown, it signals to the calling code that the method or operation was intentionally not implemented or cannot be performed.
+
+ArrayList is used rather than LinkedList because the former behaves more like a list in python, which is easier to manipulate

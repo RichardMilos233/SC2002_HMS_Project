@@ -10,7 +10,6 @@ public class User {
 
 	Scanner scanner = new Scanner(System.in);
 	public User() {
-		throw new UnsupportedOperationException();
 	}
 
 	public User(String hospitalID, String password, String name, boolean gender, int age) {
@@ -19,7 +18,6 @@ public class User {
 		this.name = name;
 		this.gender = gender;
 		this.age = age;
-		throw new UnsupportedOperationException();
 	}
 
 	public void login() {
@@ -32,7 +30,6 @@ public class User {
 		else{
 			System.out.println("Try again");
 		}
-		throw new UnsupportedOperationException();
 	}
 
 	public void logout() {

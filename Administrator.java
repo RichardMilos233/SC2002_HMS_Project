@@ -2,7 +2,6 @@ public class Administrator extends User {//ignore Staff first
 
 	public Administrator() {
 		super();
-		throw new UnsupportedOperationException();
 	}
 
 	public Administrator(String staffID, String password, String name, boolean gender, int age){

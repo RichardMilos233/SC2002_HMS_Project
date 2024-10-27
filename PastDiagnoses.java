@@ -13,7 +13,6 @@ public class PastDiagnoses {
 		for (AppointmentOutcome appointmentOutcome: appointmentOutcomes){
 			appointmentOutcome.displayAppointmentOutcome();
 		}
-		throw new UnsupportedOperationException();
 	}
 
 }

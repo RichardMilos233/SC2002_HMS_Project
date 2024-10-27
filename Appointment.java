@@ -19,11 +19,9 @@ public class Appointment {
 		this.status = status;
 		this.date = date;
 		this.time = time;
-		throw new UnsupportedOperationException();
 	}
 
 	public void displayAppointment() {
-		// TODO - implement Appointment.displayAppointment
 		System.out.println();
 		System.out.println("Patient ID: " + patientID);
 		System.out.println("Doctor ID: " + doctorID);
@@ -31,7 +29,6 @@ public class Appointment {
 		System.out.println("Appointment date & time: " + date + ' ' + time);
 		appointmentOutcome.displayAppointmentOutcome();
 		System.out.println();
-		throw new UnsupportedOperationException();
 	}
 
 	public void setAppointmentOutcome(AppointmentOutcome appointmentOutcome){

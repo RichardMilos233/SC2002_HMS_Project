@@ -12,7 +12,6 @@ public class Patient extends User {
 
 	public Patient() {
 		super();
-		throw new UnsupportedOperationException();
 	}
 
 	public Patient(String patientID, String password, String name, boolean gender, int age, String birth, int contactNumber, String email, String bloodType){
@@ -32,7 +31,6 @@ public class Patient extends User {
 		System.out.println("Enter new email:");
 		newEmail = scanner.nextLine();
 		this.email = newEmail;
-		throw new UnsupportedOperationException();
 	}
 
 	public void viewAvailableAppointmentSlots() {
@@ -49,7 +47,6 @@ public class Patient extends User {
 		System.out.println("Email: " + this.email);
 		System.out.println("Blood type: " + this.bloodType);
 		pastDiagnoses.displayPastDiagnoses();
-		throw new UnsupportedOperationException();
 	}
 
 	public void scheduleAppointment() {
