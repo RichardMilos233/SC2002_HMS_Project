@@ -4,18 +4,14 @@ public class Appointment {
 	private Doctor doctor;
 	private String patientID;
 	private String doctorID;
-	private String status;
+	private String status = "pending";//pending, confirmed, rejected, ended
 	private String date;
 	private String time;
 	private AppointmentOutcome appointmentOutcome;
 
-	public Appointment() {
-		// TODO - implement Appointment.Appointment
-		throw new UnsupportedOperationException();
-	}
+	public Appointment() {}
 
 	public Appointment(Patient patient, Doctor doctor, String status, String date, String time) {
-		// TODO - implement Appointment.Appointment
 		this.patient = patient;
 		this.doctor = doctor;
 		this.patientID = this.patient.hospitalID;
@@ -31,7 +27,9 @@ public class Appointment {
 		System.out.println("Doctor ID: " + doctorID);
 		System.out.println("Appointment status: " + status);
 		System.out.println("Appointment date & time: " + date + ' ' + time);
-		appointmentOutcome.displayAppointmentOutcome();
+		if (status.equals("ended")){
+			appointmentOutcome.displayAppointmentOutcome();
+		}
 		System.out.println();
 	}
 

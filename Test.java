@@ -47,6 +47,7 @@ public class Test {
                     break;
                 case 7:
                     patient.viewScheduledAppointment();
+                    break;
                 case 8:
                     patient.viewPastAppointmentOutcomeRecord();
                     break;
