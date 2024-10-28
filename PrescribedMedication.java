@@ -3,9 +3,7 @@ public class PrescribedMedication {
 	private String medicationName;
 	private int status;// 0 for pending, 1 for completed, for now
 
-	public PrescribedMedication() {
-		throw new UnsupportedOperationException();
-	}
+	public PrescribedMedication() {}
 
 	public PrescribedMedication(String medicationName, int status){
 		this.medicationName = medicationName;

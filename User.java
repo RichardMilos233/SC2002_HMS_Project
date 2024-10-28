@@ -53,8 +53,13 @@ public class User {
 		return this.name;
 	}
 
-	public boolean getGender(){
-		return this.gender;
+	public String getGender(){
+		if (this.gender){
+			return "Female";
+		}
+		else{
+			return "Male";
+		}
 	}
 
 	public int getAge(){

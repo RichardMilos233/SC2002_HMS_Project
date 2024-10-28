@@ -6,7 +6,7 @@ public class Patient extends User {
 	private int contactNumber = 1919810;
 	private String email = "";
 	private String bloodType = "";
-	private PastDiagnoses pastDiagnoses = null;
+	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
 
 	Scanner scanner = new Scanner(System.in);
 
@@ -39,6 +39,7 @@ public class Patient extends User {
 	}
 
 	public void viewMedicalRecord() {
+		System.out.println("---------------Medical Record---------------");
 		System.out.println("Patient ID: " + this.getHospitalID());
 		System.out.println("Name: " + this.getName());
 		System.out.println("Date of birth: " + this.birth);
@@ -47,6 +48,7 @@ public class Patient extends User {
 		System.out.println("Email: " + this.email);
 		System.out.println("Blood type: " + this.bloodType);
 		pastDiagnoses.displayPastDiagnoses();
+		System.out.println("---------------------End---------------------");
 	}
 
 	public void scheduleAppointment() {
@@ -72,6 +74,10 @@ public class Patient extends User {
 	public void viewPastAppointmentOutcomeRecord() {
 		// TODO - implement Patient.viewPastAppointmentOutcomeRecord
 		throw new UnsupportedOperationException();
+	}
+
+	public PastDiagnoses getPastDiagnoses(){
+		return this.pastDiagnoses;
 	}
 
 	private int getContactNumber() {
