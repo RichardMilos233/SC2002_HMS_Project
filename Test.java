@@ -59,109 +59,109 @@ public class Test {
             }
         }while(choice != 9);
 
-        // //doctor menu
-        // choice = 0;
-        // do{
-        //     System.out.println("Doctor Menu: \n" + //
-        //                         "1 View Patient Medical Records\n" + //
-        //                         "2 Update Patient Medical Records \n" + //
-        //                         "3 View Personal Schedule \n" + //
-        //                         "4 Set Availability for Appointments \n" + //
-        //                         "5 Accept or Decline Appointment Requests \n" + //
-        //                         "6 View Upcoming Appointments \n" + //
-        //                         "7 Record Appointment Outcome \n" + //
-        //                         "8 Logout");
-        //     choice = scanner.nextInt();
-        //     switch (choice) {
-        //         case 1:
-        //             doctor.viewPatientMedicalRecord(patient);
-        //             break;
-        //         case 2:
-        //             doctor.updatePatientMedicalRecord(patient);
-        //             break;
-        //         case 3:
-        //             doctor.viewPersonalSchedule();
-        //             break;
-        //         case 4:
-        //             doctor.setAvailability();
-        //             break;
-        //         case 5:
-        //             doctor.acceptAppointment();
-        //             break;
-        //         case 6:
-        //             doctor.viewUpcomingAppointment();
-        //             break;
-        //         case 7: 
-        //             doctor.recordAppointmentOutcome(null);//not settled yet
-        //             break;
-        //         case 8:
-        //             doctor.logout();
-        //             break;
-        //         default:
-        //             break;
-        //     }
-        // }while (choice != 8);
+        //doctor menu
+        choice = 0;
+        do{
+            System.out.println("Doctor Menu: \n" + //
+                                "1 View Patient Medical Records\n" + //
+                                "2 Update Patient Medical Records \n" + //
+                                "3 View Personal Schedule \n" + //
+                                "4 Set Availability for Appointments \n" + //
+                                "5 Accept or Decline Appointment Requests \n" + //
+                                "6 View Upcoming Appointments \n" + //
+                                "7 Record Appointment Outcome \n" + //
+                                "8 Logout");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    doctor.viewPatientMedicalRecord(patient);
+                    break;
+                case 2:
+                    doctor.updatePatientMedicalRecord(patient);
+                    break;
+                case 3:
+                    doctor.viewPersonalSchedule();
+                    break;
+                case 4:
+                    doctor.setAvailability();
+                    break;
+                case 5:
+                    doctor.acceptAppointment();
+                    break;
+                case 6:
+                    doctor.viewUpcomingAppointment();
+                    break;
+                case 7: 
+                    doctor.recordAppointmentOutcome(null);//not settled yet
+                    break;
+                case 8:
+                    doctor.logout();
+                    break;
+                default:
+                    break;
+            }
+        }while (choice != 8);
 
-        // //pharmacist menu
-        // choice = 0;
-        // do{
-        //     System.out.println("Pharmacist Menu: \n" + //
-        //                         "1 View Appointment Outcome Record \n" + //
-        //                         "2 Update Prescription Status \n" + //
-        //                         "3 View Medication Inventory \n" + //
-        //                         "4 Submit Replenishment Request \n" + //
-        //                         "5 Logout");
-        //     choice = scanner.nextInt();
-        //     switch (choice) {
-        //         case 1:
-        //             pharmacist.viewAppointmentOutcomeRecord();
-        //             break;
-        //         case 2:
-        //             pharmacist.updatePrescriptionStatus();
-        //             break;
-        //         case 3:
-        //             pharmacist.viewMedicationInventory();
-        //             break;
-        //         case 4:
-        //             pharmacist.submitReplenishmentRequest();
-        //             break;
-        //         case 5:
-        //             pharmacist.logout();
-        //             break;
-        //         default:
-        //             break;
-        //     }
-        // }while(choice != 5);
+        //pharmacist menu
+        choice = 0;
+        do{
+            System.out.println("Pharmacist Menu: \n" + //
+                                "1 View Appointment Outcome Record \n" + //
+                                "2 Update Prescription Status \n" + //
+                                "3 View Medication Inventory \n" + //
+                                "4 Submit Replenishment Request \n" + //
+                                "5 Logout");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    pharmacist.viewAppointmentOutcomeRecord();
+                    break;
+                case 2:
+                    pharmacist.updatePrescriptionStatus();
+                    break;
+                case 3:
+                    pharmacist.viewMedicationInventory();
+                    break;
+                case 4:
+                    pharmacist.submitReplenishmentRequest();
+                    break;
+                case 5:
+                    pharmacist.logout();
+                    break;
+                default:
+                    break;
+            }
+        }while(choice != 5);
 
-        // //admin menu
-        // choice = 0;
-        // do{
-        //     System.out.println("Administrator Menu: \n" + //
-        //                         "1 View and Manage Hospital Staff \n" + //
-        //                         "2 View Appointments details \n" + //
-        //                         "3 View and Manage Medication Inventory \n" + //
-        //                         "4 Approve Replenishment Requests \n" + //
-        //                         "5 Logout ");
-        //     choice = scanner.nextInt();
-        //     switch (choice) {
-        //         case 1:
-        //             administrator.displayStaffList();
-        //             break;
-        //         case 2:
-        //             administrator.viewAppointmentDetails();
-        //             break;
-        //         case 3:
-        //             administrator.viewInventory();
-        //             break;
-        //         case 4:
-        //             administrator.approveReplenishmentRequest();
-        //             break;
-        //         case 5:
-        //             administrator.logout();
-        //             break;
-        //         default:
-        //             break;
-        //     }
-        // }while (choice != 5);
+        //admin menu
+        choice = 0;
+        do{
+            System.out.println("Administrator Menu: \n" + //
+                                "1 View and Manage Hospital Staff \n" + //
+                                "2 View Appointments details \n" + //
+                                "3 View and Manage Medication Inventory \n" + //
+                                "4 Approve Replenishment Requests \n" + //
+                                "5 Logout ");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    administrator.displayStaffList();
+                    break;
+                case 2:
+                    administrator.viewAppointmentDetails();
+                    break;
+                case 3:
+                    administrator.viewInventory();
+                    break;
+                case 4:
+                    administrator.approveReplenishmentRequest();
+                    break;
+                case 5:
+                    administrator.logout();
+                    break;
+                default:
+                    break;
+            }
+        }while (choice != 5);
     }
 }
