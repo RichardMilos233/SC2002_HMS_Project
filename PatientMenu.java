@@ -16,7 +16,6 @@ public class PatientMenu {
                                 "8 View Past Appointment Outcome Records \n" + 
                                 "9 Logout ");
             choice = scanner.nextInt();
-            // scanner.nextLine();//buffer for no reason
             switch (choice) {
                 case 1:
                     patient.viewMedicalRecord();
