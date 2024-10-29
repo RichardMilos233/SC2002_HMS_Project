@@ -15,10 +15,14 @@ public class Test {
         // Pharmacist pharmacist = new Pharmacist("P001", "phmpass", "Mark Lee", "Male", 29);
         // Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
         
-        User user = null;
-        user = Login.login(user);
-        patient = (Patient) user;
-        patient.display();
+        User user = Login.login(null);
+        if (user == null){System.out.println("user is null");}
+        System.out.println("user is not null");
+        if (user instanceof Patient){
+            patient = (Patient) user;
+            System.out.println("downcasted safely");
+        }
+        // patient.display();
         PatientMenu.displayPatientMenu(patient);
 
         

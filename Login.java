@@ -45,7 +45,6 @@ public class Login {
         credentials.add(hospitalIdInput);
         credentials.add(passwordInput);
 
-        scanner.close();
         return credentials;
     }
 

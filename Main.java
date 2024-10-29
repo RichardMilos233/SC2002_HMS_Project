@@ -7,10 +7,10 @@ public class Main {
         User user = null;
         user = Login.login(user);
         
-        String role = user.getRole();//so far so good
+        String role = user.getRole();
         switch (role) {
             case "patient":
-                PatientMenu.displayPatientMenu((Patient)user);// does not work
+                PatientMenu.displayPatientMenu((Patient)user);  //so far so good
                 break;
         
             default:
