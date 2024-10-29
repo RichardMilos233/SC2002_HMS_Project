@@ -26,5 +26,6 @@ public class Main {
                 System.out.println("undefined role");
                 break;
         }
+        System.out.println("Thank you for using this shitty system");
     }
 }
