@@ -1,4 +1,5 @@
 import java.util.*;
+import java.time.*;
 
 public class Test {
     public static void main(String[] args){
@@ -6,11 +7,11 @@ public class Test {
         int choice;
 
         //initialize sample users
-        Patient patient = new Patient("P1001", "pswrd", "Alice Brown", true, 24, 
-                                    "1980-05-14", 84320011, "alice.brown@example.com", "A+");
-        Doctor doctor = new Doctor("D001", "docpass", "John Smith", false, 45);
-        Pharmacist pharmacist = new Pharmacist("P001", "phmpass", "Mark Lee", false, 29);
-        Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", true, 40);
+        Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
+                                    LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
+        Doctor doctor = new Doctor("D001", "docpass", "John Smith", "Male", 45);
+        Pharmacist pharmacist = new Pharmacist("P001", "phmpass", "Mark Lee", "Male", 29);
+        Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
 
         // patient menu
         choice = 0;
@@ -163,5 +164,7 @@ public class Test {
                     break;
             }
         }while (choice != 5);
+
+        scanner.close();
     }
 }

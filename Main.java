@@ -1,0 +1,13 @@
+import java.util.*;
+
+public class Main {
+    public static void main (String[] args){
+        System.out.println("Hello world!");
+        Scanner scanner = new Scanner(System.in);
+        
+        User user = null;
+        Login.login(user);
+
+        scanner.close();
+    }
+}

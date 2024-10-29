@@ -1,11 +1,12 @@
 import java.util.*;
+import java.time.*;
 
 public class DoctorMenu {
     Scanner scanner = new Scanner(System.in);
     public void displayDoctorMenu(Doctor doctor){
         // only for test
-        Patient patient = new Patient("P1001", "pswrd", "Alice Brown", true, 24, 
-                                    "1980-05-14", 84320011, "alice.brown@example.com", "A+");
+        Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
+                                    LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
         int choice = 0;
         do{
             System.out.println("Doctor Menu: \n" + //

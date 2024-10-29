@@ -9,7 +9,7 @@ import java.util.List;
 public class ExcelService {
 
     // Method to read data from a CSV file
-    public List<List<String>> readCsv(String filePath) {
+    public static List<List<String>> readCsv(String filePath) {
         List<List<String>> data = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -30,7 +30,7 @@ public class ExcelService {
     }
 
     // Method to write data to a CSV file
-    public void writeCsv(String filePath, List<List<String>> data) {
+    public static void writeCsv(String filePath, List<List<String>> data) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (List<String> row : data) {
                 String line = String.join(",", row);
@@ -43,7 +43,7 @@ public class ExcelService {
     }
 
     // Method to modify a specific cell in the CSV data
-    public void modifyCsv(String filePath, int rowIndex, int colIndex, String newValue) {
+    public static void modifyCsv(String filePath, int rowIndex, int colIndex, String newValue) {
         // Read the existing data
         List<List<String>> data = readCsv(filePath);
 

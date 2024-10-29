@@ -4,7 +4,7 @@ public class Administrator extends User {//ignore Staff first
 		super();
 	}
 
-	public Administrator(String staffID, String password, String name, boolean gender, int age){
+	public Administrator(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 	}
 
