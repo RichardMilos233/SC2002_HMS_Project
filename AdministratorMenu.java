@@ -1,8 +1,8 @@
 import java.util.*;;
 
 public class AdministratorMenu {
-    Scanner scanner = new Scanner(System.in);
-    public void displayAdminMenu(Administrator administrator){
+    public static void displayAdminMenu(Administrator administrator){
+        Scanner scanner = new Scanner(System.in);
         int choice = 0;
         do{
             System.out.println("Administrator Menu: \n" + //
