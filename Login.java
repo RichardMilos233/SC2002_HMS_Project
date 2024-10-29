@@ -5,7 +5,7 @@ public class Login {
     public static User login(User user){
         List<String> credentials = getLoginCredentials();
         if (checkCredentials(credentials)){
-            System.out.println("login success");
+            System.out.println("successfully logged in");
             user = allocateAccount(credentials);
             return user;
         }
@@ -21,7 +21,7 @@ public class Login {
         String hospitalId = credentials.get(0);
         String password = credentials.get(1);
 
-        String filePath = "credentials.csv";
+        String filePath = "csv\\credentials.csv";
         List<List<String>> accountList = ExcelService.readCsv(filePath);
         
         for (int i = 1; i < accountList.size(); i++) {
@@ -54,7 +54,7 @@ public class Login {
         String password = credentials.get(1);
 
         if (hospitalId.length() == 5){//patient
-            String filePath = "Patient_List.csv";
+            String filePath = "csv\\Patient_List.csv";
             List<List<String>> data = ExcelService.readCsv(filePath);
         
             for (int i = 1; i < data.size(); i++) {
@@ -73,8 +73,8 @@ public class Login {
                 }
             }
         }
-        else if (hospitalId.length() == 4){//staff
-            String filePath = "Staff_List.csv";
+        else if (hospitalId.length() == 4){ //staff
+            String filePath = "csv\\Staff_List.csv";
             List<List<String>> data = ExcelService.readCsv(filePath);
 
             for (int i = 1; i < data.size(); i++) {

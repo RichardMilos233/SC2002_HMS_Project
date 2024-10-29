@@ -14,6 +14,7 @@ public class Patient extends User {
 
 	public Patient() {
 		super();
+		this.role = "patient";
 	}
 
 	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
@@ -23,6 +24,7 @@ public class Patient extends User {
 		this.email = email;
 		this.bloodType = bloodType;
 		this.age = DateConverter.calculateAge(birth);
+		this.role = "patient";
 	}
 
 	public void updatePersonalInformation() {    // not safe & can add more constraints for input
@@ -97,6 +99,14 @@ public class Patient extends User {
 
 	private void setEmail(String newEmail) {
 		this.email = newEmail;
+	}
+
+	public void display(){
+		super.display();
+		System.out.println("Date of Birth: " + this.birth);
+		System.out.println("Contact Number: " + this.contactNumber);
+		System.out.println("Email: " + this.email);
+		System.out.println("Blood Type: " + this.bloodType);
 	}
 
 }

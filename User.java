@@ -7,6 +7,7 @@ public class User {
 	protected String name = "Richard Milos";
 	protected String gender = "Male";
 	protected int age = -1;
+	protected String role = "user";
 
 	Scanner scanner = new Scanner(System.in);
 	public User() {
@@ -18,6 +19,7 @@ public class User {
 		this.name = name;
 		this.gender = gender;
 		this.age = age;
+		this.role = "user";
 	}
 
 	public void login() {
@@ -60,7 +62,20 @@ public class User {
 		return this.age;
 	}
 
+	public String getRole(){
+		return this.role;
+	}
+
 	public void setHospitalID(String newHospitalID){
 		this.hospitalID = newHospitalID;
+	}
+
+	public void display(){
+		System.out.println("Hospital ID: " + this.hospitalID);
+		System.out.println("Name: " + this.name);
+		System.out.println("Password: " + this.password);
+		System.out.println("Role: " + this.role);
+		System.out.println("Age: " + this.age);
+		System.out.println("Gender: " + this.gender);
 	}
 }

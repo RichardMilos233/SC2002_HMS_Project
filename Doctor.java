@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Doctor extends User {//ignore the Staff class first
 	ArrayList<Patient> patients = new ArrayList<>();
+	private String role = "doctor";
 
 	public Doctor() {
 		super();
