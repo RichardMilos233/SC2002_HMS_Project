@@ -82,7 +82,7 @@ public class Patient extends User {
 	}
 
 
-	public String getBirth(){
+	public LocalDate getBirth(){
 		return this.birth;
 	}
 

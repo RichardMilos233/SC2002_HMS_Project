@@ -10,6 +10,7 @@ public class Doctor extends User {//ignore the Staff class first
 
 	public Doctor(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
+		this.role = "doctor";
 	}
 
 	public void viewPatientMedicalRecord(Patient patient) {

@@ -3,74 +3,16 @@ import java.time.*;
 
 public class Test {
     public static void main(String[] args){
-
-
-
-
-        // patient menu
-        choice = 0;
-        do{
-            System.out.println("Patient Menu: \n" + //
-                                "1 View Medical Record \n" + //
-                                "2 Update Personal Information\n" + //
-                                "3 View Available Appointment Slots \n" + //
-                                "4 Schedule an Appointment \n" + //
-                                "5 Reschedule an Appointment \n" + //
-                                "6 Cancel an Appointment \n" + //
-                                "7 View Scheduled Appointments \n" + //
-                                "8 View Past Appointment Outcome Records \n" + //
-                                "9 Logout ");
-            choice = scanner.nextInt();
-            switch (choice) {
-                case 1://both methods work, see which one yall prefer
-                    // patient.viewMedicalRecord();
-                    PatientMedicalRecordViewer.viewPatientMedicalRecord(patient);
-                    break;
-                case 2:
-                    patient.updatePersonalInformation();
-                    break;
-                case 3:
-                    patient.viewAvailableAppointmentSlots();
-                    break;
-                case 4:
-                    patient.scheduleAppointment();
-                    break;
-                case 5:
-                    patient.rescheduleAppointment();
-                    break;
-                case 6:
-                    patient.cancelAppointment();
-                    break;
-                case 7:
-                    patient.viewScheduledAppointment();
-                    break;
-                case 8:
-                    patient.viewPastAppointmentOutcomeRecord();
-                    break;
-                case 9:
-                    patient.logout();;
-                    break;
-                default:
-                    break;
-            }
-        }while(choice != 9);
-
-
+        Scanner scanner = new Scanner(System.in);
         // //initialize sample users
         Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
-        // Doctor doctor = new Doctor("D001", "docpass", "John Smith", "Male", 45);
-        // Pharmacist pharmacist = new Pharmacist("P001", "phmpass", "Mark Lee", "Male", 29);
-        // Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
+        Doctor doctor = new Doctor("D001", "docpass", "John Smith", "Male", 45);
+        Pharmacist pharmacist = new Pharmacist("P001", "phmpass", "Mark Lee", "Male", 29);
+        Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
         
-        User user = Login.login(null);
-        if (user == null){System.out.println("user is null");}
-        System.out.println("user is not null");
-        if (user instanceof Patient){
-            patient = (Patient) user;
-            System.out.println("downcasted safely");
-        }
-        // patient.display();
+
+
         PatientMenu.displayPatientMenu(patient);
 
         
