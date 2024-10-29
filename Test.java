@@ -27,8 +27,9 @@ public class Test {
                                 "9 Logout ");
             choice = scanner.nextInt();
             switch (choice) {
-                case 1:
-                    patient.viewMedicalRecord();
+                case 1://both methods work, see which one yall prefer
+                    // patient.viewMedicalRecord();
+                    PatientMedicalRecordViewer.viewPatientMedicalRecord(patient);
                     break;
                 case 2:
                     patient.updatePersonalInformation();

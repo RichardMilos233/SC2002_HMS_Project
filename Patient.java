@@ -76,24 +76,35 @@ public class Patient extends User {
 		throw new UnsupportedOperationException();
 	}
 
+
+	public String getBirth(){
+		return this.birth;
+	}
+
+	public int getContactNumber() {
+		return this.contactNumber;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public String getBloodType(){
+		return this.bloodType;
+	}
+
 	public PastDiagnoses getPastDiagnoses(){
 		return this.pastDiagnoses;
 	}
 
-	private int getContactNumber() {
-		return this.contactNumber;
-	}
+
+
 
 	private void setContactNumber(int newcontactNumber) {
 		this.contactNumber = newcontactNumber;
 	}
 
-	private String getEmail() {
-		return this.email;
-	}
-
 	private void setEmail(String newEmail) {
 		this.email = newEmail;
 	}
-
 }
