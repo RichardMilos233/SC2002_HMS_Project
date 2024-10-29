@@ -33,10 +33,7 @@ public class User {
 		}
 	}
 
-	public void logout() {
-		// TODO - implement User.logout
-		throw new UnsupportedOperationException();
-	}
+	public void logout() {}	//do nothing, jump out of the while-switch loop
 
 	public void changePassword() {
 		String newPassword = "";
