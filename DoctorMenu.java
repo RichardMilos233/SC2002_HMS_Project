@@ -2,8 +2,8 @@ import java.util.*;
 import java.time.*;
 
 public class DoctorMenu {
-    Scanner scanner = new Scanner(System.in);
-    public void displayDoctorMenu(Doctor doctor){
+    public static void displayDoctorMenu(Doctor doctor){
+        Scanner scanner = new Scanner(System.in);
         // only for test
         Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");

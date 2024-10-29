@@ -43,7 +43,7 @@ public class PatientMenu {
                     patient.viewPastAppointmentOutcomeRecord();
                     break;
                 case 9:
-                    patient.logout();;
+                    patient.logout();
                     break;
                 default:
                     break;

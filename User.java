@@ -2,9 +2,9 @@ import java.util.*;
 
 public class User {
 
-	protected String hospitalID = "P1000";
-	protected String password = "114514";
-	protected String name = "Richard Milos";
+	protected String hospitalID = "U42";
+	protected String password = "user";
+	protected String name = "nobody";
 	protected String gender = "Male";
 	protected int age = -1;
 	protected String role = "user";
@@ -33,10 +33,7 @@ public class User {
 		}
 	}
 
-	public void logout() {
-		// TODO - implement User.logout
-		throw new UnsupportedOperationException();
-	}
+	public void logout() {}	//do nothing, jump out of the while-switch loop
 
 	public void changePassword() {
 		String newPassword = "";

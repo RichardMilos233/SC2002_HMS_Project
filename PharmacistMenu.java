@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class PharmacistMenu {
-    Scanner scanner = new Scanner(System.in);
-    public void displayPharmacistMenu(Pharmacist pharmacist){
+    public static void displayPharmacistMenu(Pharmacist pharmacist){
+        Scanner scanner = new Scanner(System.in);
         int choice = 0;
         do{
             System.out.println("Pharmacist Menu: \n" + //
