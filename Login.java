@@ -1,7 +1,7 @@
 import java.util.*;
 import java.time.*;;
 
-public class Login {
+public class Login {    //can have a Signup.java later
     public static User login(User user){
         List<String> credentials = getLoginCredentials();
         if (checkCredentials(credentials)){
@@ -34,7 +34,7 @@ public class Login {
         return false;
     }
 
-    public static List<String> getLoginCredentials(){
+    public static List<String> getLoginCredentials(){   //get id and password
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your ID");
         String hospitalIdInput = scanner.nextLine();

@@ -2,10 +2,12 @@ public class Administrator extends User {//ignore Staff first
 
 	public Administrator() {
 		super();
+		this.role = "administrator";
 	}
 
 	public Administrator(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
+		this.role = "administrator";
 	}
 
 	public void displayStaffList() {
