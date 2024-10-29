@@ -5,19 +5,21 @@ public class User {
 	protected String hospitalID = "P1000";
 	protected String password = "114514";
 	protected String name = "Richard Milos";
-	protected boolean gender = false; // false for male, true for female
+	protected String gender = "Male";
 	protected int age = -1;
+	protected String role = "user";
 
 	Scanner scanner = new Scanner(System.in);
 	public User() {
 	}
 
-	public User(String hospitalID, String password, String name, boolean gender, int age) {
+	public User(String hospitalID, String password, String name, String gender, int age) {
 		this.hospitalID = hospitalID;
 		this.password = password;
 		this.name = name;
 		this.gender = gender;
 		this.age = age;
+		this.role = "user";
 	}
 
 	public void login() {
@@ -53,15 +55,27 @@ public class User {
 	}
 
 	public String getGender(){
-		if (this.gender){
-			return "Female";
-		}
-		else{
-			return "Male";
-		}
+		return this.gender;
 	}
 
 	public int getAge(){
 		return this.age;
+	}
+
+	public String getRole(){
+		return this.role;
+	}
+
+	public void setHospitalID(String newHospitalID){
+		this.hospitalID = newHospitalID;
+	}
+
+	public void display(){
+		System.out.println("Hospital ID: " + this.hospitalID);
+		System.out.println("Name: " + this.name);
+		System.out.println("Password: " + this.password);
+		System.out.println("Role: " + this.role);
+		System.out.println("Age: " + this.age);
+		System.out.println("Gender: " + this.gender);
 	}
 }

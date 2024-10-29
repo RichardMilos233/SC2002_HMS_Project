@@ -1,8 +1,10 @@
 import java.util.*;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class Patient extends User {
 
-	private String birth = "";
+	private LocalDate birth = LocalDate.of(1990, 5, 14);
 	private int contactNumber = 1919810;
 	private String email = "";
 	private String bloodType = "";
@@ -12,14 +14,17 @@ public class Patient extends User {
 
 	public Patient() {
 		super();
+		this.role = "patient";
 	}
 
-	public Patient(String patientID, String password, String name, boolean gender, int age, String birth, int contactNumber, String email, String bloodType){
+	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
 		super(patientID, password, name, gender, age);
 		this.birth = birth;
 		this.contactNumber = contactNumber;
 		this.email = email;
 		this.bloodType = bloodType;
+		this.age = DateConverter.calculateAge(birth);
+		this.role = "patient";
 	}
 
 	public void updatePersonalInformation() {    // not safe & can add more constraints for input
@@ -107,4 +112,13 @@ public class Patient extends User {
 	private void setEmail(String newEmail) {
 		this.email = newEmail;
 	}
+
+	public void display(){
+		super.display();
+		System.out.println("Date of Birth: " + this.birth);
+		System.out.println("Contact Number: " + this.contactNumber);
+		System.out.println("Email: " + this.email);
+		System.out.println("Blood Type: " + this.bloodType);
+	}
+
 }

@@ -2,12 +2,13 @@ import java.util.*;
 
 public class Doctor extends User {//ignore the Staff class first
 	ArrayList<Patient> patients = new ArrayList<>();
+	private String role = "doctor";
 
 	public Doctor() {
 		super();
 	}
 
-	public Doctor(String staffID, String password, String name, boolean gender, int age){
+	public Doctor(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 	}
 

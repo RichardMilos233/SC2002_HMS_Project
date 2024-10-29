@@ -9,7 +9,7 @@ import java.util.List;
 public class ExcelService {
 
     // Method to read data from a CSV file
-    public List<List<String>> readCsv(String filePath) {
+    public static List<List<String>> readCsv(String filePath) {
         List<List<String>> data = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -30,7 +30,7 @@ public class ExcelService {
     }
 
     // Method to write data to a CSV file
-    public void writeCsv(String filePath, List<List<String>> data) {
+    public static void writeCsv(String filePath, List<List<String>> data) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (List<String> row : data) {
                 String line = String.join(",", row);
@@ -43,7 +43,7 @@ public class ExcelService {
     }
 
     // Method to modify a specific cell in the CSV data
-    public void modifyCsv(String filePath, int rowIndex, int colIndex, String newValue) {
+    public static void modifyCsv(String filePath, int rowIndex, int colIndex, String newValue) {
         // Read the existing data
         List<List<String>> data = readCsv(filePath);
 
@@ -59,21 +59,39 @@ public class ExcelService {
         writeCsv(filePath, data);
     }
 
-    // try this to see how the reader and writer work
-    // public static void main(String[] args) {
-    //     ExcelService service = new ExcelService();
+    public static void main(String[] args) {
+        // ExcelService service = new ExcelService();
+        String patientPath = "csv\\Patient_List.csv";
+        String staffPath = "csv\\Staff_List.csv";
+        String credentialPath = "csv\\credentials.csv";
 
-    //     // Writing to a CSV file
-    //     List<List<String>> newData = new ArrayList<>();
-    //     newData.add(List.of("Name", "Age", "Country"));
-    //     newData.add(List.of("Alice", "30", "USA"));
-    //     newData.add(List.of("Bob", "25", "UK"));
-    //     service.writeCsv("example.csv", newData);
+        List<List<String>> credentials = new ArrayList<>();
+        credentials.add(List.of("hospitalId", "password"));
 
-    //     // Reading from a CSV file
-    //     List<List<String>> data = service.readCsv("example.csv");
-    //     for (List<String> row : data) {
-    //         System.out.println(row);
-    //     }
-    // }
+        // Reading from a CSV file
+        List<List<String>> data = ExcelService.readCsv(patientPath);
+        for (List<String> row : data.subList(1, data.size())) {
+            credentials.add(List.of(row.get(0), "defaultPatientPassword"));
+            // System.out.println(credentials);
+        }
+
+        data = ExcelService.readCsv(staffPath);
+        for (List<String> row : data.subList(1, data.size())){
+            credentials.add(List.of(row.get(0), "defaultStaffPassword"));
+        }
+
+        // Writing to a CSV file
+        ExcelService.writeCsv(credentialPath, credentials);
+
+        // List<List<String>> data = new ArrayList<>();
+        // data.add(List.of("Staff ID", "Name", "Role", "Gender", "Age"));
+        // data.add(List.of("D001", "John Smith", "Doctor", "Male", "45"));
+        // data.add(List.of("D002", "Emily Clarke", "Doctor",	"Female", "38"));
+        // data.add(List.of("P001",	"Mark Lee",	"Pharmacist",	"Male",	"29"));
+        // data.add(List.of("A001",	"Sarah Lee",	"Administrator",	"Female",	"40"));
+
+        // ExcelService.writeCsv(staffPath, data);
+
+        
+    }
 }

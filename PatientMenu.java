@@ -1,19 +1,19 @@
 import java.util.*;
 
 public class PatientMenu {
-    Scanner scanner = new Scanner(System.in);
-    public void displayPatientMenu(Patient patient){
+    public static void displayPatientMenu(Patient patient){
+        Scanner scanner = new Scanner(System.in);
         int choice = 0;
         do{
-            System.out.println("Patient Menu: \n" + //
-                                "1 View Medical Record \n" + //
-                                "2 Update Personal Information\n" + //
-                                "3 View Available Appointment Slots \n" + //
-                                "4 Schedule an Appointment \n" + //
-                                "5 Reschedule an Appointment \n" + //
-                                "6 Cancel an Appointment \n" + //
-                                "7 View Scheduled Appointments \n" + //
-                                "8 View Past Appointment Outcome Records \n" + //
+            System.out.println("Patient Menu: \n" + 
+                                "1 View Medical Record \n" + 
+                                "2 Update Personal Information\n" + 
+                                "3 View Available Appointment Slots \n" + 
+                                "4 Schedule an Appointment \n" + 
+                                "5 Reschedule an Appointment \n" + 
+                                "6 Cancel an Appointment \n" + 
+                                "7 View Scheduled Appointments \n" + 
+                                "8 View Past Appointment Outcome Records \n" + 
                                 "9 Logout ");
             choice = scanner.nextInt();
             switch (choice) {

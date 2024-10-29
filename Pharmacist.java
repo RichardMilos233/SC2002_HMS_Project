@@ -4,7 +4,7 @@ public class Pharmacist extends User {//ignore the staff first
 		super();
 	}
 
-	public Pharmacist(String staffID, String password, String name, boolean gender, int age){
+	public Pharmacist(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 	}
 
