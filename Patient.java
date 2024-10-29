@@ -84,10 +84,6 @@ public class Patient extends User {
 		return this.contactNumber;
 	}
 
-	/**
-	 * 
-	 * @param newcontactNumber
-	 */
 	private void setContactNumber(int newcontactNumber) {
 		this.contactNumber = newcontactNumber;
 	}
@@ -96,10 +92,6 @@ public class Patient extends User {
 		return this.email;
 	}
 
-	/**
-	 * 
-	 * @param newEmail
-	 */
 	private void setEmail(String newEmail) {
 		this.email = newEmail;
 	}

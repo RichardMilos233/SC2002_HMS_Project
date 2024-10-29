@@ -21,7 +21,6 @@ public class User {
 	}
 
 	public void login() {
-		// TODO - implement User.login
 		String enteredPassword = "";
 		enteredPassword = scanner.nextLine();
 		if (enteredPassword.equals(this.password)){
