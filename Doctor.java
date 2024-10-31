@@ -86,19 +86,28 @@ public class Doctor extends User {//ignore the Staff class first
 		}
 	}
 
+	public List<Patient> getPatients(){
+		return this.patients;
+	}
+
 	public static Doctor getDoctor(){	//list out all doctors, then select a doctor
 		Scanner scanner = new Scanner(System.in);
 		Doctor doctor;
         int i;
-        int choice = 0;
-        do{
-            System.out.println("Choose the doctor you want:");
-            for (i = 0; i < Doctor.doctors.size(); i++){
-                doctor = Doctor.doctors.get(i);
-                System.out.println(i+1 + ": " + doctor.getName());
-            }
-            choice = scanner.nextInt();
-        } while(choice <1 || choice > Doctor.doctors.size());
+        int choice = -1;
+
+		System.out.println("Choose the doctor you want:");
+		for (i = 0; i < Doctor.doctors.size(); i++){
+			doctor = Doctor.doctors.get(i);
+			System.out.println(i+1 + ": " + doctor.getName());
+		}
+
+		choice = scanner.nextInt();
+		if (choice <1 || choice > Doctor.doctors.size()){
+			System.out.println("invalid choice");
+			return null;
+		}
+		
         doctor = Doctor.doctors.get(choice-1);
 		return doctor;
 	}

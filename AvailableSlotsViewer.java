@@ -6,7 +6,7 @@ public class AvailableSlotsViewer {
         Doctor doctor = Doctor.getDoctor();
         
         // view his/ her thing
-        List<Appointment> availableSlots = AvailableSlotsGetter.getAvailableSlots(doctor); 
+        List<Appointment> availableSlots = getAvailableSlots(doctor); 
         printAvailableSlots(doctor, availableSlots);
     }
 

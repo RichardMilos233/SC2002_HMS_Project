@@ -29,14 +29,16 @@ public class Patient extends User {
 		patients.add(this);
 	}
 
-	public void updatePersonalInformation() {    // not safe & can add more constraints for input
+	public void updatePersonalInformation() {    // not working somehow
 		int newcontactNumber;
 		String newEmail;
 		System.out.println("Enter new contact number:");
 		newcontactNumber = scanner.nextInt();
 		this.contactNumber = newcontactNumber;
+		System.out.println("Your new contact number is " + this.getContactNumber());
 		System.out.println("Enter new email:");
 		newEmail = scanner.nextLine();
+		System.out.println("Your new email is " + this.getEmail());
 		this.email = newEmail;
 	}
 
@@ -126,5 +128,25 @@ public class Patient extends User {
 		System.out.println("Contact Number: " + this.contactNumber);
 		System.out.println("Email: " + this.email);
 		System.out.println("Blood Type: " + this.bloodType);
+	}
+
+	public static Patient getPatient(List<Patient> patients){
+		Scanner scanner = new Scanner(System.in);
+        Patient patient;
+        int i, choice = -1;
+
+        System.out.println("Select a patient");
+        for (i=0; i<patients.size(); i++){
+            patient = patients.get(i);
+            System.out.println(i+1 + ": " + patient.getName());
+        }
+		
+        choice = scanner.nextInt();
+        if (choice < 1 || choice > patients.size()){
+            System.out.println("invalid choice");
+            return null;
+        }
+        patient = patients.get(choice-1);
+		return patient;
 	}
 }

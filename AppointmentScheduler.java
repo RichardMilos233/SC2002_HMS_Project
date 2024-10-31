@@ -9,7 +9,7 @@ public class AppointmentScheduler{
         Doctor doctor = Doctor.getDoctor();
 
         //sout all the available appointment slots of that doctor
-        List<Appointment> availableSlots = AvailableSlotsGetter.getAvailableSlots(doctor);
+        List<Appointment> availableSlots = AvailableSlotsViewer.getAvailableSlots(doctor);
         int choice;
         do{
             AvailableSlotsViewer.printAvailableSlots(doctor, availableSlots);

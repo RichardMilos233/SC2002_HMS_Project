@@ -26,14 +26,14 @@ public class Appointment {
 
 	public void displayAppointment() {
 		System.out.println();
-
+		
+		System.out.println("Appointment date & time: " + date + ' ' + time);
+		System.out.println("Appointment status: " + status);
+		
 		if (status.equals("confirmed") || status.equals("closed")){
 			System.out.println("Patient ID: " + patient.getHospitalID());
 			System.out.println("Doctor ID: " + doctor.getHospitalID());
 		}
-
-		System.out.println("Appointment status: " + status);
-		System.out.println("Appointment date & time: " + date + ' ' + time);
 
 		if (status.equals("closed")){
 			appointmentOutcome.displayAppointmentOutcome();
