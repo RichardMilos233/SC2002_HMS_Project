@@ -19,7 +19,7 @@ public class Appointment {
 
 	public Appointment() {}
 
-	public Appointment(Patient patient, Doctor doctor, String status, LocalDate date, LocalTime time) {
+	public Appointment(Patient patient, Doctor doctor, String status, LocalDate date, LocalTime time) {	//this got to be updated
 		this.patient = patient;
 		this.doctor = doctor;
 		this.status = status;
@@ -67,6 +67,10 @@ public class Appointment {
 
 	public Patient getPatient(){
 		return this.patient;
+	}
+
+	public void setPatient(Patient patient){
+		this.patient = patient;
 	}
 
 	// public boolean isAvailable(){

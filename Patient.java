@@ -1,6 +1,5 @@
 import java.util.*;
-import java.time.LocalDate;
-import java.time.Period;
+import java.time.*;
 
 public class Patient extends User {
 	public static List<Patient> patients = new ArrayList<>();
@@ -9,7 +8,7 @@ public class Patient extends User {
 	private String email = "";
 	private String bloodType = "";
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
-	private TimeTable scheduledAppointment = new TimeTable();
+	private List<Appointment> scheduledAppointment = new ArrayList<>();
 
 	Scanner scanner = new Scanner(System.in);
 
@@ -93,8 +92,16 @@ public class Patient extends User {
 		return this.contactNumber;
 	}
 
+	public void setContactNumber(int newcontactNumber) {
+		this.contactNumber = newcontactNumber;
+	}
+
 	public String getEmail() {
 		return this.email;
+	}
+
+	public void setEmail(String newEmail) {
+		this.email = newEmail;
 	}
 
 	public String getBloodType(){
@@ -105,15 +112,12 @@ public class Patient extends User {
 		return this.pastDiagnoses;
 	}
 
-
-
-
-	private void setContactNumber(int newcontactNumber) {
-		this.contactNumber = newcontactNumber;
+	public List<Appointment> getScheduledAppointment(){
+		return this.scheduledAppointment;
 	}
 
-	private void setEmail(String newEmail) {
-		this.email = newEmail;
+	public void addScheduledAppointment(Appointment appointment){
+		this.scheduledAppointment.add(appointment);
 	}
 
 	public void display(){
@@ -123,5 +127,4 @@ public class Patient extends User {
 		System.out.println("Email: " + this.email);
 		System.out.println("Blood Type: " + this.bloodType);
 	}
-
 }

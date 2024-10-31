@@ -32,6 +32,8 @@ public class AppointmentScheduler{
         Appointment selectedAppointment = availableSlots.get(choice-1);
         //send request
         selectedAppointment.setStatus("pending");
+        selectedAppointment.setPatient(patient);
+        patient.addScheduledAppointment(selectedAppointment);
         System.out.println("Request submitted");
     }
 }
