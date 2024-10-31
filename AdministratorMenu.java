@@ -28,6 +28,7 @@ public class AdministratorMenu {
                 case 5:
                     administrator.logout();
                     break;
+                    
                 default:
                     break;
             }

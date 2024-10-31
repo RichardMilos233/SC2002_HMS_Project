@@ -1,6 +1,5 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
+import java.time.*;
 
 public class Doctor extends User {//ignore the Staff class first
 	public static List<Doctor> doctors = new ArrayList<>();	//later could read the csv to load the existing doctors first
