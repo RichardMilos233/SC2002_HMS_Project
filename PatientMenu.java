@@ -28,7 +28,8 @@ public class PatientMenu {
                     patient.viewAvailableAppointmentSlots();
                     break;
                 case 4:
-                    patient.scheduleAppointment();
+                    // patient.scheduleAppointment();
+                    AppointmentScheduler.scheduleAppointment(patient);
                     break;
                 case 5:
                     patient.rescheduleAppointment();

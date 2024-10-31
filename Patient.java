@@ -3,18 +3,20 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Patient extends User {
-
+	public static List<Patient> patients = new ArrayList<>();
 	private LocalDate birth = LocalDate.of(1990, 5, 14);
 	private int contactNumber = 1919810;
 	private String email = "";
 	private String bloodType = "";
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
+	private TimeTable scheduledAppointment = new TimeTable();
 
 	Scanner scanner = new Scanner(System.in);
 
 	public Patient() {
 		super();
 		this.role = "patient";
+		patients.add(this);
 	}
 
 	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
@@ -25,6 +27,7 @@ public class Patient extends User {
 		this.bloodType = bloodType;
 		this.age = DateConverter.calculateAge(birth);
 		this.role = "patient";
+		patients.add(this);
 	}
 
 	public void updatePersonalInformation() {    // not safe & can add more constraints for input

@@ -1,4 +1,4 @@
-import java.util.*;;
+import java.util.*;
 
 public class AdministratorMenu {
     public static void displayAdminMenu(Administrator administrator){

@@ -1,16 +1,21 @@
 import java.util.*;
 
 public class Doctor extends User {//ignore the Staff class first
-	ArrayList<Patient> patients = new ArrayList<>();
+	public static List<Doctor> doctors = new ArrayList<>();	//later could read the csv to load the existing doctors first
+	private ArrayList<Patient> patients = new ArrayList<>();
+	private List<Appointment> timeTable = new ArrayList<>();
 	private String role = "doctor";
 
 	public Doctor() {
 		super();
+		this.role = "doctor";
+		doctors.add(this);
 	}
 
 	public Doctor(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 		this.role = "doctor";
+		doctors.add(this);
 	}
 
 	public void viewPatientMedicalRecord(Patient patient) {
@@ -56,5 +61,8 @@ public class Doctor extends User {//ignore the Staff class first
 		appointment.setAppointmentOutcome(appointmentOutcome);
 		appointment.getPatient().getPastDiagnoses().updatePastDiagnoses(appointmentOutcome);
 	}
-
+	
+	public List<Appointment> getTimeTable(){
+		return this.timeTable;
+	}
 }

@@ -1,13 +1,15 @@
+import java.time.*;
+
 public class AppointmentOutcome {
 
-	private String date;
+	private LocalDate date;
 	private String type;
 	private PrescribedMedication prescribedMedication;
 	private String consultationNotes;
 
 	public AppointmentOutcome() {}
 
-	public AppointmentOutcome(String date, String type, PrescribedMedication prescribedMedication, String cosultationNotes){
+	public AppointmentOutcome(LocalDate date, String type, PrescribedMedication prescribedMedication, String cosultationNotes){
 		this.date = date;
 		this.type = type;
 		this.prescribedMedication = prescribedMedication;
