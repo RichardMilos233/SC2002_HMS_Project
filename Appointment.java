@@ -1,13 +1,12 @@
 import java.time.*;
 
 public class Appointment {
-
 	private Patient patient;
 	private Doctor doctor;
-	private String status = "unavailable";	//unavailable, available, pending, confirmed, rejected, closed
+	private String status = "unavailable";	//unavailable, available, pending, cancelled, confirmed, rejected, closed
 	//Upon initialization, status = unavailable, status = available after a doctor sets the availability
-	//When a patient sends a request, status = pending, then if a doctor approves, status = confirmed
-	//Either the patient cancels or the doctor rejects the appointment, status = rejected
+	//When a patient sends a request, status = pending, then if a doctor approves, status = confirmed, else status = rejected
+	//The patient cancels the appointment, status = cancelled
 	//After the appointment, i.e. appointmentOutcome is added to it, status = closed
 	private LocalDate date;
 	private LocalTime time;
@@ -19,10 +18,8 @@ public class Appointment {
 
 	public Appointment() {}
 
-	public Appointment(Patient patient, Doctor doctor, String status, LocalDate date, LocalTime time) {	//this got to be updated
-		this.patient = patient;
+	public Appointment(Doctor doctor, LocalDate date, LocalTime time) {
 		this.doctor = doctor;
-		this.status = status;
 		this.date = date;
 		this.time = time;
 	}
