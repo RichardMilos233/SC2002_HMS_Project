@@ -70,6 +70,10 @@ public class Appointment {
 		this.patient = patient;
 	}
 
+	public Doctor getDoctor(){
+		return this.doctor;
+	}
+
 	// public boolean isAvailable(){
 	// 	return this.isAvailable;
 	// }

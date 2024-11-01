@@ -5,7 +5,7 @@ public class PatientMenu {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         do{
-            System.out.println("----------Patient Menu----------\n" + 
+            System.out.println("---------------Patient Menu---------------\n" + 
                                 "1 View Medical Record \n" + 
                                 "2 Update Personal Information\n" + 
                                 "3 View Available Appointment Slots \n" + 

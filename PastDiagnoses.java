@@ -21,4 +21,7 @@ public class PastDiagnoses {
 		appointmentOutcomes.add(appointmentOutcome);
 	}
 
+	public List<AppointmentOutcome> getAppointmentOutcomes(){
+		return this.appointmentOutcomes;
+	}
 }

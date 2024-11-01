@@ -7,6 +7,10 @@ public class AppointmentScheduler{
         
         //list out all doctors, then select a doctor
         Doctor doctor = Doctor.getDoctor();
+        if (doctor == null){
+            System.out.println("invalid choice");
+            return;
+        }
 
         //sout all the available appointment slots of that doctor
         List<Appointment> availableSlots = AvailableSlotsViewer.getAvailableSlots(doctor);

@@ -16,8 +16,6 @@ public class AppointmentOutcome {
 		this.consultationNotes = cosultationNotes;
 	}
 
-	
-
 	public void displayAppointmentOutcome() {
 		System.out.println();
 		System.out.println("Appointment date: " + date);
@@ -26,4 +24,11 @@ public class AppointmentOutcome {
 		System.out.println("Consultation notes: " + consultationNotes);
 	}
 
+	public void setPrescribedMedication(PrescribedMedication newPrescribedMedication){
+		this.prescribedMedication = newPrescribedMedication;
+	}
+
+	public void setConsultationNotes(String newConsultationNotes){
+		this.consultationNotes = newConsultationNotes;
+	}
 }

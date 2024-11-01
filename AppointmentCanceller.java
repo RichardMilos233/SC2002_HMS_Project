@@ -19,5 +19,7 @@ public class AppointmentCanceller {
         }
         Appointment appointment = scheduledAppointment.get(choice-1);
         appointment.setStatus("cancelled");
+        Doctor doctor = appointment.getDoctor();
+        doctor.removePatient(appointment.getPatient());
     }
 }

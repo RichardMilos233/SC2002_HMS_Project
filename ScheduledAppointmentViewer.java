@@ -12,7 +12,7 @@ public class ScheduledAppointmentViewer {
         Appointment appointment;
         for (i = 0; i < scheduledAppointment.size(); i++){
             appointment = scheduledAppointment.get(i);
-            System.out.println("Appointment " + i+1 +": ");
+            System.out.println("Appointment " + (i+1) +": ");
             appointment.displayAppointment();
         }
     }

@@ -100,7 +100,6 @@ public class Patient extends User {
 		
         choice = scanner.nextInt();
         if (choice < 1 || choice > patients.size()){
-            System.out.println("invalid choice");
             return null;
         }
         patient = patients.get(choice-1);

@@ -5,6 +5,11 @@ public class DoctorMedicalRecordViewer {
         Scanner scanner = new Scanner(System.in);
         // choose the patient the doctor want to view
         List<Patient> patients = doctor.getPatients();
+        if (patients.size()==0){
+            System.out.println("There is currently no patient under your care");
+            System.out.println("Maybe you should reflect on why no one wants to consult you");
+            return;
+        }
         Patient patient;
         int i, choice = -1;
         System.out.println("Select a patient to view the medical record");

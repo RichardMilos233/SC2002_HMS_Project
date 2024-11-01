@@ -15,6 +15,7 @@ public class Test {
         DoctorMenu.displayDoctorMenu(doctor);
         PatientMenu.displayPatientMenu(patient);
         DoctorMenu.displayDoctorMenu(doctor);
+        PatientMenu.displayPatientMenu(patient);
 
         
 

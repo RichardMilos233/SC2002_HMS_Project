@@ -1,9 +1,32 @@
 import java.util.*;
 import java.time.*;
 
-public class Doctor extends User {//ignore the Staff class first
+public class Doctor extends User {	//ignore the Staff class first
+	public class PatientCount{	// this class keeps track of which patient is under which doctor even if a patient has multiple appointments
+		Patient patient;
+		int numOfAppointment = 1;
+		public PatientCount(Patient patient){
+			this.patient = patient;
+			this.numOfAppointment = 1;
+		}
+		public Patient getPatient(){
+			return this.patient;
+		}
+		public int getNumOfAppointment(){
+			return this.numOfAppointment;
+		}
+		public void addNumOfAppointment(){
+			this.numOfAppointment += 1;
+		}
+		public void minusNumOfAppointment(){
+			this.numOfAppointment -= 1;
+		}
+		public boolean isEmpty(){
+			return (this.numOfAppointment == 0) ;
+		}
+	}
 	public static List<Doctor> doctors = new ArrayList<>();	//later could read the csv to load the existing doctors first
-	private ArrayList<Patient> patients = new ArrayList<>();
+	private ArrayList<PatientCount> patientCounts = new ArrayList<>();
 	private List<Appointment> timeTable = new ArrayList<>();
 
 	public Doctor() {
@@ -43,7 +66,35 @@ public class Doctor extends User {//ignore the Staff class first
 	}
 
 	public List<Patient> getPatients(){
-		return this.patients;
+		List<Patient> patients = new ArrayList<>();
+		for (PatientCount patientCount : patientCounts){
+			patients.add(patientCount.getPatient());
+		}
+		return patients;
+	}
+
+	public void addPatient(Patient patient){
+		for (PatientCount patientCount : patientCounts){
+			if (patientCount.getPatient().equals(patient)){
+				patientCount.addNumOfAppointment();
+				return;
+			}
+		}
+		PatientCount newPatientCount = new PatientCount(patient);
+		patientCounts.add(newPatientCount);
+	}
+
+	public void removePatient(Patient patient){
+		for (PatientCount patientCount : patientCounts){
+			if (patientCount.getPatient().equals(patient)){
+				patientCount.minusNumOfAppointment();
+				if (patientCount.isEmpty()){
+					patientCounts.remove(patientCount);
+				}
+				return;
+			}
+		}
+		System.out.println("invalid operation");
 	}
 
 	public static Doctor getDoctor(){	//list out all doctors, then select a doctor
@@ -60,7 +111,6 @@ public class Doctor extends User {//ignore the Staff class first
 
 		choice = scanner.nextInt();
 		if (choice <1 || choice > Doctor.doctors.size()){
-			System.out.println("invalid choice");
 			return null;
 		}
 		

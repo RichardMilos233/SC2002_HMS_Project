@@ -9,7 +9,7 @@ public class DoctorMenu {
         //                             LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
         int choice = 0;
         do{
-            System.out.println("----------Doctor Menu----------\n" + //
+            System.out.println("---------------Doctor Menu---------------\n" + //
                                 "1 View Patient Medical Records\n" + //
                                 "2 Update Patient Medical Records \n" + //
                                 "3 View Personal Schedule \n" + //
@@ -39,7 +39,7 @@ public class DoctorMenu {
                     UpcomingAppointmentViewer.viewUpcomingAppointment(doctor);
                     break;
                 case 7: 
-                    AppointmentOutcomeRecorder.recordAppointmentOutcome(null);  // TODO - how to pass in an appointment though
+                    AppointmentOutcomeRecorder.recordAppointmentOutcome(doctor);
                     break;
                 case 8:
                     doctor.logout();

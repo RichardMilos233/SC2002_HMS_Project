@@ -19,6 +19,8 @@ public class AppointmentAvailabilitySetter {
         }
         appointment = unavailableAppointment.get(choice-1);
         appointment.setStatus("available");
+        System.out.println("The following slot is set to be available");
+        appointment.displayAppointment();
     }
 
     public static List<Appointment> getUnavailableAppointment(Doctor doctor){
