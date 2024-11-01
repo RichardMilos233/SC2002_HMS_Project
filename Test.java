@@ -12,7 +12,9 @@ public class Test {
         Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
         
 
-
+        DoctorMenu.displayDoctorMenu(doctor);
+        PatientMenu.displayPatientMenu(patient);
+        DoctorMenu.displayDoctorMenu(doctor);
         PatientMenu.displayPatientMenu(patient);
 
         

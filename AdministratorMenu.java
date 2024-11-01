@@ -1,4 +1,4 @@
-import java.util.*;;
+import java.util.*;
 
 public class AdministratorMenu {
     public static void displayAdminMenu(Administrator administrator){
@@ -28,6 +28,7 @@ public class AdministratorMenu {
                 case 5:
                     administrator.logout();
                     break;
+                    
                 default:
                     break;
             }

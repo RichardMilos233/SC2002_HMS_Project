@@ -6,6 +6,7 @@ public class Pharmacist extends User {//ignore the staff first
 
 	public Pharmacist(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
+		this.role = "pharmacist";
 	}
 
 	public void viewAppointmentOutcomeRecord() {

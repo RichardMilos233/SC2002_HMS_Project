@@ -60,7 +60,6 @@ public class ExcelService {
     }
 
     public static void main(String[] args) {
-        // ExcelService service = new ExcelService();
         String patientPath = "csv\\Patient_List.csv";
         String staffPath = "csv\\Staff_List.csv";
         String credentialPath = "csv\\credentials.csv";

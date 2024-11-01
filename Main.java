@@ -2,30 +2,53 @@ import java.util.*;
 
 public class Main {
     public static void main (String[] args){
-        // Scanner scanner = new Scanner(System.in);
-        
+        Scanner scanner = new Scanner(System.in);
+        int choice = -1;
         User user = null;
-        user = Login.login(user);
-        
-        String role = user.getRole();
-        switch (role) {
-            case "patient":
-                PatientMenu.displayPatientMenu((Patient)user);  //so far so good
-                break;
-            case "doctor":
-                DoctorMenu.displayDoctorMenu((Doctor)user);
-                break;
-            case "pharmacist":
-                PharmacistMenu.displayPharmacistMenu((Pharmacist)user);
-                break;
-            case "admin":
-                AdministratorMenu.displayAdminMenu((Administrator)user);
-                break;
-        
-            default:
-                System.out.println("undefined role");
-                break;
-        }
+        String role;
+
+        System.out.println("Welcome to HMS");
+
+        do{
+            System.out.println("----------Home Page----------");
+            System.out.println("Select your option:");
+            System.out.println("1 Sign in");
+            System.out.println("2 Quit");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    user = null;
+                    user = Login.login(user);
+                    
+                    role = user.getRole();
+                    switch (role) {
+                        case "patient":
+                            PatientMenu.displayPatientMenu((Patient)user);  //so far so good
+                            break;
+                        case "doctor":
+                            DoctorMenu.displayDoctorMenu((Doctor)user);
+                            break;
+                        case "pharmacist":
+                            PharmacistMenu.displayPharmacistMenu((Pharmacist)user);
+                            break;
+                        case "admin":
+                            AdministratorMenu.displayAdminMenu((Administrator)user);
+                            break;
+                    
+                        default:
+                            System.out.println("undefined role");
+                            break;
+                    }
+                    break;
+                case 2:
+                    break;
+
+                default:
+                    break;
+            }
+        } while(choice != 2);
+
         System.out.println("Thank you for using this shitty system");
     }
 }

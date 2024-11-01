@@ -14,9 +14,8 @@ public class PrescribedMedication {
 	 * 
 	 * @param newStatus
 	 */
-	public void setStatus(String newStatus) {
-		// TODO - implement PrescribedMedication.setStatus
-		throw new UnsupportedOperationException();
+	public void setStatus(int newStatus) {
+		this.status = newStatus;
 	}
 
 	public void displayPrescribedMedication(){

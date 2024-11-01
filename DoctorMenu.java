@@ -4,12 +4,12 @@ import java.time.*;
 public class DoctorMenu {
     public static void displayDoctorMenu(Doctor doctor){
         Scanner scanner = new Scanner(System.in);
-        // only for test
-        Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
-                                    LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
+        // // only for test
+        // Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
+        //                             LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
         int choice = 0;
         do{
-            System.out.println("Doctor Menu: \n" + //
+            System.out.println("---------------Doctor Menu---------------\n" + //
                                 "1 View Patient Medical Records\n" + //
                                 "2 Update Patient Medical Records \n" + //
                                 "3 View Personal Schedule \n" + //
@@ -21,29 +21,30 @@ public class DoctorMenu {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    doctor.viewPatientMedicalRecord(patient);
+                    DoctorMedicalRecordViewer.viewMedicalRecord(doctor);
                     break;
                 case 2:
-                    doctor.updatePatientMedicalRecord(patient);
+                    MedicalRecordUpdater.updateMedicalRecord(doctor);
                     break;
                 case 3:
-                    doctor.viewPersonalSchedule();
+                    PersonalScheduleViewer.viewPersonalSchedule(doctor);
                     break;
                 case 4:
-                    doctor.setAvailability();
+                    AppointmentAvailabilitySetter.setAppointmentAvailability(doctor);
                     break;
                 case 5:
-                    doctor.acceptAppointment();
+                    AppointmentRequestApprover.approveAppointmentRequest(doctor);
                     break;
                 case 6:
-                    doctor.viewUpcomingAppointment();
+                    UpcomingAppointmentViewer.viewUpcomingAppointment(doctor);
                     break;
                 case 7: 
-                    doctor.recordAppointmentOutcome(null);//not settled yet
+                    AppointmentOutcomeRecorder.recordAppointmentOutcome(doctor);
                     break;
                 case 8:
                     doctor.logout();
                     break;
+
                 default:
                     break;
             }
