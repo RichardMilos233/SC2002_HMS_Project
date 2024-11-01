@@ -27,7 +27,7 @@ public class AppointmentRequestApprover{
         
         for (Appointment appointment : timeTable){
             if (appointment.getStatus().equals("pending")){
-                timeTable.add(appointment);
+                pendingList.add(appointment);
             }
         }
         return pendingList;

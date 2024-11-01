@@ -37,54 +37,11 @@ public class Patient extends User {
 		this.contactNumber = newcontactNumber;
 		System.out.println("Your new contact number is " + this.getContactNumber());
 		System.out.println("Enter new email:");
+		scanner.nextLine();	// buffer, otherwise it would be "\n"
 		newEmail = scanner.nextLine();
-		System.out.println("Your new email is " + this.getEmail());
 		this.email = newEmail;
+		System.out.println("Your new email is " + this.getEmail());
 	}
-
-	public void viewAvailableAppointmentSlots() {
-		// TODO - implement Patient.viewAvailableAppointmentSlots
-		throw new UnsupportedOperationException();
-	}
-
-	public void viewMedicalRecord() {
-		System.out.println("---------------Medical Record---------------");
-		System.out.println("Patient ID: " + this.getHospitalID());
-		System.out.println("Name: " + this.getName());
-		System.out.println("Date of birth: " + this.birth);
-		System.out.println("Gender: " + this.getGender());
-		System.out.println("Contact number: " + this.contactNumber);
-		System.out.println("Email: " + this.email);
-		System.out.println("Blood type: " + this.bloodType);
-		pastDiagnoses.displayPastDiagnoses();
-		System.out.println("---------------------End---------------------");
-	}
-
-	public void scheduleAppointment() {
-		// TODO - implement Patient.scheduleAppointment
-		throw new UnsupportedOperationException();
-	}
-
-	public void rescheduleAppointment() {
-		// TODO - implement Patient.rescheduleAppointment
-		throw new UnsupportedOperationException();
-	}
-
-	public void cancelAppointment() {
-		// TODO - implement Patient.cancelAppointment
-		throw new UnsupportedOperationException();
-	}
-
-	public void viewScheduledAppointment() {
-		// TODO - implement Patient.viewScheduledAppointment
-		throw new UnsupportedOperationException();
-	}
-
-	public void viewPastAppointmentOutcomeRecord() {
-		// TODO - implement Patient.viewPastAppointmentOutcomeRecord
-		throw new UnsupportedOperationException();
-	}
-
 
 	public LocalDate getBirth(){
 		return this.birth;

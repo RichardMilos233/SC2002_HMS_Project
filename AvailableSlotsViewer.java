@@ -25,7 +25,7 @@ public class AvailableSlotsViewer {
         int i;
         System.out.println("This is the available time slots of doctor " + doctor.getName());
         for (i = 0; i < availableSlots.size(); i++){
-            System.out.println("Slot: " + i+1);
+            System.out.println("Slot: " + (i+1));
             availableSlots.get(i).displayAppointment();
         }
     }

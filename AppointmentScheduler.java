@@ -15,7 +15,7 @@ public class AppointmentScheduler{
             AvailableSlotsViewer.printAvailableSlots(doctor, availableSlots);
             System.out.println("Enter your desired slot:");
             choice = scanner.nextInt();
-        } while(choice < 1 || choice >= availableSlots.size());
+        } while(choice < 1 || choice > availableSlots.size());
         Appointment selectedAppointment = availableSlots.get(choice-1);
 
         //send request

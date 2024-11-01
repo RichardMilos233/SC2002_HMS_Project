@@ -5,7 +5,7 @@ public class PatientMenu {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         do{
-            System.out.println("Patient Menu: \n" + 
+            System.out.println("----------Patient Menu----------\n" + 
                                 "1 View Medical Record \n" + 
                                 "2 Update Personal Information\n" + 
                                 "3 View Available Appointment Slots \n" + 
@@ -17,31 +17,29 @@ public class PatientMenu {
                                 "9 Logout ");
             choice = scanner.nextInt();
             switch (choice) {
-                case 1://both methods work, see which one yall prefer
-                    // patient.viewMedicalRecord();
+                case 1:
                     PatientMedicalRecordViewer.viewPatientMedicalRecord(patient);
                     break;
                 case 2:
                     patient.updatePersonalInformation();
                     break;
                 case 3:
-                    patient.viewAvailableAppointmentSlots();
+                    AvailableSlotsViewer.viewAvailableSlots();
                     break;
                 case 4:
-                    // patient.scheduleAppointment();
                     AppointmentScheduler.scheduleAppointment(patient);
                     break;
                 case 5:
-                    patient.rescheduleAppointment();
+                    AppointmentRescheduler.rescheduleAppointment(patient);
                     break;
                 case 6:
-                    patient.cancelAppointment();
+                    AppointmentCanceller.cancelAppointment(patient);
                     break;
                 case 7:
-                    patient.viewScheduledAppointment();
+                    ScheduledAppointmentViewer.viewScheduledAppointment(patient);
                     break;
                 case 8:
-                    patient.viewPastAppointmentOutcomeRecord();
+                    PastAppointmentOutcomeRecordViewer.viewPastAppointmentOutcomeRecord(patient);
                     break;
                 case 9:
                     patient.logout();
