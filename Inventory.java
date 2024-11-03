@@ -1,6 +1,6 @@
 public class Inventory {
 
-	//private int medications;
+	// private int medications;
 	private Medication[] medications;
     private int count;
 
@@ -9,7 +9,7 @@ public class Inventory {
         count = 0;
     }
 
-	 // add a new medication (idk if inventoru will ever be full?)
+	 // add a new medication (idk if inventory will ever be full?)
 	 public void addMedication(String name, int initialStock, int stockAlert) {
         if (count < medications.length) {
             medications[count++] = new Medication(name, initialStock, stockAlert);
@@ -41,7 +41,7 @@ public class Inventory {
         System.out.println("Medication not found.");
     }
 
-//make mtd to check stock lvl?
+//make method to check stock level?
 
 
 	public void viewInventory() {

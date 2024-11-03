@@ -42,7 +42,6 @@ public class Medication {
         return stock < stockAlert;
     }
 
-    // getters for medication name and stock
     public String getMedicationName() {
         return medicationName;
     }

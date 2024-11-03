@@ -17,7 +17,6 @@ public class AppointmentOutcome {
 	}
 
 	public void displayAppointmentOutcome() {
-		System.out.println();
 		System.out.println("Appointment date: " + date);
 		System.out.println("Type: " + type);
 		prescribedMedication.displayPrescribedMedication();
