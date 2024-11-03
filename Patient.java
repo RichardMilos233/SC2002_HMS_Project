@@ -29,18 +29,38 @@ public class Patient extends User {
 		patients.add(this);
 	}
 
-	public void updatePersonalInformation() {    // not working somehow
+	public void updatePersonalInformation() {
 		int newcontactNumber;
 		String newEmail;
-		System.out.println("Enter new contact number:");
-		newcontactNumber = scanner.nextInt();
-		this.contactNumber = newcontactNumber;
-		System.out.println("Your new contact number is " + this.getContactNumber());
-		System.out.println("Enter new email:");
-		scanner.nextLine();	// buffer, otherwise it would be "\n"
-		newEmail = scanner.nextLine();
-		this.email = newEmail;
-		System.out.println("Your new email is " + this.getEmail());
+		System.out.println("Contact Number: " + this.contactNumber);
+		System.out.println("Email: " + this.email);
+		System.out.println("Choose information to update:");
+		System.out.println("1. Contact Number");
+		System.out.println("2. Email");
+		int choice = -1;
+		choice = scanner.nextInt();
+		if (choice < 1 || choice >2){
+			System.out.println("invalid choice");
+			return;
+		}
+		switch (choice) {
+			case 1:
+				System.out.println("Enter new contact number:");
+				newcontactNumber = scanner.nextInt();
+				this.contactNumber = newcontactNumber;
+				System.out.println("Your new contact number is " + this.getContactNumber());
+				break;
+			case 2:
+				System.out.println("Enter new email:");
+				scanner.nextLine();	// buffer, otherwise it would be "\n"
+				newEmail = scanner.nextLine();
+				this.email = newEmail;
+				System.out.println("Your new email is " + this.getEmail());
+				break;
+	
+			default:
+				break;
+		}
 	}
 
 	public LocalDate getBirth(){
