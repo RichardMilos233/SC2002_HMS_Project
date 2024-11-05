@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class AdministratorMenu {
+    
     public static void displayAdminMenu(Administrator administrator){
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
@@ -14,16 +15,16 @@ public class AdministratorMenu {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    administrator.displayStaffList();
+                    displayStaffList();
                     break;
                 case 2:
-                    administrator.viewAppointmentDetails();
+                    viewAppointmentDetails();
                     break;
                 case 3:
-                    administrator.viewInventory();
+                    viewInventory();
                     break;
                 case 4:
-                    administrator.approveReplenishmentRequest();
+                    approveReplenishmentRequest();
                     break;
                 case 5:
                     administrator.logout();
@@ -34,4 +35,59 @@ public class AdministratorMenu {
             }
         }while (choice != 5);
     }
+
+    public static void displayStaffList() {
+		// TODO - call StaffService.displaystafflist 
+		throw new UnsupportedOperationException();
+	}
+
+	public void addStaff() {
+		// TODO - call StaffService.addStaff(name, egegegeg)
+		throw new UnsupportedOperationException();
+	}
+
+	public void updateStaff() {
+		// TODO - call StaffService.updateStaff(name to be updated, egeg)
+		throw new UnsupportedOperationException();
+	}
+
+	public void removeStaff() {
+		// TODO - call StaffService.removeStaff(who to remove egegeg)
+		throw new UnsupportedOperationException();
+	}
+
+	public static void viewAppointmentDetails() {
+		// TODO - implement Administrator.viewAppointmentDetails
+		throw new UnsupportedOperationException();
+	}
+
+	public static void viewInventory() {
+		// TODO - implement Administrator.viewInventory
+		throw new UnsupportedOperationException();
+	}
+
+	public void addStock() {
+		// TODO - implement Administrator.addStock
+		throw new UnsupportedOperationException();
+	}
+
+	public void removeStock() {
+		// TODO - implement Administrator.removeStock
+		throw new UnsupportedOperationException();
+	}
+
+	public void updateStock() {
+		// TODO - implement Administrator.updateStock
+		throw new UnsupportedOperationException();
+	}
+
+	public void updateStockAlert() {
+		// TODO - implement Administrator.updateStockAlert
+		throw new UnsupportedOperationException();
+	}
+
+	public static void approveReplenishmentRequest() {
+		// TODO - implement Administrator.approveReplenishmentRequest
+		throw new UnsupportedOperationException();
+	}
 }
