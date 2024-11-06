@@ -8,6 +8,8 @@ public class Inventory implements IInventory {
 	private Medication[] medications;
     private int count;
 
+    public Inventory(){}
+
 	public Inventory(int capacity) {
         medications = new Medication[capacity];
         count = 0;
