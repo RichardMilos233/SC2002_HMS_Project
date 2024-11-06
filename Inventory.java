@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Inventory implements IInventory {
 
@@ -11,7 +10,7 @@ public class Inventory implements IInventory {
     public Inventory(){}
 
 	public Inventory(int capacity) {
-        medications = new Medication[capacity];
+        medications = new Medication[capacity]; // use array list instead
         count = 0;
     }
 

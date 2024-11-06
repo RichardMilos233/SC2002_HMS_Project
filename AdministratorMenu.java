@@ -36,7 +36,7 @@ public class AdministratorMenu {
     }
 
 
-    private static void displayInventory() {
+    private static void displayInventory() { // this moved to somewhere else
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         
@@ -65,7 +65,7 @@ public class AdministratorMenu {
                     System.out.println("Enter Stock Alert Level: ");
                     newMedication.setStockAlert(Integer.parseInt(scanner.nextLine()));
 
-                    inventoryService.addMedication(newMedication);
+                    inventoryService.addMedication(newMedication); // can wrap this into another method?
                     break;
                 case 3:
 
