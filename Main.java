@@ -32,7 +32,7 @@ public class Main {
                         case "pharmacist":
                             PharmacistMenu.displayPharmacistMenu((Pharmacist)user);
                             break;
-                        case "admin":
+                        case "administrator":
                             AdministratorMenu.displayAdminMenu((Administrator)user);
                             break;
                     

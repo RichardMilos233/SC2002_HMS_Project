@@ -12,6 +12,10 @@ public class Medication {
         this.stockAlert = stockAlert;
     }
 
+    public Medication() {
+        
+    }
+
 	/**
 	 * 
 	 * @param newStockAlert
@@ -20,6 +24,7 @@ public class Medication {
 		this.stockAlert = newStockAlert;
 	}
 
+    // ignore all mtds under this pls... pang chance
 	public void consumeStock(int amount) {
         if (amount <= stock) {
             stock -= amount;
@@ -47,6 +52,7 @@ public class Medication {
         return medicationName;
     }
 
+    
     public int getStock() {
         return stock;
     }
@@ -55,8 +61,18 @@ public class Medication {
         return stockAlert;
     }
 
-	@Override
+    
+
+
     public String toString() {
         return String.format("%s: %d units (Alert Level: %d)", medicationName, stock, stockAlert);
+    }
+
+    public void setMedicationName(String medicationName) {
+        this.medicationName = medicationName;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }
