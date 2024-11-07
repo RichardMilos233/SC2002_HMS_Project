@@ -1,21 +1,16 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Inventory implements IInventory {
 
 
 	// private int medications;
-	private Medication[] medications;
-    private int count;
+	//private Medication[] medications;
+    //private int count;
 
     public Inventory(){}
 
-	public Inventory(int capacity) {
-        medications = new Medication[capacity]; // use array list instead
-        count = 0;
-    }
-
-	 // add a new medication (idk if inventory will ever be full?)
-	 public void addMedication(String name, int initialStock, int stockAlert) {
+	 /*public void addMedication(String name, int initialStock, int stockAlert) {
 
         if (count < medications.length) {
             medications[count++] = new Medication(name, initialStock, stockAlert);
@@ -23,7 +18,7 @@ public class Inventory implements IInventory {
         } else {
             System.out.println("Inventory is full. Cannot add " + name);
         }
-    }
+    }*/
 
     @Override
     public void addMedication(Medication medication) {  
