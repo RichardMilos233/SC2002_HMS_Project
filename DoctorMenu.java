@@ -1,5 +1,4 @@
 import java.util.*;
-import java.time.*;
 
 public class DoctorMenu {
     public static void displayDoctorMenu(Doctor doctor){
@@ -21,25 +20,25 @@ public class DoctorMenu {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    DoctorMedicalRecordViewer.viewMedicalRecord(doctor);
+                    viewMedicalRecord(doctor);
                     break;
                 case 2:
-                    MedicalRecordUpdater.updateMedicalRecord(doctor);
+                    updateMedicalRecord(doctor);
                     break;
                 case 3:
-                    PersonalScheduleViewer.viewPersonalSchedule(doctor);
+                    viewPersonalSchedule(doctor);
                     break;
                 case 4:
-                    AppointmentAvailabilitySetter.setAppointmentAvailability(doctor);
+                    setAppointmentAvailability(doctor);
                     break;
                 case 5:
-                    AppointmentRequestApprover.approveAppointmentRequest(doctor);
+                    approveAppointmentRequest(doctor);
                     break;
                 case 6:
-                    UpcomingAppointmentViewer.viewUpcomingAppointment(doctor);
+                    viewUpcomingAppointment(doctor);
                     break;
                 case 7: 
-                    AppointmentOutcomeRecorder.recordAppointmentOutcome(doctor);
+                    recordAppointmentOutcome(doctor);
                     break;
                 case 8:
                     doctor.logout();
@@ -50,4 +49,33 @@ public class DoctorMenu {
             }
         }while (choice != 8);
     }
+
+    public static void viewMedicalRecord(Doctor d){
+        // TO DO - DoctorMedicalRecordViewer.
+    }
+    
+    public static void updateMedicalRecord(Doctor d){
+        // TO DO - MedicalRecordUpdater.
+    }
+
+    public static void viewPersonalSchedule(Doctor d){
+        // TO DO - PersonalScheduleViewer.
+    }
+
+    public static void setAppointmentAvailability(Doctor d){
+        // TO DO - AppointmentAvailabilitySetter.
+    }
+
+    public static void approveAppointmentRequest(Doctor d){
+        // TO DO - AppointmentRequestApprover.
+    }
+
+    public static void viewUpcomingAppointment(Doctor d){
+        // TO DO - UpcomingAppointmentViewer.
+    }
+    
+    public static void recordAppointmentOutcome(Doctor d){
+        // TO DO - AppointmentOutcomeRecorder.
+    }
+
 }
