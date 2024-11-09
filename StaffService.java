@@ -22,13 +22,14 @@ public class StaffService {
 
         } else{
             System.out.println("Hospital ID\tRole\t\tName\t\tGender\tAge");
-            System.out.println("-----------------------------------------------------");
+            System.out.println("-----------------------------------------------------------");
             Collections.sort(User.users, Comparator.comparing(User::getName));
             User e;
             for (int i = 0; i<User.users.size(); i++){
                 e = User.users.get(i);
                 if (!e.getRole().equals("patient")){
-                    System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+                    System.out.format("%6d%6s%20s%6s%2d", e.getHospitalID(), e.getRole(), e.getName(), e.getGender(), e.getAge());
+                    //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
                 }
             }
         }
@@ -39,7 +40,8 @@ public class StaffService {
         if (role == 1){
             for (int i = 0; i<Administrator.administrators.size(); i++){
                 admin = Administrator.administrators.get(i);
-                System.out.println(admin.getHospitalID() + '\t' + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
+                System.out.format("%6d%20s%6s%2d", admin.getHospitalID(), admin.getName(), admin.getGender(), admin.getAge());
+                //System.out.println(admin.getHospitalID() + '\t' + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
              }
 
         } else{
