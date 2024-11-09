@@ -15,11 +15,11 @@ public class PharmacistMenu {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    pharmacist.viewAppointmentOutcomeRecord();
+                    viewAppointmentOutcomeRecord();
                     //call from appointment outcome recorder
                     break;
                 case 2:
-                    pharmacist.updatePrescriptionStatus();
+                    updatePrescriptionStatus();
                     // make: false for not prescribed, true for prescribed 
                     break;
                 case 3:
