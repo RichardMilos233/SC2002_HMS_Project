@@ -21,14 +21,14 @@ public class StaffService {
             displayAdminList(byRole);
 
         } else{
-            System.out.println("Hospital ID\tRole\t\tName\t\tGender\tAge");
+            System.out.format("Hospital ID      Role           Name                Gender    Age");
             System.out.println("-----------------------------------------------------------");
             Collections.sort(User.users, Comparator.comparing(User::getName));
             User e;
             for (int i = 0; i<User.users.size(); i++){
                 e = User.users.get(i);
                 if (!e.getRole().equals("patient")){
-                    System.out.format("%-6s%-6s%-20s%-6s%-2d", e.getHospitalID(), e.getRole(), e.getName(), e.getGender(), e.getAge());
+                    System.out.format("%-17s%-15s%-20s%-10s%-2d", e.getHospitalID(), e.getRole(), e.getName(), e.getGender(), e.getAge());
                     //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
                 }
             }
@@ -40,7 +40,7 @@ public class StaffService {
         if (role == 1){
             for (int i = 0; i<Administrator.administrators.size(); i++){
                 admin = Administrator.administrators.get(i);
-                System.out.format("%-6s%-20s%-6s%-2d", admin.getHospitalID(), admin.getName(), admin.getGender(), admin.getAge());
+                System.out.format("%-17s%-20s%-10s%-2d", admin.getHospitalID(), admin.getName(), admin.getGender(), admin.getAge());
                 //System.out.println(admin.getHospitalID() + '\t' + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
              }
 
