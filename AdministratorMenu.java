@@ -42,26 +42,30 @@ public class AdministratorMenu {
         do {  // inconsistent print method what is the preference
             System.out.println(""" 
                                  Would you like to:
-                               1 Display All Staff 
+                               1 Display All Staff
                                2 Display Administrators 
                                3 Display Doctors 
                                4 Display Pharmacists
+                               5 Display All Staff Alphabetically 
                                """);
             c = scanner.nextInt();
-        } while (c>4 || c<1);
+        } while (c>5 || c<1);
         switch (c){
             case 1:
                 StaffService.displayStaffList(1);
                 // TO DO - add option for alphabetical
                 break;
             case 2:
-                StaffService.displayAdminList(0);
+                StaffService.displayAdminList(1);
                 break; 
             case 3:
-                StaffService.displayDoctorList(0);
+                StaffService.displayDoctorList(1);
                 break;
             case 4:
-                StaffService.displayPharmacistList(0);
+                StaffService.displayPharmacistList(1);
+                break;
+            case 5:
+                StaffService.displayStaffList(0);
                 break;
             default:
                 displayStaffList();
