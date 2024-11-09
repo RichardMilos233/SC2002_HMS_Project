@@ -37,60 +37,6 @@ public class AdministratorMenu {
     }
 
     public static void displayStaffList() {
-        Scanner scanner = new Scanner(System.in);
-        int c = 0;
-        do {  // inconsistent print method what is the preference
-            System.out.println(""" 
-                               1 Display All Staff 
-                               2 Display Administrators 
-                               3 Display Doctors 
-                               4 Display Pharmacists 
-                               """);
-            c = scanner.nextInt();
-        } while (c>4 || c<1);
-        switch (c){
-            case 1:
-                StaffService.displayStaffList(1);
-                // TO DO - add option for alphabetical
-                break;
-            case 2:
-                StaffService.displayAdminList(0);
-                break; 
-            case 3:
-                StaffService.displayDoctorList(0);
-                break;
-            case 4:
-                StaffService.displayPharmacistList(0);
-                break;
-            default:
-                displayStaffList();
-        }
-        c = 0;
-        System.out.println("Would you like to: \n" + 
-                                "1 Return to Menu  \n" + 
-                                "2 Add Staff \n" + 
-                                "3 Update Staff \n" +
-                                "4 Remove Staff n");
-        c = scanner.nextInt();
-        switch (c){
-            case 1:
-                break;
-            case 2:
-                // name, role, id automatically allocated i think, gender, age, salary?
-                StaffService.addStaff();
-                break; 
-            case 3:
-                // which one 
-                StaffService.updateStaff();;
-                break;
-            case 4:
-                // which one 
-                StaffService.removeStaff();
-                break;
-            default:
-                break;
-        }
-
 		// TODO - call StaffService.displaystafflist 
 		throw new UnsupportedOperationException();
 	}
