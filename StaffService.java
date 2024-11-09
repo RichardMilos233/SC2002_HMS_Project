@@ -1,14 +1,32 @@
+import java.util.Collections;
+import java.util.Comparator;
+
 public class StaffService {
 
     public static void displayStaffList(int byRole){
-        System.out.println("Hospital ID \t Role \t Name \t Gender \t Age");
         if (byRole == 1){
-            System.out.println("------------Doctors------------ \n");
+            System.out.println("--------------Doctors---------------");
+            System.out.println("Hospital ID\tName\tGender\tAge");
+            System.out.println("-----------------------------------");
             displayDoctorList(byRole);
-            System.out.println("------------Pharmacists------------ \n");
+            System.out.println("------------Pharmacists------------");
+            System.out.println("Hospital ID\tName\tGender\tAge");
+            System.out.println("-----------------------------------");
             displayPharmacistList(byRole);
-            System.out.println("------------Admins------------ \n");
+            System.out.println("---------------Admins---------------");
+            System.out.println("Hospital ID\tName\tGender\tAge");
+            System.out.println("-----------------------------------");
             displayAdminList(byRole);
+        } else{
+            System.out.println("Hospital ID\tRole\tName\tGender\tAge");
+            Collections.sort(User.users, Comparator.comparing(User::getName));
+            User e;
+            for (int i = 0; i<User.users.size(); i++){
+                e = User.users.get(i);
+                if (e.getRole().equals("patient")){
+                    System.out.println(e.getHospitalID() + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+                }
+            }
         }
     }
 
@@ -25,6 +43,7 @@ public class StaffService {
                 System.out.println(admin.getHospitalID() + '\t' + admin.getRole() + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
              }
         }
+        System.out.println("\n");
         
     }
 
@@ -41,6 +60,7 @@ public class StaffService {
                 System.out.println(doctor.getHospitalID()  + '\t' + doctor.getRole() + '\t' + doctor.getName() + '\t' + doctor.getGender() + '\t' + doctor.getAge());
              }
         }
+        System.out.println("\n");
     }
 
     public static void displayPharmacistList(int role){
@@ -56,6 +76,7 @@ public class StaffService {
                 System.out.println(pharma.getHospitalID() + '\t' + pharma.getRole() + '\t' + pharma.getName() + '\t' + pharma.getGender() + '\t' + pharma.getAge());
              }
         }
+        System.out.println("\n");
     }
 
     public static void updateStaff(){

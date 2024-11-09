@@ -11,7 +11,7 @@ public class AdministratorMenu {
                                 "2 View Appointments details \n" + //
                                 "3 View and Manage Medication Inventory \n" + //
                                 "4 Approve Replenishment Requests \n" + //
-                                "5 Logout ");
+                                "5 Logout");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -41,10 +41,11 @@ public class AdministratorMenu {
         int c = 0;
         do {  // inconsistent print method what is the preference
             System.out.println(""" 
+                                 Would you like to:
                                1 Display All Staff 
                                2 Display Administrators 
                                3 Display Doctors 
-                               4 Display Pharmacists 
+                               4 Display Pharmacists
                                """);
             c = scanner.nextInt();
         } while (c>4 || c<1);
@@ -66,15 +67,16 @@ public class AdministratorMenu {
                 displayStaffList();
         }
         c = 0;
-        System.out.println("Would you like to: \n" + 
-                                "1 Return to Menu  \n" + 
-                                "2 Add Staff \n" + 
-                                "3 Update Staff \n" +
-                                "4 Remove Staff n");
+        System.out.println("""
+                             Would you like to: 
+                           1 Return to Menu  
+                           2 Add Staff 
+                           3 Update Staff 
+                           4 Remove Staff""");
         c = scanner.nextInt();
         switch (c){
             case 1:
-                break;
+                return;
             case 2:
                 // name, role, id automatically allocated i think, gender, age, salary?
                 StaffService.addStaff();
@@ -88,7 +90,7 @@ public class AdministratorMenu {
                 StaffService.removeStaff();
                 break;
             default:
-                break;
+                return;
         }
 
 		// TODO - call StaffService.displaystafflist 
