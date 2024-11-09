@@ -11,7 +11,7 @@ public class AdministratorMenu {
                                 "2 View Appointments details \n" + //
                                 "3 View and Manage Medication Inventory \n" + //
                                 "4 Approve Replenishment Requests \n" + //
-                                "5 Logout ");
+                                "5 Logout");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -41,40 +41,52 @@ public class AdministratorMenu {
         int c = 0;
         do {  // inconsistent print method what is the preference
             System.out.println(""" 
-                               1 Display All Staff 
+                                 Would you like to:
+                               1 Display All Staff
                                2 Display Administrators 
                                3 Display Doctors 
-                               4 Display Pharmacists 
+                               4 Display Pharmacists
+                               5 Display All Staff Alphabetically 
                                """);
             c = scanner.nextInt();
-        } while (c>4 || c<1);
+        } while (c>5 || c<1);
         switch (c){
             case 1:
                 StaffService.displayStaffList(1);
                 // TO DO - add option for alphabetical
                 break;
             case 2:
-                StaffService.displayAdminList(0);
+                System.out.format("ID     Name                 Gender Age\n");
+                System.out.println("-------------------------------------------");
+                StaffService.displayAdminList(1);
                 break; 
             case 3:
-                StaffService.displayDoctorList(0);
+                System.out.format("ID     Name                 Gender Age\n");
+                System.out.println("-------------------------------------------");
+                StaffService.displayDoctorList(1);
                 break;
             case 4:
-                StaffService.displayPharmacistList(0);
+                System.out.format("ID     Name                 Gender Age\n");
+                System.out.println("-------------------------------------------");
+                StaffService.displayPharmacistList(1);
+                break;
+            case 5:
+                StaffService.displayStaffList(0);
                 break;
             default:
                 displayStaffList();
         }
         c = 0;
-        System.out.println("Would you like to: \n" + 
-                                "1 Return to Menu  \n" + 
-                                "2 Add Staff \n" + 
-                                "3 Update Staff \n" +
-                                "4 Remove Staff n");
+        System.out.println("""
+                             Would you like to: 
+                           1 Return to Menu  
+                           2 Add Staff 
+                           3 Update Staff 
+                           4 Remove Staff""");
         c = scanner.nextInt();
         switch (c){
             case 1:
-                break;
+                return;
             case 2:
                 // name, role, id automatically allocated i think, gender, age, salary?
                 StaffService.addStaff();
@@ -88,7 +100,7 @@ public class AdministratorMenu {
                 StaffService.removeStaff();
                 break;
             default:
-                break;
+                return;
         }
 
 		// TODO - call StaffService.displaystafflist 
@@ -96,7 +108,24 @@ public class AdministratorMenu {
 	}
 
 	public void addStaff() {
+        Scanner scanner = new Scanner(System.in);
+        String name, defaultPass;
+        int role, gender, age;
 		// TODO - call StaffService.addStaff(name, egegegeg)
+        do { 
+            System.out.println("Staff's Name: ");
+            name = scanner.next();
+        } while(!name.isBlank() && !name.isEmpty() && (name.length()-name.trim().length() < 6));
+        name.substring(0, 1).toUpperCase();
+        int[] spaceIndex = new int[5];
+        for (int i = 0; i<name.length(); i++){
+            
+        }
+
+        System.out.println("Staff's Role: ");
+        System.out.println("Staff's Gender");
+        System.out.println("Staff's Age");
+        System.out.println("Make a default password for the new Staff member: ");
 		throw new UnsupportedOperationException();
 	}
 

@@ -1,5 +1,5 @@
-import java.util.*;
 import java.time.*;
+import java.util.*;
 
 public class Test {
     public static void main(String[] args){
@@ -12,10 +12,11 @@ public class Test {
         Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
         
 
-        DoctorMenu.displayDoctorMenu(doctor);
+        /* DoctorMenu.displayDoctorMenu(doctor);
         PatientMenu.displayPatientMenu(patient);
         DoctorMenu.displayDoctorMenu(doctor);
-        PatientMenu.displayPatientMenu(patient);
+        PatientMenu.displayPatientMenu(patient); */
+        AdministratorMenu.displayAdminMenu(administrator);
 
         
 

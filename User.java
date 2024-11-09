@@ -8,9 +8,11 @@ public class User {
 	protected String gender = "Male";
 	protected int age = -1;
 	protected String role = "user"; 
+	public static List<User> users = new ArrayList<>();	
 
 	Scanner scanner = new Scanner(System.in);
 	public User() {
+		users.add(this);
 	}
 
 	public User(String hospitalID, String password, String name, String gender, int age) {
@@ -20,6 +22,7 @@ public class User {
 		this.gender = gender;
 		this.age = age;
 		this.role = "user";
+		users.add(this);
 	}
 
 	public void login() {
