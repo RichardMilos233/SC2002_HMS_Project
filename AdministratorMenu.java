@@ -51,7 +51,8 @@ public class AdministratorMenu {
         } while (c>4 || c<1);
         switch (c){
             case 1:
-                StaffService.displayStaffList();
+                StaffService.displayStaffList(1);
+                // TO DO - add option for alphabetical
                 break;
             case 2:
                 StaffService.displayAdminList(0);
