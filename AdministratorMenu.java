@@ -37,6 +37,34 @@ public class AdministratorMenu {
     }
 
     public static void displayStaffList() {
+        // 0 is normal, 1 is Administrator, 2 is doctor, 3 is pharmacist
+        Scanner scanner = new Scanner(System.in);
+        int c = 0;
+        do {  // inconsistent print method what is the preference
+            System.out.println(""" 
+                               1 Display All Staff 
+                               2 Display Administrators 
+                               3 Display Doctors 
+                               4 Display Pharmacists 
+                               """);
+            c = scanner.nextInt();
+        } while (c>4 || c<1);
+        switch (c){
+            case 1:
+                StaffService.displayStaffList();
+                break;
+            case 2:
+                StaffService.displayAdminList();
+                break; 
+            case 3:
+                StaffService.displayDoctorList();
+                break;
+            case 4:
+                StaffService.displayPharmacistList();
+                break;
+            default:
+                displayStaffList();
+        }
 		// TODO - call StaffService.displaystafflist 
 		throw new UnsupportedOperationException();
 	}

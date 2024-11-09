@@ -1,14 +1,32 @@
 public class StaffService {
 
-    public void updateStaff(){
+    public static void displayStaffList(){
+        
+        Doctor.doctors.get(0);
+    }
+
+    public static void displayAdminList(){
+        
+    }
+
+    public static void displayDoctorList(){
+        
+        Doctor.doctors.get(0);
+    }
+
+    public static void displayPharmacistList(){
+        
+    }
+
+    public static void updateStaff(){
 
     }
     
-    public void addStaff(){
+    public static void addStaff(){
 
     }
 
-    public void removeStaff(){
-        
+    public static void removeStaff(){
+
     }
 }
