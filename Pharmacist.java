@@ -9,6 +9,7 @@ public class Pharmacist extends User {//ignore the staff first
 		this.role = "pharmacist";
 	}
 
+	/* 
 	public void viewAppointmentOutcomeRecord() {
 		// TODO - implement Pharmacist.viewAppointmentOutcomeRecord
 		throw new UnsupportedOperationException();
@@ -28,5 +29,5 @@ public class Pharmacist extends User {//ignore the staff first
 		// TODO - implement Pharmacist.submitReplenishmentRequest
 		throw new UnsupportedOperationException();
 	}
-
+ 	*/
 }

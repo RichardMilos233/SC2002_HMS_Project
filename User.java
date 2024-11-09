@@ -7,7 +7,7 @@ public class User {
 	protected String name = "nobody";
 	protected String gender = "Male";
 	protected int age = -1;
-	protected String role = "user";
+	protected String role = "user"; 
 
 	Scanner scanner = new Scanner(System.in);
 	public User() {
