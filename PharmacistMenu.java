@@ -14,16 +14,16 @@ public class PharmacistMenu {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    pharmacist.viewAppointmentOutcomeRecord();
+                    viewAppointmentOutcomeRecord();
                     break;
                 case 2:
-                    pharmacist.updatePrescriptionStatus();
+                    updatePrescriptionStatus();
                     break;
                 case 3:
-                    pharmacist.viewMedicationInventory();
+                    viewMedicationInventory();
                     break;
                 case 4:
-                    pharmacist.submitReplenishmentRequest();
+                    submitReplenishmentRequest();
                     break;
                 case 5:
                     pharmacist.logout();
@@ -33,4 +33,23 @@ public class PharmacistMenu {
             }
         }while(choice != 5);
     }
+    public static void viewAppointmentOutcomeRecord() {
+		// TODO - implement Pharmacist.viewAppointmentOutcomeRecord
+		throw new UnsupportedOperationException();
+	}
+
+	public static void updatePrescriptionStatus() {
+		// TODO - implement Pharmacist.updatePrescriptionStatus
+		throw new UnsupportedOperationException();
+	}
+
+	public static void viewMedicationInventory() {
+		// TODO - implement Pharmacist.viewMedicationInventory
+		throw new UnsupportedOperationException();
+	}
+
+	public static void submitReplenishmentRequest() {
+		// TODO - implement Pharmacist.submitReplenishmentRequest
+		throw new UnsupportedOperationException();
+	}
 }
