@@ -27,8 +27,6 @@ public class PharmacistMenu {
                     //call from inventory, return types n stock of each medication 
                     break;
                 case 4:
-                    
-
                     inventoryService.viewInventory();
                     System.out.println("Enter Medication Name to Replenish: ");
                     String medToReplenish = scanner.nextLine();
@@ -45,5 +43,24 @@ public class PharmacistMenu {
             }
         }while(choice != 5);
     }
+    public static void viewAppointmentOutcomeRecord() {
+		// TODO - implement Pharmacist.viewAppointmentOutcomeRecord
+		throw new UnsupportedOperationException();
+	}
+
+	public static void updatePrescriptionStatus() {
+		// TODO - implement Pharmacist.updatePrescriptionStatus
+		throw new UnsupportedOperationException();
+	}
+
+	public static void viewMedicationInventory() {
+		// TODO - implement Pharmacist.viewMedicationInventory
+		throw new UnsupportedOperationException();
+	}
+
+	public static void submitReplenishmentRequest() {
+		// TODO - implement Pharmacist.submitReplenishmentRequest
+		throw new UnsupportedOperationException();
+	}
 }
 
