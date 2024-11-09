@@ -14,8 +14,7 @@ public class PatientMenu {
                                 "6 Cancel an Appointment \n" + 
                                 "7 View Scheduled Appointments \n" + 
                                 "8 View Past Appointment Outcome Records \n" + 
-                                "9 Logout \n" +
-                                "Type in the service index to choose the service");
+                                "9 Logout");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
