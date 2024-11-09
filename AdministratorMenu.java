@@ -91,11 +91,6 @@ public class AdministratorMenu {
                 break;
         }
 
-
-
-
-
-        // ask how they want to manage the staff in a loop and then call add update remove etc
 		// TODO - call StaffService.displaystafflist 
 		throw new UnsupportedOperationException();
 	}

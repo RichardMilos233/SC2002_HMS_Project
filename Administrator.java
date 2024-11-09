@@ -23,14 +23,14 @@ public class Administrator extends User { //ignore Staff first
         int i;
         int choice = -1;
 
-		System.out.println("Choose the doctor you want:");
+		System.out.println("Choose the administrator you want:");
 		for (i = 0; i < Administrator.administrators.size(); i++){
 			administrator = Administrator.administrators.get(i);
 			System.out.println(i+1 + ": " + administrator.getName());
 		}
 
 		choice = scanner.nextInt();
-		if (choice <1 || choice > Doctor.doctors.size()){
+		if (choice <1 || choice > Administrator.administrators.size()){
 			return null;
 		}
 		
