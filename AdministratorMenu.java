@@ -37,7 +37,6 @@ public class AdministratorMenu {
     }
 
     public static void displayStaffList() {
-        // 0 is normal, 1 is Administrator, 2 is doctor, 3 is pharmacist
         Scanner scanner = new Scanner(System.in);
         int c = 0;
         do {  // inconsistent print method what is the preference
@@ -66,6 +65,34 @@ public class AdministratorMenu {
             default:
                 displayStaffList();
         }
+        c = 0;
+        System.out.println("Would you like to: \n" + 
+                                "1 Return to Menu  \n" + 
+                                "2 Add Staff \n" + 
+                                "3 Update Staff \n" +
+                                "4 Remove Staff n");
+        c = scanner.nextInt();
+        switch (c){
+            case 1:
+                break;
+            case 2:
+                // name, role, id automatically allocated i think, gender, age, salary?
+                StaffService.addStaff();
+                break; 
+            case 3:
+                // which one 
+                StaffService.updateStaff();;
+                break;
+            case 4:
+                // which one 
+                StaffService.removeStaff();
+                break;
+            default:
+                break;
+        }
+
+
+
 
 
         // ask how they want to manage the staff in a loop and then call add update remove etc
