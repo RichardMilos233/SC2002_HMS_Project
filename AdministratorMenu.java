@@ -57,12 +57,15 @@ public class AdministratorMenu {
                 break;
             case 2:
                 StaffService.displayAdminList(1);
+                System.out.println("Hospital ID\tName\t\tGender\tAge");
                 break; 
             case 3:
                 StaffService.displayDoctorList(1);
+                System.out.println("Hospital ID\tName\t\tGender\tAge");
                 break;
             case 4:
                 StaffService.displayPharmacistList(1);
+                System.out.println("Hospital ID\tName\t\tGender\tAge");
                 break;
             case 5:
                 StaffService.displayStaffList(0);
