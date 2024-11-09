@@ -108,7 +108,24 @@ public class AdministratorMenu {
 	}
 
 	public void addStaff() {
+        Scanner scanner = new Scanner(System.in);
+        String name, defaultPass;
+        int role, gender, age;
 		// TODO - call StaffService.addStaff(name, egegegeg)
+        do { 
+            System.out.println("Staff's Name: ");
+            name = scanner.next();
+        } while(!name.isBlank() && !name.isEmpty() && (name.length()-name.trim().length() < 6));
+        name.substring(0, 1).toUpperCase();
+        int[] spaceIndex = new int[5];
+        for (int i = 0; i<name.length(); i++){
+            
+        }
+
+        System.out.println("Staff's Role: ");
+        System.out.println("Staff's Gender");
+        System.out.println("Staff's Age");
+        System.out.println("Make a default password for the new Staff member: ");
 		throw new UnsupportedOperationException();
 	}
 
