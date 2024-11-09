@@ -54,17 +54,20 @@ public class AdministratorMenu {
                 StaffService.displayStaffList();
                 break;
             case 2:
-                StaffService.displayAdminList();
+                StaffService.displayAdminList(0);
                 break; 
             case 3:
-                StaffService.displayDoctorList();
+                StaffService.displayDoctorList(0);
                 break;
             case 4:
-                StaffService.displayPharmacistList();
+                StaffService.displayPharmacistList(0);
                 break;
             default:
                 displayStaffList();
         }
+
+
+        // ask how they want to manage the staff in a loop and then call add update remove etc
 		// TODO - call StaffService.displaystafflist 
 		throw new UnsupportedOperationException();
 	}
