@@ -56,15 +56,18 @@ public class AdministratorMenu {
                 // TO DO - add option for alphabetical
                 break;
             case 2:
-                System.out.format("Hospital ID   Name                 Gender Age\n");
+                System.out.format("ID     Name                 Gender Age\n");
+                System.out.println("-------------------------------------------");
                 StaffService.displayAdminList(1);
                 break; 
             case 3:
-                System.out.format("Hospital ID   Name                 Gender Age\n");
+                System.out.format("ID     Name                 Gender Age\n");
+                System.out.println("-------------------------------------------");
                 StaffService.displayDoctorList(1);
                 break;
             case 4:
-                System.out.format("Hospital ID   Name                 Gender Age\n");
+                System.out.format("ID     Name                 Gender Age\n");
+                System.out.println("-------------------------------------------");
                 StaffService.displayPharmacistList(1);
                 break;
             case 5:
