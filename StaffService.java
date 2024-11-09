@@ -9,31 +9,53 @@ public class StaffService {
             displayPharmacistList(byRole);
             System.out.println("------------Admins------------ \n");
             displayAdminList(byRole);
-
         }
     }
 
-    public static void displayAdminList(int staff){
+    public static void displayAdminList(int role){
+        Administrator admin;
+        if (role == 1){
+            for (int i = 0; i<Administrator.administrators.size(); i++){
+                admin = Administrator.administrators.get(i);
+                System.out.println(admin.getHospitalID() + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
+             }
+        } else{
+            for (int i = 0; i<Administrator.administrators.size(); i++){
+                admin = Administrator.administrators.get(i);
+                System.out.println(admin.getHospitalID() + '\t' + admin.getRole() + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
+             }
+        }
         
     }
 
     public static void displayDoctorList(int role){
-        Doctor d;
+        Doctor doctor;
         if (role == 1){
             for (int i = 0; i<Doctor.doctors.size(); i++){
-                d = Doctor.doctors.get(i);
-                System.out.println(d.getHospitalID() + '\t' + d.getName() + '\t' + d.getGender() + '\t' + d.getAge());
+                doctor = Doctor.doctors.get(i);
+                System.out.println(doctor.getHospitalID() + '\t' + doctor.getName() + '\t' + doctor.getGender() + '\t' + doctor.getAge());
              }
         } else{
             for (int i = 0; i<Doctor.doctors.size(); i++){
-                d = Doctor.doctors.get(i);
-                System.out.println(d.getHospitalID()  + '\t' + d.getRole() + '\t' + d.getName() + '\t' + d.getGender() + '\t' + d.getAge());
+                doctor = Doctor.doctors.get(i);
+                System.out.println(doctor.getHospitalID()  + '\t' + doctor.getRole() + '\t' + doctor.getName() + '\t' + doctor.getGender() + '\t' + doctor.getAge());
              }
         }
     }
 
-    public static void displayPharmacistList(int staff){
-        
+    public static void displayPharmacistList(int role){
+        Pharmacist pharma;
+        if (role == 1){
+            for (int i = 0; i<Pharmacist.pharmacists.size(); i++){
+                pharma = Pharmacist.pharmacists.get(i);
+                System.out.println(pharma.getHospitalID() + '\t' + pharma.getName() + '\t' + pharma.getGender() + '\t' + pharma.getAge());
+             }
+        } else{
+            for (int i = 0; i<Pharmacist.pharmacists.size(); i++){
+                pharma = Pharmacist.pharmacists.get(i);
+                System.out.println(pharma.getHospitalID() + '\t' + pharma.getRole() + '\t' + pharma.getName() + '\t' + pharma.getGender() + '\t' + pharma.getAge());
+             }
+        }
     }
 
     public static void updateStaff(){
