@@ -4,14 +4,19 @@ import java.util.List;
 public class Inventory implements IInventory {
 
 
-	// private int medications;
-	//private Medication[] medications;
-    //private int count;
+	//private int medications;
+	// private List<Medication> medications;
+   
+    
+	public Inventory() {
+        // medications = new ArrayList<>();
+    }
+    /*public Inventory(int capacity) {
+        medications = new Medication[capacity]; // use array list instead
+        count = 0;
 
-    public Inventory(){}
-
-	 /*public void addMedication(String name, int initialStock, int stockAlert) {
-
+	 // add a new medication (idk if inventoru will ever be full?)
+	 public void addMedication(String name, int initialStock, int stockAlert) {
         if (count < medications.length) {
             medications[count++] = new Medication(name, initialStock, stockAlert);
             System.out.println(name + " added to inventory.");
@@ -53,10 +58,13 @@ public class Inventory implements IInventory {
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
-        
-        for (int i = 0; i < medicationList.size(); i++) {
-            if (i == 0) continue; // Skip Headers
 
+        for (int i = 0; i < medicationList.size(); i++) {
+            
+            if (i == 0) {
+                continue; // Skip Headers
+            }
+            
             // Find The Medication from the List
             if (medicationList.get(i).get(0).equals(name)) {
                 // Get Current Stock
@@ -67,15 +75,23 @@ public class Inventory implements IInventory {
 
                 // Update the list with the correct stock number
                 medicationList.get(i).set(1, String.valueOf(currentStock));
+                if (medicationList.get(i).size() > 3) {
+                    medicationList.get(i).removeLast();
+                }
 
-                // Save It!
-                ExcelService.writeCsv(filePath, medicationList);
-                System.out.println("Successfully Replenished " + name);
-                return;
+                if (amount == 0) {
+                    System.out.println("Replenish Request Declined");
+                } else {
+                    System.out.println("Successfully Accepted Replenishment for " + name);
+                }
+                
+                break;
             }
+
         }
 
-        System.out.println("Medication not found."); 
+        // Save It!
+        ExcelService.writeCsv(filePath, medicationList);
     }
 
 	 // Consume stock for a specific medication
@@ -107,17 +123,7 @@ public class Inventory implements IInventory {
         System.out.println("Medication not found."); 
     }
 
-//make mtd to check stock lvl?  @Override
-    /*public void checkStockLevel(String name) {
-        for (int i = 0; i < count; i++) {
-            if (medications[i].getMedicationName().equals(name)) {
-                System.out.println(medications[i].getMedicationName() + " has " + medications[i].getStock() + " units.");
-                return;
-            }
-        }
-        System.out.println("Medication not found.");
 
-    }*/
 
 
     @Override
@@ -245,6 +251,92 @@ public class Inventory implements IInventory {
         }
 
         System.out.println("Medication not found."); 
+    }
+
+    @Override
+    public void replenishRequest(String name, int amountToReplenish) {
+        String filePath = "csv\\Medicine_List.csv";
+
+        // Get Medication List
+        List<List<String>> medicationList = ExcelService.readCsv(filePath);
+
+        for (int i = 0; i < medicationList.size(); i++) {
+            if (i == 0) continue; // Skip Headers
+
+            // Find The Medication from the List
+            if (medicationList.get(i).get(0).equals(name)) {
+                // Update the list with the correct stock number
+                medicationList.get(i).add(String.valueOf(amountToReplenish));
+
+                // Save It!
+                ExcelService.writeCsv(filePath, medicationList);
+                System.out.println("Successfully Requested Replenishment for" + name);
+                
+
+                return;
+            }
+        }
+
+        System.out.println("Medication not found."); 
+    }
+
+    @Override
+    public void viewReplenishRequestOptions(List<String> replenishRequest) {
+        if (replenishRequest.isEmpty()) {
+            System.out.println("No Replenish Requests");
+        } else {
+            System.out.println("Enter Choice: ");
+        }
+
+    }
+
+    @Override
+    public List<Medication> viewReplenishRequests() {
+        String filePath = "csv\\Medicine_List.csv";
+
+        // Get Medication List
+        List<List<String>> medicationList = ExcelService.readCsv(filePath);
+
+        List<Medication> medicationsForApproval = new ArrayList<>();
+
+        for (int i = 0; i < medicationList.size(); i++) {
+            if (i == 0) continue; // Skip Headers
+
+            // Find The Medication from the List
+            if (medicationList.get(i).size() > 3) {
+                Medication medicationsWithReplenishRequests = new Medication();
+                medicationsWithReplenishRequests.setMedicationName(medicationList.get(i).get(0));
+                medicationsWithReplenishRequests.setStock(Integer.parseInt(medicationList.get(i).get(1)));
+                medicationsWithReplenishRequests.setStockAlert(Integer.parseInt(medicationList.get(i).get(2)));
+                medicationsWithReplenishRequests.setReplenishAmount(Integer.parseInt(medicationList.get(i).get(3)));
+                medicationsForApproval.add(medicationsWithReplenishRequests);
+                System.out.println((medicationsForApproval.size()) + " " + medicationsWithReplenishRequests.getMedicationName() + ", Request to Replenish: " + medicationsWithReplenishRequests.getReplenishAmount());
+            }
+        }
+
+        return medicationsForApproval;
+    }
+
+    @Override
+    public void approveReplenishRequest(String medicationToReplenish) {
+        String filePath = "csv\\Medicine_List.csv";
+
+        // Get Medication List
+        List<List<String>> medicationList = ExcelService.readCsv(filePath);
+
+        for (int i = 0; i < medicationList.size(); i++) {
+            if (i == 0) continue; // Skip Headers
+
+            // Find The Medication from the List
+            if (medicationList.get(i).get(0).equals(medicationToReplenish)) {
+                // Save It!
+                replenishStock(medicationToReplenish, Integer.parseInt(medicationList.get(i).get(3)));
+                return;
+            }
+        }
+
+        System.out.println("Medication not found."); 
+
     }
 }
 

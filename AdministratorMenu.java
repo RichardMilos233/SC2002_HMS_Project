@@ -9,7 +9,7 @@ public class AdministratorMenu {
                                 "1 View and Manage Hospital Staff \n" + //
                                 "2 View Appointments details \n" + //
                                 "3 View and Manage Medication Inventory \n" + //
-                                "4 Approve Replenishment Requests \n" + //
+                                "4 View Replenishment Requests \n" + //
                                 "5 Logout ");
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
@@ -23,7 +23,29 @@ public class AdministratorMenu {
                     displayInventory();
                     break;
                 case 4:
-                    administrator.approveReplenishmentRequest();
+                    Inventory inventoryService = new Inventory();
+                    List<Medication> replenishRequests = inventoryService.viewReplenishRequests();
+                    if (replenishRequests.isEmpty()) {
+                        System.out.println("No Replenish Requests");
+                    }
+                    else {
+                        int medicationChoice = Integer.parseInt(scanner.nextLine());
+                        if (medicationChoice > replenishRequests.size()) {
+                            System.out.println("Invalid Choice");
+                            break;
+                        } else {
+                            System.out.println("1 Approve");
+                            System.out.println("2 Decline");
+                            int approveOrDeclineChoice = Integer.parseInt(scanner.nextLine());
+                            int amountToReplenish = 0; // Default 0 to replenish if decline
+                            if (approveOrDeclineChoice == 1) {
+                                amountToReplenish = replenishRequests.get(medicationChoice-1).getReplenishAmount();
+                            }
+                            inventoryService.replenishStock(replenishRequests.get(medicationChoice-1).getMedicationName(), amountToReplenish);
+                        }
+                    }
+                    
+                    // inventoryService.approveReplenishRequest(replenishRequests.get(Integer.parseInt(scanner.nextLine())-1));
                     break;
                 case 5:
                     administrator.logout();

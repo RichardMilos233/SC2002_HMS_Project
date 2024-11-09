@@ -3,13 +3,15 @@ public class Medication {
 	private String medicationName;
 	private int stock;
 	private int stockAlert;
+    private int replenishAmount;
 
 
 
-	public Medication(String medicationName, int initialStock, int stockAlert) {
+	public Medication(String medicationName, int initialStock, int stockAlert, int replenishAmount) {
         this.medicationName = medicationName;
         this.stock = initialStock;
         this.stockAlert = stockAlert;
+        this.replenishAmount = replenishAmount;
     }
 
     public Medication() {
@@ -74,4 +76,14 @@ public class Medication {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+    public int getReplenishAmount() {
+        return replenishAmount;
+    }
+
+    public void setReplenishAmount(int replenishAmount) {
+        this.replenishAmount = replenishAmount;
+    }
+
+    
 }
