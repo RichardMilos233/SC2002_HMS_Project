@@ -16,7 +16,8 @@ public class DoctorMenu {
                                 "5 Accept or Decline Appointment Requests \n" + //
                                 "6 View Upcoming Appointments \n" + //
                                 "7 Record Appointment Outcome \n" + //
-                                "8 Logout");
+                                "8 Logout \n" + 
+                                "Type in the service index to choose the service");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
