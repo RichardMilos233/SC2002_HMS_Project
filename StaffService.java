@@ -32,6 +32,7 @@ public class StaffService {
                     //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
                 }
             }
+            System.out.println("-----------------------------------------------------------");
         }
     }
 
@@ -43,6 +44,7 @@ public class StaffService {
                 System.out.format("%-6s %-20s %-6s %-2d\n", admin.getHospitalID(), admin.getName(), admin.getGender(), admin.getAge());
                 //System.out.println(admin.getHospitalID() + '\t' + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
              }
+             System.out.println("-----------------------------------------------------------");
 
         } else{
             System.out.format("ID     Role          Name                 Gender Age\n");
@@ -62,6 +64,7 @@ public class StaffService {
                 doctor = Doctor.doctors.get(i);
                 System.out.format("%-6s %-20s %-6s %-2d\n", doctor.getHospitalID(), doctor.getName(), doctor.getGender(), doctor.getAge());
              }
+             System.out.println("-----------------------------------------------------------");
 
         } else{
             System.out.format("ID     Role          Name                 Gender Age\n");
@@ -80,6 +83,7 @@ public class StaffService {
                 pharma = Pharmacist.pharmacists.get(i);
                 System.out.format("%-6s %-20s %-6s %-2d\n", pharma.getHospitalID(), pharma.getName(), pharma.getGender(), pharma.getAge());
              }
+             System.out.println("-----------------------------------------------------------");
 
         } else{
             System.out.format("ID     Role          Name                 Gender Age\n");
