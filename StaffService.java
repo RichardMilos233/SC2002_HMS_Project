@@ -4,17 +4,17 @@ public class StaffService {
 
     public static void displayStaffList(int byRole){
         if (byRole == 1){
-            System.out.println("----------Doctors--------------------------");
+            System.out.println("--------------Doctors----------------------");
             System.out.format("ID     Name                 Gender Age\n");
             System.out.println("-------------------------------------------");
             displayDoctorList(byRole);
 
-            System.out.println("----------Pharmacists----------------------");
+            System.out.println("--------------Pharmacists------------------");
             System.out.format("ID     Name                 Gender Age\n");
             System.out.println("-------------------------------------------");
             displayPharmacistList(byRole);
 
-            System.out.println("----------Admins---------------------------");
+            System.out.println("--------------Admins-----------------------");
             System.out.format("ID     Name                 Gender Age\n");
             System.out.println("-------------------------------------------");
             displayAdminList(byRole);
@@ -166,36 +166,60 @@ public class StaffService {
             Collections.sort(Doctor.doctors, Comparator.comparing(Doctor::getHospitalID));
             for (int i = 0; i<Doctor.doctors.size(); i++){
                 charID = Doctor.doctors.get(i).hospitalID.substring(1).toCharArray();
-                intID = (charID[0]*100)+(charID[1]*10)+charID[2];
+                intID = (Character.getNumericValue(charID[0])*100)+(Character.getNumericValue(charID[1])*10)+Character.getNumericValue(charID[2]);
                 if (i == 0){
                     previous = intID; 
                 } else{
                     if (intID > previous + 1){
-                        staffID = "D" + String.valueOf(previous+1);
+                        if ((previous+1)/100 > 0){
+                            staffID = "P" + String.valueOf(previous+1);
+                        } else if ((previous+1)/10 > 0){
+                            staffID = "P" + "0" + String.valueOf(previous+1);
+                        } else {
+                            staffID = "P" + "0" + "0" + String.valueOf(previous+1);
+                        }
                         return staffID;
                     }
                     previous = intID;
                 }
             }
-            staffID = "D" + String.valueOf(intID+1);
+            if ((intID+1)/100 > 0){
+                staffID = "D" + String.valueOf(intID+1);
+            } else if ((intID+1)/10 > 0){
+                staffID = "D" + "0" + String.valueOf(intID+1);
+            } else {
+                staffID = "D" + "0" + "0" + String.valueOf(intID+1);
+            }
             return staffID;
         
         } else{ // pharmacist P001 
             Collections.sort(Pharmacist.pharmacists, Comparator.comparing(Pharmacist::getHospitalID));
             for (int i = 0; i<Pharmacist.pharmacists.size(); i++){
                 charID = Pharmacist.pharmacists.get(i).hospitalID.substring(1).toCharArray();
-                intID = (charID[0]*100)+(charID[1]*10)+charID[2];
+                intID = (Character.getNumericValue(charID[0])*100)+(Character.getNumericValue(charID[1])*10)+Character.getNumericValue(charID[2]);
                 if (i == 0){
                     previous = intID; 
                 } else{
                     if (intID > previous + 1){
-                        staffID = "D" + String.valueOf(previous+1);
+                        if ((previous+1)/100 > 0){
+                            staffID = "P" + String.valueOf(previous+1);
+                        } else if ((previous+1)/10 > 0){
+                            staffID = "P" + "0" + String.valueOf(previous+1);
+                        } else {
+                            staffID = "P" + "0" + "0" + String.valueOf(previous+1);
+                        }
                         return staffID;
                     }
                     previous = intID;
                 }
             }
-            staffID = "D" + String.valueOf(intID+1);
+            if ((intID+1)/100 > 0){
+                staffID = "P" + String.valueOf(intID+1);
+            } else if ((intID+1)/10 > 0){
+                staffID = "P" + "0" + String.valueOf(intID+1);
+            } else {
+                staffID = "P" + "0" + "0" + String.valueOf(intID+1);
+            }
             return staffID;
         } 
     }
