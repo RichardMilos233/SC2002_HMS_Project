@@ -11,7 +11,7 @@ public class DateConverter {
         }
     }
     
-    public static LocalDate converDate(String date){
+    public static LocalDate convertDate(String date){
         return LocalDate.parse(date);
     }
 }

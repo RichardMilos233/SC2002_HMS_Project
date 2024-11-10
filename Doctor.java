@@ -43,6 +43,16 @@ public class Doctor extends User {	//ignore the Staff class first
 		initializeTimeTable();
 	}
 
+	public String toCSV() {	// directly inherit from user
+        return super.toCSV();
+    }
+
+    public Doctor fromCSV(String data) {	// downcast to Doctor then return
+        Doctor doctor = (Doctor) super.fromCSV(data);
+		doctor.role = "doctor";
+        return doctor;
+    }
+
     public List<Appointment> getTimeTable(){
 		return this.timeTable;
 	}

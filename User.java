@@ -46,6 +46,21 @@ public class User {
 		throw new UnsupportedOperationException();
 	}
 
+	public String toCSV() {
+        return hospitalID + "," + password + "," + name + "," + gender + "," + age + "," + role;
+    }
+
+	public User fromCSV(String data) {
+        String[] fields = data.split(",");
+        String hospitalID = fields[0];
+        String password = fields[1];
+        String name = fields[2];
+        String gender = fields[3];
+        int age = Integer.parseInt(fields[4]);
+        String role = fields[5];
+        return new User(hospitalID, password, name, gender, age);
+    }
+
 	public String getHospitalID(){
 		return this.hospitalID;
 	}

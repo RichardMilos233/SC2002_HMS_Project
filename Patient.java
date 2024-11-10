@@ -63,6 +63,30 @@ public class Patient extends User {
 		}
 	}
 
+	public String toCSV(){
+		//hospitalID + "," + password + "," + name + "," + gender + "," + age + "," + role;
+		return super.toCSV() + "," + birth + "," + bloodType + "," + email + "," + contactNumber;
+	}
+
+	public Patient fromCSV(String data){
+		String[] fields = data.split(",");
+		User user = super.fromCSV(data);
+		LocalDate birth = LocalDate.parse(fields[6]);
+		String bloodType = fields[7];
+		String email = fields[8];
+		int contactNumber = Integer.parseInt(fields[9]);
+		Patient patient = new Patient(user.hospitalID, 
+										user.password, 
+										user.name, 
+										user.gender, 
+										user.age, 
+										birth, 
+										contactNumber, 
+										email, 
+										bloodType);
+		return patient;
+	}
+
 	public LocalDate getBirth(){
 		return this.birth;
 	}
