@@ -200,39 +200,39 @@ public class AdministratorMenu {
                 name = name.substring(0,i+1) + name.substring(i+1, i+2).toUpperCase() + name.substring(i+2);
             }
         }
-        System.out.println("Name entered 2: " + name);
+        System.out.println("Name entered: " + name);
 
         do { // ROLE
-            System.out.println("Staff's Role: \n1 Doctor\n2 Pharmacist");
+            System.out.println("\nStaff's Role: \n1 Doctor\n2 Pharmacist");
             role = scanner.nextInt();
         } while (role >2 || role<1);
         
         do { // GENDER
-            System.out.println("Staff's Gender: \n1 Male\n2 Female");
+            System.out.println("\nStaff's Gender: \n1 Male\n2 Female");
             gender = scanner.nextInt();
         } while (gender >2 || gender<1);
         
         do { // Age
-            System.out.println("Staff's Age: ");
+            System.out.println("\nStaff's Age: ");
             age = scanner.nextInt();
-        } while (age >17 || age<120);
+        } while (age <18 || age>100);
 
        
         do { // NAME
-            System.out.println("Make a default password for the new Staff member (at least 8 character): ");
+            System.out.println("\nMake a default password for the new Staff member (at least 8 character): ");
             defaultPass = scanner.next();
-        } while(!defaultPass.isBlank() && !defaultPass.isEmpty() && (defaultPass.length()>7));
+        } while(defaultPass.isBlank() || defaultPass.isEmpty() || (defaultPass.length()<8));
         
         int c;
         if (role==1){
             if (gender==1){
-                System.out.println("New Doctor: \nName: " + name + "\n Gender: Male\n Age: " + age);
+                System.out.println("\nNew Doctor: \nName: " + name + "\n Gender: Male\n Age: " + age);
             } else {
-                System.out.println("New Doctor: \nName: " + name + "\n Gender: Female\n Age: " + age);
+                System.out.println("\nNew Doctor: \nName: " + name + "\n Gender: Female\n Age: " + age);
             }
             c = 0;
             do { 
-                System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
+                System.out.println("\nConfirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
                 c = scanner.nextInt();
                 switch (c){
                     case 1:
@@ -243,14 +243,14 @@ public class AdministratorMenu {
                     case 3: 
                         return;
                     default:
-                        return;
+                        break;
                 } 
-            }   while (c<4 || c>1);
+            }   while (c!=3);
         } else {
             if (gender==1){
-                System.out.println("New Pharmacist: \nName: " + name + "\n Gender: Male\n Age: " + age);
+                System.out.println("\nNew Pharmacist: \nName: " + name + "\n Gender: Male\n Age: " + age);
             } else {
-                System.out.println("New Pharmacist: \nName: " + name + "\n Gender: Female\n Age: " + age);
+                System.out.println("\nNew Pharmacist: \nName: " + name + "\n Gender: Female\n Age: " + age);
             }
             c = 0;
             do { 
@@ -265,9 +265,9 @@ public class AdministratorMenu {
                     case 3: 
                         return;
                     default:
-                        return;
+                        break;
                 } 
-            }   while (c<4 || c>1);
+            }   while (c!=3);
 
         }
         StaffService.addStaff(name, role, gender, age, defaultPass);
@@ -292,7 +292,7 @@ public class AdministratorMenu {
                     case 1:
                         // update name
                         System.out.println("Enter new Name: ");
-                        String name = scanner.next();
+                        String name = scanner.nextLine();
                         StaffService.updateStaff(u, name, "", "", 0);
                         break;
                     case 2:
