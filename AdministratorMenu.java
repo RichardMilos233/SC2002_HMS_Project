@@ -126,60 +126,71 @@ public class AdministratorMenu {
                                3 Display Doctors 
                                4 Display Pharmacists
                                5 Display All Staff Alphabetically 
-                               """);
+                               6 Manage Staff
+                               7 Return to Menu""");
             c = scanner.nextInt();
-        } while (c>5 || c<1);
-        switch (c){
-            case 1:
-                StaffService.displayStaffList(1);
-                // TO DO - add option for alphabetical
-                break;
-            case 2:
-                System.out.format("ID     Name                 Gender Age\n");
-                System.out.println("-------------------------------------------");
-                StaffService.displayAdminList(1);
-                break; 
-            case 3:
-                System.out.format("ID     Name                 Gender Age\n");
-                System.out.println("-------------------------------------------");
-                StaffService.displayDoctorList(1);
-                break;
-            case 4:
-                System.out.format("ID     Name                 Gender Age\n");
-                System.out.println("-------------------------------------------");
-                StaffService.displayPharmacistList(1);
-                break;
-            case 5:
-                StaffService.displayStaffList(0);
-                break;
-            default:
-                displayStaffList();
-        }
-        c = 0;
+            switch (c){
+                case 1:
+                    StaffService.displayStaffList(1);
+                    // TO DO - add option for alphabetical
+                    break;
+                case 2:
+                    System.out.format("ID     Name                 Gender Age\n");
+                    System.out.println("-------------------------------------------");
+                    StaffService.displayAdminList(1);
+                    break; 
+                case 3:
+                    System.out.format("ID     Name                 Gender Age\n");
+                    System.out.println("-------------------------------------------");
+                    StaffService.displayDoctorList(1);
+                    break;
+                case 4:
+                    System.out.format("ID     Name                 Gender Age\n");
+                    System.out.println("-------------------------------------------");
+                    StaffService.displayPharmacistList(1);
+                    break;
+                case 5:
+                    StaffService.displayStaffList(0);
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    return;
+                default:
+                    break;
+            }
+        } while (c!=7);
+        
+		throw new UnsupportedOperationException();
+	}
+
+    public static void manageStaff() {
+        Scanner scanner = new Scanner(System.in);
+        int c = 0;
         System.out.println("""
                              Would you like to: 
-                           1 Return to Menu  
-                           2 Add Staff 
-                           3 Update Staff 
-                           4 Remove Staff""");
+                           1 Add Staff 
+                           2 Update Staff 
+                           3 Remove Staff
+                           4 Return to Menu""");
         c = scanner.nextInt();
         switch (c){
             case 1:
-                return;
-            case 2:
                 // name, role, id automatically allocated i think, gender, age, salary?
                 addStaff();
+                break;
+            case 2:
+                // which one 
+                updateStaff();
                 break; 
             case 3:
                 // which one 
-                updateStaff();;
-                break;
-            case 4:
-                // which one 
                 removeStaff();
                 break;
-            default:
+            case 4:
                 return;
+            default:
+                break;
         } 
 		throw new UnsupportedOperationException();
 	}
@@ -226,9 +237,9 @@ public class AdministratorMenu {
         int c;
         if (role==1){
             if (gender==1){
-                System.out.println("\nNew Doctor: \nName: " + name + "\n Gender: Male\n Age: " + age);
+                System.out.println("\nNew Doctor: \nName: " + name + "\nGender: Male\nAge: " + age);
             } else {
-                System.out.println("\nNew Doctor: \nName: " + name + "\n Gender: Female\n Age: " + age);
+                System.out.println("\nNew Doctor: \nName: " + name + "\nGender: Female\nAge: " + age);
             }
             c = 0;
             do { 
@@ -236,6 +247,7 @@ public class AdministratorMenu {
                 c = scanner.nextInt();
                 switch (c){
                     case 1:
+                        StaffService.addStaff(name, role, gender, age, defaultPass);
                         break;
                     case 2:
                         AdministratorMenu.addStaff();
@@ -245,12 +257,12 @@ public class AdministratorMenu {
                     default:
                         break;
                 } 
-            }   while (c!=3);
+            }   while (c>3 || c<1);
         } else {
             if (gender==1){
-                System.out.println("\nNew Pharmacist: \nName: " + name + "\n Gender: Male\n Age: " + age);
+                System.out.println("\nNew Pharmacist: \nName: " + name + "\n ender: Male\nAge: " + age);
             } else {
-                System.out.println("\nNew Pharmacist: \nName: " + name + "\n Gender: Female\n Age: " + age);
+                System.out.println("\nNew Pharmacist: \nName: " + name + "\nGender: Female\nAge: " + age);
             }
             c = 0;
             do { 
@@ -258,6 +270,7 @@ public class AdministratorMenu {
                 c = scanner.nextInt();
                 switch (c){
                     case 1:
+                        StaffService.addStaff(name, role, gender, age, defaultPass);
                         break;
                     case 2:
                         AdministratorMenu.addStaff();
@@ -267,7 +280,7 @@ public class AdministratorMenu {
                     default:
                         break;
                 } 
-            }   while (c!=3);
+            }   while (c>3 || c<1);
 
         }
         StaffService.addStaff(name, role, gender, age, defaultPass);
