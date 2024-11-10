@@ -284,9 +284,9 @@ public class AdministratorMenu {
                 } 
             }   while (c>3 || c<1);
         }
-        /* System.out.println("Confirm creating staff: \n" + 
+        /* System.out.println("Confirm creating staff: \n" +
         "Name: " + name + "\n" + "ID: " + id + "\n" + "Role: " + role + "\n" + ); */
-		throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
 	}
 
 	public static void updateStaff() { // update admin, doctor, or pharmacist
@@ -350,7 +350,7 @@ public class AdministratorMenu {
                 }
             } while (c!=5);
         }
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
 	}
 
 	public static void removeStaff() { // cannot remove admin
@@ -376,7 +376,7 @@ public class AdministratorMenu {
             }
         } while (c>2 || c<1);
 
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	public static void viewAppointmentDetails() {
