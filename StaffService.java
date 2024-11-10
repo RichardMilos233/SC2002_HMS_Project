@@ -1,5 +1,6 @@
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.*;
 
 public class StaffService {
 
@@ -100,25 +101,104 @@ public class StaffService {
     }
     
     public static void addStaff(String name, int r, int g, int age, String defaultPass){
-        String gender = "";
-        String ID = "";
+        Scanner scanner = new Scanner(System.in);
+        String gender;
+        String staffID;
+        staffID = createID(r);
         if (g == 1){
             gender = "Male";
-        } else if (g == 2){
+        } else{
             gender = "Female";
         }
 
         if (r == 1){
-            Doctor doctor = new Doctor(ID, defaultPass, name, gender, age);
-        } else if (r == 2){
-            Pharmacist pharmacist = new Pharmacist(ID, defaultPass, name, gender, age);
+            System.out.println("New Doctor: \nID: " + staffID + "\nName: " + name + "\n Gender: " + gender + "\n Age: " + age);
+            int c = 0;
+            do { 
+                System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
+                c = scanner.nextInt();
+                switch (c){
+                    case 1:
+                        break;
+                    case 2:
+                        AdministratorMenu.addStaff();
+                        break;
+                    case 3: 
+                        return;
+                    default:
+                        return;
+                } 
+            }   while (c<4 && c>1);
+            Doctor doctor = new Doctor(staffID, defaultPass, name, gender, age);
+            System.out.println("Created with Password" + defaultPass);
+        } else{
+            System.out.println("New Pharmacist: \nID: " + staffID + "\nName: " + name + "\n Gender: " + gender + "\n Age: " + age);
+            int c = 0;
+            do { 
+                System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
+                c = scanner.nextInt();
+                switch (c){
+                    case 1:
+                        break;
+                    case 2:
+                        AdministratorMenu.addStaff();
+                        break;
+                    case 3: 
+                        return;
+                    default:
+                        return;
+                } 
+            }   while (c<4 && c>1);
+            Pharmacist pharmacist = new Pharmacist(staffID, defaultPass, name, gender, age);
+            System.out.println("Created with Password" + defaultPass);
         } 
-
-       
-
+        return;
     }
 
     public static void removeStaff(){
 
+    }
+
+    public static String createID(int r){
+        char[] charID;
+        String staffID;
+        int intID = 0;
+        int previous = 0;
+        if (r == 1){ // doctor  D001
+            Collections.sort(Doctor.doctors, Comparator.comparing(Doctor::getHospitalID));
+            for (int i = 0; i<Doctor.doctors.size(); i++){
+                charID = Doctor.doctors.get(i).hospitalID.substring(1).toCharArray();
+                intID = (charID[0]*100)+(charID[1]*10)+charID[2];
+                if (i == 0){
+                    previous = intID; 
+                } else{
+                    if (intID > previous + 1){
+                        staffID = "D" + String.valueOf(previous+1);
+                        return staffID;
+                    }
+                    previous = intID;
+                }
+            }
+            staffID = "D" + String.valueOf(intID+1);
+            return staffID;
+        
+        } else{ // pharmacist P001 
+            Collections.sort(Pharmacist.pharmacists, Comparator.comparing(Pharmacist::getHospitalID));
+            for (int i = 0; i<Pharmacist.pharmacists.size(); i++){
+                charID = Pharmacist.pharmacists.get(i).hospitalID.substring(1).toCharArray();
+                intID = (charID[0]*100)+(charID[1]*10)+charID[2];
+                if (i == 0){
+                    previous = intID; 
+                } else{
+                    if (intID > previous + 1){
+                        staffID = "D" + String.valueOf(previous+1);
+                        return staffID;
+                    }
+                    previous = intID;
+                }
+            }
+            staffID = "D" + String.valueOf(intID+1);
+            return staffID;
+        } 
     }
 }
