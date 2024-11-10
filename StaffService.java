@@ -100,8 +100,8 @@ public class StaffService {
     }
     
     public static void addStaff(String name, int r, int g, int age, String defaultPass){
-        String role, gender;
-        String ID;
+        String gender = "";
+        String ID = "";
         if (g == 1){
             gender = "Male";
         } else if (g == 2){
@@ -109,9 +109,9 @@ public class StaffService {
         }
 
         if (r == 1){
-            Doctor.Doctor(ID, defaultPass, name, gender, age);
+            Doctor doctor = new Doctor(ID, defaultPass, name, gender, age);
         } else if (r == 2){
-            Pharmacist.Pharmacist(ID, defaultPass, name, gender, age);
+            Pharmacist pharmacist = new Pharmacist(ID, defaultPass, name, gender, age);
         } 
 
        

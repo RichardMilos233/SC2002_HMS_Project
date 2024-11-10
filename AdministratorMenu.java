@@ -168,15 +168,15 @@ public class AdministratorMenu {
                 return;
             case 2:
                 // name, role, id automatically allocated i think, gender, age, salary?
-                StaffService.addStaff();
+                addStaff();
                 break; 
             case 3:
                 // which one 
-                StaffService.updateStaff();;
+                updateStaff();;
                 break;
             case 4:
                 // which one 
-                StaffService.removeStaff();
+                removeStaff();
                 break;
             default:
                 return;
@@ -186,7 +186,7 @@ public class AdministratorMenu {
 		throw new UnsupportedOperationException();
 	}
 
-	public void addStaff() {
+	public static void addStaff() {
         Scanner scanner = new Scanner(System.in);
         String name, defaultPass;
         int role, gender, age;
@@ -231,12 +231,12 @@ public class AdministratorMenu {
 		throw new UnsupportedOperationException();
 	}
 
-	public void updateStaff() {
+	public static void updateStaff() {
 		// TODO - call StaffService.updateStaff(name to be updated, egeg)
 		throw new UnsupportedOperationException();
 	}
 
-	public void removeStaff() {
+	public static void removeStaff() {
 		// TODO - call StaffService.removeStaff(who to remove egegeg)
 		throw new UnsupportedOperationException();
 	}
