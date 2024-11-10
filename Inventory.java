@@ -31,7 +31,7 @@ public class Inventory implements IInventory {
         if (medication.getMedicationName() == null) {
             System.out.println("Medication Name Missing");
         } else {
-            String filePath = "csv\\Medicine_List.csv";
+            String filePath = "csv/Medicine_List.csv";
             // Current List of Medications
             List<List<String>> medicationList = ExcelService.readCsv(filePath);
 
@@ -54,7 +54,7 @@ public class Inventory implements IInventory {
 	 // Replenish stock for a specific medication
      @Override
 	 public void replenishStock(String name, int amount) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -97,7 +97,7 @@ public class Inventory implements IInventory {
 	 // Consume stock for a specific medication
      @Override
 	 public void consumeStock(String medicationName, int amountToConsume) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
         
         for (int i = 0; i < medicationList.size(); i++) {
@@ -129,7 +129,7 @@ public class Inventory implements IInventory {
     @Override
 	public void viewInventory() {
         
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -144,7 +144,7 @@ public class Inventory implements IInventory {
     public List<String> checkStockLevels() {
         List<String> medicationsThatNeedToBeRestocked = new ArrayList<>();
 
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -168,7 +168,7 @@ public class Inventory implements IInventory {
     
     @Override
     public void setAlertLine(Medication medication, int alertLineAmount) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -188,7 +188,7 @@ public class Inventory implements IInventory {
     public List<Medication> retrieveMedications() {
         List<Medication> medications = new ArrayList<>();
 
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -210,7 +210,7 @@ public class Inventory implements IInventory {
 
     @Override
     public void removeMedication(Medication medicationToRemove) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -230,7 +230,7 @@ public class Inventory implements IInventory {
 
     @Override
     public void updateStockLevel(String name, int amountToUpdateTo) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -255,7 +255,7 @@ public class Inventory implements IInventory {
 
     @Override
     public void replenishRequest(String name, int amountToReplenish) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -292,7 +292,7 @@ public class Inventory implements IInventory {
 
     @Override
     public List<Medication> viewReplenishRequests() {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
@@ -319,7 +319,7 @@ public class Inventory implements IInventory {
 
     @Override
     public void approveReplenishRequest(String medicationToReplenish) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = ExcelService.readCsv(filePath);
