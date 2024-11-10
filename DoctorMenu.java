@@ -20,25 +20,25 @@ public class DoctorMenu {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    viewMedicalRecord(doctor);
+                    DoctorMedicalRecordViewer.viewMedicalRecord(doctor);
                     break;
                 case 2:
-                    updateMedicalRecord(doctor);
+                    MedicalRecordUpdater.updateMedicalRecord(doctor);
                     break;
                 case 3:
-                    viewPersonalSchedule(doctor);
+                    PersonalScheduleViewer.viewPersonalSchedule(doctor);
                     break;
                 case 4:
-                    setAppointmentAvailability(doctor);
+                    AppointmentAvailabilitySetter.setAppointmentAvailability(doctor);
                     break;
                 case 5:
-                    approveAppointmentRequest(doctor);
+                    AppointmentRequestApprover.approveAppointmentRequest(doctor);
                     break;
                 case 6:
-                    viewUpcomingAppointment(doctor);
+                    UpcomingAppointmentViewer.viewUpcomingAppointment(doctor);
                     break;
                 case 7: 
-                    recordAppointmentOutcome(doctor);
+                    AppointmentOutcomeRecorder.recordAppointmentOutcome(doctor);
                     break;
                 case 8:
                     doctor.logout();
