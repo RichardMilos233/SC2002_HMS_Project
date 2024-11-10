@@ -282,10 +282,7 @@ public class AdministratorMenu {
                         break;
                 } 
             }   while (c>3 || c<1);
-
         }
-        StaffService.addStaff(name, role, gender, age, defaultPass);
-
         /* System.out.println("Confirm creating staff: \n" + 
         "Name: " + name + "\n" + "ID: " + id + "\n" + "Role: " + role + "\n" + ); */
 		throw new UnsupportedOperationException();
