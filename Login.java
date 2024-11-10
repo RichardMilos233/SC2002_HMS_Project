@@ -1,5 +1,5 @@
-import java.util.*;
 import java.time.*;
+import java.util.*;
 
 public class Login {    //can have a Signup.java later
     public static User login(User user){
@@ -21,7 +21,7 @@ public class Login {    //can have a Signup.java later
         String hospitalId = credentials.get(0);
         String password = credentials.get(1);
 
-        String filePath = "csv\\credentials.csv";
+        String filePath = "csv/credentials.csv";
         List<List<String>> accountList = ExcelService.readCsv(filePath);
         
         for (int i = 1; i < accountList.size(); i++) {
@@ -53,7 +53,7 @@ public class Login {    //can have a Signup.java later
         String password = credentials.get(1);
 
         if (hospitalId.length() == 5){//patient
-            String filePath = "csv\\Patient_List.csv";
+            String filePath = "csv/Patient_List.csv";
             List<List<String>> data = ExcelService.readCsv(filePath);
         
             for (int i = 1; i < data.size(); i++) {
@@ -73,7 +73,7 @@ public class Login {    //can have a Signup.java later
             }
         }
         else if (hospitalId.length() == 4){ //staff
-            String filePath = "csv\\Staff_List.csv";
+            String filePath = "csv/Staff_List.csv";
             List<List<String>> data = ExcelService.readCsv(filePath);
 
             for (int i = 1; i < data.size(); i++) {

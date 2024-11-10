@@ -60,9 +60,9 @@ public class ExcelService {
     }
 
     public static void main(String[] args) {
-        String patientPath = "csv\\Patient_List.csv";
-        String staffPath = "csv\\Staff_List.csv";
-        String credentialPath = "csv\\credentials.csv";
+        String patientPath = "csv/Patient_List.csv";
+        String staffPath = "csv/Staff_List.csv";
+        String credentialPath = "csv/credentials.csv";
 
         List<List<String>> credentials = new ArrayList<>();
         credentials.add(List.of("hospitalId", "password"));
