@@ -168,15 +168,15 @@ public class AdministratorMenu {
                 return;
             case 2:
                 // name, role, id automatically allocated i think, gender, age, salary?
-                StaffService.addStaff();
+                addStaff();
                 break; 
             case 3:
                 // which one 
-                StaffService.updateStaff();;
+                updateStaff();;
                 break;
             case 4:
                 // which one 
-                StaffService.removeStaff();
+                removeStaff();
                 break;
             default:
                 return;
@@ -186,34 +186,57 @@ public class AdministratorMenu {
 		throw new UnsupportedOperationException();
 	}
 
-	public void addStaff() {
+	public static void addStaff() {
         Scanner scanner = new Scanner(System.in);
         String name, defaultPass;
         int role, gender, age;
-		// TODO - call StaffService.addStaff(name, egegegeg)
-        do { 
+
+        do { // NAME
             System.out.println("Staff's Name: ");
             name = scanner.next();
-        } while(!name.isBlank() && !name.isEmpty() && (name.length()-name.trim().length() < 6));
-        name.substring(0, 1).toUpperCase();
-        int[] spaceIndex = new int[5];
+        } while(!name.isBlank() && !name.isEmpty() && (name.length()-name.trim().length() < 5 && !name.contains("  ")));
+        // Name formatting
+        name = name.substring(0, 1).toUpperCase() + name.substring(1);
         for (int i = 0; i<name.length(); i++){
-            
+            if (name.charAt(i) == ' ' && name.charAt(i+1)!=' '){
+                name = name.substring(0,i+1) + name.substring(i+1, i+2).toUpperCase() + name.substring(i+2);
+            }
         }
+        System.out.println("Name entered: " + name);
 
-        System.out.println("Staff's Role: ");
-        System.out.println("Staff's Gender");
-        System.out.println("Staff's Age");
-        System.out.println("Make a default password for the new Staff member: ");
+        do { // ROLE
+            System.out.println("Staff's Role: \n1 Doctor\n2 Pharmacist");
+            role = scanner.nextInt();
+        } while (role >2 && role<1);
+        
+        do { // GENDER
+            System.out.println("Staff's Gender: \n1 Male\n2 Female");
+            gender = scanner.nextInt();
+        } while (gender >2 && gender<1);
+        
+        do { // Age
+            System.out.println("Staff's Age: ");
+            age = scanner.nextInt();
+        } while (age >17 && age<120);
+
+       
+        do { // NAME
+            System.out.println("Make a default password for the new Staff member (at least 8 character): ");
+            defaultPass = scanner.next();
+        } while(!defaultPass.isBlank() && !defaultPass.isEmpty() && (defaultPass.length()>7));
+        StaffService.addStaff(name, role, gender, age, defaultPass);
+
+        /* System.out.println("Confirm creating staff: \n" + 
+        "Name: " + name + "\n" + "ID: " + id + "\n" + "Role: " + role + "\n" + ); */
 		throw new UnsupportedOperationException();
 	}
 
-	public void updateStaff() {
+	public static void updateStaff() {
 		// TODO - call StaffService.updateStaff(name to be updated, egeg)
 		throw new UnsupportedOperationException();
 	}
 
-	public void removeStaff() {
+	public static void removeStaff() {
 		// TODO - call StaffService.removeStaff(who to remove egegeg)
 		throw new UnsupportedOperationException();
 	}

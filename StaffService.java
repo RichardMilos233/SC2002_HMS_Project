@@ -99,7 +99,22 @@ public class StaffService {
 
     }
     
-    public static void addStaff(){
+    public static void addStaff(String name, int r, int g, int age, String defaultPass){
+        String gender = "";
+        String ID = "";
+        if (g == 1){
+            gender = "Male";
+        } else if (g == 2){
+            gender = "Female";
+        }
+
+        if (r == 1){
+            Doctor doctor = new Doctor(ID, defaultPass, name, gender, age);
+        } else if (r == 2){
+            Pharmacist pharmacist = new Pharmacist(ID, defaultPass, name, gender, age);
+        } 
+
+       
 
     }
 
