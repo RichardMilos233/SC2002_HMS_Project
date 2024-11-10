@@ -1,5 +1,3 @@
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.*;
 
 public class StaffService {
@@ -96,12 +94,19 @@ public class StaffService {
         System.out.println("\n");
     }
 
-    public static void updateStaff(){
-
+    public static void updateStaff(User u, String name, String role, String gender, int age){
+        if (!name.isBlank() && !name.isEmpty()){
+            u.setName(name);
+        } else if (!role.isBlank() && !role.isEmpty()){
+            u.setRole(role);
+        } else if (!gender.isBlank() && !gender.isEmpty()){
+            u.setGender(gender);
+        } else if (age != 0){
+            u.setAge(age);
+        }
     }
     
     public static void addStaff(String name, int r, int g, int age, String defaultPass){
-        Scanner scanner = new Scanner(System.in);
         String gender;
         String staffID;
         staffID = createID(r);
@@ -112,51 +117,44 @@ public class StaffService {
         }
 
         if (r == 1){
-            System.out.println("New Doctor: \nID: " + staffID + "\nName: " + name + "\n Gender: " + gender + "\n Age: " + age);
-            int c = 0;
-            do { 
-                System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
-                c = scanner.nextInt();
-                switch (c){
-                    case 1:
-                        break;
-                    case 2:
-                        AdministratorMenu.addStaff();
-                        break;
-                    case 3: 
-                        return;
-                    default:
-                        return;
-                } 
-            }   while (c<4 && c>1);
             Doctor doctor = new Doctor(staffID, defaultPass, name, gender, age);
-            System.out.println("Created with Password" + defaultPass);
+            System.out.println("Doctor with ID " + staffID + " created with password " + defaultPass);
         } else{
-            System.out.println("New Pharmacist: \nID: " + staffID + "\nName: " + name + "\n Gender: " + gender + "\n Age: " + age);
-            int c = 0;
-            do { 
-                System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
-                c = scanner.nextInt();
-                switch (c){
-                    case 1:
-                        break;
-                    case 2:
-                        AdministratorMenu.addStaff();
-                        break;
-                    case 3: 
-                        return;
-                    default:
-                        return;
-                } 
-            }   while (c<4 && c>1);
             Pharmacist pharmacist = new Pharmacist(staffID, defaultPass, name, gender, age);
-            System.out.println("Created with Password" + defaultPass);
+            System.out.println("Pharmacist with ID " + staffID + " created with password " + defaultPass);
         } 
-        return;
     }
 
-    public static void removeStaff(){
+    public static User findStaffDetails(String ID){
+        if (ID.startsWith("D") && ID.length()==4){
+            for (int i = 0; i<Doctor.doctors.size(); i++){
+                if (Doctor.doctors.get(i).getHospitalID().matches(ID)){
+                    return Doctor.doctors.get(i);
+                }
+            }
+            System.out.println("Error - Doctor with ID" + ID + "not found");
+        } else if (ID.startsWith("P") && ID.length()==4){
+            for (int i = 0; i<Pharmacist.pharmacists.size(); i++){
+                if (Pharmacist.pharmacists.get(i).getHospitalID().matches(ID)){
+                    return Pharmacist.pharmacists.get(i);
+                }
+            }
+            System.out.println("Error - Pharmacist with ID" + ID + "not found");
+        } else{
+            System.out.println("Error - ID format for staff is incorrect \nPlease follow DXXX or PXXX");
+        }
+        return null;
+    }
 
+    public static void removeStaff(User u){
+        String role = u.getRole();
+        if (role.startsWith("d")){
+            Doctor.doctors.remove(u);
+        } else {
+            Pharmacist.pharmacists.remove(u);
+        }
+        User.users.remove(u);
+        u = null;
     }
 
     public static String createID(int r){

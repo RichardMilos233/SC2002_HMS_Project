@@ -28,7 +28,7 @@ public class User {
 	public void login() {
 		String enteredPassword = "";
 		enteredPassword = scanner.nextLine();
-		if (enteredPassword.equals(this.password)){
+		if (enteredPassword.equals(this.password)){ // can get the user id and password, then check what the user id format is to get the role
 			System.out.println("Logged in successfully");// only for illustration, haven't settled how to tell the role yet
 		}
 		else{
@@ -68,6 +68,18 @@ public class User {
 
 	public void setHospitalID(String newHospitalID){
 		this.hospitalID = newHospitalID;
+	}
+	public void setName(String name){
+		this.name = name;
+	}
+	public void setGender(String gender){
+		this.gender = gender;
+	}
+	public void setAge(int age){
+		this.age = age;
+	}
+	public void setRole(String role){
+		this.role = role;
 	}
 
 	public void display(){
