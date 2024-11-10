@@ -184,7 +184,7 @@ public class AdministratorMenu {
 		throw new UnsupportedOperationException();
 	}
 
-	public static void addStaff() {
+	public static void addStaff() { // cannot add admin
         Scanner scanner = new Scanner(System.in);
         String name, defaultPass;
         int role, gender, age;
@@ -205,23 +205,71 @@ public class AdministratorMenu {
         do { // ROLE
             System.out.println("Staff's Role: \n1 Doctor\n2 Pharmacist");
             role = scanner.nextInt();
-        } while (role >2 && role<1);
+        } while (role >2 || role<1);
         
         do { // GENDER
             System.out.println("Staff's Gender: \n1 Male\n2 Female");
             gender = scanner.nextInt();
-        } while (gender >2 && gender<1);
+        } while (gender >2 || gender<1);
         
         do { // Age
             System.out.println("Staff's Age: ");
             age = scanner.nextInt();
-        } while (age >17 && age<120);
+        } while (age >17 || age<120);
 
        
         do { // NAME
             System.out.println("Make a default password for the new Staff member (at least 8 character): ");
             defaultPass = scanner.next();
         } while(!defaultPass.isBlank() && !defaultPass.isEmpty() && (defaultPass.length()>7));
+        
+        int c;
+        if (role==1){
+            if (gender==1){
+                System.out.println("New Doctor: \nName: " + name + "\n Gender: Male\n Age: " + age);
+            } else {
+                System.out.println("New Doctor: \nName: " + name + "\n Gender: Female\n Age: " + age);
+            }
+            c = 0;
+            do { 
+                System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
+                c = scanner.nextInt();
+                switch (c){
+                    case 1:
+                        break;
+                    case 2:
+                        AdministratorMenu.addStaff();
+                        break;
+                    case 3: 
+                        return;
+                    default:
+                        return;
+                } 
+            }   while (c<4 || c>1);
+        } else {
+            if (gender==1){
+                System.out.println("New Pharmacist: \nName: " + name + "\n Gender: Male\n Age: " + age);
+            } else {
+                System.out.println("New Pharmacist: \nName: " + name + "\n Gender: Female\n Age: " + age);
+            }
+            c = 0;
+            do { 
+                System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
+                c = scanner.nextInt();
+                switch (c){
+                    case 1:
+                        break;
+                    case 2:
+                        AdministratorMenu.addStaff();
+                        break;
+                    case 3: 
+                        return;
+                    default:
+                        return;
+                } 
+            }   while (c<4 || c>1);
+
+        }
         StaffService.addStaff(name, role, gender, age, defaultPass);
 
         /* System.out.println("Confirm creating staff: \n" + 
@@ -229,13 +277,93 @@ public class AdministratorMenu {
 		throw new UnsupportedOperationException();
 	}
 
-	public static void updateStaff() {
-		// TODO - call StaffService.updateStaff(name to be updated, egeg)
-		throw new UnsupportedOperationException();
+	public static void updateStaff() { // update admin, doctor, or pharmacist
+        try (Scanner scanner = new Scanner(System.in)) {
+            String ID;
+            System.out.println("Enter the ID of the Staff member you want to update");
+            ID = scanner.next();
+            User u = StaffService.findStaffDetails(ID);
+            int c = 0;
+            int d;
+            do { 
+                System.out.println("What detail would you like to update: \n1 Name: " + u.getName() + "\n2 Role: " + u.getRole() + 
+                                    "\n3 Gender: " + u.getGender() + "\n4 Age: " + u.getAge() + "\n5 Finish Updating");
+                switch (c){
+                    case 1:
+                        // update name
+                        System.out.println("Enter new Name: ");
+                        String name = scanner.next();
+                        StaffService.updateStaff(u, name, "", "", 0);
+                        break;
+                    case 2:
+                        // update role
+                        String role;
+                        do { 
+                            System.out.println("Select the new Role: \n1 Doctor \n2 Pharmacist");
+                            d = scanner.nextInt();
+                        } while (d>2 || (d==1 && u.getRole().matches("doctor")) || (d==2 && u.getRole().matches("pharmacist")));
+                        if (d == 1){
+                            role = "doctor";
+                        } else{
+                            role = "pharmacist";
+                        }
+                        StaffService.updateStaff(u, "", role, "", 0);
+                        break;
+                    case 3:
+                        // update gender
+                        String gender;
+                        String opposite;
+                        if (u.getGender().startsWith("M")){
+                            opposite = "Female";
+                        } else{
+                            opposite = "Male";
+                        }
+                        System.out.println("Switching gender to " + opposite);
+                        StaffService.updateStaff(u, "", "", opposite, 0);
+                        break;
+                    case 4:
+                        int age;
+                        do { 
+                            System.out.println("Type the new age: ");
+                            age = scanner.nextInt();
+                        } while (age<18 || age==u.getAge());
+                        StaffService.updateStaff(u, "", "", "", age);
+                        break;
+                    case 5:
+                        System.out.println("New details for ID: " + ID + "\nName: " + u.getName() + "\nRole: " + u.getRole() + 
+                                    "\nGender: " + u.getGender() + "\nAge: " + u.getAge());
+                        break;
+                    default:
+                        break;
+                }
+            } while (c!=5);
+        }
+        throw new UnsupportedOperationException();
 	}
 
-	public static void removeStaff() {
-		// TODO - call StaffService.removeStaff(who to remove egegeg)
+	public static void removeStaff() { // cannot remove admin
+        Scanner scanner = new Scanner(System.in);
+        String ID;
+        System.out.println("Enter the ID of the Staff member you want to remove");
+        ID = scanner.next();
+        User u = StaffService.findStaffDetails(ID);
+        int c = 0;
+        do { 
+            System.out.println("Are you sure you want to remove " + u.getRole().substring(0, 1).toUpperCase() 
+                                + u.getRole().substring(1) + u.getName() + "\n1 Yes \n2 No");
+            c = scanner.nextInt();
+            switch (c){
+                case 1:
+                    StaffService.removeStaff(u);
+                    System.out.println("Staff removed");
+                    break;
+                case 2:
+                    return;
+                default:
+                    break;
+            }
+        } while (c>2 || c<1);
+
 		throw new UnsupportedOperationException();
 	}
 
