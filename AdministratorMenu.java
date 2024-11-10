@@ -153,6 +153,7 @@ public class AdministratorMenu {
                     StaffService.displayStaffList(0);
                     break;
                 case 6:
+                    manageStaff();
                     break;
                 case 7:
                     return;
