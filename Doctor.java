@@ -1,5 +1,5 @@
-import java.util.*;
 import java.time.*;
+import java.util.*;
 
 public class Doctor extends User {	//ignore the Staff class first
 	public class PatientCount{	// this class keeps track of which patient is under which doctor even if a patient has multiple appointments
@@ -42,8 +42,8 @@ public class Doctor extends User {	//ignore the Staff class first
 		doctors.add(this);
 		initializeTimeTable();
 	}
-	
-	public List<Appointment> getTimeTable(){
+
+    public List<Appointment> getTimeTable(){
 		return this.timeTable;
 	}
 
