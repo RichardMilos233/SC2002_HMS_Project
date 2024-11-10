@@ -168,31 +168,32 @@ public class AdministratorMenu {
     public static void manageStaff() {
         Scanner scanner = new Scanner(System.in);
         int c = 0;
-        System.out.println("""
+        do { System.out.println("""
                              Would you like to: 
                            1 Add Staff 
                            2 Update Staff 
                            3 Remove Staff
                            4 Return to Menu""");
-        c = scanner.nextInt();
-        switch (c){
-            case 1:
-                // name, role, id automatically allocated i think, gender, age, salary?
-                addStaff();
-                break;
-            case 2:
-                // which one 
-                updateStaff();
-                break; 
-            case 3:
-                // which one 
-                removeStaff();
-                break;
-            case 4:
-                return;
-            default:
-                break;
-        } 
+            c = scanner.nextInt();
+            switch (c){
+                case 1:
+                    // name, role, id automatically allocated i think, gender, age, salary?
+                    addStaff();
+                    break;
+                case 2:
+                    // which one 
+                    updateStaff();
+                    break; 
+                case 3:
+                    // which one 
+                    removeStaff();
+                    break;
+                case 4:
+                    return;
+                default:
+                    break;
+            } 
+        } while (c!= 4);
 		throw new UnsupportedOperationException();
 	}
 
@@ -231,7 +232,7 @@ public class AdministratorMenu {
 
        
         do { // NAME
-            System.out.println("\nMake a default password for the new Staff member (at least 8 character): ");
+            System.out.println("\nMake a default password for the new Staff member (at least 8 characters): ");
             defaultPass = scanner.next();
         } while(defaultPass.isBlank() || defaultPass.isEmpty() || (defaultPass.length()<8));
         
