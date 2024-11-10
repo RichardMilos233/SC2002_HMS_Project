@@ -1,4 +1,6 @@
 import java.time.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppointmentOutcome {
 
@@ -30,4 +32,29 @@ public class AppointmentOutcome {
 	public void setConsultationNotes(String newConsultationNotes){
 		this.consultationNotes = newConsultationNotes;
 	}
+
+	// Serialize to CSV format
+    public String toCSV() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(date).append(",");
+		sb.append(type).append(",");
+        sb.append(prescribedMedication.toCSV()).append(",");
+		sb.append(consultationNotes);
+        return sb.toString();
+    }
+
+    // Deserialize from CSV format
+    public static AppointmentOutcome fromCSV(String data) {
+        String[] fields = data.split(",", 2);
+        String outcomeDescription = fields[0];
+        List<PrescribedMedication> medications = new ArrayList<>();
+
+        if (fields.length > 1 && !fields[1].isEmpty()) {
+            String[] meds = fields[1].split(";");
+            for (String med : meds) {
+                medications.add(PrescribedMedication.fromCSV(med));
+            }
+        }
+        return new AppointmentOutcome(outcomeDescription, medications);
+    }
 }
