@@ -191,7 +191,7 @@ public class AdministratorMenu {
 
         do { // NAME
             System.out.println("Staff's Name: ");
-            name = scanner.next();
+            name = scanner.nextLine();
         } while(name.isBlank() || name.isEmpty() && (name.length()-name.trim().length() > 4 && name.contains("  ")));
         // Name formatting
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
@@ -200,7 +200,7 @@ public class AdministratorMenu {
                 name = name.substring(0,i+1) + name.substring(i+1, i+2).toUpperCase() + name.substring(i+2);
             }
         }
-        System.out.println("Name entered: " + name);
+        System.out.println("Name entered 2: " + name);
 
         do { // ROLE
             System.out.println("Staff's Role: \n1 Doctor\n2 Pharmacist");
