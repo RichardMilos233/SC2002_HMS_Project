@@ -45,16 +45,15 @@ public class AppointmentOutcome {
 
     // Deserialize from CSV format
     public static AppointmentOutcome fromCSV(String data) {
-        String[] fields = data.split(",", 2);
-        String outcomeDescription = fields[0];
-        List<PrescribedMedication> medications = new ArrayList<>();
-
-        if (fields.length > 1 && !fields[1].isEmpty()) {
-            String[] meds = fields[1].split(";");
-            for (String med : meds) {
-                medications.add(PrescribedMedication.fromCSV(med));
-            }
-        }
-        return new AppointmentOutcome(outcomeDescription, medications);
-    }
+		String[] fields = data.split(",", 4); // Split into 4 parts based on toCSV structure
+		LocalDate date = LocalDate.parse(fields[0]);  // Parse date
+		String type = fields[1];                      // Read type as String
+	
+		// Parse prescribedMedication using its fromCSV method
+		PrescribedMedication prescribedMedication = PrescribedMedication.fromCSV(fields[2]);
+	
+		String consultationNotes = fields[3];         // Read consultation notes
+	
+		return new AppointmentOutcome(date, type, prescribedMedication, consultationNotes);
+	}
 }

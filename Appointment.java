@@ -1,4 +1,5 @@
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Appointment {
 	private Patient patient;
@@ -37,6 +38,36 @@ public class Appointment {
 
 		System.out.println();
 	}
+
+	// this is only copy & paste from gpt!!!
+	public String toCSV() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(appointmentId).append(",");
+		sb.append(patientId).append(",");
+		sb.append(doctorId).append(",");
+		sb.append(appointmentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))).append(",");
+		sb.append(status).append(",");
+		sb.append(outcome != null ? outcome.toCSV() : ""); // Serialize outcome if it exists
+		return sb.toString();
+	}
+
+	public static Appointment fromCSV(String data) {
+		String[] fields = data.split(",", 6); // Split based on the fields in toCSV
+	
+		int appointmentId = Integer.parseInt(fields[0]);        // Parse appointmentId
+		int patientId = Integer.parseInt(fields[1]);            // Parse patientId
+		int doctorId = Integer.parseInt(fields[2]);             // Parse doctorId
+		LocalDateTime appointmentDateTime = LocalDateTime.parse(fields[3], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+		String status = fields[4];                              // Read status as String
+	
+		// Parse outcome if available
+		AppointmentOutcome outcome = fields.length > 5 && !fields[5].isEmpty()
+									 ? AppointmentOutcome.fromCSV(fields[5]) 
+									 : null;
+	
+		return new Appointment(appointmentId, patientId, doctorId, appointmentDateTime, status, outcome);
+	}
+	// theft stops here
 
 	public void setAppointmentOutcome(AppointmentOutcome appointmentOutcome){
 		this.appointmentOutcome = appointmentOutcome;
