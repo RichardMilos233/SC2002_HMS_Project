@@ -10,10 +10,6 @@ public class PrescribedMedication {
 		this.status = status;
 	}
 
-	/**
-	 * 
-	 * @param newStatus
-	 */
 	public void setStatus(int newStatus) {
 		this.status = newStatus;
 	}

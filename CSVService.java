@@ -1,12 +1,7 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-public class ExcelService {
+public class CSVService {
 
     // Method to read data from a CSV file
     public static List<List<String>> readCsv(String filePath) {
@@ -68,19 +63,19 @@ public class ExcelService {
         credentials.add(List.of("hospitalId", "password"));
 
         // Reading from a CSV file
-        List<List<String>> data = ExcelService.readCsv(patientPath);
+        List<List<String>> data = CSVService.readCsv(patientPath);
         for (List<String> row : data.subList(1, data.size())) {
             credentials.add(List.of(row.get(0), "defaultPatientPassword"));
             // System.out.println(credentials);
         }
 
-        data = ExcelService.readCsv(staffPath);
+        data = CSVService.readCsv(staffPath);
         for (List<String> row : data.subList(1, data.size())){
             credentials.add(List.of(row.get(0), "defaultStaffPassword"));
         }
 
         // Writing to a CSV file
-        ExcelService.writeCsv(credentialPath, credentials);
+        CSVService.writeCsv(credentialPath, credentials);
 
         // List<List<String>> data = new ArrayList<>();
         // data.add(List.of("Staff ID", "Name", "Role", "Gender", "Age"));

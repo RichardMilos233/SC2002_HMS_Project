@@ -12,10 +12,6 @@ public class Appointment {
 	private LocalTime time;
 	private AppointmentOutcome appointmentOutcome;
 
-	// depricated what's below, status seems to be enough
-	// private boolean isAvailable = false;	//doctor sets this to true in AppointmentAvailabilitySetter
-	// private boolean isScheduled = false;	//doctor sets this to true when he/ she approves the appointment request
-
 	public Appointment() {}
 
 	public Appointment(Doctor doctor, LocalDate date, LocalTime time) {
@@ -73,20 +69,4 @@ public class Appointment {
 	public Doctor getDoctor(){
 		return this.doctor;
 	}
-
-	// public boolean isAvailable(){
-	// 	return this.isAvailable;
-	// }
-
-	// public void setAvailable(boolean isAvailable){
-	// 	this.isAvailable = isAvailable;
-	// }
-
-	// public boolean isScheduled(){
-	// 	return this.isScheduled;
-	// }
-
-	// public void setScheduled(boolean isScheduled){
-	// 	this.isScheduled = isScheduled;
-	// }
 }

@@ -119,14 +119,12 @@ public class AdministratorMenu {
         Scanner scanner = new Scanner(System.in);
         int c = 0;
         do {  // inconsistent print method what is the preference
-            System.out.println(""" 
-                                 Would you like to:
-                               1 Display All Staff
-                               2 Display Administrators 
-                               3 Display Doctors 
-                               4 Display Pharmacists
-                               5 Display All Staff Alphabetically 
-                               """);
+            System.out.println("Would you like to:\n" +
+                                "1 Display All Staff\n" +
+                                "2 Display Administrators\n" +
+                                "3 Display Doctors\n" +
+                                "4 Display Pharmacists\n" +
+                                "5 Display All Staff Alphabetically");
             c = scanner.nextInt();
         } while (c>5 || c<1);
         switch (c){
@@ -156,12 +154,11 @@ public class AdministratorMenu {
                 displayStaffList();
         }
         c = 0;
-        System.out.println("""
-                             Would you like to: 
-                           1 Return to Menu  
-                           2 Add Staff 
-                           3 Update Staff 
-                           4 Remove Staff""");
+        System.out.println("Would you like to:\n" +
+                            "1 Return to Menu\n" +
+                            "2 Add Staff\n" +
+                            "3 Update Staff\n" +
+                            "4 Remove Staff");
         c = scanner.nextInt();
         switch (c){
             case 1:

@@ -49,6 +49,6 @@ public class Main {
             }
         } while(choice != 2);
 
-        System.out.println("Thank you for using this shitty system");
+        System.out.println("Thank you for using our HMS");
     }
 }
