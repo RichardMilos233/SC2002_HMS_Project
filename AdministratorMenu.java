@@ -180,9 +180,7 @@ public class AdministratorMenu {
                 break;
             default:
                 return;
-        }
-
-		// TODO - call StaffService.displaystafflist 
+        } 
 		throw new UnsupportedOperationException();
 	}
 
