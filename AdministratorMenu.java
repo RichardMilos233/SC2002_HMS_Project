@@ -197,6 +197,20 @@ public class AdministratorMenu {
 		throw new UnsupportedOperationException();
 	}
 
+    public static String verifyName(String name){
+        if(name.isBlank() || name.isEmpty() && (name.length()-name.trim().length() > 4 && name.contains("  "))){
+            return "";
+        }
+        // Name formatting
+        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+        for (int i = 0; i<name.length()-1; i++){
+            if (name.charAt(i) == ' ' && name.charAt(i+1)!=' '){
+                name = name.substring(0,i+1) + name.substring(i+1, i+2).toUpperCase() + name.substring(i+2).toLowerCase();
+            }
+        }
+        return name;
+    }
+
 	public static void addStaff() { // cannot add admin
         Scanner scanner = new Scanner(System.in);
         String name, defaultPass;
@@ -205,14 +219,8 @@ public class AdministratorMenu {
         do { // NAME
             System.out.println("Staff's Name: ");
             name = scanner.nextLine();
-        } while(name.isBlank() || name.isEmpty() && (name.length()-name.trim().length() > 4 && name.contains("  ")));
-        // Name formatting
-        name = name.substring(0, 1).toUpperCase() + name.substring(1);
-        for (int i = 0; i<name.length(); i++){
-            if (name.charAt(i) == ' ' && name.charAt(i+1)!=' '){
-                name = name.substring(0,i+1) + name.substring(i+1, i+2).toUpperCase() + name.substring(i+2);
-            }
-        }
+        } while(verifyName(name).isBlank());
+        name = verifyName(name);
         System.out.println("Name entered: " + name);
 
         do { // ROLE
@@ -228,12 +236,13 @@ public class AdministratorMenu {
         do { // Age
             System.out.println("\nStaff's Age: ");
             age = scanner.nextInt();
+            scanner.nextLine();
         } while (age <18 || age>100);
 
        
         do { // NAME
             System.out.println("\nMake a default password for the new Staff member (at least 8 characters): ");
-            defaultPass = scanner.next();
+            defaultPass = scanner.nextLine();
         } while(defaultPass.isBlank() || defaultPass.isEmpty() || (defaultPass.length()<8));
         
         int c;
@@ -262,7 +271,7 @@ public class AdministratorMenu {
             }   while (c>3 || c<1);
         } else {
             if (gender==1){
-                System.out.println("\nNew Pharmacist: \nName: " + name + "\n ender: Male\nAge: " + age);
+                System.out.println("\nNew Pharmacist: \nName: " + name + "\nGender: Male\nAge: " + age);
             } else {
                 System.out.println("\nNew Pharmacist: \nName: " + name + "\nGender: Female\nAge: " + age);
             }
@@ -290,21 +299,30 @@ public class AdministratorMenu {
 	}
 
 	public static void updateStaff() { // update admin, doctor, or pharmacist
-        try (Scanner scanner = new Scanner(System.in)) {
-            String ID;
-            System.out.println("Enter the ID of the Staff member you want to update");
+        Scanner scanner = new Scanner(System.in);
+        String ID;
+        do { 
+            System.out.println("Enter the ID of the Staff member you want to update: ");
             ID = scanner.next();
-            User u = StaffService.findStaffDetails(ID);
+        } while (StaffService.findStaffDetails(ID) == null);
+
+        User u = StaffService.findStaffDetails(ID);
             int c = 0;
             int d;
+            String name;
             do { 
                 System.out.println("What detail would you like to update: \n1 Name: " + u.getName() + "\n2 Role: " + u.getRole() + 
                                     "\n3 Gender: " + u.getGender() + "\n4 Age: " + u.getAge() + "\n5 Finish Updating");
+                c = scanner.nextInt();
+                scanner.nextLine();
                 switch (c){
                     case 1:
                         // update name
-                        System.out.println("Enter new Name: ");
-                        String name = scanner.nextLine();
+                        do { 
+                            System.out.println("Enter new Name: ");
+                            name = scanner.nextLine(); 
+                        } while (verifyName(name).isBlank());
+                        name = verifyName(name);
                         StaffService.updateStaff(u, name, "", "", 0);
                         break;
                     case 2:
@@ -348,8 +366,8 @@ public class AdministratorMenu {
                     default:
                         break;
                 }
-            } while (c!=5);
-        }
+            } while (c!=5); 
+        
         //throw new UnsupportedOperationException();
 	}
 
@@ -362,7 +380,7 @@ public class AdministratorMenu {
         int c = 0;
         do { 
             System.out.println("Are you sure you want to remove " + u.getRole().substring(0, 1).toUpperCase() 
-                                + u.getRole().substring(1) + u.getName() + "\n1 Yes \n2 No");
+                                + u.getRole().substring(1) +" " + u.getName() + "\n1 Yes \n2 No");
             c = scanner.nextInt();
             switch (c){
                 case 1:
