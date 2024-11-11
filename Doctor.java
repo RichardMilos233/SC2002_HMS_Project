@@ -25,7 +25,7 @@ public class Doctor extends User {	//ignore the Staff class first
 			return (this.numOfAppointment == 0) ;
 		}
 	}
-	public static List<Doctor> doctors;
+	public static List<Doctor> doctors = new ArrayList<>();
 	static{
 		doctors = CSVService.readDoctorsFromCSV();
 		System.out.println("doctors initialzed");

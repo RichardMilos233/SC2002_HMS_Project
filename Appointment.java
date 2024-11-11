@@ -56,8 +56,8 @@ public class Appointment {
 		String patientID = fields[0];        
 		String doctorID = fields[1];      
 		String status = fields[2];         
-		LocalTime time = LocalTime.parse(fields[3]);
-		LocalDate date = LocalDate.parse(fields[4]);
+		LocalDate date = LocalDate.parse(fields[3]);
+		LocalTime time = LocalTime.parse(fields[4]);
 		AppointmentOutcome appointmentOutcome = AppointmentOutcome.fromTxt(fields[5]);
 
 		Doctor doctor = Doctor.getByID(doctorID);

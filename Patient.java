@@ -2,12 +2,17 @@ import java.util.*;
 import java.time.*;
 
 public class Patient extends User {
-	public static List<Patient> patients = CSVService.readPatientsFromCSV();
+	public static List<Patient> patients = new ArrayList<>();
+	static{
+		patients = CSVService.readPatientsFromCSV();
+		System.out.println("patients initialized");
+	}
 	private LocalDate birth = LocalDate.of(1990, 5, 14);
 	private int contactNumber = 1919810;
 	private String email = "example@xxx.com";
 	private String bloodType = "A+";
-	private List<Appointment> scheduledAppointment = TextService.getPatientAppointment(this.hospitalID);
+	private List<Appointment> scheduledAppointment = new ArrayList<>();
+	// private List<Appointment> scheduledAppointment = TextService.getPatientAppointment(this.hospitalID); // not working
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
 
 	Scanner scanner = new Scanner(System.in);
@@ -15,7 +20,7 @@ public class Patient extends User {
 	public Patient() {
 		super();
 		this.role = "patient";
-		patients.add(this);
+		// patients.add(this);
 	}
 
 	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){

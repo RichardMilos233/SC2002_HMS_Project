@@ -8,7 +8,7 @@ public class TextService {
 
     public static void writeAppointmentsToTxt(List<Appointment> appointments) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_TXT_PATH))) {
-            writer.write("patientID,doctorID,status,date,time,date-type-medicationName:dosage-consultationNotes");
+            writer.write("patientID,doctorID,status,date,time,date-type-medicationName:dosage-consultationNotes\n");
             for (Appointment appointment : appointments) {
                 writer.write(appointment.toTxt() + "\n");
             }
@@ -68,14 +68,14 @@ public class TextService {
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
         String status = "unavailable";
 
-        Appointment apt = new Appointment(doctor, LocalDate.now(), LocalTime.now());
+        Appointment apt = new Appointment(doctor, LocalDate.now(), LocalTime.of(21, 55));
         apt.setAppointmentOutcome(a);
         apt.setPatient(patient);
         apt.setStatus(status);
 
         List<Appointment> appointments = new ArrayList<>();
         appointments.add(apt);
-        
+
         writeAppointmentsToTxt(appointments);
     }
 }

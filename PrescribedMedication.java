@@ -19,14 +19,22 @@ public class PrescribedMedication {
 	}
 
 
-	// for PrescribedMedication, splitter of which is :
+	// for PrescribedMedication, splitter of which is \
 	public String toTxt() {
-        return String.format("%s:%s", medicationName, dosage);
+        return String.format("%s\\%s", medicationName, dosage);
     }
 
     public static PrescribedMedication fromTxt(String txt) {
         // Assuming txt format is exactly as in toTxt output
-        String[] lines = txt.trim().split(":");
+		
+        String[] lines = txt.split("\\\\");
+
+		System.out.println("pres split");
+		for (String str : lines){
+			System.out.println(str);
+		}
+		System.out.println("checkpoint D");
+		
         String medicationName = lines[0];
         String dosage = lines[1];
         return new PrescribedMedication(medicationName, dosage);
