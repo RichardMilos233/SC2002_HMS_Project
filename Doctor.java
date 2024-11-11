@@ -1,5 +1,7 @@
+import java.io.*;
 import java.time.*;
 import java.util.*;
+import java.util.logging.*;
 
 public class Doctor extends User {	//ignore the Staff class first
 	public class PatientCount{	// this class keeps track of which patient is under which doctor even if a patient has multiple appointments
@@ -127,4 +129,24 @@ public class Doctor extends User {	//ignore the Staff class first
         doctor = Doctor.doctors.get(choice-1);
 		return doctor;
 	}
+
+	public static Doctor getByID(String doctorID){
+        List<Doctor> doctors;
+		try {
+			doctors = CSVService.readDoctorsFromCSV();
+		} catch (IOException e) {
+			Logger.getLogger(Doctor.class.getName()).log(Level.SEVERE, "Failed to read doctors from CSV", e);
+			return null;
+		}
+        Doctor doctor;
+		int i = 0;
+		for (i=0; i<doctors.size(); i++){
+			doctor = doctors.get(i);
+			if (doctor.hospitalID.equals(doctorID)){
+				return doctor;
+			}
+		}
+		return null;
+    }
+
 }

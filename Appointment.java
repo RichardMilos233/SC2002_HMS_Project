@@ -40,34 +40,37 @@ public class Appointment {
 	}
 
 	// this is only copy & paste from gpt!!!
-	public String toCSV() {
+	// for Appointment, the splitter of which is ,
+	public String toTxt() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(appointmentId).append(",");
-		sb.append(patientId).append(",");
-		sb.append(doctorId).append(",");
-		sb.append(appointmentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))).append(",");
+		sb.append(patient.getHospitalID()).append(",");
+		sb.append(doctor.getHospitalID()).append(",");
 		sb.append(status).append(",");
-		sb.append(outcome != null ? outcome.toCSV() : ""); // Serialize outcome if it exists
+		sb.append(date).append(",");
+		sb.append(time).append(",");
+		sb.append(appointmentOutcome.toTxt());
 		return sb.toString();
 	}
 
-	public static Appointment fromCSV(String data) {
-		String[] fields = data.split(",", 6); // Split based on the fields in toCSV
+	public static Appointment fromTxt(String data) {
+		String[] fields = data.split(",");
 	
-		int appointmentId = Integer.parseInt(fields[0]);        // Parse appointmentId
-		int patientId = Integer.parseInt(fields[1]);            // Parse patientId
-		int doctorId = Integer.parseInt(fields[2]);             // Parse doctorId
-		LocalDateTime appointmentDateTime = LocalDateTime.parse(fields[3], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		String status = fields[4];                              // Read status as String
-	
-		// Parse outcome if available
-		AppointmentOutcome outcome = fields.length > 5 && !fields[5].isEmpty()
-									 ? AppointmentOutcome.fromCSV(fields[5]) 
-									 : null;
-	
-		return new Appointment(appointmentId, patientId, doctorId, appointmentDateTime, status, outcome);
+		String patientID = fields[0];        
+		String doctorID = fields[1];      
+		String status = fields[2];         
+		LocalTime time = LocalTime.parse(fields[3]);
+		LocalDate date = LocalDate.parse(fields[4]);
+		AppointmentOutcome appointmentOutcome = AppointmentOutcome.fromTxt(fields[5]);
+
+		Doctor doctor = Doctor.getByID(doctorID);
+		Patient patient = Patient.getByID(patientID);
+		Appointment appointment = new Appointment(doctor, date, time);
+		appointment.setPatient(patient);
+		appointment.setStatus(status);
+		appointment.setAppointmentOutcome(appointmentOutcome);
+
+		return appointment;
 	}
-	// theft stops here
 
 	public void setAppointmentOutcome(AppointmentOutcome appointmentOutcome){
 		this.appointmentOutcome = appointmentOutcome;

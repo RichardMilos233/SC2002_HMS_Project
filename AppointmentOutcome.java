@@ -1,6 +1,5 @@
 import java.time.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class AppointmentOutcome {
 
@@ -33,24 +32,25 @@ public class AppointmentOutcome {
 		this.consultationNotes = newConsultationNotes;
 	}
 
-	// Serialize to CSV format
-    public String toCSV() {
+	// for AppointmentOutcome, the splitter of which is -
+	// Serialize to txt format
+    public String toTxt() {
         StringBuilder sb = new StringBuilder();
-        sb.append(date).append(",");
-		sb.append(type).append(",");
-        sb.append(prescribedMedication.toCSV()).append(",");
+        sb.append(date).append("-");
+		sb.append(type).append("-");
+        sb.append(prescribedMedication.toTxt()).append("-");
 		sb.append(consultationNotes);
         return sb.toString();
     }
 
-    // Deserialize from CSV format
-    public static AppointmentOutcome fromCSV(String data) {
-		String[] fields = data.split(",", 4); // Split into 4 parts based on toCSV structure
+    // Deserialize from txt format
+    public static AppointmentOutcome fromTxt(String data) {
+		String[] fields = data.split("-");
 		LocalDate date = LocalDate.parse(fields[0]);  // Parse date
 		String type = fields[1];                      // Read type as String
 	
 		// Parse prescribedMedication using its fromCSV method
-		PrescribedMedication prescribedMedication = PrescribedMedication.fromCSV(fields[2]);
+		PrescribedMedication prescribedMedication = PrescribedMedication.fromTxt(fields[2]);
 	
 		String consultationNotes = fields[3];         // Read consultation notes
 	

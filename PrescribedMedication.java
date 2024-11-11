@@ -18,16 +18,17 @@ public class PrescribedMedication {
 		System.out.println("Medication: " + medicationName);
 	}
 
-	// Serialize to CSV format
-    public String toCSV() {
-        return medicationName + "|" + dosage;
+
+	// for PrescribedMedication, splitter of which is :
+	public String toTxt() {
+        return String.format("%s:%s", medicationName, dosage);
     }
 
-    // Deserialize from CSV format
-    public static PrescribedMedication fromCSV(String data) {
-        String[] fields = data.split("\\|");
-        String medicationName = fields[0];
-        String dosage = fields[1];
+    public static PrescribedMedication fromTxt(String txt) {
+        // Assuming txt format is exactly as in toTxt output
+        String[] lines = txt.trim().split(":");
+        String medicationName = lines[0];
+        String dosage = lines[1];
         return new PrescribedMedication(medicationName, dosage);
     }
 }

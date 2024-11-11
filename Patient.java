@@ -1,5 +1,7 @@
 import java.util.*;
+import java.io.*;
 import java.time.*;
+import java.util.logging.*;
 
 public class Patient extends User {
 	public static List<Patient> patients = new ArrayList<>();
@@ -149,4 +151,23 @@ public class Patient extends User {
         patient = patients.get(choice-1);
 		return patient;
 	}
+
+	public static Patient getByID(String patientID){
+        List<Patient> patients;
+		try {
+			patients = CSVService.readPatientsFromCSV();
+		} catch (IOException e) {
+			Logger.getLogger(Doctor.class.getName()).log(Level.SEVERE, "Failed to read doctors from CSV", e);
+			return null;
+		}
+        Patient patient;
+		int i = 0;
+		for (i=0; i<patients.size(); i++){
+			patient = patients.get(i);
+			if (patient.hospitalID.equals(patientID)){
+				return patient;
+			}
+		}
+		return null;
+    }
 }
