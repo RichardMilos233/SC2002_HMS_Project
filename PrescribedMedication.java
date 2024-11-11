@@ -28,12 +28,6 @@ public class PrescribedMedication {
         // Assuming txt format is exactly as in toTxt output
 		
         String[] lines = txt.split("\\\\");
-
-		System.out.println("pres split");
-		for (String str : lines){
-			System.out.println(str);
-		}
-		System.out.println("checkpoint D");
 		
         String medicationName = lines[0];
         String dosage = lines[1];

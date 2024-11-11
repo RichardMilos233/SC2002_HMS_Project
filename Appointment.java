@@ -51,7 +51,7 @@ public class Appointment {
 	}
 
 	public static Appointment fromTxt(String data) {
-		String[] fields = data.split(",");
+		String[] fields = data.split(",", 6);
 	
 		String patientID = fields[0];        
 		String doctorID = fields[1];      

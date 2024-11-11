@@ -73,9 +73,20 @@ public class TextService {
         apt.setPatient(patient);
         apt.setStatus(status);
 
+        Appointment bpt = new Appointment(doctor, LocalDate.now(), LocalTime.of(21, 55));
+        bpt.setAppointmentOutcome(b);
+        bpt.setPatient(patient);
+        bpt.setStatus(status);
+
         List<Appointment> appointments = new ArrayList<>();
         appointments.add(apt);
+        appointments.add(bpt);
 
         writeAppointmentsToTxt(appointments);
+        appointments = null;
+        appointments = readAppointmentsFromTxt();
+        for (Appointment appointment : appointments){
+            appointment.displayAppointment();
+        }
     }
 }
