@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Administrator extends User { //ignore Staff first
 	public static List<Administrator> administrators = new ArrayList<>();

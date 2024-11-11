@@ -1,8 +1,5 @@
 import java.io.*;
 import java.util.*;
-
-import javax.print.Doc;
-
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -62,50 +59,58 @@ public class CSVService {
     }
 
     // Write a list of doctors to CSV
-    public static void writeDoctorsToCSV(List<Doctor> doctors) throws IOException {
+    public static void writeDoctorsToCSV(List<Doctor> doctors) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DOCTOR_CSV_PATH))) {
             writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
             for (Doctor doctor : doctors) {
                 writer.write(doctor.toCSV() + "\n");
             }
+        } catch (IOException e) {
+            System.err.println("Error writing to CSV file: " + e.getMessage());
         }
     }
 
     // Read a list of doctors from CSV
-    public static List<Doctor> readDoctorsFromCSV() throws IOException {
+    public static List<Doctor> readDoctorsFromCSV(){
         List<Doctor> doctors = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(DOCTOR_CSV_PATH))) {
             reader.readLine(); // Skip header
             String line;
             while ((line = reader.readLine()) != null) {
-                Doctor doctor = new Doctor().fromCSV(line); // Use Doctor's fromCSV to cast correctly
+                Doctor doctor = Doctor.fromCSV(line); // call methods this way because fromCSV cannot be static due to some technical issues
                 doctors.add(doctor);
             }
+        } catch (IOException e) {
+            System.err.println("Error reading CSV file: " + e.getMessage());
         }
         return doctors;
     }
 
     // Write a list of Patient objects to CSV
-    public static void writePatientsToCSV(List<Patient> patients) throws IOException {
+    public static void writePatientsToCSV(List<Patient> patients) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENT_CSV_PATH))) {
             // Write the header line
             writer.write("hospitalID,password,name,gender,age,role,birth,bloodType,email,contactNumber\n");
             for (Patient patient : patients) {
                 writer.write(patient.toCSV() + "\n");
             }
+        } catch (IOException e) {
+            System.err.println("Error writing to CSV file: " + e.getMessage());
         }
     }
 
     // Read a list of Patient objects from CSV
-    public static List<Patient> readPatientsFromCSV() throws IOException {
+    public static List<Patient> readPatientsFromCSV() {
         List<Patient> patients = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(PATIENT_CSV_PATH))) {
             reader.readLine(); // Skip header line
             String line;
             while ((line = reader.readLine()) != null) {
-                Patient patient = new Patient().fromCSV(line); // Use Patient's froCSV method to create a Patient object
+                Patient patient = Patient.fromCSV(line); // Use Patient's fromCSV method to create a Patient object
                 patients.add(patient);
             }
+        } catch (IOException e) {
+            System.err.println("Error reading CSV file: " + e.getMessage());
         }
         return patients;
     }

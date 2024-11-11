@@ -50,7 +50,7 @@ public class User {
         return hospitalID + "," + password + "," + name + "," + gender + "," + age + "," + role;
     }
 
-	public User fromCSV(String data) {
+	public static User fromCSV(String data) {
         String[] fields = data.split(",");
         String hospitalID = fields[0];
         String password = fields[1];

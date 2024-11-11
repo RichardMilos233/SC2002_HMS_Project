@@ -1,7 +1,5 @@
-import java.io.*;
 import java.time.*;
 import java.util.*;
-import java.util.logging.*;
 
 public class Doctor extends User {	//ignore the Staff class first
 	public class PatientCount{	// this class keeps track of which patient is under which doctor even if a patient has multiple appointments
@@ -27,21 +25,25 @@ public class Doctor extends User {	//ignore the Staff class first
 			return (this.numOfAppointment == 0) ;
 		}
 	}
-	public static List<Doctor> doctors = new ArrayList<>();	//later could read the csv to load the existing doctors first
+	public static List<Doctor> doctors = new ArrayList<>();
+	static{
+		doctors = CSVService.readDoctorsFromCSV();
+		System.out.println("doctors initialzed");
+	}
 	private ArrayList<PatientCount> patientCounts = new ArrayList<>();
 	private List<Appointment> timeTable = new ArrayList<>();
 
 	public Doctor() {
 		super();
 		this.role = "doctor";
-		doctors.add(this);
-		initializeTimeTable();
+		// initializeTimeTable();
 	}
 
 	public Doctor(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 		this.role = "doctor";
-		doctors.add(this);
+		doctors.add(this);	
+		// TODO causing some replication issues, to be solved
 		initializeTimeTable();
 	}
 
@@ -49,9 +51,15 @@ public class Doctor extends User {	//ignore the Staff class first
         return super.toCSV();
     }
 
-    public Doctor fromCSV(String data) {	// downcast to Doctor then return
-        Doctor doctor = (Doctor) super.fromCSV(data);
-		doctor.role = "doctor";
+    public static Doctor fromCSV(String data) {	// downcast to Doctor then return
+		String[] fields = data.split(",");
+        String hospitalID = fields[0];
+        String password = fields[1];
+        String name = fields[2];
+        String gender = fields[3];
+        int age = Integer.parseInt(fields[4]);
+        String role = fields[5];
+        Doctor doctor = new Doctor(hospitalID, password, name, gender, age);
         return doctor;
     }
 
@@ -132,12 +140,7 @@ public class Doctor extends User {	//ignore the Staff class first
 
 	public static Doctor getByID(String doctorID){
         List<Doctor> doctors;
-		try {
-			doctors = CSVService.readDoctorsFromCSV();
-		} catch (IOException e) {
-			Logger.getLogger(Doctor.class.getName()).log(Level.SEVERE, "Failed to read doctors from CSV", e);
-			return null;
-		}
+		doctors = CSVService.readDoctorsFromCSV();
         Doctor doctor;
 		int i = 0;
 		for (i=0; i<doctors.size(); i++){

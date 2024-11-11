@@ -1,7 +1,7 @@
 import java.util.*;
 import java.time.*;
 
-public class PastDiagnoses {
+public class PastDiagnoses {	// a list of appointmentOutcome
 	//only for debugging, intialization should be an empty list
 	PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day");
 	PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");

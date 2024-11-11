@@ -38,7 +38,6 @@ public class Appointment {
 		System.out.println();
 	}
 
-	// this is only copy & paste from gpt!!!
 	// for Appointment, the splitter of which is ,
 	public String toTxt() {
 		StringBuilder sb = new StringBuilder();
@@ -52,13 +51,13 @@ public class Appointment {
 	}
 
 	public static Appointment fromTxt(String data) {
-		String[] fields = data.split(",");
+		String[] fields = data.split(",", 6);
 	
 		String patientID = fields[0];        
 		String doctorID = fields[1];      
 		String status = fields[2];         
-		LocalTime time = LocalTime.parse(fields[3]);
-		LocalDate date = LocalDate.parse(fields[4]);
+		LocalDate date = LocalDate.parse(fields[3]);
+		LocalTime time = LocalTime.parse(fields[4]);
 		AppointmentOutcome appointmentOutcome = AppointmentOutcome.fromTxt(fields[5]);
 
 		Doctor doctor = Doctor.getByID(doctorID);

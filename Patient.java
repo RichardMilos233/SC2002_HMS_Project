@@ -1,23 +1,26 @@
 import java.util.*;
-import java.io.*;
 import java.time.*;
-import java.util.logging.*;
 
 public class Patient extends User {
 	public static List<Patient> patients = new ArrayList<>();
+	static{
+		patients = CSVService.readPatientsFromCSV();
+		System.out.println("patients initialized");
+	}
 	private LocalDate birth = LocalDate.of(1990, 5, 14);
 	private int contactNumber = 1919810;
-	private String email = "";
-	private String bloodType = "";
-	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
+	private String email = "example@xxx.com";
+	private String bloodType = "A+";
 	private List<Appointment> scheduledAppointment = new ArrayList<>();
+	// private List<Appointment> scheduledAppointment = TextService.getPatientAppointment(this.hospitalID); // not working
+	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
 
 	Scanner scanner = new Scanner(System.in);
 
 	public Patient() {
 		super();
 		this.role = "patient";
-		patients.add(this);
+		// patients.add(this);
 	}
 
 	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
@@ -70,9 +73,9 @@ public class Patient extends User {
 		return super.toCSV() + "," + birth + "," + bloodType + "," + email + "," + contactNumber;
 	}
 
-	public Patient fromCSV(String data){
+	public static Patient fromCSV(String data){
 		String[] fields = data.split(",");
-		User user = super.fromCSV(data);
+		User user = User.fromCSV(data);
 		LocalDate birth = LocalDate.parse(fields[6]);
 		String bloodType = fields[7];
 		String email = fields[8];
@@ -154,12 +157,7 @@ public class Patient extends User {
 
 	public static Patient getByID(String patientID){
         List<Patient> patients;
-		try {
-			patients = CSVService.readPatientsFromCSV();
-		} catch (IOException e) {
-			Logger.getLogger(Doctor.class.getName()).log(Level.SEVERE, "Failed to read doctors from CSV", e);
-			return null;
-		}
+		patients = CSVService.readPatientsFromCSV();
         Patient patient;
 		int i = 0;
 		for (i=0; i<patients.size(); i++){
