@@ -119,15 +119,13 @@ public class AdministratorMenu {
         Scanner scanner = new Scanner(System.in);
         int c = 0;
         do {  // inconsistent print method what is the preference
-            System.out.println(""" 
-                                 Would you like to:
-                               1 Display All Staff
-                               2 Display Administrators 
-                               3 Display Doctors 
-                               4 Display Pharmacists
-                               5 Display All Staff Alphabetically 
-                               6 Manage Staff
-                               7 Return to Menu""");
+            System.out.println("Would you like to: \n" + //
+            "1 Display All Staff by Role \n" + //
+            "2 Display All Staff by ID \n" + //
+            "3 Display Doctors \n" + //
+            "4 Display Pharmacists \n" + //
+            "5 Manage Staff \n" + //
+            "6 Return to Menu");
             c = scanner.nextInt();
             switch (c){
                 case 1:
@@ -135,9 +133,7 @@ public class AdministratorMenu {
                     // TO DO - add option for alphabetical
                     break;
                 case 2:
-                    System.out.format("ID     Name                 Gender Age\n");
-                    System.out.println("-------------------------------------------");
-                    StaffService.displayAdminList(1);
+                    StaffService.displayStaffList(0);
                     break; 
                 case 3:
                     System.out.format("ID     Name                 Gender Age\n");
@@ -150,30 +146,26 @@ public class AdministratorMenu {
                     StaffService.displayPharmacistList(1);
                     break;
                 case 5:
-                    StaffService.displayStaffList(0);
-                    break;
-                case 6:
                     manageStaff();
                     break;
-                case 7:
+                case 6:
                     return;
                 default:
                     break;
             }
-        } while (c!=7);
+        } while (c!=6);
         
-		throw new UnsupportedOperationException();
-	}
+    throw new UnsupportedOperationException();
+    }
 
     public static void manageStaff() {
         Scanner scanner = new Scanner(System.in);
         int c = 0;
-        do { System.out.println("""
-                             Would you like to: 
-                           1 Add Staff 
-                           2 Update Staff 
-                           3 Remove Staff
-                           4 Return to Menu""");
+        do { System.out.println("Would you like to: \n" + //
+                                "1 Add Staff \n" + //
+                                "2 Update Staff \n" + //
+                                "3 Remove Staff \n" + //
+                                "4 Return to Menu");
             c = scanner.nextInt();
             switch (c){
                 case 1:
