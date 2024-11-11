@@ -1,5 +1,7 @@
 import java.util.*;
+import java.io.*;
 import java.time.*;
+import java.util.logging.*;
 
 public class Patient extends User {
 	public static List<Patient> patients = new ArrayList<>();
@@ -61,6 +63,30 @@ public class Patient extends User {
 			default:
 				break;
 		}
+	}
+
+	public String toCSV(){
+		//hospitalID + "," + password + "," + name + "," + gender + "," + age + "," + role;
+		return super.toCSV() + "," + birth + "," + bloodType + "," + email + "," + contactNumber;
+	}
+
+	public Patient fromCSV(String data){
+		String[] fields = data.split(",");
+		User user = super.fromCSV(data);
+		LocalDate birth = LocalDate.parse(fields[6]);
+		String bloodType = fields[7];
+		String email = fields[8];
+		int contactNumber = Integer.parseInt(fields[9]);
+		Patient patient = new Patient(user.hospitalID, 
+										user.password, 
+										user.name, 
+										user.gender, 
+										user.age, 
+										birth, 
+										contactNumber, 
+										email, 
+										bloodType);
+		return patient;
 	}
 
 	public LocalDate getBirth(){
@@ -125,4 +151,23 @@ public class Patient extends User {
         patient = patients.get(choice-1);
 		return patient;
 	}
+
+	public static Patient getByID(String patientID){
+        List<Patient> patients;
+		try {
+			patients = CSVService.readPatientsFromCSV();
+		} catch (IOException e) {
+			Logger.getLogger(Doctor.class.getName()).log(Level.SEVERE, "Failed to read doctors from CSV", e);
+			return null;
+		}
+        Patient patient;
+		int i = 0;
+		for (i=0; i<patients.size(); i++){
+			patient = patients.get(i);
+			if (patient.hospitalID.equals(patientID)){
+				return patient;
+			}
+		}
+		return null;
+    }
 }

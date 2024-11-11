@@ -1,24 +1,34 @@
 public class PrescribedMedication {
 
 	private String medicationName;
-	private int status;// 0 for pending, 1 for completed, for now
+	private String dosage;
 
 	public PrescribedMedication() {}
 
-	public PrescribedMedication(String medicationName, int status){
+	public PrescribedMedication(String medicationName, String dosage){
 		this.medicationName = medicationName;
-		this.status = status;
+		this.dosage = dosage;
 	}
 
-	/**
-	 * 
-	 * @param newStatus
-	 */
-	public void setStatus(int newStatus) {
-		this.status = newStatus;
+	public void setDosage(String newDosage) {
+		this.dosage = newDosage;
 	}
 
 	public void displayPrescribedMedication(){
 		System.out.println("Medication: " + medicationName);
 	}
+
+
+	// for PrescribedMedication, splitter of which is :
+	public String toTxt() {
+        return String.format("%s:%s", medicationName, dosage);
+    }
+
+    public static PrescribedMedication fromTxt(String txt) {
+        // Assuming txt format is exactly as in toTxt output
+        String[] lines = txt.trim().split(":");
+        String medicationName = lines[0];
+        String dosage = lines[1];
+        return new PrescribedMedication(medicationName, dosage);
+    }
 }

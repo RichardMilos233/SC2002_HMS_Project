@@ -1,4 +1,5 @@
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Appointment {
 	private Patient patient;
@@ -11,10 +12,6 @@ public class Appointment {
 	private LocalDate date;
 	private LocalTime time;
 	private AppointmentOutcome appointmentOutcome;
-
-	// depricated what's below, status seems to be enough
-	// private boolean isAvailable = false;	//doctor sets this to true in AppointmentAvailabilitySetter
-	// private boolean isScheduled = false;	//doctor sets this to true when he/ she approves the appointment request
 
 	public Appointment() {}
 
@@ -40,6 +37,39 @@ public class Appointment {
 		}
 
 		System.out.println();
+	}
+
+	// this is only copy & paste from gpt!!!
+	// for Appointment, the splitter of which is ,
+	public String toTxt() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(patient.getHospitalID()).append(",");
+		sb.append(doctor.getHospitalID()).append(",");
+		sb.append(status).append(",");
+		sb.append(date).append(",");
+		sb.append(time).append(",");
+		sb.append(appointmentOutcome.toTxt());
+		return sb.toString();
+	}
+
+	public static Appointment fromTxt(String data) {
+		String[] fields = data.split(",");
+	
+		String patientID = fields[0];        
+		String doctorID = fields[1];      
+		String status = fields[2];         
+		LocalTime time = LocalTime.parse(fields[3]);
+		LocalDate date = LocalDate.parse(fields[4]);
+		AppointmentOutcome appointmentOutcome = AppointmentOutcome.fromTxt(fields[5]);
+
+		Doctor doctor = Doctor.getByID(doctorID);
+		Patient patient = Patient.getByID(patientID);
+		Appointment appointment = new Appointment(doctor, date, time);
+		appointment.setPatient(patient);
+		appointment.setStatus(status);
+		appointment.setAppointmentOutcome(appointmentOutcome);
+
+		return appointment;
 	}
 
 	public void setAppointmentOutcome(AppointmentOutcome appointmentOutcome){
@@ -73,20 +103,4 @@ public class Appointment {
 	public Doctor getDoctor(){
 		return this.doctor;
 	}
-
-	// public boolean isAvailable(){
-	// 	return this.isAvailable;
-	// }
-
-	// public void setAvailable(boolean isAvailable){
-	// 	this.isAvailable = isAvailable;
-	// }
-
-	// public boolean isScheduled(){
-	// 	return this.isScheduled;
-	// }
-
-	// public void setScheduled(boolean isScheduled){
-	// 	this.isScheduled = isScheduled;
-	// }
 }

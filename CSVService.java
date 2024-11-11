@@ -1,12 +1,14 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-public class ExcelService {
+import javax.print.Doc;
+
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+public class CSVService {
+    private static final String DOCTOR_CSV_PATH = "./csv/doctors.csv";
+    private static final String PATIENT_CSV_PATH = "./csv/patients.csv";
 
     // Method to read data from a CSV file
     public static List<List<String>> readCsv(String filePath) {
@@ -59,6 +61,55 @@ public class ExcelService {
         writeCsv(filePath, data);
     }
 
+    // Write a list of doctors to CSV
+    public static void writeDoctorsToCSV(List<Doctor> doctors) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(DOCTOR_CSV_PATH))) {
+            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            for (Doctor doctor : doctors) {
+                writer.write(doctor.toCSV() + "\n");
+            }
+        }
+    }
+
+    // Read a list of doctors from CSV
+    public static List<Doctor> readDoctorsFromCSV() throws IOException {
+        List<Doctor> doctors = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(DOCTOR_CSV_PATH))) {
+            reader.readLine(); // Skip header
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Doctor doctor = new Doctor().fromCSV(line); // Use Doctor's fromCSV to cast correctly
+                doctors.add(doctor);
+            }
+        }
+        return doctors;
+    }
+
+    // Write a list of Patient objects to CSV
+    public static void writePatientsToCSV(List<Patient> patients) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENT_CSV_PATH))) {
+            // Write the header line
+            writer.write("hospitalID,password,name,gender,age,role,birth,bloodType,email,contactNumber\n");
+            for (Patient patient : patients) {
+                writer.write(patient.toCSV() + "\n");
+            }
+        }
+    }
+
+    // Read a list of Patient objects from CSV
+    public static List<Patient> readPatientsFromCSV() throws IOException {
+        List<Patient> patients = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(PATIENT_CSV_PATH))) {
+            reader.readLine(); // Skip header line
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Patient patient = new Patient().fromCSV(line); // Use Patient's froCSV method to create a Patient object
+                patients.add(patient);
+            }
+        }
+        return patients;
+    }
+
     public static void main(String[] args) {
         String patientPath = "csv\\Patient_List.csv";
         String staffPath = "csv\\Staff_List.csv";
@@ -68,19 +119,19 @@ public class ExcelService {
         credentials.add(List.of("hospitalId", "password"));
 
         // Reading from a CSV file
-        List<List<String>> data = ExcelService.readCsv(patientPath);
+        List<List<String>> data = CSVService.readCsv(patientPath);
         for (List<String> row : data.subList(1, data.size())) {
             credentials.add(List.of(row.get(0), "defaultPatientPassword"));
             // System.out.println(credentials);
         }
 
-        data = ExcelService.readCsv(staffPath);
+        data = CSVService.readCsv(staffPath);
         for (List<String> row : data.subList(1, data.size())){
             credentials.add(List.of(row.get(0), "defaultStaffPassword"));
         }
 
         // Writing to a CSV file
-        ExcelService.writeCsv(credentialPath, credentials);
+        CSVService.writeCsv(credentialPath, credentials);
 
         // List<List<String>> data = new ArrayList<>();
         // data.add(List.of("Staff ID", "Name", "Role", "Gender", "Age"));

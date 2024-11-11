@@ -1,4 +1,5 @@
 import java.time.*;
+import java.util.*;
 
 public class AppointmentOutcome {
 
@@ -29,5 +30,30 @@ public class AppointmentOutcome {
 
 	public void setConsultationNotes(String newConsultationNotes){
 		this.consultationNotes = newConsultationNotes;
+	}
+
+	// for AppointmentOutcome, the splitter of which is -
+	// Serialize to txt format
+    public String toTxt() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(date).append("-");
+		sb.append(type).append("-");
+        sb.append(prescribedMedication.toTxt()).append("-");
+		sb.append(consultationNotes);
+        return sb.toString();
+    }
+
+    // Deserialize from txt format
+    public static AppointmentOutcome fromTxt(String data) {
+		String[] fields = data.split("-");
+		LocalDate date = LocalDate.parse(fields[0]);  // Parse date
+		String type = fields[1];                      // Read type as String
+	
+		// Parse prescribedMedication using its fromCSV method
+		PrescribedMedication prescribedMedication = PrescribedMedication.fromTxt(fields[2]);
+	
+		String consultationNotes = fields[3];         // Read consultation notes
+	
+		return new AppointmentOutcome(date, type, prescribedMedication, consultationNotes);
 	}
 }

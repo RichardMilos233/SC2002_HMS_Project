@@ -14,14 +14,8 @@ public class Medication {
         this.replenishAmount = replenishAmount;
     }
 
-    public Medication() {
-        
-    }
+    public Medication() {}
 
-	/**
-	 * 
-	 * @param newStockAlert
-	 */
 	public void setStockAlert(int newStockAlert) {
 		this.stockAlert = newStockAlert;
 	}
