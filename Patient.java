@@ -1,7 +1,5 @@
 import java.util.*;
-import java.io.*;
 import java.time.*;
-import java.util.logging.*;
 
 public class Patient extends User {
 	public static List<Patient> patients = CSVService.readPatientsFromCSV();
