@@ -29,7 +29,7 @@ public class Inventory implements IInventory {
         if (medication.getMedicationName() == null) {
             System.out.println("Medication Name Missing");
         } else {
-            String filePath = "csv\\Medicine_List.csv";
+            String filePath = "csv/Medicine_List.csv";
             // Current List of Medications
             List<List<String>> medicationList = CSVService.readCsv(filePath);
 
@@ -51,7 +51,7 @@ public class Inventory implements IInventory {
 
 	 // Replenish stock for a specific medication
 	 public void replenishStock(String name, int amount) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -122,7 +122,7 @@ public class Inventory implements IInventory {
 
 	public void viewInventory() {
         
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -136,7 +136,7 @@ public class Inventory implements IInventory {
     public List<String> checkStockLevels() {
         List<String> medicationsThatNeedToBeRestocked = new ArrayList<>();
 
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -159,7 +159,7 @@ public class Inventory implements IInventory {
     }
     
     public void setAlertLine(Medication medication, int alertLineAmount) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -179,7 +179,7 @@ public class Inventory implements IInventory {
     public List<Medication> retrieveMedications() {
         List<Medication> medications = new ArrayList<>();
 
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -200,7 +200,7 @@ public class Inventory implements IInventory {
     }
 
     public void removeMedication(Medication medicationToRemove) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -219,7 +219,7 @@ public class Inventory implements IInventory {
     }
 
     public void updateStockLevel(String name, int amountToUpdateTo) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -243,7 +243,7 @@ public class Inventory implements IInventory {
     }
 
     public void replenishRequest(String name, int amountToReplenish) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -278,7 +278,7 @@ public class Inventory implements IInventory {
     }
 
     public List<Medication> viewReplenishRequests() {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);
@@ -304,7 +304,7 @@ public class Inventory implements IInventory {
     }
 
     public void approveReplenishRequest(String medicationToReplenish) {
-        String filePath = "csv\\Medicine_List.csv";
+        String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = CSVService.readCsv(filePath);

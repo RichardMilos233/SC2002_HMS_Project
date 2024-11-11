@@ -7,6 +7,7 @@ public class Main {
         User user = null;
         String role;
 
+        // create all user values from 
         System.out.println("Welcome to HMS");
 
         do{
