@@ -14,7 +14,7 @@ public class Main {
             System.out.println("Select your option:");
             System.out.println("1 Sign in");
             System.out.println("2 Quit");
-            choice = Integer.parseInt(scanner.nextLine());
+            choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
