@@ -27,7 +27,7 @@ public class Doctor extends User {	//ignore the Staff class first
 			return (this.numOfAppointment == 0) ;
 		}
 	}
-	public static List<Doctor> doctors = new ArrayList<>();	//later could read the csv to load the existing doctors first
+	public static List<Doctor> doctors = CSVService.readDoctorsFromCSV();
 	private ArrayList<PatientCount> patientCounts = new ArrayList<>();
 	private List<Appointment> timeTable = new ArrayList<>();
 
@@ -132,12 +132,7 @@ public class Doctor extends User {	//ignore the Staff class first
 
 	public static Doctor getByID(String doctorID){
         List<Doctor> doctors;
-		try {
-			doctors = CSVService.readDoctorsFromCSV();
-		} catch (IOException e) {
-			Logger.getLogger(Doctor.class.getName()).log(Level.SEVERE, "Failed to read doctors from CSV", e);
-			return null;
-		}
+		doctors = CSVService.readDoctorsFromCSV();
         Doctor doctor;
 		int i = 0;
 		for (i=0; i<doctors.size(); i++){

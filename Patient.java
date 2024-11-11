@@ -4,7 +4,7 @@ import java.time.*;
 import java.util.logging.*;
 
 public class Patient extends User {
-	public static List<Patient> patients = new ArrayList<>();
+	public static List<Patient> patients = CSVService.readPatientsFromCSV();
 	private LocalDate birth = LocalDate.of(1990, 5, 14);
 	private int contactNumber = 1919810;
 	private String email = "";
@@ -154,12 +154,7 @@ public class Patient extends User {
 
 	public static Patient getByID(String patientID){
         List<Patient> patients;
-		try {
-			patients = CSVService.readPatientsFromCSV();
-		} catch (IOException e) {
-			Logger.getLogger(Doctor.class.getName()).log(Level.SEVERE, "Failed to read doctors from CSV", e);
-			return null;
-		}
+		patients = CSVService.readPatientsFromCSV();
         Patient patient;
 		int i = 0;
 		for (i=0; i<patients.size(); i++){
