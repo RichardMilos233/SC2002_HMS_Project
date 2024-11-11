@@ -5,10 +5,10 @@ public class Patient extends User {
 	public static List<Patient> patients = CSVService.readPatientsFromCSV();
 	private LocalDate birth = LocalDate.of(1990, 5, 14);
 	private int contactNumber = 1919810;
-	private String email = "";
-	private String bloodType = "";
+	private String email = "example@xxx.com";
+	private String bloodType = "A+";
+	private List<Appointment> scheduledAppointment = TextService.getPatientAppointment(this.hospitalID);
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
-	private List<Appointment> scheduledAppointment = new ArrayList<>();
 
 	Scanner scanner = new Scanner(System.in);
 
@@ -68,9 +68,9 @@ public class Patient extends User {
 		return super.toCSV() + "," + birth + "," + bloodType + "," + email + "," + contactNumber;
 	}
 
-	public Patient fromCSV(String data){
+	public static Patient fromCSV(String data){
 		String[] fields = data.split(",");
-		User user = super.fromCSV(data);
+		User user = User.fromCSV(data);
 		LocalDate birth = LocalDate.parse(fields[6]);
 		String bloodType = fields[7];
 		String email = fields[8];

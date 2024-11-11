@@ -77,7 +77,7 @@ public class CSVService {
             reader.readLine(); // Skip header
             String line;
             while ((line = reader.readLine()) != null) {
-                Doctor doctor = new Doctor().fromCSV(line); // Use Doctor's fromCSV to cast correctly
+                Doctor doctor = Doctor.fromCSV(line); // call methods this way because fromCSV cannot be static due to some technical issues
                 doctors.add(doctor);
             }
         } catch (IOException e) {
@@ -106,7 +106,7 @@ public class CSVService {
             reader.readLine(); // Skip header line
             String line;
             while ((line = reader.readLine()) != null) {
-                Patient patient = new Patient().fromCSV(line); // Use Patient's fromCSV method to create a Patient object
+                Patient patient = Patient.fromCSV(line); // Use Patient's fromCSV method to create a Patient object
                 patients.add(patient);
             }
         } catch (IOException e) {
