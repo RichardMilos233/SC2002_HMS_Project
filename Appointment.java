@@ -38,7 +38,6 @@ public class Appointment {
 		System.out.println();
 	}
 
-	// this is only copy & paste from gpt!!!
 	// for Appointment, the splitter of which is ,
 	public String toTxt() {
 		StringBuilder sb = new StringBuilder();
