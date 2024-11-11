@@ -7,6 +7,7 @@ public class Main {
         User user = null;
         String role;
 
+        // create all user values from 
         System.out.println("Welcome to HMS");
 
         do{
@@ -14,7 +15,7 @@ public class Main {
             System.out.println("Select your option:");
             System.out.println("1 Sign in");
             System.out.println("2 Quit");
-            choice = Integer.parseInt(scanner.nextLine());
+            choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
