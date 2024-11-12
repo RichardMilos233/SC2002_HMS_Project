@@ -66,16 +66,16 @@ public class TextService {
         Doctor doctor = new Doctor("D001", "defaultStaffPassword", "John Smith", "Male", 45);
         Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
-        String status = "unavailable";
+        String status = "cancelled";
 
-        Appointment apt = new Appointment(doctor, LocalDate.now(), LocalTime.of(21, 55));
+        Appointment apt = new Appointment(doctor.hospitalID, LocalDate.now(), LocalTime.of(21, 55));
         apt.setAppointmentOutcome(a);
-        apt.setPatient(patient);
+        apt.setPatientID(patient.hospitalID);
         apt.setStatus(status);
 
-        Appointment bpt = new Appointment(doctor, LocalDate.now(), LocalTime.of(21, 55));
+        Appointment bpt = new Appointment(doctor.hospitalID, LocalDate.now(), LocalTime.of(21, 55));
         bpt.setAppointmentOutcome(b);
-        bpt.setPatient(patient);
+        bpt.setPatientID(patient.hospitalID);
         bpt.setStatus(status);
 
         List<Appointment> appointments = new ArrayList<>();

@@ -12,16 +12,15 @@ public class Patient extends User {
 	private String email = "example@xxx.com";
 	private String bloodType = "A+";
 	private List<Appointment> scheduledAppointment = new ArrayList<>();
-	// private List<Appointment> scheduledAppointment = TextService.getPatientAppointment(this.hospitalID); // not working
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
 
 	Scanner scanner = new Scanner(System.in);
 
-	public Patient() {
-		super();
-		this.role = "patient";
-		// patients.add(this);
-	}
+	// public Patient() {
+	// 	super();
+	// 	this.role = "patient";
+	// 	// patients.add(this);
+	// }
 
 	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
 		super(patientID, password, name, gender, age);
@@ -31,7 +30,7 @@ public class Patient extends User {
 		this.bloodType = bloodType;
 		this.age = DateConverter.calculateAge(birth);
 		this.role = "patient";
-		patients.add(this);
+		
 	}
 
 	public void updatePersonalInformation() {
@@ -89,6 +88,8 @@ public class Patient extends User {
 										contactNumber, 
 										email, 
 										bloodType);
+		patient.scheduledAppointment = TextService.getPatientAppointment(patient.hospitalID);
+		patient.pastDiagnoses = patient.retrievePastDiagnosesFromAppointments();
 		return patient;
 	}
 
@@ -118,6 +119,16 @@ public class Patient extends User {
 
 	public PastDiagnoses getPastDiagnoses(){
 		return this.pastDiagnoses;
+	}
+
+	public PastDiagnoses retrievePastDiagnosesFromAppointments(){
+		PastDiagnoses pastDiagnoses = new PastDiagnoses();
+		for (Appointment appointment : this.scheduledAppointment){
+			if (appointment.getPatient().getHospitalID().equals(this.hospitalID) && appointment.getStatus().equals("closed")){
+				pastDiagnoses.updatePastDiagnoses(appointment.getAppointmentOutcome());
+			}
+		}
+		return pastDiagnoses;
 	}
 
 	public List<Appointment> getScheduledAppointment(){

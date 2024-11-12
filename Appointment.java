@@ -1,8 +1,10 @@
 import java.time.*;
 
 public class Appointment {
-	private Patient patient;
-	private Doctor doctor;
+	// private Patient patient;
+	// private Doctor doctor;
+	private String patientID;
+	private String doctorID;
 	private String status = "unavailable";	//unavailable, available, pending, cancelled, confirmed, rejected, closed
 	//Upon initialization, status = unavailable, status = available after a doctor sets the availability
 	//When a patient sends a request, status = pending, then if a doctor approves, status = confirmed, else status = rejected
@@ -14,8 +16,8 @@ public class Appointment {
 
 	public Appointment() {}
 
-	public Appointment(Doctor doctor, LocalDate date, LocalTime time) {
-		this.doctor = doctor;
+	public Appointment(String doctorID, LocalDate date, LocalTime time) {
+		this.doctorID = doctorID;
 		this.date = date;
 		this.time = time;
 	}
@@ -27,8 +29,8 @@ public class Appointment {
 		System.out.println("Appointment status: " + status);
 		
 		if (status.equals("confirmed") || status.equals("closed")){
-			System.out.println("Patient ID: " + patient.getHospitalID());
-			System.out.println("Doctor ID: " + doctor.getHospitalID());
+			System.out.println("Patient ID: " + patientID);
+			System.out.println("Doctor ID: " + doctorID);
 		}
 
 		if (status.equals("closed")){
@@ -41,8 +43,8 @@ public class Appointment {
 	// for Appointment, the splitter of which is ,
 	public String toTxt() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(patient.getHospitalID()).append(",");
-		sb.append(doctor.getHospitalID()).append(",");
+		sb.append(patientID).append(",");
+		sb.append(doctorID).append(",");
 		sb.append(status).append(",");
 		sb.append(date).append(",");
 		sb.append(time).append(",");
@@ -60,10 +62,8 @@ public class Appointment {
 		LocalTime time = LocalTime.parse(fields[4]);
 		AppointmentOutcome appointmentOutcome = AppointmentOutcome.fromTxt(fields[5]);
 
-		Doctor doctor = Doctor.getByID(doctorID);
-		Patient patient = Patient.getByID(patientID);
-		Appointment appointment = new Appointment(doctor, date, time);
-		appointment.setPatient(patient);
+		Appointment appointment = new Appointment(doctorID, date, time);
+		appointment.setPatientID(patientID);
 		appointment.setStatus(status);
 		appointment.setAppointmentOutcome(appointmentOutcome);
 
@@ -91,14 +91,18 @@ public class Appointment {
 	}
 
 	public Patient getPatient(){
-		return this.patient;
+		return Patient.getByID(patientID);
 	}
 
-	public void setPatient(Patient patient){
-		this.patient = patient;
+	public void setPatientID(String patientID){
+		this.patientID = patientID;
 	}
 
 	public Doctor getDoctor(){
-		return this.doctor;
+		return Doctor.getByID(doctorID);
+	}
+
+	public AppointmentOutcome getAppointmentOutcome(){
+		return this.appointmentOutcome;
 	}
 }

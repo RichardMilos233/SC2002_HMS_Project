@@ -42,8 +42,6 @@ public class Doctor extends User {	//ignore the Staff class first
 	public Doctor(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 		this.role = "doctor";
-		doctors.add(this);	
-		// TODO causing some replication issues, to be solved
 		initializeTimeTable();
 	}
 
@@ -60,6 +58,7 @@ public class Doctor extends User {	//ignore the Staff class first
         int age = Integer.parseInt(fields[4]);
         String role = fields[5];
         Doctor doctor = new Doctor(hospitalID, password, name, gender, age);
+		doctor.timeTable = TextService.getDoctorAppointment(doctor.hospitalID);
         return doctor;
     }
 
@@ -79,7 +78,7 @@ public class Doctor extends User {	//ignore the Staff class first
 			// working hours 0900-1700, 1h for each slot
 			for (int j = 0; j <= 8; j++){
 				time = startTime.plusHours(j);
-				appointment = new Appointment(this, date, time);
+				appointment = new Appointment(this.hospitalID, date, time);
 				this.timeTable.add(appointment);
 			}
 		}

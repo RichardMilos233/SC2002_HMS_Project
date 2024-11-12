@@ -10,6 +10,37 @@ public class Test {
         Doctor doctor = new Doctor("D001", "docpass", "John Smith", "Male", 45);
         Pharmacist pharmacist = new Pharmacist("P001", "phmpass", "Mark Lee", "Male", 29);
         Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
+
+        PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day");
+        PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");
+
+        AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2024, 10, 27), 
+                                                "X-ray", p1, "drink more hot water");
+        AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2023, 5, 8), 
+                                                "consultation", p2, "sleep more");
+        
+        String status = "cancelled";
+
+        Appointment apt = new Appointment(doctor.hospitalID, LocalDate.now(), LocalTime.of(21, 55));
+        apt.setAppointmentOutcome(a);
+        apt.setPatientID(patient.hospitalID);
+        apt.setStatus(status);
+
+        Appointment bpt = new Appointment(doctor.hospitalID, LocalDate.now(), LocalTime.of(21, 55));
+        bpt.setAppointmentOutcome(b);
+        bpt.setPatientID(patient.hospitalID);
+        bpt.setStatus(status);
+
+        List<Appointment> appointments = new ArrayList<>();
+        appointments.add(apt);
+        appointments.add(bpt);
+
+        TextService.writeAppointmentsToTxt(appointments);
+        appointments = null;
+        appointments = TextService.readAppointmentsFromTxt();
+        for (Appointment appointment : appointments){
+            appointment.displayAppointment();
+        }
         
 
         /* DoctorMenu.displayDoctorMenu(doctor);
