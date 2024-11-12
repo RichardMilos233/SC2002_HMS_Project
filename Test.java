@@ -5,26 +5,37 @@ public class Test {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         // //initialize sample users
+        System.out.println("checkpoint 1");
         Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
+        
+        System.out.println("checkpoint 2");
+
         Doctor doctor = new Doctor("D001", "docpass", "John Smith", "Male", 45);
+
+        System.out.println("checkpoint 3");
+
         Pharmacist pharmacist = new Pharmacist("P001", "phmpass", "Mark Lee", "Male", 29);
         Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
 
         PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day");
         PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");
 
-        AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2024, 10, 27), 
+        AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2018, 10, 27), 
                                                 "X-ray", p1, "drink more hot water");
-        AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2023, 5, 8), 
+        AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2004, 5, 8), 
                                                 "consultation", p2, "sleep more");
         
-        String status = "cancelled";
+        String status = "closed";
+
+        System.out.println("checkpoint 4");
 
         Appointment apt = new Appointment(doctor.hospitalID, LocalDate.now(), LocalTime.of(21, 55));
         apt.setAppointmentOutcome(a);
         apt.setPatientID(patient.hospitalID);
         apt.setStatus(status);
+
+        System.out.println("checkpoint 5");
 
         Appointment bpt = new Appointment(doctor.hospitalID, LocalDate.now(), LocalTime.of(21, 55));
         bpt.setAppointmentOutcome(b);
@@ -35,19 +46,40 @@ public class Test {
         appointments.add(apt);
         appointments.add(bpt);
 
+        System.out.println("checkpoint 6");
+
         TextService.writeAppointmentsToTxt(appointments);
+
+        System.out.println("checkpoint 7");
+
         appointments = null;
         appointments = TextService.readAppointmentsFromTxt();
+
+        System.out.println("checkpoint 8");
+
         for (Appointment appointment : appointments){
             appointment.displayAppointment();
         }
+
+        System.out.println("checkpoint 9");
+
+        Appointment appointment = appointments.get(0);
+        patient = appointment.getPatient();
+        
+        patient.display();
+        doctor = appointments.get(0).getDoctor();
+        doctor.display();
+
+        System.out.println("checkpoint 10");
+
+        
         
 
         /* DoctorMenu.displayDoctorMenu(doctor);
         PatientMenu.displayPatientMenu(patient);
         DoctorMenu.displayDoctorMenu(doctor);
         PatientMenu.displayPatientMenu(patient); */
-        AdministratorMenu.displayAdminMenu(administrator);
+        // AdministratorMenu.displayAdminMenu(administrator);
 
         
 

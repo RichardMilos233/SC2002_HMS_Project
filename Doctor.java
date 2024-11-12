@@ -26,10 +26,6 @@ public class Doctor extends User {	//ignore the Staff class first
 		}
 	}
 	public static List<Doctor> doctors = new ArrayList<>();
-	static{
-		doctors = CSVService.readDoctorsFromCSV();
-		System.out.println("doctors initialzed");
-	}
 	private ArrayList<PatientCount> patientCounts = new ArrayList<>();
 	private List<Appointment> timeTable = new ArrayList<>();
 
@@ -58,11 +54,21 @@ public class Doctor extends User {	//ignore the Staff class first
         int age = Integer.parseInt(fields[4]);
         String role = fields[5];
         Doctor doctor = new Doctor(hospitalID, password, name, gender, age);
-		doctor.timeTable = TextService.getDoctorAppointment(doctor.hospitalID);
         return doctor;
     }
 
+	public static List<Doctor> getDoctors(){
+		if (doctors.size() == 0){
+			doctors = CSVService.readDoctorsFromCSV();
+			System.out.println("doctors initialzed");
+		}
+		return doctors;
+	}
+
     public List<Appointment> getTimeTable(){
+		if (this.timeTable.size() == 0){
+			this.timeTable = TextService.getDoctorAppointment(this.hospitalID);
+		}
 		return this.timeTable;
 	}
 

@@ -18,4 +18,8 @@ public class PastDiagnoses {	// a list of appointmentOutcome
 	public List<AppointmentOutcome> getAppointmentOutcomes(){
 		return this.appointmentOutcomes;
 	}
+
+	public int size(){
+		return appointmentOutcomes.size();
+	}
 }
