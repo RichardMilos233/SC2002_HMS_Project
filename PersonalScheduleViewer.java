@@ -7,7 +7,9 @@ public class PersonalScheduleViewer {
         int i;
         for (i = 0; i < timeTable.size(); i++){
             appointment = timeTable.get(i);
-            appointment.displayAppointment();
+            if (appointment.getStatus().equals("confirmed")){
+                appointment.displayAppointment();
+            }
         }
     }
 }

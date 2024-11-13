@@ -14,6 +14,10 @@ public class AppointmentScheduler{
 
         //sout all the available appointment slots of that doctor
         List<Appointment> availableSlots = AvailableSlotsViewer.getAvailableSlots(doctor);
+        if (availableSlots.size() == 0){
+            System.out.println("There is currently no available slot for doctor " + doctor.getName());
+            return;
+        }
         int choice;
         do{
             AvailableSlotsViewer.printAvailableSlots(doctor, availableSlots);
