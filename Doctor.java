@@ -41,11 +41,11 @@ public class Doctor extends User {	//ignore the Staff class first
 		initializeTimeTable();
 	}
 
-	public String toCSV() {	// directly inherit from user
+	public String toCSV() {	// directly inherit from User, same for admin and pharmacist
         return super.toCSV();
     }
 
-    public static Doctor fromCSV(String data) {	// downcast to Doctor then return
+    public static Doctor fromCSV(String data) {	// create a new doc then return
 		String[] fields = data.split(",");
         String hospitalID = fields[0];
         String password = fields[1];

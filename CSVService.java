@@ -6,6 +6,9 @@ import java.time.format.DateTimeFormatter;
 public class CSVService {
     private static final String DOCTOR_CSV_PATH = "./csv/doctors.csv";
     private static final String PATIENT_CSV_PATH = "./csv/patients.csv";
+    private static final String ADMIN_CSV_PATH = "./csv/administrators.csv";
+    private static final String PHARMACIST_CSV_PATH = "./csv/pharmacists.csv";
+    private static final String CREDENTIAL_CSV_PATH = "./csv/credentials.csv";
 
     // Method to read data from a CSV file
     public static List<List<String>> readCsv(String filePath) {
@@ -113,6 +116,77 @@ public class CSVService {
             System.err.println("Error reading CSV file: " + e.getMessage());
         }
         return patients;
+    }
+
+    // Write a list of admins to CSV
+    public static void writeAdminsToCSV(List<Administrator> admins) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ADMIN_CSV_PATH))) {
+            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            for (Administrator admin : admins) {
+                writer.write(admin.toCSV() + "\n");
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing to CSV file: " + e.getMessage());
+        }
+    }
+
+    // Read a list of admins from CSV
+    public static List<Administrator> readAdminsFromCSV(){
+        List<Administrator> admins = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(ADMIN_CSV_PATH))) {
+            reader.readLine(); // Skip header
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Administrator admin = Administrator.fromCSV(line);
+                admins.add(admin);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading CSV file: " + e.getMessage());
+        }
+        return admins;
+    }
+
+    // Write a list of pharmacists to CSV
+    public static void writePharmacistsToCSV(List<Pharmacist> pharmacists) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PHARMACIST_CSV_PATH))) {
+            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            for (Pharmacist pharmacist : pharmacists) {
+                writer.write(pharmacist.toCSV() + "\n");
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing to CSV file: " + e.getMessage());
+        }
+    }
+
+    // Read a list of pharmacists from CSV
+    public static List<Pharmacist> readPharmacistsFromCSV(){
+        List<Pharmacist> pharmacists = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(PHARMACIST_CSV_PATH))) {
+            reader.readLine(); // Skip header
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Pharmacist pharmacist = Pharmacist.fromCSV(line);
+                pharmacists.add(pharmacist);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading CSV file: " + e.getMessage());
+        }
+        return pharmacists;
+    }
+
+    public static List<User> readUsersFromCSV(){
+        List<User> users = new ArrayList<>();
+        List<Patient> patients = readPatientsFromCSV();
+        List<Doctor> doctors = readDoctorsFromCSV();
+        List<Administrator> admins = readAdminsFromCSV();
+        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
+
+        users.addAll(patients);
+        users.addAll(doctors);
+        users.addAll(admins);
+        users.addAll(pharmacists);
+
+        return users;
     }
 
     public static void main(String[] args) {

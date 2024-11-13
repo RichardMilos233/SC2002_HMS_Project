@@ -8,6 +8,7 @@ public class User {
 	protected String gender = "Male";
 	protected int age = -1;
 	protected String role = "user"; 
+	static public List<User> users = new ArrayList<>();
 
 	Scanner scanner = new Scanner(System.in);
 	public User() {}
@@ -91,6 +92,13 @@ public class User {
 	}
 	public void setRole(String role){
 		this.role = role;
+	}
+
+	public static List<User> getUsers(){
+		if (users.size() == 0){
+			users = CSVService.readUsersFromCSV();
+		}
+		return users;
 	}
 
 	public void display(){

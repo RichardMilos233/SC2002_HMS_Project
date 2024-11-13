@@ -17,6 +17,18 @@ public class Pharmacist extends User {//ignore the staff first
 		pharmacists.add(this);
 	}
 
+	public static Pharmacist fromCSV(String data) {	// create a new pharmacist then return
+		String[] fields = data.split(",");
+        String hospitalID = fields[0];
+        String password = fields[1];
+        String name = fields[2];
+        String gender = fields[3];
+        int age = Integer.parseInt(fields[4]);
+        String role = fields[5];
+        Pharmacist pharmacist = new Pharmacist(hospitalID, password, name, gender, age);
+        return pharmacist;
+    }
+
 	public static Pharmacist getPharmacist(){	//list out all pharmacists, then select a pharmacist
 		Scanner scanner = new Scanner(System.in);
 		Pharmacist pharmacist;

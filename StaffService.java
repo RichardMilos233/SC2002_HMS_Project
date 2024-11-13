@@ -22,10 +22,10 @@ public class StaffService {
         } else{
             System.out.format("ID     Role          Name                 Gender Age\n");
             System.out.println("-----------------------------------------------------------");
-            Collections.sort(User.users, Comparator.comparing(User::getName));
+            Collections.sort(User.getUsers(), Comparator.comparing(User::getName));
             User e;
-            for (int i = 0; i<User.users.size(); i++){
-                e = User.users.get(i);
+            for (int i = 0; i<User.getUsers().size(); i++){
+                e = User.getUsers().get(i);
                 if (!e.getRole().equals("patient")){
                     System.out.format("%-6s %-13s %-20s %-6s %-2d\n", e.getHospitalID(), e.getRole(), e.getName(), e.getGender(), e.getAge());
                     //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
@@ -153,7 +153,7 @@ public class StaffService {
         } else {
             Pharmacist.pharmacists.remove(u);
         }
-        User.users.remove(u);
+        User.getUsers().remove(u);
         u = null;
     }
 

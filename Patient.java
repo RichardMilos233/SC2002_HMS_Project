@@ -121,17 +121,7 @@ public class Patient extends User {
 		return this.pastDiagnoses;
 	}
 
-	// public PastDiagnoses retrievePastDiagnosesFromAppointments(){
-	// 	PastDiagnoses pastDiagnoses = new PastDiagnoses();
-	// 	for (Appointment appointment : this.scheduledAppointment){
-	// 		if (appointment.getPatient().getHospitalID().equals(this.hospitalID) && appointment.getStatus().equals("closed")){
-	// 			pastDiagnoses.updatePastDiagnoses(appointment.getAppointmentOutcome());
-	// 		}
-	// 	}
-	// 	return pastDiagnoses;
-	// }
-
-	public List<Appointment> getScheduledAppointment(){
+	public List<Appointment> getScheduledAppointment(){	// all the appointments that have the id of this patient
 		if (this.scheduledAppointment.size() == 0){
 			this.scheduledAppointment = TextService.getPatientAppointment(this.hospitalID);
 		}
