@@ -34,9 +34,9 @@ public class Doctor extends User {	//ignore the Staff class first
 		super(staffID, password, name, gender, age);
 		this.role = "doctor";
 		this.timeTable = getTimeTable();	// read from text first
-		// if (timeTable.size() == 0){	// if indeed no time table, initialize it
-		// 	initializeTimeTable();
-		// }
+		if (timeTable.size() == 0){	// if indeed no time table, initialize it
+			initializeTimeTable();
+		}
 	}
 
 	public String toCSV() {	// directly inherit from User, same for admin and pharmacist

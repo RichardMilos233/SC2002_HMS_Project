@@ -1,3 +1,1 @@
 patientID,doctorID,status,date,time,date-type-medicationName:dosage-consultationNotes
-P1001,D001,closed,2024-11-12,21:55,2018-10-27|X-ray|panadol\2/day|drink more hot water
-P1001,D001,closed,2024-11-12,21:55,2004-05-08|consultation|meth\5/day|sleep more
