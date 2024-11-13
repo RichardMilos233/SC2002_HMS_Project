@@ -258,7 +258,7 @@ public class Inventory implements IInventory {
 
                 // Save It!
                 CSVService.writeCsv(filePath, medicationList);
-                System.out.println("Successfully Requested Replenishment for" + name);
+                System.out.println("Successfully Requested Replenishment for " + name);
                 
 
                 return;

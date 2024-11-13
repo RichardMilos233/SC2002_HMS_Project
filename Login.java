@@ -22,7 +22,9 @@ public class Login {    //can have a Signup.java later
         String hospitalId = credentials.get(0);
         String password = credentials.get(1);
 
+
         List<List<String>> accountList = CSVService.readCsv(CREDENTIAL_CSV_PATH);
+
         
         for (int i = 1; i < accountList.size(); i++) {
             if (hospitalId.equals(accountList.get(i).get(0))) { //hospitalId match
@@ -53,7 +55,7 @@ public class Login {    //can have a Signup.java later
         String password = credentials.get(1);
 
         if (hospitalId.length() == 5){//patient
-            String filePath = "csv\\Patient_List.csv";
+            String filePath = "csv/Patient_List.csv";
             List<List<String>> data = CSVService.readCsv(filePath);
         
             for (int i = 1; i < data.size(); i++) {
@@ -73,7 +75,7 @@ public class Login {    //can have a Signup.java later
             }
         }
         else if (hospitalId.length() == 4){ //staff
-            String filePath = "csv\\Staff_List.csv";
+            String filePath = "csv/Staff_List.csv";
             List<List<String>> data = CSVService.readCsv(filePath);
 
             for (int i = 1; i < data.size(); i++) {
