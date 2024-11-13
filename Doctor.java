@@ -26,32 +26,24 @@ public class Doctor extends User {	//ignore the Staff class first
 		}
 	}
 	public static List<Doctor> doctors = new ArrayList<>();
-	static{
-		doctors = CSVService.readDoctorsFromCSV();
-		System.out.println("doctors initialzed");
-	}
 	private ArrayList<PatientCount> patientCounts = new ArrayList<>();
 	private List<Appointment> timeTable = new ArrayList<>();
 
-	public Doctor() {
-		super();
-		this.role = "doctor";
-		// initializeTimeTable();
-	}
 
 	public Doctor(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 		this.role = "doctor";
-		doctors.add(this);	
-		// TODO causing some replication issues, to be solved
-		initializeTimeTable();
+		this.timeTable = getTimeTable();	// read from text first
+		if (timeTable.size() == 0){	// if indeed no time table, initialize it
+			initializeTimeTable();
+		}
 	}
 
-	public String toCSV() {	// directly inherit from user
+	public String toCSV() {	// directly inherit from User, same for admin and pharmacist
         return super.toCSV();
     }
 
-    public static Doctor fromCSV(String data) {	// downcast to Doctor then return
+    public static Doctor fromCSV(String data) {	// create a new doc then return
 		String[] fields = data.split(",");
         String hospitalID = fields[0];
         String password = fields[1];
@@ -63,11 +55,22 @@ public class Doctor extends User {	//ignore the Staff class first
         return doctor;
     }
 
+	public static List<Doctor> getDoctors(){
+		if (doctors.size() == 0){
+			doctors = CSVService.readDoctorsFromCSV();
+			System.out.println("doctors initialzed");
+		}
+		return doctors;
+	}
+
     public List<Appointment> getTimeTable(){
+		if (this.timeTable.size() == 0){
+			this.timeTable = TextService.getDoctorAppointment(this.hospitalID);
+		}
 		return this.timeTable;
 	}
 
-	public void initializeTimeTable(){
+	public void initializeTimeTable(){	// TODO linked to apt txt
 		LocalDate currentDate = LocalDate.now();
 		LocalTime startTime = LocalTime.of(9, 0);
 		LocalDate date;
@@ -79,8 +82,9 @@ public class Doctor extends User {	//ignore the Staff class first
 			// working hours 0900-1700, 1h for each slot
 			for (int j = 0; j <= 8; j++){
 				time = startTime.plusHours(j);
-				appointment = new Appointment(this, date, time);
+				appointment = new Appointment(this.hospitalID, date, time);
 				this.timeTable.add(appointment);
+				TextService.appendAppointment(appointment);	// either this or above would work alone, but both can coexist?
 			}
 		}
 	}
@@ -122,6 +126,12 @@ public class Doctor extends User {	//ignore the Staff class first
 		Doctor doctor;
         int i;
         int choice = -1;
+
+		doctors = getDoctors();
+		if (doctors.size() == 0){
+			System.out.println("There is currently no doctor at work");
+			return null;
+		}
 
 		System.out.println("Choose the doctor you want:");
 		for (i = 0; i < Doctor.doctors.size(); i++){

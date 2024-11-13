@@ -8,12 +8,10 @@ public class User {
 	protected String gender = "Male";
 	protected int age = -1;
 	protected String role = "user"; 
-	public static List<User> users = new ArrayList<>();	
+	static public List<User> users = new ArrayList<>();
 
 	Scanner scanner = new Scanner(System.in);
-	public User() {
-		users.add(this);
-	}
+	public User() {}
 
 	public User(String hospitalID, String password, String name, String gender, int age) {
 		this.hospitalID = hospitalID;
@@ -22,7 +20,6 @@ public class User {
 		this.gender = gender;
 		this.age = age;
 		this.role = "user";
-		users.add(this);
 	}
 
 	public void login() {
@@ -95,6 +92,13 @@ public class User {
 	}
 	public void setRole(String role){
 		this.role = role;
+	}
+
+	public static List<User> getUsers(){
+		if (users.size() == 0){
+			users = CSVService.readUsersFromCSV();
+		}
+		return users;
 	}
 
 	public void display(){

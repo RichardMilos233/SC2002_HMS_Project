@@ -36,7 +36,7 @@ public class TextService {
         List<Appointment> appointments = new ArrayList<>();
         List<Appointment> timeTable = readAppointmentsFromTxt();
         for (Appointment appointment : timeTable){
-            if (appointment.getPatient().getHospitalID().equals(patientID)){
+            if (appointment.getPatientID().equals(patientID)){
                 appointments.add(appointment);
             }
         }
@@ -47,11 +47,52 @@ public class TextService {
         List<Appointment> appointments = new ArrayList<>();
         List<Appointment> timeTable = readAppointmentsFromTxt();
         for (Appointment appointment : timeTable){
-            if (appointment.getDoctor().getHospitalID().equals(doctorID)){
+            if (appointment.getDoctorID().equals(doctorID)){
                 appointments.add(appointment);
             }
         }
         return appointments;
+    }
+
+    public static void replaceAppointment(Appointment apt_new){ // this find the old apt in txt (by doc id, date, time), update its info by  refreshing all of its info
+        int index = findAppointment(apt_new);
+        writeAppointment(apt_new, index);
+    }
+
+    public static int findAppointment(Appointment apt_new){
+        int i;  // # of row of appointment in txt
+        Appointment apt_old;
+        String doctorID = apt_new.getDoctor().getHospitalID();
+        LocalDate date = apt_new.getDate();
+        LocalTime time = apt_new.getTime();
+        List<Appointment> appointments = readAppointmentsFromTxt();
+        for (i = 0; i < appointments.size(); i++){
+            apt_old = appointments.get(i);
+            if (doctorID.equals(apt_old.getDoctor().getHospitalID()) &&
+                date.equals(apt_old.getDate()) &&
+                time.equals(apt_old.getTime())){
+                return i;
+            }
+        }
+        System.out.println("Appointment not found");
+        return -1;  // -1 indicates not found
+    }
+
+    public static void writeAppointment(Appointment apt_new, int index){
+        List<Appointment> appointments = readAppointmentsFromTxt();
+        int size = appointments.size();
+        if (index < 0 || index >= size){
+            System.out.println("index out of range");
+            return;
+        }
+        appointments.set(index, apt_new);   // replace an existing apt
+        writeAppointmentsToTxt(appointments);
+        }
+
+    public static void appendAppointment(Appointment apt){
+        List<Appointment> appointments = readAppointmentsFromTxt();
+        appointments.add(apt);
+        writeAppointmentsToTxt(appointments);
     }
 
     public static void main(String[] args){
@@ -66,16 +107,16 @@ public class TextService {
         Doctor doctor = new Doctor("D001", "defaultStaffPassword", "John Smith", "Male", 45);
         Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
-        String status = "unavailable";
+        String status = "cancelled";
 
-        Appointment apt = new Appointment(doctor, LocalDate.now(), LocalTime.of(21, 55));
+        Appointment apt = new Appointment(doctor.hospitalID, LocalDate.now(), LocalTime.of(21, 55));
         apt.setAppointmentOutcome(a);
-        apt.setPatient(patient);
+        apt.setPatientID(patient.hospitalID);
         apt.setStatus(status);
 
-        Appointment bpt = new Appointment(doctor, LocalDate.now(), LocalTime.of(21, 55));
+        Appointment bpt = new Appointment(doctor.hospitalID, LocalDate.now(), LocalTime.of(21, 55));
         bpt.setAppointmentOutcome(b);
-        bpt.setPatient(patient);
+        bpt.setPatientID(patient.hospitalID);
         bpt.setStatus(status);
 
         List<Appointment> appointments = new ArrayList<>();

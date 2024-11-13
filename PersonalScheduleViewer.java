@@ -5,9 +5,16 @@ public class PersonalScheduleViewer {
         List<Appointment> timeTable = doctor.getTimeTable();
         Appointment appointment;
         int i;
+        int count = 0;
         for (i = 0; i < timeTable.size(); i++){
             appointment = timeTable.get(i);
-            appointment.displayAppointment();
+            if (appointment.getStatus().equals("confirmed")){
+                appointment.displayAppointment();
+                count ++;
+            }
+        }
+        if (count == 0){
+            System.out.println("There is no upcoming cofirmed appointment");
         }
     }
 }

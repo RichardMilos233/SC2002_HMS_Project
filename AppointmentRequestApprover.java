@@ -16,7 +16,23 @@ public class AppointmentRequestApprover{
         for (Appointment appointment : pendingList){
             appointment.displayAppointment();
             System.out.println("Approve or not: (1 for yes, 0 for no)");
-            choice = scanner.nextInt(); // no input check, i.e. do-while loop
+
+            while (true) {
+                System.out.print("Enter an integer: ");
+                try {
+                    choice = scanner.nextInt();
+                    // If input is valid, break the loop
+                    break;
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a valid integer.");
+                    scanner.next(); // Clear the invalid input
+                }
+            }
+            if (choice != 1 && choice != 0){
+                System.out.println("invalid choice");
+                return;
+            }
+
             if (choice == 1){
                 appointment.setStatus("confirmed");
                 doctor.addPatient(appointment.getPatient());
@@ -24,6 +40,7 @@ public class AppointmentRequestApprover{
             if (choice == 0){
                 appointment.setStatus("rejected");
             }
+            TextService.replaceAppointment(appointment);
         }
     }
 

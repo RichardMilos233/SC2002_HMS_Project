@@ -4,6 +4,10 @@ public class AvailableSlotsViewer {
     public static void viewAvailableSlots(){
         // choose the doctor first
         Doctor doctor = Doctor.getDoctor();
+        if (doctor == null){
+            System.out.println("Unavailable service");
+            return;
+        }
         
         // view his/ her thing
         List<Appointment> availableSlots = getAvailableSlots(doctor); 
@@ -22,8 +26,12 @@ public class AvailableSlotsViewer {
     }
 
     public static void printAvailableSlots(Doctor doctor, List<Appointment> availableSlots){
+        if (availableSlots.size() == 0){
+            System.err.println("There is currently no available slots for doctor " + doctor.getName());
+            return;
+        }
         int i;
-        System.out.println("This is the available time slots of doctor " + doctor.getName());
+        System.out.println("These are available time slots for doctor " + doctor.getName());
         for (i = 0; i < availableSlots.size(); i++){
             System.out.println("Slot: " + (i+1));
             availableSlots.get(i).displayAppointment();

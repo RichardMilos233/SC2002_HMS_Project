@@ -3,19 +3,25 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Pharmacist extends User {//ignore the staff first
-
 	public static List<Pharmacist> pharmacists = new ArrayList<>();
 
-	public Pharmacist() {
-		super();
-		pharmacists.add(this);
-	}
 
 	public Pharmacist(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 		this.role = "pharmacist";
-		pharmacists.add(this);
 	}
+
+	public static Pharmacist fromCSV(String data) {	// create a new pharmacist then return
+		String[] fields = data.split(",");
+        String hospitalID = fields[0];
+        String password = fields[1];
+        String name = fields[2];
+        String gender = fields[3];
+        int age = Integer.parseInt(fields[4]);
+        String role = fields[5];
+        Pharmacist pharmacist = new Pharmacist(hospitalID, password, name, gender, age);
+        return pharmacist;
+    }
 
 	public static Pharmacist getPharmacist(){	//list out all pharmacists, then select a pharmacist
 		Scanner scanner = new Scanner(System.in);
@@ -36,6 +42,13 @@ public class Pharmacist extends User {//ignore the staff first
 		
         pharmacist = Pharmacist.pharmacists.get(choice-1);
 		return pharmacist;
+	}
+
+	public static List<Pharmacist> getPharmacists(){
+		if (pharmacists.size() == 0){
+			pharmacists = CSVService.readPharmacistsFromCSV();
+		}
+		return pharmacists;
 	}
 
 	/* 

@@ -28,5 +28,6 @@ public class AppointmentOutcomeRecorder {
 		appointment.setAppointmentOutcome(appointmentOutcome);
 		appointment.getPatient().getPastDiagnoses().updatePastDiagnoses(appointmentOutcome);
         appointment.setStatus("closed");
+		TextService.replaceAppointment(appointment);
 	}
 }

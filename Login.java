@@ -2,11 +2,12 @@ import java.time.*;
 import java.util.*;
 
 public class Login {    //can have a Signup.java later
+    private static final String CREDENTIAL_CSV_PATH = "./csv/credentials.csv";
     public static User login(User user){
         List<String> credentials = getLoginCredentials();
         if (checkCredentials(credentials)){
-            System.out.println("successfully logged in");
             user = allocateAccount(credentials);
+            System.out.println("successfully logged in");
             return user;
         }
         else{
@@ -21,8 +22,9 @@ public class Login {    //can have a Signup.java later
         String hospitalId = credentials.get(0);
         String password = credentials.get(1);
 
-        String filePath = "csv/credentials.csv";
-        List<List<String>> accountList = CSVService.readCsv(filePath);
+
+        List<List<String>> accountList = CSVService.readCsv(CREDENTIAL_CSV_PATH);
+
         
         for (int i = 1; i < accountList.size(); i++) {
             if (hospitalId.equals(accountList.get(i).get(0))) { //hospitalId match
@@ -77,11 +79,11 @@ public class Login {    //can have a Signup.java later
             List<List<String>> data = CSVService.readCsv(filePath);
 
             for (int i = 1; i < data.size(); i++) {
-                List<String> patientInfo = data.get(i);
-                if (hospitalId.equals(patientInfo.get(0))) {    //hospitalId match
-                    String name = patientInfo.get(1);
-                    String gender = patientInfo.get(3);
-                    int age = Integer.parseInt(patientInfo.get(4));
+                List<String> staffInfo = data.get(i);
+                if (hospitalId.equals(staffInfo.get(0))) {    //hospitalId match
+                    String name = staffInfo.get(1);
+                    String gender = staffInfo.get(3);
+                    int age = Integer.parseInt(staffInfo.get(4));
 
                     switch (hospitalId.charAt(0)) {
                         case 'D':

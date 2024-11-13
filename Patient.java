@@ -3,25 +3,14 @@ import java.time.*;
 
 public class Patient extends User {
 	public static List<Patient> patients = new ArrayList<>();
-	static{
-		patients = CSVService.readPatientsFromCSV();
-		System.out.println("patients initialized");
-	}
-	private LocalDate birth = LocalDate.of(1990, 5, 14);
+	private LocalDate birth = LocalDate.of(2005, 1, 22);
 	private int contactNumber = 1919810;
 	private String email = "example@xxx.com";
 	private String bloodType = "A+";
 	private List<Appointment> scheduledAppointment = new ArrayList<>();
-	// private List<Appointment> scheduledAppointment = TextService.getPatientAppointment(this.hospitalID); // not working
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
 
 	Scanner scanner = new Scanner(System.in);
-
-	public Patient() {
-		super();
-		this.role = "patient";
-		// patients.add(this);
-	}
 
 	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
 		super(patientID, password, name, gender, age);
@@ -31,7 +20,6 @@ public class Patient extends User {
 		this.bloodType = bloodType;
 		this.age = DateConverter.calculateAge(birth);
 		this.role = "patient";
-		patients.add(this);
 	}
 
 	public void updatePersonalInformation() {
@@ -66,6 +54,7 @@ public class Patient extends User {
 			default:
 				break;
 		}
+		CSVService.replacePatient(this);
 	}
 
 	public String toCSV(){
@@ -117,15 +106,33 @@ public class Patient extends User {
 	}
 
 	public PastDiagnoses getPastDiagnoses(){
+		if (pastDiagnoses.size() == 0){
+			for (Appointment appointment : getScheduledAppointment()){
+				if (appointment.getPatient().getHospitalID().equals(this.hospitalID) && appointment.getStatus().equals("closed")){
+					pastDiagnoses.updatePastDiagnoses(appointment.getAppointmentOutcome());
+				}
+			}
+		}
 		return this.pastDiagnoses;
 	}
 
-	public List<Appointment> getScheduledAppointment(){
+	public List<Appointment> getScheduledAppointment(){	// all the appointments that have the id of this patient
+		if (this.scheduledAppointment.size() == 0){
+			this.scheduledAppointment = TextService.getPatientAppointment(this.hospitalID);
+		}
 		return this.scheduledAppointment;
 	}
 
 	public void addScheduledAppointment(Appointment appointment){
 		this.scheduledAppointment.add(appointment);
+	}
+
+	public static List<Patient> getPatients(){
+		if (patients.size() == 0) {
+            patients = CSVService.readPatientsFromCSV();
+            System.out.println("patients list loaded from CSV");
+        }
+        return patients;
 	}
 
 	public void display(){
@@ -156,8 +163,7 @@ public class Patient extends User {
 	}
 
 	public static Patient getByID(String patientID){
-        List<Patient> patients;
-		patients = CSVService.readPatientsFromCSV();
+		patients = getPatients();
         Patient patient;
 		int i = 0;
 		for (i=0; i<patients.size(); i++){
@@ -166,6 +172,7 @@ public class Patient extends User {
 				return patient;
 			}
 		}
+		System.out.println("patient not found, return null");
 		return null;
     }
 }

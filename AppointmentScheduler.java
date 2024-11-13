@@ -14,6 +14,10 @@ public class AppointmentScheduler{
 
         //sout all the available appointment slots of that doctor
         List<Appointment> availableSlots = AvailableSlotsViewer.getAvailableSlots(doctor);
+        if (availableSlots.size() == 0){
+            System.out.println("There is currently no available slot for doctor " + doctor.getName());
+            return;
+        }
         int choice;
         do{
             AvailableSlotsViewer.printAvailableSlots(doctor, availableSlots);
@@ -24,8 +28,9 @@ public class AppointmentScheduler{
 
         //send request
         selectedAppointment.setStatus("pending");
-        selectedAppointment.setPatient(patient);
+        selectedAppointment.setPatientID(patient.getHospitalID());
         patient.addScheduledAppointment(selectedAppointment);
+        TextService.replaceAppointment(selectedAppointment);    // this find the old apt in txt (by doc id, date, time), update its info by  refreshing all of its info
         System.out.println("Request submitted");
     }
 }
