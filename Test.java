@@ -46,31 +46,33 @@ public class Test {
         appointments.add(apt);
         appointments.add(bpt);
 
-        System.out.println("checkpoint 6");
+        PatientMenu.displayPatientMenu(patient);
 
-        TextService.writeAppointmentsToTxt(appointments);
+        // System.out.println("checkpoint 6");
 
-        System.out.println("checkpoint 7");
+        // TextService.writeAppointmentsToTxt(appointments);
 
-        appointments = null;
-        appointments = TextService.readAppointmentsFromTxt();
+        // System.out.println("checkpoint 7");
 
-        System.out.println("checkpoint 8");
+        // appointments = null;
+        // appointments = TextService.readAppointmentsFromTxt();
 
-        for (Appointment appointment : appointments){
-            appointment.displayAppointment();
-        }
+        // System.out.println("checkpoint 8");
 
-        System.out.println("checkpoint 9");
+        // for (Appointment appointment : appointments){
+        //     appointment.displayAppointment();
+        // }
 
-        Appointment appointment = appointments.get(0);
-        patient = appointment.getPatient();
+        // System.out.println("checkpoint 9");
+
+        // Appointment appointment = appointments.get(0);
+        // patient = appointment.getPatient();
         
-        patient.display();
-        doctor = appointments.get(0).getDoctor();
-        doctor.display();
+        // patient.display();
+        // doctor = appointments.get(0).getDoctor();
+        // doctor.display();
 
-        System.out.println("checkpoint 10");
+        // System.out.println("checkpoint 10");
 
         
         

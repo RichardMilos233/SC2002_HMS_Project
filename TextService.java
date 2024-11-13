@@ -54,6 +54,48 @@ public class TextService {
         return appointments;
     }
 
+    public static void replaceAppointment(Appointment apt_new){ // this find the old apt in txt (by doc id, date, time), update its info by  refreshing all of its info
+        int index = findAppointment(apt_new);
+        writeAppointment(apt_new, index);
+    }
+
+    public static int findAppointment(Appointment apt_new){
+        int i;  // # of row of appointment in txt
+        Appointment apt_old;
+        String doctorID = apt_new.getDoctor().getHospitalID();
+        LocalDate date = apt_new.getDate();
+        LocalTime time = apt_new.getTime();
+        List<Appointment> appointments = readAppointmentsFromTxt();
+        for (i = 0; i < appointments.size(); i++){
+            apt_old = appointments.get(i);
+            if (doctorID.equals(apt_old.getDoctor().getHospitalID()) &&
+                date.equals(apt_old.getDate()) &&
+                time.equals(apt_old.getTime())){
+                return i;
+            }
+        }
+        System.out.println("Appointment not found");
+        return -1;  // -1 indicates not found
+    }
+
+    public static void writeAppointment(Appointment apt_new, int index){
+        List<Appointment> appointments = readAppointmentsFromTxt();
+        int size = appointments.size();
+        if (index < size && index >= 0){
+            appointments.set(index, apt_new);   // replace an existing apt
+            writeAppointmentsToTxt(appointments);
+            return;
+        }
+        System.out.println("invalid index");
+        return;
+    }
+
+    public static void appendAppointment(Appointment apt){
+        List<Appointment> appointments = readAppointmentsFromTxt();
+        appointments.add(apt);
+        writeAppointmentsToTxt(appointments);
+    }
+
     public static void main(String[] args){
         PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day");
         PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");

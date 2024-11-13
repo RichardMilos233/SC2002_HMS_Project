@@ -128,6 +128,12 @@ public class Doctor extends User {	//ignore the Staff class first
         int i;
         int choice = -1;
 
+		doctors = getDoctors();
+		if (doctors.size() == 0){
+			System.out.println("There is currently no doctor at work");
+			return null;
+		}
+
 		System.out.println("Choose the doctor you want:");
 		for (i = 0; i < Doctor.doctors.size(); i++){
 			doctor = Doctor.doctors.get(i);
