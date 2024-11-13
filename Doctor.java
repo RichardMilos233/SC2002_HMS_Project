@@ -29,11 +29,6 @@ public class Doctor extends User {	//ignore the Staff class first
 	private ArrayList<PatientCount> patientCounts = new ArrayList<>();
 	private List<Appointment> timeTable = new ArrayList<>();
 
-	public Doctor() {
-		super();
-		this.role = "doctor";
-		// initializeTimeTable();
-	}
 
 	public Doctor(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
@@ -72,7 +67,7 @@ public class Doctor extends User {	//ignore the Staff class first
 		return this.timeTable;
 	}
 
-	public void initializeTimeTable(){
+	public void initializeTimeTable(){	// TODO linked to apt txt
 		LocalDate currentDate = LocalDate.now();
 		LocalTime startTime = LocalTime.of(9, 0);
 		LocalDate date;

@@ -3,18 +3,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Pharmacist extends User {//ignore the staff first
-
 	public static List<Pharmacist> pharmacists = new ArrayList<>();
 
-	public Pharmacist() {
-		super();
-		pharmacists.add(this);
-	}
 
 	public Pharmacist(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 		this.role = "pharmacist";
-		pharmacists.add(this);
 	}
 
 	public static Pharmacist fromCSV(String data) {	// create a new pharmacist then return
@@ -48,6 +42,13 @@ public class Pharmacist extends User {//ignore the staff first
 		
         pharmacist = Pharmacist.pharmacists.get(choice-1);
 		return pharmacist;
+	}
+
+	public static List<Pharmacist> getPharmacists(){
+		if (pharmacists.size() == 0){
+			pharmacists = CSVService.readPharmacistsFromCSV();
+		}
+		return pharmacists;
 	}
 
 	/* 

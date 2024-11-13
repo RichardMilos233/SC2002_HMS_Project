@@ -3,16 +3,9 @@ import java.util.*;
 public class Administrator extends User { //ignore Staff first
 	public static List<Administrator> administrators = new ArrayList<>();
 
-	public Administrator() {
-		super();
-		this.role = "administrator";
-		administrators.add(this);
-	}
-
 	public Administrator(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 		this.role = "administrator";
-		administrators.add(this);
 	}
 
 	public static Administrator fromCSV(String data) {	// create a new admin then return
@@ -48,4 +41,10 @@ public class Administrator extends User { //ignore Staff first
 		return administrator;
 	}
 
+	public static List<Administrator> getAdministrators(){
+		if (administrators.size() == 0){
+			administrators = CSVService.readAdminsFromCSV();
+		}
+		return administrators;
+	}
 }

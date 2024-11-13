@@ -12,12 +12,6 @@ public class Patient extends User {
 
 	Scanner scanner = new Scanner(System.in);
 
-	// public Patient() {
-	// 	super();
-	// 	this.role = "patient";
-	// 	// patients.add(this);
-	// }
-
 	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
 		super(patientID, password, name, gender, age);
 		this.birth = birth;
