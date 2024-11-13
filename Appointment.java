@@ -3,7 +3,7 @@ import java.time.*;
 public class Appointment {
 	// private Patient patient;
 	// private Doctor doctor;
-	private String patientID;
+	private String patientID = "P1000";
 	private String doctorID;
 	private String status = "unavailable";	//unavailable, available, pending, cancelled, confirmed, rejected, closed
 	//Upon initialization, status = unavailable, status = available after a doctor sets the availability
@@ -12,9 +12,7 @@ public class Appointment {
 	//After the appointment, i.e. appointmentOutcome is added to it, status = closed
 	private LocalDate date;
 	private LocalTime time;
-	private AppointmentOutcome appointmentOutcome;
-
-	public Appointment() {}
+	private AppointmentOutcome appointmentOutcome = new AppointmentOutcome();
 
 	public Appointment(String doctorID, LocalDate date, LocalTime time) {
 		this.doctorID = doctorID;

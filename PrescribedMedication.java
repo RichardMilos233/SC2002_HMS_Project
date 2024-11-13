@@ -1,7 +1,7 @@
 public class PrescribedMedication {
 
-	private String medicationName;
-	private String dosage;
+	private String medicationName = "nil";
+	private String dosage = "nil";
 
 	public PrescribedMedication() {}
 

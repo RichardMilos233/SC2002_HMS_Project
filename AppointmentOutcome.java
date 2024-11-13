@@ -3,10 +3,10 @@ import java.util.*;
 
 public class AppointmentOutcome {
 
-	private LocalDate date;
-	private String type;
-	private PrescribedMedication prescribedMedication;
-	private String consultationNotes;
+	private LocalDate date = LocalDate.now();
+	private String type = "nil";
+	private PrescribedMedication prescribedMedication = new PrescribedMedication();
+	private String consultationNotes = "nil";
 
 	public AppointmentOutcome() {}
 
