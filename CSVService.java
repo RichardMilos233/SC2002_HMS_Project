@@ -81,7 +81,7 @@ public class CSVService {
             String line;
             while ((line = reader.readLine()) != null) {
                 Doctor doctor = Doctor.fromCSV(line); // call methods this way because fromCSV cannot be static due to some technical issues
-                doctors.add(doctor);
+                doctors.add(doctor); 
             }
         } catch (IOException e) {
             System.err.println("Error reading CSV file: " + e.getMessage());
