@@ -33,7 +33,10 @@ public class Doctor extends User {	//ignore the Staff class first
 	public Doctor(String staffID, String password, String name, String gender, int age){
 		super(staffID, password, name, gender, age);
 		this.role = "doctor";
-		initializeTimeTable();
+		this.timeTable = getTimeTable();	// read from text first
+		if (timeTable.size() == 0){	// if indeed no time table, initialize it
+			initializeTimeTable();
+		}
 	}
 
 	public String toCSV() {	// directly inherit from User, same for admin and pharmacist
@@ -81,6 +84,7 @@ public class Doctor extends User {	//ignore the Staff class first
 				time = startTime.plusHours(j);
 				appointment = new Appointment(this.hospitalID, date, time);
 				this.timeTable.add(appointment);
+				TextService.appendAppointment(appointment);	// either this or above would work alone, but both can coexist?
 			}
 		}
 	}
