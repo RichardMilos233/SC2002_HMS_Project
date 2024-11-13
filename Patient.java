@@ -54,6 +54,7 @@ public class Patient extends User {
 			default:
 				break;
 		}
+		CSVService.replacePatient(this);
 	}
 
 	public String toCSV(){

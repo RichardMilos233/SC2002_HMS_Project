@@ -36,7 +36,7 @@ public class TextService {
         List<Appointment> appointments = new ArrayList<>();
         List<Appointment> timeTable = readAppointmentsFromTxt();
         for (Appointment appointment : timeTable){
-            if (appointment.getPatient().getHospitalID().equals(patientID)){
+            if (appointment.getPatientID().equals(patientID)){
                 appointments.add(appointment);
             }
         }
@@ -47,7 +47,7 @@ public class TextService {
         List<Appointment> appointments = new ArrayList<>();
         List<Appointment> timeTable = readAppointmentsFromTxt();
         for (Appointment appointment : timeTable){
-            if (appointment.getDoctor().getHospitalID().equals(doctorID)){
+            if (appointment.getDoctorID().equals(doctorID)){
                 appointments.add(appointment);
             }
         }
@@ -81,14 +81,13 @@ public class TextService {
     public static void writeAppointment(Appointment apt_new, int index){
         List<Appointment> appointments = readAppointmentsFromTxt();
         int size = appointments.size();
-        if (index < size && index >= 0){
-            appointments.set(index, apt_new);   // replace an existing apt
-            writeAppointmentsToTxt(appointments);
+        if (index < 0 || index >= size){
+            System.out.println("index out of range");
             return;
         }
-        System.out.println("invalid index");
-        return;
-    }
+        appointments.set(index, apt_new);   // replace an existing apt
+        writeAppointmentsToTxt(appointments);
+        }
 
     public static void appendAppointment(Appointment apt){
         List<Appointment> appointments = readAppointmentsFromTxt();

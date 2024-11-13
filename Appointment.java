@@ -94,12 +94,20 @@ public class Appointment {
 		return Patient.getByID(patientID);
 	}
 
+	public String getPatientID(){
+		return this.patientID;
+	}
+	
 	public void setPatientID(String patientID){
 		this.patientID = patientID;
 	}
 
 	public Doctor getDoctor(){
 		return Doctor.getByID(doctorID);
+	}
+
+	public String getDoctorID(){
+		return this.doctorID;
 	}
 
 	public AppointmentOutcome getAppointmentOutcome(){

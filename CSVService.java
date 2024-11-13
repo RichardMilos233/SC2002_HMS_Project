@@ -189,6 +189,34 @@ public class CSVService {
         return users;
     }
 
+    public static void replacePatient(Patient patient){
+        int index = findPatient(patient.getHospitalID());
+        writePatient(patient, index);
+    }
+
+    public static int findPatient(String patientID){
+        int i;
+        List<Patient> patients = readPatientsFromCSV();
+        for (i = 0; i < patients.size(); i++){
+            if (patients.get(i).getHospitalID().equals(patientID)){
+                return i;
+            }
+        }
+        System.out.println("patient not found");
+        return -1;
+    }
+
+    public static void writePatient(Patient patient, int index){
+        List<Patient> patients = readPatientsFromCSV();
+        int size = patients.size();
+        if (index < 0 || index >= size){
+            System.out.println("index out of range");
+            return;
+        }
+        patients.set(index, patient);
+        writePatientsToCSV(patients);
+    }
+
     public static void main(String[] args) {
         String patientPath = "csv/Patient_List.csv";
         String staffPath = "csv/Staff_List.csv";
