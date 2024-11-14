@@ -70,7 +70,7 @@ public class Doctor extends User {	//ignore the Staff class first
 		return this.timeTable;
 	}
 
-	public void initializeTimeTable(){	// TODO linked to apt txt
+	public void initializeTimeTable(){
 		LocalDate currentDate = LocalDate.now();
 		LocalTime startTime = LocalTime.of(9, 0);
 		LocalDate date;
@@ -161,5 +161,4 @@ public class Doctor extends User {	//ignore the Staff class first
 		}
 		return null;
     }
-
 }

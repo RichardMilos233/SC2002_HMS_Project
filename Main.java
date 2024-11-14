@@ -25,7 +25,7 @@ public class Main {
                     role = user.getRole();
                     switch (role) {
                         case "patient":
-                            PatientMenu.displayPatientMenu((Patient)user);  //so far so good
+                            PatientMenu.displayPatientMenu((Patient)user);
                             break;
                         case "doctor":
                             DoctorMenu.displayDoctorMenu((Doctor)user);

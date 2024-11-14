@@ -13,6 +13,10 @@ public class AppointmentCanceller {
 
         List<Appointment> scheduledAppointment = patient.getScheduledAppointment(); 
         // this list does not contain any rejected status because it is already eliminated above in viewScheduledAppointment
+        if (scheduledAppointment.size() == 0){
+            System.out.println("There is currently no scheduled appointment");
+            return;
+        }
         if (choice < 1 || choice > scheduledAppointment.size()){
             System.out.println("invalid choice");
             return;
