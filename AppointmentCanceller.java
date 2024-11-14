@@ -11,7 +11,7 @@ public class AppointmentCanceller {
         System.out.println("Enter your choice: ");
         choice = scanner.nextInt();
 
-        List<Appointment> scheduledAppointment = patient.getScheduledAppointment(); 
+        List<Appointment> scheduledAppointment = patient.getScheduledAppointments(); 
         // this list does not contain any rejected status because it is already eliminated above in viewScheduledAppointment
         if (scheduledAppointment.size() == 0){
             System.out.println("There is currently no scheduled appointment");

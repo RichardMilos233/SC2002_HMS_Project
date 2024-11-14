@@ -29,7 +29,7 @@ public class AppointmentScheduler{
         //send request
         selectedAppointment.setStatus("pending");
         selectedAppointment.setPatientID(patient.getHospitalID());
-        patient.addScheduledAppointment(selectedAppointment);
+        patient.addAppointment(selectedAppointment);
         TextService.replaceAppointment(selectedAppointment);    // this find the old apt in txt (by doc id, date, time), update its info by  refreshing all of its info
         System.out.println("Request submitted");
     }

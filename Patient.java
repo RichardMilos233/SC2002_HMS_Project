@@ -7,7 +7,7 @@ public class Patient extends User {
 	private int contactNumber = 1919810;
 	private String email = "example@xxx.com";
 	private String bloodType = "A+";
-	private List<Appointment> scheduledAppointment = new ArrayList<>();
+	private List<Appointment> timeTable = new ArrayList<>();
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
 
 	Scanner scanner = new Scanner(System.in);
@@ -107,7 +107,7 @@ public class Patient extends User {
 
 	public PastDiagnoses getPastDiagnoses(){
 		if (pastDiagnoses.size() == 0){
-			for (Appointment appointment : getScheduledAppointment()){
+			for (Appointment appointment : getTimeTable()){
 				if (appointment.getPatient().getHospitalID().equals(this.hospitalID) && appointment.getStatus().equals("closed")){
 					pastDiagnoses.updatePastDiagnoses(appointment.getAppointmentOutcome());
 				}
@@ -116,15 +116,25 @@ public class Patient extends User {
 		return this.pastDiagnoses;
 	}
 
-	public List<Appointment> getScheduledAppointment(){	// all the appointments that have the id of this patient
-		if (this.scheduledAppointment.size() == 0){
-			this.scheduledAppointment = TextService.getPatientAppointment(this.hospitalID);
+	public List<Appointment> getTimeTable(){	// all the appointments that have the id of this patient
+		if (this.timeTable.size() == 0){
+			this.timeTable = TextService.getPatientAppointment(this.hospitalID);
 		}
-		return this.scheduledAppointment;
+		return this.timeTable;
 	}
 
-	public void addScheduledAppointment(Appointment appointment){
-		this.scheduledAppointment.add(appointment);
+	public void addAppointment(Appointment appointment){
+		this.timeTable.add(appointment);
+	}
+
+	public List<Appointment> getScheduledAppointments(){	// scheduled appointments only contain pending and confirmed appointments
+		List<Appointment> scheduledAppointments = new ArrayList<>();
+		for (Appointment appointment : getTimeTable()){
+			if (appointment.getStatus().equals("pending") || appointment.getStatus().equals("confirmed")){
+				scheduledAppointments.add(appointment);
+			}
+		}
+		return scheduledAppointments;
 	}
 
 	public static List<Patient> getPatients(){

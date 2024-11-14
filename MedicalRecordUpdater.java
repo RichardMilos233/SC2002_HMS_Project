@@ -48,7 +48,7 @@ public class MedicalRecordUpdater {
             return;
         }
 
-        List<Appointment> appointments = patient.getScheduledAppointment();
+        List<Appointment> appointments = patient.getTimeTable();
         Appointment appointment;
         appointments.removeIf(apt -> !apt.getStatus().equals("closed"));    // brutally get the same list of appointments that contains appointmentoutcomes
         appointmentOutcome = appointmentOutcomes.get(choice-1);

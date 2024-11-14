@@ -21,6 +21,10 @@ public class Main {
                 case 1:
                     user = null;
                     user = Login.login(user);
+                    if (user == null){
+                        System.out.println("incorrect hospital id or password");
+                        break;
+                    }
                     
                     role = user.getRole();
                     switch (role) {
