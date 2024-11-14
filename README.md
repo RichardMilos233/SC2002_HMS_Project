@@ -32,7 +32,7 @@ This project was done as part of our SC2002 Object-oriented Programming module. 
 
 ## Set Up
 To run the HMS application locally:
-1. Clone the repository: `https://github.com/yourgithubrepo/hms`
+1. Clone the repository: [`https://github.com/yourgithubrepo/hms`](https://github.com/RichardMilos233/SC2002_HMS_Project.git)
 2. Ensure Java is installed on your system.
 3. Open the HMS folder in your preferred Java IDE.
 4. Compile and run the main file.
