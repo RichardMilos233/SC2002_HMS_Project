@@ -92,9 +92,14 @@ public class Inventory implements IInventory {
     }
 
 	 // Consume stock for a specific medication
-	 public void consumeStock(String medicationName, int amountToConsume) {
+     // Returns true if successfully consumed stock, if false means no
+     @Override
+	 public boolean consumeStock(String medicationName, int amountToConsume) {
         String filePath = "csv\\Medicine_List.csv";
         List<List<String>> medicationList = CSVService.readCsv(filePath);
+
+        System.out.println(medicationName);
+        System.out.println(amountToConsume);
         
         for (int i = 0; i < medicationList.size(); i++) {
             if (i == 0) continue; // Skip Headers
@@ -105,18 +110,19 @@ public class Inventory implements IInventory {
                 if (currentStock < amountToConsume) {
                     // Cannot consume more than stock level
                     System.out.println("Cannot consume more than stock level!");
-                    return;
+                    return false;
                 } else {
                     medicationList.get(i).set(1, String.valueOf((currentStock - amountToConsume)));
                     CSVService.writeCsv(filePath, medicationList);
                     System.out.println("Successfully Replenished " + medicationName);
-                    return;
+                    return true;
                 }
                 
             }
         }
 
         System.out.println("Medication not found."); 
+        return false;
     }
 
 

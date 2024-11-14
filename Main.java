@@ -36,7 +36,6 @@ public class Main {
                         case "administrator":
                             AdministratorMenu.displayAdminMenu((Administrator)user);
                             break;
-                    
                         default:
                             System.out.println("undefined role");
                             break;

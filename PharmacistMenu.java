@@ -44,8 +44,7 @@ public class PharmacistMenu {
         }while(choice != 5);
     }
     public static void viewAppointmentOutcomeRecord() {
-		// TODO - implement Pharmacist.viewAppointmentOutcomeRecord
-		throw new UnsupportedOperationException();
+        PharmacistAppointmentOutcomeRecordViewer.getAppointmentOutcomes();
 	}
 
 	public static void updatePrescriptionStatus() {

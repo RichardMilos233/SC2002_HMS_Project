@@ -51,12 +51,14 @@ public class Pharmacist extends User {//ignore the staff first
 		return pharmacists;
 	}
 
-	/* 
+	
 	public void viewAppointmentOutcomeRecord() {
 		// TODO - implement Pharmacist.viewAppointmentOutcomeRecord
+		PharmacistAppointmentOutcomeRecordViewer.getAppointmentOutcomes();
 		throw new UnsupportedOperationException();
 	}
 
+	/* 
 	public void updatePrescriptionStatus() {
 		// TODO - implement Pharmacist.updatePrescriptionStatus
 		throw new UnsupportedOperationException();

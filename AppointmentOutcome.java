@@ -1,5 +1,4 @@
 import java.time.*;
-import java.util.*;
 
 public class AppointmentOutcome {
 
@@ -57,4 +56,10 @@ public class AppointmentOutcome {
 	
 		return new AppointmentOutcome(date, type, prescribedMedication, consultationNotes);
 	}
+
+    public PrescribedMedication getPrescribedMedication() {
+        return prescribedMedication;
+    }
+
+	
 }

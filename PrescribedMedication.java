@@ -18,6 +18,10 @@ public class PrescribedMedication {
 		System.out.println("Medication: " + medicationName);
 	}
 
+	public String getPrescription() {
+		return (dosage + "x " + medicationName);
+	}
+
 
 	// for PrescribedMedication, splitter of which is \
 	public String toTxt() {
@@ -33,4 +37,12 @@ public class PrescribedMedication {
         String dosage = lines[1];
         return new PrescribedMedication(medicationName, dosage);
     }
+
+	public String getMedicationName() {
+		return medicationName;
+	}
+
+	public int getDosage() {
+		return Integer.parseInt(dosage);
+	}
 }
