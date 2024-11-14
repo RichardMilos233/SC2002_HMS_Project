@@ -217,6 +217,18 @@ public class CSVService {
         writePatientsToCSV(patients);
     }
 
+    public static void changePassword(String hospitalID, String newPassword){
+        List<List<String>> credentials = CSVService.readCsv(CREDENTIAL_CSV_PATH);
+        for (int i = 1; i < credentials.size(); i++) {
+            if (hospitalID.equals(credentials.get(i).get(0))) { //hospitalId match
+                credentials.get(i).set(1, newPassword);
+                System.out.println("password sucessfully reset");
+                return;
+            }
+        }
+        System.out.println("unable to reset password");
+    }
+
     public static void main(String[] args) {
         String patientPath = "csv/Patient_List.csv";
         String staffPath = "csv/Staff_List.csv";

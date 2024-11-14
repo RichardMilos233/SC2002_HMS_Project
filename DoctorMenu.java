@@ -8,15 +8,16 @@ public class DoctorMenu {
         //                             LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
         int choice = 0;
         do{
-            System.out.println("---------------Doctor Menu---------------\n" + //
-                                "1 View Patient Medical Records\n" + //
-                                "2 Update Patient Medical Records \n" + //
-                                "3 View Personal Schedule \n" + //
-                                "4 Set Availability for Appointments \n" + //
-                                "5 Accept or Decline Appointment Requests \n" + //
-                                "6 View Upcoming Appointments \n" + //
-                                "7 Record Appointment Outcome \n" + //
-                                "8 Logout");
+            System.out.println("---------------Doctor Menu---------------\n" + 
+                                "1 View Patient Medical Records\n" + 
+                                "2 Update Patient Medical Records \n" + 
+                                "3 View Personal Schedule \n" + 
+                                "4 Set Availability for Appointments \n" + 
+                                "5 Accept or Decline Appointment Requests \n" + 
+                                "6 View Upcoming Appointments \n" + 
+                                "7 Record Appointment Outcome \n" + 
+                                "8 Change Password \n" + 
+                                "9 Logout");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -41,13 +42,16 @@ public class DoctorMenu {
                     AppointmentOutcomeRecorder.recordAppointmentOutcome(doctor);
                     break;
                 case 8:
+                    doctor.changePassword();
+                    break;
+                case 9:
                     doctor.logout();
                     break;
 
                 default:
                     break;
             }
-        }while (choice != 8);
+        }while (choice != 9);
     }
 
     public static void viewMedicalRecord(Doctor d){

@@ -6,12 +6,13 @@ public class AdministratorMenu {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         do{
-            System.out.println("Administrator Menu: \n" + //
-                                "1 View and Manage Hospital Staff \n" + //
-                                "2 View Appointments details \n" + //
-                                "3 View and Manage Medication Inventory \n" + //
-                                "4 View Replenishment Requests \n" + //
-                                "5 Logout ");
+            System.out.println("Administrator Menu: \n" + 
+                                "1 View and Manage Hospital Staff \n" + 
+                                "2 View Appointments details \n" + 
+                                "3 View and Manage Medication Inventory \n" + 
+                                "4 View Replenishment Requests \n" + 
+                                "5 Change Password \n" + 
+                                "6 Logout");
             choice = Integer.parseInt(scanner.nextLine());
 
             switch (choice) {
@@ -50,12 +51,16 @@ public class AdministratorMenu {
                     // inventoryService.approveReplenishRequest(replenishRequests.get(Integer.parseInt(scanner.nextLine())-1));
                     break;
                 case 5:
+                    administrator.changePassword();
+                    break;
+                case 6:
                     administrator.logout();
                     break;
+
                 default:
                     break;
             }
-        }while (choice != 5);
+        }while (choice != 6);
     }
   
     private static void displayInventory() { // this moved to somewhere else
@@ -119,13 +124,13 @@ public class AdministratorMenu {
         Scanner scanner = new Scanner(System.in);
         int c = 0;
         do {  // inconsistent print method what is the preference
-            System.out.println("Would you like to: \n" + //
-            "1 Display All Staff by Role \n" + //
-            "2 Display All Staff by ID \n" + //
-            "3 Display Doctors \n" + //
-            "4 Display Pharmacists \n" + //
-            "5 Manage Staff \n" + //
-            "6 Return to Menu");
+            System.out.println("Would you like to: \n" + 
+                                "1 Display All Staff by Role \n" + 
+                                "2 Display All Staff by ID \n" + 
+                                "3 Display Doctors \n" + 
+                                "4 Display Pharmacists \n" + 
+                                "5 Manage Staff \n" + 
+                                "6 Return to Menu");
             c = scanner.nextInt();
             switch (c){
                 case 1:
@@ -303,8 +308,12 @@ public class AdministratorMenu {
             int d;
             String name;
             do { 
-                System.out.println("What detail would you like to update: \n1 Name: " + u.getName() + "\n2 Role: " + u.getRole() + 
-                                    "\n3 Gender: " + u.getGender() + "\n4 Age: " + u.getAge() + "\n5 Finish Updating");
+                System.out.println("What detail would you like to update: \n" + 
+                                    "1 Name: " + u.getName() + "\n" +
+                                    "2 Role: " + u.getRole() + "\n" + 
+                                    "3 Gender: " + u.getGender() + "\n" + 
+                                    "4 Age: " + u.getAge() + "\n" +
+                                    "5 Finish Updating");
                 c = scanner.nextInt();
                 scanner.nextLine();
                 switch (c){

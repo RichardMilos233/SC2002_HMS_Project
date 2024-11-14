@@ -36,11 +36,11 @@ public class User {
 	public void logout() {}	//do nothing, jump out of the while-switch loop
 
 	public void changePassword() {
-		String newPassword = "";
+		String newPassword = this.password;
 		System.out.print("Enter new password: ");
 		newPassword = scanner.nextLine();
 		this.password = newPassword;
-		throw new UnsupportedOperationException();
+		CSVService.changePassword(hospitalID, newPassword);
 	}
 
 	public String toCSV() {

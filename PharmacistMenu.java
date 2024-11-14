@@ -6,12 +6,13 @@ public class PharmacistMenu {
         Inventory inventoryService = new Inventory();
         int choice = 0;
         do{
-            System.out.println("Pharmacist Menu: \n" + //
-                                "1 View Appointment Outcome Record \n" + //
-                                "2 Update Prescription Status \n" + //
-                                "3 View Medication Inventory \n" + //
-                                "4 Submit Replenishment Request \n" + //
-                                "5 Logout");
+            System.out.println("Pharmacist Menu: \n" + 
+                                "1 View Appointment Outcome Record \n" + 
+                                "2 Update Prescription Status \n" + 
+                                "3 View Medication Inventory \n" + 
+                                "4 Submit Replenishment Request \n" + 
+                                "5 Change Password \n" + 
+                                "6 Logout");
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -36,12 +37,16 @@ public class PharmacistMenu {
                     //submit to inventory -> calls medication
                     break;
                 case 5:
+                    pharmacist.changePassword();
+                    break;
+                case 6:
                     pharmacist.logout();
                     break;
+                    
                 default:
                     break;
             }
-        }while(choice != 5);
+        }while(choice != 6);
     }
     public static void viewAppointmentOutcomeRecord() {
 		// TODO - implement Pharmacist.viewAppointmentOutcomeRecord
