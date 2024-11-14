@@ -41,6 +41,23 @@ public class User {
 		newPassword = scanner.nextLine();
 		this.password = newPassword;
 		CSVService.changePassword(hospitalID, newPassword);
+		switch (role) {
+			case "patient":
+				CSVService.replacePatient((Patient)this);
+				break;
+			case "doctor":
+				CSVService.replaceDoctor((Doctor)this);
+				break;
+			case "administrator":
+				CSVService.replaceAdmin((Administrator)this);
+				break;
+			case "pharmacist":
+				CSVService.replacePharmacist((Pharmacist)this);
+				break;
+
+			default:
+				break;
+		}
 	}
 
 	public String toCSV() {
