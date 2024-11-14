@@ -46,7 +46,7 @@ public class User {
 				CSVService.replacePatient((Patient)this);
 				break;
 			case "doctor":
-				CSVService.replaceDoctor((Doctor)this);
+				CSVService.replaceDoctor((Doctor)this);	// complete all 3 utils in CSVService, implementation is highly similar to the patient one
 				break;
 			case "administrator":
 				CSVService.replaceAdmin((Administrator)this);
