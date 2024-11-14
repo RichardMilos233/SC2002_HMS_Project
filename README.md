@@ -1,1 +1,19 @@
-[oop_README.docx](https://github.com/user-attachments/files/17743819/oop_README.docx)
+# Project Title
+
+## Description
+Project description goes here.
+
+## Installation
+Instructions for installing the project.
+
+## Usage
+Examples of how to use the project.
+
+## Contributing
+Information on contributing guidelines.
+
+## License
+Details about the license.
+
+## Credits
+Acknowledgments and credits.
