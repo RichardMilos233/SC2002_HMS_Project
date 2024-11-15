@@ -9,7 +9,7 @@ public class Validator {
                 break; 
                 // Input is valid, exit the loop 
             } else { 
-                System.out.println("Please enter a number: "); 
+                System.out.println("Invalid. Please enter a number: "); 
                 scanner.next();  
                 // Clear the invalid input 
             }

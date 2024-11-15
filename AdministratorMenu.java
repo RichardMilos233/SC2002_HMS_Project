@@ -131,7 +131,7 @@ public class AdministratorMenu {
                                 "4 Display Pharmacists \n" + 
                                 "5 Manage Staff \n" + 
                                 "6 Return to Menu");
-            c = scanner.nextInt();
+            c = Validator.validateInt(scanner);
             switch (c){
                 case 1:
                     StaffService.displayStaffList(1);
@@ -165,13 +165,13 @@ public class AdministratorMenu {
 
     public static void manageStaff() {
         Scanner scanner = new Scanner(System.in);
-        int c = 0;
+        int c;
         do { System.out.println("Would you like to: \n" + //
                                 "1 Add Staff \n" + //
                                 "2 Update Staff \n" + //
                                 "3 Remove Staff \n" + //
                                 "4 Return to Menu");
-            c = scanner.nextInt();
+            c = Validator.validateInt(scanner);
             switch (c){
                 case 1:
                     // name, role, id automatically allocated i think, gender, age, salary?
@@ -222,18 +222,17 @@ public class AdministratorMenu {
 
         do { // ROLE
             System.out.println("\nStaff's Role: \n1 Doctor\n2 Pharmacist");
-            role = scanner.nextInt();
+            role = Validator.validateInt(scanner);
         } while (role >2 || role<1);
         
         do { // GENDER
             System.out.println("\nStaff's Gender: \n1 Male\n2 Female");
-            gender = scanner.nextInt();
+            gender = Validator.validateInt(scanner);
         } while (gender >2 || gender<1);
         
         do { // Age
             System.out.println("\nStaff's Age: ");
-            age = scanner.nextInt();
-            scanner.nextLine();
+            age =  Validator.validateInt(scanner);
         } while (age <18 || age>100);
 
        
@@ -249,10 +248,9 @@ public class AdministratorMenu {
             } else {
                 System.out.println("\nNew Doctor: \nName: " + name + "\nGender: Female\nAge: " + age);
             }
-            c = 0;
             do { 
                 System.out.println("\nConfirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
-                c = scanner.nextInt();
+                c =  Validator.validateInt(scanner);
                 switch (c){
                     case 1:
                         StaffService.addStaff(name, role, gender, age, defaultPass);
@@ -275,7 +273,7 @@ public class AdministratorMenu {
             c = 0;
             do { 
                 System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
-                c = scanner.nextInt();
+                c =  Validator.validateInt(scanner);
                 switch (c){
                     case 1:
                         StaffService.addStaff(name, role, gender, age, defaultPass);
@@ -304,7 +302,7 @@ public class AdministratorMenu {
         } while (StaffService.findStaffDetails(ID) == null);
 
         User u = StaffService.findStaffDetails(ID);
-            int c = 0;
+            int c;
             int d;
             String name;
             do { 
@@ -314,8 +312,7 @@ public class AdministratorMenu {
                                     "3 Gender: " + u.getGender() + "\n" + 
                                     "4 Age: " + u.getAge() + "\n" +
                                     "5 Finish Updating");
-                c = scanner.nextInt();
-                scanner.nextLine();
+                c =  Validator.validateInt(scanner);
                 switch (c){
                     case 1:
                         // update name
@@ -331,7 +328,7 @@ public class AdministratorMenu {
                         String role;
                         do { 
                             System.out.println("Select the new Role: \n1 Doctor \n2 Pharmacist");
-                            d = scanner.nextInt();
+                            d =  Validator.validateInt(scanner);
                         } while (d>2 || (d==1 && u.getRole().matches("doctor")) || (d==2 && u.getRole().matches("pharmacist")));
                         if (d == 1){
                             role = "doctor";
@@ -356,7 +353,7 @@ public class AdministratorMenu {
                         int age;
                         do { 
                             System.out.println("Type the new age: ");
-                            age = scanner.nextInt();
+                            age =  Validator.validateInt(scanner);
                         } while (age<18 || age==u.getAge());
                         StaffService.updateStaff(u, "", "", "", age);
                         break;
@@ -378,11 +375,11 @@ public class AdministratorMenu {
         System.out.println("Enter the ID of the Staff member you want to remove");
         ID = scanner.next();
         User u = StaffService.findStaffDetails(ID);
-        int c = 0;
+        int c;
         do { 
             System.out.println("Are you sure you want to remove " + u.getRole().substring(0, 1).toUpperCase() 
                                 + u.getRole().substring(1) +" " + u.getName() + "\n1 Yes \n2 No");
-            c = scanner.nextInt();
+            c =  Validator.validateInt(scanner);
             switch (c){
                 case 1:
                     StaffService.removeStaff(u);
