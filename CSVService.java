@@ -324,11 +324,9 @@ public class CSVService {
         List<List<String>> credentials = new ArrayList<>();
         credentials.add(List.of("hospitalId", "password"));
 
-        // Reading from a CSV file
         List<List<String>> data = CSVService.readCsv(patientPath);
         for (List<String> row : data.subList(1, data.size())) {
             credentials.add(List.of(row.get(0), "defaultPatientPassword"));
-            // System.out.println(credentials);
         }
 
         data = CSVService.readCsv(staffPath);
@@ -336,18 +334,7 @@ public class CSVService {
             credentials.add(List.of(row.get(0), "defaultStaffPassword"));
         }
 
-        // Writing to a CSV file
+        // Writing to credentials.csv
         CSVService.writeCsv(credentialPath, credentials);
-
-        // List<List<String>> data = new ArrayList<>();
-        // data.add(List.of("Staff ID", "Name", "Role", "Gender", "Age"));
-        // data.add(List.of("D001", "John Smith", "Doctor", "Male", "45"));
-        // data.add(List.of("D002", "Emily Clarke", "Doctor",	"Female", "38"));
-        // data.add(List.of("P001",	"Mark Lee",	"Pharmacist",	"Male",	"29"));
-        // data.add(List.of("A001",	"Sarah Lee",	"Administrator",	"Female",	"40"));
-
-        // ExcelService.writeCsv(staffPath, data);
-
-        
     }
 }
