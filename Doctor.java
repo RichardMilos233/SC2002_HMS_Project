@@ -26,7 +26,7 @@ public class Doctor extends User {	//ignore the Staff class first
 		}
 	}
 	public static List<Doctor> doctors = new ArrayList<>();
-	private ArrayList<PatientCount> patientCounts = new ArrayList<>();
+	private ArrayList<PatientCount> patientCounts = new ArrayList<>();	// containing patients who have one or multiple appointments of status "closed", "confirmed", "pending"
 	private List<Appointment> timeTable = new ArrayList<>();
 
 
@@ -89,16 +89,51 @@ public class Doctor extends User {	//ignore the Staff class first
 		}
 	}
 
+	public List<PatientCount> getPatientCounts(){
+		List<Appointment> timeTable = new ArrayList<>();
+		Appointment apt;
+		String status;
+		int i;
+		Patient patient;
+		boolean exist;
+		if (patientCounts.size() == 0){
+			timeTable = getTimeTable();
+			if (timeTable.size() == 0){
+				return patientCounts;
+			}
+			for (i = 0; i < timeTable.size(); i++){
+				apt = timeTable.get(i);
+				status = apt.getStatus();
+				if (status.equals("closed") || status.equals("confirmed") || status.equals("pending")){
+					patient = Patient.getByID(apt.getPatientID());
+					exist = false;
+					for (PatientCount patientCount : patientCounts){	// addPatient in essence, but directly calling it will cause cyclic dependency issue
+						if (patientCount.getPatient().equals(patient)){
+							patientCount.addNumOfAppointment();
+							exist = true;
+							break;
+						}
+					}
+					if (!exist){
+						patientCounts.add(new PatientCount(patient));
+					}
+				}
+			}
+			System.out.println("patientCounts initialzed");
+		}
+		return patientCounts;
+	}
+
 	public List<Patient> getPatients(){
 		List<Patient> patients = new ArrayList<>();
-		for (PatientCount patientCount : patientCounts){
+		for (PatientCount patientCount : getPatientCounts()){
 			patients.add(patientCount.getPatient());
 		}
 		return patients;
 	}
 
 	public void addPatient(Patient patient){
-		for (PatientCount patientCount : patientCounts){
+		for (PatientCount patientCount : getPatientCounts()){
 			if (patientCount.getPatient().equals(patient)){
 				patientCount.addNumOfAppointment();
 				return;
@@ -109,7 +144,7 @@ public class Doctor extends User {	//ignore the Staff class first
 	}
 
 	public void removePatient(Patient patient){
-		for (PatientCount patientCount : patientCounts){
+		for (PatientCount patientCount : getPatientCounts()){
 			if (patientCount.getPatient().equals(patient)){
 				patientCount.minusNumOfAppointment();
 				if (patientCount.isEmpty()){

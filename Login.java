@@ -10,10 +10,7 @@ public class Login {    //can have a Signup.java later
             System.out.println("successfully logged in");
             return user;
         }
-        else{
-            System.out.println("the account does not exist");
-            return null;
-        }
+        return null;
     }
     
     public static boolean checkCredentials (List<String> credentials){

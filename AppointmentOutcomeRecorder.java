@@ -10,6 +10,8 @@ public class AppointmentOutcomeRecorder {
 			return;
 		}
 		Appointment appointment = upcomingAppointment.get(0);
+
+		appointment.displayAppointment();
         
         String type;
         System.out.println("Enter type: ");
