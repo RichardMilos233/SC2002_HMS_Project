@@ -4,7 +4,7 @@ public class AdministratorMenu {
     
     public static void displayAdminMenu(Administrator administrator){
         Scanner scanner = new Scanner(System.in);
-        int choice = 0;
+        int choice;
         do{
             System.out.println("Administrator Menu: \n" + 
                                 "1 View and Manage Hospital Staff \n" + 
@@ -13,7 +13,7 @@ public class AdministratorMenu {
                                 "4 View Replenishment Requests \n" + 
                                 "5 Change Password \n" + 
                                 "6 Logout");
-            choice = Integer.parseInt(scanner.nextLine());
+            choice = Validator.validateInt(scanner);
 
             switch (choice) {
                 case 1:
@@ -58,7 +58,7 @@ public class AdministratorMenu {
                     break;
 
                 default:
-                    break;
+                    System.out.println("Invalid input."); 
             }
         }while (choice != 6);
     }
