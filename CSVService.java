@@ -217,6 +217,90 @@ public class CSVService {
         writePatientsToCSV(patients);
     }
 
+    public static void replaceDoctor(Doctor doctor){
+        int index = findDoctor(doctor.getHospitalID());
+        writeDoctor(doctor, index);
+    }
+
+    public static int findDoctor(String doctorID){
+        int i;
+        List<Doctor> doctors = readDoctorsFromCSV();
+        for (i = 0; i < doctors.size(); i++){
+            if (doctors.get(i).getHospitalID().equals(doctorID)){
+                return i;
+            }
+        }
+        System.out.println("doctor not found");
+        return -1;
+    }
+
+    public static void writeDoctor(Doctor doctor, int index){
+        List<Doctor> doctors = readDoctorsFromCSV();
+        int size = doctors.size();
+        if (index < 0 || index >= size){
+            System.out.println("index out of range");
+            return;
+        }
+        doctors.set(index, doctor);
+        writeDoctorsToCSV(doctors);
+    }
+
+    public static void replaceAdmin(Administrator admin){
+        int index = findAdmin(admin.getHospitalID());
+        writeAdmin(admin, index);
+    }
+
+    public static int findAdmin(String adminID){
+        int i;
+        List<Administrator> admins = readAdminsFromCSV();
+        for (i = 0; i < admins.size(); i++){
+            if (admins.get(i).getHospitalID().equals(adminID)){
+                return i;
+            }
+        }
+        System.out.println("admin not found");
+        return -1;
+    }
+
+    public static void writeAdmin(Administrator admin, int index){
+        List<Administrator> admins = readAdminsFromCSV();
+        int size = admins.size();
+        if (index < 0 || index >= size){
+            System.out.println("index out of range");
+            return;
+        }
+        admins.set(index, admin);
+        writeAdminsToCSV(admins);
+    }
+
+    public static void replacePharmacist(Pharmacist pharmacist){
+        int index = findPharmacist(pharmacist.getHospitalID());
+        writePharmacist(pharmacist, index);
+    }
+
+    public static int findPharmacist(String pharmacistID){
+        int i;
+        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
+        for (i = 0; i < pharmacists.size(); i++){
+            if (pharmacists.get(i).getHospitalID().equals(pharmacistID)){
+                return i;
+            }
+        }
+        System.out.println("pharmacist not found");
+        return -1;
+    }
+
+    public static void writePharmacist(Pharmacist pharmacist, int index){
+        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
+        int size = pharmacists.size();
+        if (index < 0 || index >= size){
+            System.out.println("index out of range");
+            return;
+        }
+        pharmacists.set(index, pharmacist);
+        writePharmacistsToCSV(pharmacists);
+    }
+
     public static void changePassword(String hospitalID, String newPassword){
         List<List<String>> credentials = CSVService.readCsv(CREDENTIAL_CSV_PATH);
         for (int i = 1; i < credentials.size(); i++) {
