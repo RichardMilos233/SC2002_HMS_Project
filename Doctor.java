@@ -46,11 +46,10 @@ public class Doctor extends User {	//ignore the Staff class first
     public static Doctor fromCSV(String data) {	// create a new doc then return
 		String[] fields = data.split(",");
         String hospitalID = fields[0];
-        // String password = fields[1];
-        String name = fields[2];
-        String gender = fields[3];
-        int age = Integer.parseInt(fields[4]);
-        String role = fields[5];
+        String name = fields[1];
+        String gender = fields[2];
+        int age = Integer.parseInt(fields[3]);
+        String role = fields[4];
         Doctor doctor = new Doctor(hospitalID, name, gender, age);
         return doctor;
     }

@@ -9,6 +9,8 @@ public class CSVService {
     private static final String ADMIN_CSV_PATH = "./csv/administrators.csv";
     private static final String PHARMACIST_CSV_PATH = "./csv/pharmacists.csv";
     private static final String CREDENTIAL_CSV_PATH = "./csv/credentials.csv";
+    
+    private static final String ROLE_HEADER = "hospitalID,name,gender,age,role\n";
 
     // Method to read data from a CSV file
     public static List<List<String>> readCsv(String filePath) {
@@ -64,7 +66,7 @@ public class CSVService {
     // Write a list of doctors to CSV
     public static void writeDoctorsToCSV(List<Doctor> doctors) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DOCTOR_CSV_PATH))) {
-            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            writer.write(ROLE_HEADER); // Header line
             for (Doctor doctor : doctors) {
                 writer.write(doctor.toCSV() + "\n");
             }
@@ -93,7 +95,7 @@ public class CSVService {
     public static void writePatientsToCSV(List<Patient> patients) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENT_CSV_PATH))) {
             // Write the header line
-            writer.write("hospitalID,password,name,gender,age,role,birth,bloodType,email,contactNumber\n");
+            writer.write(ROLE_HEADER);
             for (Patient patient : patients) {
                 writer.write(patient.toCSV() + "\n");
             }
@@ -121,7 +123,7 @@ public class CSVService {
     // Write a list of admins to CSV
     public static void writeAdminsToCSV(List<Administrator> admins) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ADMIN_CSV_PATH))) {
-            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            writer.write(ROLE_HEADER); // Header line
             for (Administrator admin : admins) {
                 writer.write(admin.toCSV() + "\n");
             }
@@ -149,7 +151,7 @@ public class CSVService {
     // Write a list of pharmacists to CSV
     public static void writePharmacistsToCSV(List<Pharmacist> pharmacists) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PHARMACIST_CSV_PATH))) {
-            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            writer.write(ROLE_HEADER); // Header line
             for (Pharmacist pharmacist : pharmacists) {
                 writer.write(pharmacist.toCSV() + "\n");
             }

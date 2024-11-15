@@ -11,11 +11,10 @@ public class Administrator extends User { //ignore Staff first
 	public static Administrator fromCSV(String data) {	// create a new admin then return
 		String[] fields = data.split(",");
         String hospitalID = fields[0];
-        // String password = fields[1];
-        String name = fields[2];
-        String gender = fields[3];
-        int age = Integer.parseInt(fields[4]);
-        String role = fields[5];
+        String name = fields[1];
+        String gender = fields[2];
+        int age = Integer.parseInt(fields[3]);
+        String role = fields[4];
         Administrator admin = new Administrator(hospitalID, name, gender, age);
         return admin;
     }

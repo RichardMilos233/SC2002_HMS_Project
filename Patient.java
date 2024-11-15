@@ -65,10 +65,10 @@ public class Patient extends User {
 	public static Patient fromCSV(String data){
 		String[] fields = data.split(",");
 		User user = User.fromCSV(data);
-		LocalDate birth = LocalDate.parse(fields[6]);
-		String bloodType = fields[7];
-		String email = fields[8];
-		int contactNumber = Integer.parseInt(fields[9]);
+		LocalDate birth = LocalDate.parse(fields[5]);
+		String bloodType = fields[6];
+		String email = fields[7];
+		int contactNumber = Integer.parseInt(fields[8]);
 		Patient patient = new Patient(user.hospitalID,
 										user.name, 
 										user.gender, 
