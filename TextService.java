@@ -104,8 +104,8 @@ public class TextService {
         AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2023, 5, 8), 
                                                 "consultation", p2, "sleep more");
 
-        Doctor doctor = new Doctor("D001", "defaultStaffPassword", "John Smith", "Male", 45);
-        Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
+        Doctor doctor = new Doctor("D001", "John Smith", "Male", 45);
+        Patient patient = new Patient("P1001", "Alice Brown", "Female", 24, 
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
         String status = "cancelled";
 

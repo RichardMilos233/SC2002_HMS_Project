@@ -66,7 +66,7 @@ public class Login {    //can have a Signup.java later
                     String email = patientInfo.get(5);
                     String bloodType = patientInfo.get(4);
 
-                    Patient patient = new Patient(hospitalId, password, name, gender, age, birth, contactNumber, email, bloodType);
+                    Patient patient = new Patient(hospitalId, name, gender, age, birth, contactNumber, email, bloodType);
                     return patient;
                 }
             }
@@ -84,14 +84,14 @@ public class Login {    //can have a Signup.java later
 
                     switch (hospitalId.charAt(0)) {
                         case 'D':
-                            Doctor doctor = new Doctor(hospitalId, password, name, gender, age);
+                            Doctor doctor = new Doctor(hospitalId, name, gender, age);
                             return doctor;
                             // break;
                         case 'P':
-                            Pharmacist pharmacist = new Pharmacist(hospitalId, password, name, gender, age);
+                            Pharmacist pharmacist = new Pharmacist(hospitalId, name, gender, age);
                             return pharmacist;
                         case 'A':
-                            Administrator administrator = new Administrator(hospitalId, password, name, gender, age);
+                            Administrator administrator = new Administrator(hospitalId, name, gender, age);
                             return administrator;
                     
                         default:
