@@ -9,7 +9,7 @@ public class CSVService {
     private static final String ADMIN_CSV_PATH = "./csv/administrators.csv";
     private static final String PHARMACIST_CSV_PATH = "./csv/pharmacists.csv";
     private static final String CREDENTIAL_CSV_PATH = "./csv/credentials.csv";
-    
+
     private static final String ROLE_HEADER = "hospitalID,name,gender,age,role\n";
 
     // Method to read data from a CSV file
@@ -308,6 +308,7 @@ public class CSVService {
         for (int i = 1; i < credentials.size(); i++) {
             if (hospitalID.equals(credentials.get(i).get(0))) { //hospitalId match
                 credentials.get(i).set(1, newPassword);
+                writeCsv(CREDENTIAL_CSV_PATH, credentials);
                 System.out.println("password sucessfully reset");
                 return;
             }
