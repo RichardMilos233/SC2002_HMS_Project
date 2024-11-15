@@ -15,7 +15,7 @@ public class Main {
             System.out.println("Select your option:");
             System.out.println("1 Sign in");
             System.out.println("2 Quit");
-            choice = scanner.nextInt();
+            choice =  Validator.validateInt(scanner);
 
             switch (choice) {
                 case 1:
@@ -25,7 +25,6 @@ public class Main {
                         System.out.println("incorrect hospital id or password");
                         break;
                     }
-                    
                     role = user.getRole();
                     switch (role) {
                         case "patient":

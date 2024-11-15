@@ -106,17 +106,17 @@ public class StaffService {
         }
     }
     
-    public static void addStaff(String name, int r, int g, int age, String defaultPass){
+    public static void addStaff(String name, char roleChar, char genderChar, int age, String defaultPass){
         String gender;
         String staffID;
-        staffID = createID(r);
-        if (g == 1){
+        staffID = createID(roleChar);
+        if (genderChar == 'M'){
             gender = "Male";
         } else{
             gender = "Female";
         }
 
-        if (r == 1){
+        if (roleChar == 'D'){
             Doctor doctor = new Doctor(staffID, defaultPass, name, gender, age);
             System.out.println("Doctor with ID " + staffID + " created with password " + defaultPass);
         } else{
@@ -157,12 +157,12 @@ public class StaffService {
         u = null;
     }
 
-    public static String createID(int r){
+    public static String createID(char r){
         char[] charID;
         String staffID;
         int intID = 0;
         int previous = 0;
-        if (r == 1){ // doctor  D001
+        if (r == 'D'){ // doctor  D001
             Collections.sort(Doctor.doctors, Comparator.comparing(Doctor::getHospitalID));
             for (int i = 0; i<Doctor.doctors.size(); i++){
                 charID = Doctor.doctors.get(i).hospitalID.substring(1).toCharArray();
