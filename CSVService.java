@@ -316,6 +316,37 @@ public class CSVService {
         System.out.println("unable to reset password");
     }
 
+    public static void addPatient(Patient patient){
+        List<Patient> patients = readPatientsFromCSV();
+        patients.add(patient);
+        writePatientsToCSV(patients);
+    }
+
+    public static void addDoctor(Doctor doctor){
+        List<Doctor> doctors = readDoctorsFromCSV();
+        doctors.add(doctor);
+        writeDoctorsToCSV(doctors);
+    }
+
+    public static void addAdmin(Administrator admin){
+        List<Administrator> admins = readAdminsFromCSV();
+        admins.add(admin);
+        writeAdminsToCSV(admins);
+    }
+
+    public static void addPharmacist(Pharmacist pharmacist){
+        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
+        pharmacists.add(pharmacist);
+        writePharmacistsToCSV(pharmacists);
+    }
+
+    public static void addCredential(String id, String password){
+        //  add the credential of a role being created
+        List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
+        credentials.add(List.of(id, password));
+        writeCsv(CREDENTIAL_CSV_PATH, credentials);
+    }
+
     public static void main(String[] args) {
         String patientPath = "csv/Patient_List.csv";
         String staffPath = "csv/Staff_List.csv";
