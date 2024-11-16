@@ -2,7 +2,7 @@ import java.time.*;
 import java.util.*;
 
 public class Signup {
-    public static void signup(){
+    public static Patient signup(){
         //  for a patient who's new to the hospital to sign up
         Scanner scanner = new Scanner(System.in);
         String patientID;   // how do we make sure that this is unique
@@ -60,5 +60,7 @@ public class Signup {
         Patient patient = new Patient(patientID, name, gender, age, birth, contactNumber, email, bloodType);
         CSVService.addPatient(patient);
         CSVService.addCredential(patientID, password);
+
+        return patient;
     }
 }
