@@ -362,11 +362,11 @@ public class CSVService {
     }
 
 
-    public static void changePassword(String hospitalID, String newPassword){
+    public static void changePassword(String hospitalID, int newHash){
         List<List<String>> credentials = CSVService.readCsv(CREDENTIAL_CSV_PATH);
         for (int i = 1; i < credentials.size(); i++) {
             if (hospitalID.equals(credentials.get(i).get(0))) { //hospitalId match
-                credentials.get(i).set(1, newPassword);
+                credentials.get(i).set(1, Integer.toString(newHash));
                 writeCsv(CREDENTIAL_CSV_PATH, credentials);
                 System.out.println("password sucessfully reset");
                 return;
@@ -399,32 +399,32 @@ public class CSVService {
         writePharmacistsToCSV(pharmacists);
     }
 
-    public static void addCredential(String id, String password){
+    public static void addCredential(String id, int hashValue){
         //  add the credential of a role being created
         List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
-        credentials.add(List.of(id, password));
+        credentials.add(List.of(id, Integer.toString(hashValue)));
         writeCsv(CREDENTIAL_CSV_PATH, credentials);
     }
 
     public static void main(String[] args) {
-        String patientPath = "csv/Patient_List.csv";
-        String staffPath = "csv/Staff_List.csv";
-        String credentialPath = "csv/credentials.csv";
+        // String patientPath = "csv/Patient_List.csv";
+        // String staffPath = "csv/Staff_List.csv";
+        // String credentialPath = "csv/credentials.csv";
 
-        List<List<String>> credentials = new ArrayList<>();
-        credentials.add(List.of("hospitalId", "password"));
+        // List<List<String>> credentials = new ArrayList<>();
+        // credentials.add(List.of("hospitalId", "password"));
 
-        List<List<String>> data = CSVService.readCsv(patientPath);
-        for (List<String> row : data.subList(1, data.size())) {
-            credentials.add(List.of(row.get(0), "defaultPatientPassword"));
-        }
+        // List<List<String>> data = CSVService.readCsv(patientPath);
+        // for (List<String> row : data.subList(1, data.size())) {
+        //     credentials.add(List.of(row.get(0), "defaultPatientPassword"));
+        // }
 
-        data = CSVService.readCsv(staffPath);
-        for (List<String> row : data.subList(1, data.size())){
-            credentials.add(List.of(row.get(0), "defaultStaffPassword"));
-        }
+        // data = CSVService.readCsv(staffPath);
+        // for (List<String> row : data.subList(1, data.size())){
+        //     credentials.add(List.of(row.get(0), "defaultStaffPassword"));
+        // }
 
-        // Writing to credentials.csv
-        CSVService.writeCsv(credentialPath, credentials);
+        // // Writing to credentials.csv
+        // CSVService.writeCsv(credentialPath, credentials);
     }
 }

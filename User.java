@@ -37,10 +37,11 @@ public class User {
 
 	public void changePassword() {
 		String newPassword = "defaultPassword";
-		System.out.print("Enter new password: ");
+		System.out.print("Enter new password:");
 		newPassword = scanner.nextLine();
 		// this.password = newPassword;
-		CSVService.changePassword(hospitalID, newPassword);
+		int newHash = Hasher.hash(newPassword);
+		CSVService.changePassword(hospitalID, newHash);
 		// switch (role) {
 		// 	case "patient":
 		// 		CSVService.replacePatient((Patient)this);
