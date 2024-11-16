@@ -9,4 +9,13 @@ public class Hasher {
         }
         return hashValue;
     }
+
+    public static void main(String[] args){
+        String patientPass = "defaultPatientPassword";
+        String staffPass = "defaultStaffPassword";
+        int hashedPatient = hash(patientPass);  //645759
+        int hashedStaff = hash(staffPass);  //229186
+        System.out.println(hashedPatient);
+        System.out.println(hashedStaff);
+    }
 }
