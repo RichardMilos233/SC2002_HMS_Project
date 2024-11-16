@@ -8,6 +8,8 @@ public class CSVService {
     private static final String PHARMACIST_CSV_PATH = "./csv/pharmacists.csv";
     private static final String CREDENTIAL_CSV_PATH = "./csv/credentials.csv";
 
+    private static final String ROLE_HEADER = "hospitalID,name,gender,age,role\n";
+
     // Method to read data from a CSV file
     public static List<List<String>> readCsv(String filePath) {
         List<List<String>> data = new ArrayList<>();
@@ -75,7 +77,7 @@ public class CSVService {
     // Write a list of doctors to CSV
     public static void writeDoctorsToCSV(List<Doctor> doctors) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DOCTOR_CSV_PATH))) {
-            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            writer.write(ROLE_HEADER); // Header line
             for (Doctor doctor : doctors) {
                 writer.write(doctor.toCSV() + "\n");
             }
@@ -104,7 +106,7 @@ public class CSVService {
     public static void writePatientsToCSV(List<Patient> patients) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENT_CSV_PATH))) {
             // Write the header line
-            writer.write("hospitalID,password,name,gender,age,role,birth,bloodType,email,contactNumber\n");
+            writer.write(ROLE_HEADER);
             for (Patient patient : patients) {
                 writer.write(patient.toCSV() + "\n");
             }
@@ -132,7 +134,7 @@ public class CSVService {
     // Write a list of admins to CSV
     public static void writeAdminsToCSV(List<Administrator> admins) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ADMIN_CSV_PATH))) {
-            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            writer.write(ROLE_HEADER); // Header line
             for (Administrator admin : admins) {
                 writer.write(admin.toCSV() + "\n");
             }
@@ -160,7 +162,7 @@ public class CSVService {
     // Write a list of pharmacists to CSV
     public static void writePharmacistsToCSV(List<Pharmacist> pharmacists) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PHARMACIST_CSV_PATH))) {
-            writer.write("hospitalID,password,name,gender,age,role\n"); // Header line
+            writer.write(ROLE_HEADER); // Header line
             for (Pharmacist pharmacist : pharmacists) {
                 writer.write(pharmacist.toCSV() + "\n");
             }
@@ -365,11 +367,43 @@ public class CSVService {
         for (int i = 1; i < credentials.size(); i++) {
             if (hospitalID.equals(credentials.get(i).get(0))) { //hospitalId match
                 credentials.get(i).set(1, newPassword);
+                writeCsv(CREDENTIAL_CSV_PATH, credentials);
                 System.out.println("password sucessfully reset");
                 return;
             }
         }
         System.out.println("unable to reset password");
+    }
+
+    public static void addPatient(Patient patient){
+        List<Patient> patients = readPatientsFromCSV();
+        patients.add(patient);
+        writePatientsToCSV(patients);
+    }
+
+    public static void addDoctor(Doctor doctor){
+        List<Doctor> doctors = readDoctorsFromCSV();
+        doctors.add(doctor);
+        writeDoctorsToCSV(doctors);
+    }
+
+    public static void addAdmin(Administrator admin){
+        List<Administrator> admins = readAdminsFromCSV();
+        admins.add(admin);
+        writeAdminsToCSV(admins);
+    }
+
+    public static void addPharmacist(Pharmacist pharmacist){
+        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
+        pharmacists.add(pharmacist);
+        writePharmacistsToCSV(pharmacists);
+    }
+
+    public static void addCredential(String id, String password){
+        //  add the credential of a role being created
+        List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
+        credentials.add(List.of(id, password));
+        writeCsv(CREDENTIAL_CSV_PATH, credentials);
     }
 
     public static void main(String[] args) {
@@ -380,11 +414,9 @@ public class CSVService {
         List<List<String>> credentials = new ArrayList<>();
         credentials.add(List.of("hospitalId", "password"));
 
-        // Reading from a CSV file
         List<List<String>> data = CSVService.readCsv(patientPath);
         for (List<String> row : data.subList(1, data.size())) {
             credentials.add(List.of(row.get(0), "defaultPatientPassword"));
-            // System.out.println(credentials);
         }
 
         data = CSVService.readCsv(staffPath);
@@ -392,18 +424,7 @@ public class CSVService {
             credentials.add(List.of(row.get(0), "defaultStaffPassword"));
         }
 
-        // Writing to a CSV file
+        // Writing to credentials.csv
         CSVService.writeCsv(credentialPath, credentials);
-
-        // List<List<String>> data = new ArrayList<>();
-        // data.add(List.of("Staff ID", "Name", "Role", "Gender", "Age"));
-        // data.add(List.of("D001", "John Smith", "Doctor", "Male", "45"));
-        // data.add(List.of("D002", "Emily Clarke", "Doctor",	"Female", "38"));
-        // data.add(List.of("P001",	"Mark Lee",	"Pharmacist",	"Male",	"29"));
-        // data.add(List.of("A001",	"Sarah Lee",	"Administrator",	"Female",	"40"));
-
-        // ExcelService.writeCsv(staffPath, data);
-
-        
     }
 }

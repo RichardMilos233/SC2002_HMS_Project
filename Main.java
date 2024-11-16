@@ -14,7 +14,8 @@ public class Main {
             System.out.println("----------Home Page----------");
             System.out.println("Select your option:");
             System.out.println("1 Sign in");
-            System.out.println("2 Quit");
+            System.out.println("2 Sign up (for new patients)");
+            System.out.println("3 Quit");
             choice =  Validator.validateInt(scanner);
 
             switch (choice) {
@@ -45,12 +46,13 @@ public class Main {
                     }
                     break;
                 case 2:
+                    user = Signup.signup();
                     break;
 
                 default:
                     break;
             }
-        } while(choice != 2);
+        } while(choice != 3);
 
         System.out.println("Thank you for using our HMS");
     }
