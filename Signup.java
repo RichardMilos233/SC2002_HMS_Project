@@ -56,10 +56,11 @@ public class Signup {
         String password;
         System.out.println("Enter your password:");
         password = scanner.nextLine();
+        int hashValue = Hasher.hash(password);
         
         Patient patient = new Patient(patientID, name, gender, age, birth, contactNumber, email, bloodType);
         CSVService.addPatient(patient);
-        CSVService.addCredential(patientID, password);
+        CSVService.addCredential(patientID, hashValue);
 
         return patient;
     }
