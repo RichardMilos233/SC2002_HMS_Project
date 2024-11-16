@@ -12,8 +12,8 @@ public class Patient extends User {
 
 	Scanner scanner = new Scanner(System.in);
 
-	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
-		super(patientID, password, name, gender, age);
+	public Patient(String patientID, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
+		super(patientID, name, gender, age);
 		this.birth = birth;
 		this.contactNumber = contactNumber;
 		this.email = email;
@@ -65,12 +65,11 @@ public class Patient extends User {
 	public static Patient fromCSV(String data){
 		String[] fields = data.split(",");
 		User user = User.fromCSV(data);
-		LocalDate birth = LocalDate.parse(fields[6]);
-		String bloodType = fields[7];
-		String email = fields[8];
-		int contactNumber = Integer.parseInt(fields[9]);
-		Patient patient = new Patient(user.hospitalID, 
-										user.password, 
+		LocalDate birth = LocalDate.parse(fields[5]);
+		String bloodType = fields[6];
+		String email = fields[7];
+		int contactNumber = Integer.parseInt(fields[8]);
+		Patient patient = new Patient(user.hospitalID,
 										user.name, 
 										user.gender, 
 										user.age, 
