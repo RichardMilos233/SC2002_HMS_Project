@@ -120,13 +120,11 @@ public class StaffService {
         if (roleChar == 'D'){
             Doctor doctor = new Doctor(staffID, name, gender, age);
             CSVService.addDoctor(doctor);
-            Doctor.updateDoctors();
             //CSVService.writeDoctor(doctor, Character.getNumericValue(staffID.charAt(3)-1));
             System.out.println("Doctor with ID " + staffID + " created with password " + defaultPass);
         } else{
             Pharmacist pharmacist = new Pharmacist(staffID, name, gender, age);
             CSVService.addPharmacist(pharmacist);
-            Pharmacist.updatePharmacists();
             System.out.println("Pharmacist with ID " + staffID + " created with password " + defaultPass);
         } 
     }

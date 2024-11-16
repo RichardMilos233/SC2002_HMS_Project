@@ -384,6 +384,7 @@ public class CSVService {
         List<Doctor> doctors = readDoctorsFromCSV();
         doctors.add(doctor);
         writeDoctorsToCSV(doctors);
+        Doctor.updateDoctors();
     }
 
     public static void addAdmin(Administrator admin){
@@ -396,6 +397,7 @@ public class CSVService {
         List<Pharmacist> pharmacists = readPharmacistsFromCSV();
         pharmacists.add(pharmacist);
         writePharmacistsToCSV(pharmacists);
+        Pharmacist.updatePharmacists();
     }
 
     public static void addCredential(String id, int hashValue, String salt){
