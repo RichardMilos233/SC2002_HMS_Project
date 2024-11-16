@@ -6,9 +6,33 @@ public class PastDiagnoses {	// a list of appointmentOutcome
 	public PastDiagnoses() {}//nothing to initialize
 
 	public void displayPastDiagnoses() {
+		System.out.printf("\nCurrent Diagnoses: ");
 		for (AppointmentOutcome appointmentOutcome: appointmentOutcomes){
-			appointmentOutcome.displayAppointmentOutcome();
+			if (!appointmentOutcome.getResolved()){
+				appointmentOutcome.displayAppointmentDiagnosis();
+				System.out.printf(", ");
+			}
 		}
+		System.out.printf("\nPast Diagnoses: ");
+		for (AppointmentOutcome appointmentOutcome: appointmentOutcomes){
+			if (appointmentOutcome.getResolved()){
+				appointmentOutcome.displayAppointmentPastDiagnosis();
+				System.out.printf(", ");
+			}
+		}
+		System.out.printf("\nMedicines: ");
+		for (AppointmentOutcome appointmentOutcome: appointmentOutcomes){
+			if (!appointmentOutcome.getResolved()){
+				appointmentOutcome.displayAppointmentMedicine();
+				System.out.printf(", ");
+			}
+		}
+		System.out.printf("\nConsultation Notes: ");
+		for (AppointmentOutcome appointmentOutcome: appointmentOutcomes){
+			appointmentOutcome.displayAppointmentNotes();
+			System.out.printf(", ");
+		}
+		System.out.println();
 	}
 
 	public void updatePastDiagnoses(AppointmentOutcome appointmentOutcome) {

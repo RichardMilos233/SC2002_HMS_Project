@@ -40,7 +40,7 @@ public class User {
 		System.out.print("Enter new password:");
 		newPassword = scanner.nextLine();
 		// this.password = newPassword;
-		int newHash = Hasher.hash(newPassword);
+		int newHash = Hasher.hash(newPassword, CSVService.getSalt(getHospitalID()));
 		CSVService.changePassword(hospitalID, newHash);
 		// switch (role) {
 		// 	case "patient":

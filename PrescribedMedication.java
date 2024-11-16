@@ -18,6 +18,10 @@ public class PrescribedMedication {
 		System.out.println("Medication: " + medicationName);
 	}
 
+	public void displayMedication(){
+		System.out.printf(medicationName);
+	}
+
 	public String getPrescription() {
 		return (dosage + "x " + medicationName);
 	}

@@ -23,7 +23,7 @@ public class DoctorMedicalRecordViewer {
         while (true) {
             System.out.print("Enter an integer: ");
             try {
-                choice = scanner.nextInt();
+                choice = Validator.validateInt(scanner);
                 // If input is valid, break the loop
                 break;
             } catch (java.util.InputMismatchException e) {
@@ -38,6 +38,10 @@ public class DoctorMedicalRecordViewer {
         }
         patient = patients.get(choice-1);
         // then view
+        System.out.println("Name: " + patient.getName());
+        System.out.println("Gender: " + patient.getGender());
+        System.out.println("Blood Type: " + patient.getBloodType());
+        System.out.println("Age: " +patient.getAge());
         patient.getPastDiagnoses().displayPastDiagnoses();
     }
 }

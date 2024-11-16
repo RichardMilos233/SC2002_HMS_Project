@@ -65,8 +65,8 @@ public class Doctor extends User {	//ignore the Staff class first
 		return doctors;
 	}
 
-    public List<Appointment> getTimeTable(){
-		if (this.timeTable.size() == 0){
+	public List<Appointment> getTimeTable(){
+		if (this.timeTable.isEmpty()){
 			this.timeTable = TextService.getDoctorAppointment(this.hospitalID);
 		}
 		return this.timeTable;
@@ -121,7 +121,6 @@ public class Doctor extends User {	//ignore the Staff class first
 					}
 				}
 			}
-			System.out.println("patientCounts initialzed");
 		}
 		return patientCounts;
 	}

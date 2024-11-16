@@ -74,6 +74,19 @@ public class CSVService {
         }
     }
 
+    protected static String getSalt(String ID){
+        String salt;
+        List<List<String>> accountList = readCsv(CREDENTIAL_CSV_PATH);
+        for (int i = 0; i < accountList.size(); i++){
+            if (accountList.get(i).get(0).equals(ID)){
+                salt = accountList.get(i).get(2);
+                return salt;
+            }
+        }
+        System.out.println("User not found");
+        return "";
+    }
+
     // Write a list of doctors to CSV
     public static void writeDoctorsToCSV(List<Doctor> doctors) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DOCTOR_CSV_PATH))) {
@@ -106,7 +119,7 @@ public class CSVService {
     public static void writePatientsToCSV(List<Patient> patients) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENT_CSV_PATH))) {
             // Write the header line
-            writer.write(ROLE_HEADER);
+            writer.write(ROLE_HEADER+ ",dateOfBirth" +",bloodType" + ",email"+ ",contactNumber");
             for (Patient patient : patients) {
                 writer.write(patient.toCSV() + "\n");
             }
@@ -399,32 +412,32 @@ public class CSVService {
         writePharmacistsToCSV(pharmacists);
     }
 
-    public static void addCredential(String id, int hashValue){
+    public static void addCredential(String id, int hashValue, String salt){
         //  add the credential of a role being created
         List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
-        credentials.add(List.of(id, Integer.toString(hashValue)));
+        credentials.add(List.of(id, Integer.toString(hashValue), salt));
         writeCsv(CREDENTIAL_CSV_PATH, credentials);
     }
 
     public static void main(String[] args) {
-        // String patientPath = "csv/Patient_List.csv";
-        // String staffPath = "csv/Staff_List.csv";
-        // String credentialPath = "csv/credentials.csv";
+        String patientPath = "csv/Patient_List.csv";
+        String staffPath = "csv/Staff_List.csv";
+        String credentialPath = "csv/credentials.csv";
 
-        // List<List<String>> credentials = new ArrayList<>();
-        // credentials.add(List.of("hospitalId", "password"));
+        List<List<String>> credentials = new ArrayList<>();
+        credentials.add(List.of("hospitalId", "password"));
 
-        // List<List<String>> data = CSVService.readCsv(patientPath);
-        // for (List<String> row : data.subList(1, data.size())) {
-        //     credentials.add(List.of(row.get(0), "defaultPatientPassword"));
-        // }
+        List<List<String>> data = CSVService.readCsv(patientPath);
+        for (List<String> row : data.subList(1, data.size())) {
+            credentials.add(List.of(row.get(0), "defaultPatientPassword"));
+        }
 
-        // data = CSVService.readCsv(staffPath);
-        // for (List<String> row : data.subList(1, data.size())){
-        //     credentials.add(List.of(row.get(0), "defaultStaffPassword"));
-        // }
+        data = CSVService.readCsv(staffPath);
+        for (List<String> row : data.subList(1, data.size())){
+            credentials.add(List.of(row.get(0), "defaultStaffPassword"));
+        }
 
-        // // Writing to credentials.csv
-        // CSVService.writeCsv(credentialPath, credentials);
+        // Writing to credentials.csv
+        CSVService.writeCsv(credentialPath, credentials);
     }
 }
