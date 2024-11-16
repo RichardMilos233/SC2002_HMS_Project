@@ -21,11 +21,12 @@ public class Test {
         PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day");
         PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");
 
-        AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2018, 10, 27), 
-                                                "X-ray", p1, "drink more hot water");
-        AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2004, 5, 8), 
-                                                "consultation", p2, "sleep more");
-        
+
+        AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2024, 10, 27), 
+                                                "X-ray", p1, "drink more hot water", "Diabetes", false);
+        AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2023, 5, 8), 
+                                                "consultation", p2, "sleep more", "possible depression", false);
+    
         String status = "closed";
 
         System.out.println("checkpoint 4");

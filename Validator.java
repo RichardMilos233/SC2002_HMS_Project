@@ -79,6 +79,28 @@ public class Validator {
         } 
         return input;
     }
+    public static String validateNotes(Scanner scanner) { // ensures string has no space in it 
+        String input; 
+        while (true) { 
+            if (scanner.hasNextLine()) { 
+                input = scanner.nextLine(); 
+                if (input.isBlank()){
+                    continue;
+                }
+                else if (input.isBlank()){
+                    System.out.println("Invalid. Please enter a string: "); 
+                } else{
+                    break;
+                }
+                // Input is valid, exit the loop 
+            } else { 
+                System.out.println("Invalid. Please enter a string: "); 
+                scanner.next();  
+                // Clear the invalid input 
+            }
+        } 
+        return input;
+    }
 
     public static char validateChar(Scanner scanner) {  // ensures string with only 1 char is entered
         String input; 

@@ -1,5 +1,5 @@
-import java.util.*;
 import java.time.*;
+import java.util.*;
 
 public class Patient extends User {
 	public static List<Patient> patients = new ArrayList<>();
@@ -9,6 +9,9 @@ public class Patient extends User {
 	private String bloodType = "A+";
 	private List<Appointment> timeTable = new ArrayList<>();
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
+	private String latestMedicalStatus = "status";
+	private ArrayList<String> Diagnoses = new ArrayList<>(); //
+	//new diagnoses, prescriptions, and treatment plans.
 
 	Scanner scanner = new Scanner(System.in);
 
@@ -139,7 +142,6 @@ public class Patient extends User {
 	public static List<Patient> getPatients(){
 		if (patients.size() == 0) {
             patients = CSVService.readPatientsFromCSV();
-            System.out.println("patients list loaded from CSV");
         }
         return patients;
 	}
