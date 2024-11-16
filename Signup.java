@@ -9,7 +9,7 @@ public class Signup {
         //   assume that the id in patients.csv is in ascending order
         List<Patient> patients = CSVService.readPatientsFromCSV();
         int id;
-        if (patients.size() == 0){
+        if (patients.isEmpty()){
             patientID = "P1001";
         }
         else{

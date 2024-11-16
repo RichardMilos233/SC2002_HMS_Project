@@ -117,10 +117,10 @@ public class StaffService {
         }
 
         if (roleChar == 'D'){
-            Doctor doctor = new Doctor(staffID, defaultPass, name, gender, age);
+            Doctor doctor = new Doctor(staffID, name, gender, age);
             System.out.println("Doctor with ID " + staffID + " created with password " + defaultPass);
         } else{
-            Pharmacist pharmacist = new Pharmacist(staffID, defaultPass, name, gender, age);
+            Pharmacist pharmacist = new Pharmacist(staffID, name, gender, age);
             System.out.println("Pharmacist with ID " + staffID + " created with password " + defaultPass);
         } 
     }
