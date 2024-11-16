@@ -288,13 +288,6 @@ public class CSVService {
         writeDoctorsToCSV(doctors);
     }
 
-    public static void addDoctor(Doctor doctor){
-        List<Doctor> doctors = readDoctorsFromCSV();
-        doctors.add(doctor);
-        writeDoctorsToCSV(doctors);
-        Doctor.updateDoctors();
-    }
-
     public static void replaceAdmin(Administrator admin){
         int index = findAdmin(admin.getHospitalID());
         writeAdmin(admin, index);
@@ -367,13 +360,6 @@ public class CSVService {
         pharmacists.set(index, pharmacist);
         writePharmacistsToCSV(pharmacists);
     }
-    public static void addPharmacist(Pharmacist pharmacist){
-        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
-        pharmacists.add(pharmacist);
-        writePharmacistsToCSV(pharmacists);
-        Pharmacist.updatePharmacists();
-    }
-
 
     public static void changePassword(String hospitalID, int newHash){
         List<List<String>> credentials = CSVService.readCsv(CREDENTIAL_CSV_PATH);
