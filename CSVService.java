@@ -1,7 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
 
 public class CSVService {
     private static final String DOCTOR_CSV_PATH = "./csv/doctors.csv";
@@ -59,6 +57,19 @@ public class CSVService {
 
         // Write the modified data back to the file
         writeCsv(filePath, data);
+    }
+
+    public static void replaceUser(User user){
+        String role = user.getRole();
+        if (role.startsWith("d")){
+            writeDoctor((Doctor) user, findDoctor(user.getHospitalID()));
+        } else if (role.startsWith("p")){
+            writePharmacist((Pharmacist) user, findPharmacist(user.getHospitalID()));
+        } else if (role.startsWith("a")){
+            writeAdmin((Administrator) user, findAdmin(user.getHospitalID()));
+        } else{
+            System.out.println("Error");
+        }
     }
 
     // Write a list of doctors to CSV
@@ -222,6 +233,11 @@ public class CSVService {
         writeDoctor(doctor, index);
     }
 
+    public static void removeDoctor(Doctor doctor){
+        int index = findDoctor(doctor.getHospitalID());
+        writeDoctor(getLastDoctor(), index);
+    }
+
     public static int findDoctor(String doctorID){
         int i;
         List<Doctor> doctors = readDoctorsFromCSV();
@@ -234,6 +250,18 @@ public class CSVService {
         return -1;
     }
 
+    public static Doctor getLastDoctor(){
+        List<Doctor> doctors = readDoctorsFromCSV();
+        Doctor lastDoc = doctors.get(doctors.size() - 1);
+        removeLastDoctor(doctors);
+        return (lastDoc);
+    }
+
+    public static void removeLastDoctor( List<Doctor> doctors){
+        doctors.remove(doctors.size() - 1);
+        writeDoctorsToCSV(doctors);
+    }
+
     public static void writeDoctor(Doctor doctor, int index){
         List<Doctor> doctors = readDoctorsFromCSV();
         int size = doctors.size();
@@ -243,6 +271,13 @@ public class CSVService {
         }
         doctors.set(index, doctor);
         writeDoctorsToCSV(doctors);
+    }
+
+    public static void addDoctor(Doctor doctor){
+        List<Doctor> doctors = readDoctorsFromCSV();
+        doctors.add(doctor);
+        writeDoctorsToCSV(doctors);
+        Doctor.updateDoctors();
     }
 
     public static void replaceAdmin(Administrator admin){
@@ -273,6 +308,23 @@ public class CSVService {
         writeAdminsToCSV(admins);
     }
 
+    public static void removePharmacist(Pharmacist pharmacist){
+        int index = findDoctor(pharmacist.getHospitalID());
+        writePharmacist(getLastPharmacist(), index);
+    }
+
+    public static Pharmacist getLastPharmacist(){
+        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
+        Pharmacist lastPharm = pharmacists.get(pharmacists.size() - 1);
+        removeLastPharmacist(pharmacists);
+        return (lastPharm);
+    }
+
+    public static void removeLastPharmacist( List<Pharmacist> pharmacists){
+        pharmacists.remove(pharmacists.size() - 1);
+        writePharmacistsToCSV(pharmacists);
+    }
+
     public static void replacePharmacist(Pharmacist pharmacist){
         int index = findPharmacist(pharmacist.getHospitalID());
         writePharmacist(pharmacist, index);
@@ -300,6 +352,13 @@ public class CSVService {
         pharmacists.set(index, pharmacist);
         writePharmacistsToCSV(pharmacists);
     }
+    public static void addPharmacist(Pharmacist pharmacist){
+        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
+        pharmacists.add(pharmacist);
+        writePharmacistsToCSV(pharmacists);
+        Pharmacist.updatePharmacists();
+    }
+
 
     public static void changePassword(String hospitalID, String newPassword){
         List<List<String>> credentials = CSVService.readCsv(CREDENTIAL_CSV_PATH);

@@ -44,8 +44,13 @@ public class Pharmacist extends User {//ignore the staff first
 		return pharmacist;
 	}
 
+	public static List<Pharmacist> updatePharmacists(){
+		pharmacists = CSVService.readPharmacistsFromCSV();
+		return pharmacists;
+	}
+
 	public static List<Pharmacist> getPharmacists(){
-		if (pharmacists.size() == 0){
+		if (pharmacists.isEmpty()){
 			pharmacists = CSVService.readPharmacistsFromCSV();
 		}
 		return pharmacists;

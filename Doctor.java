@@ -54,11 +54,14 @@ public class Doctor extends User {	//ignore the Staff class first
         Doctor doctor = new Doctor(hospitalID, password, name, gender, age);
         return doctor;
     }
+	public static List<Doctor> updateDoctors(){
+		doctors = CSVService.readDoctorsFromCSV();
+		return doctors;
+	}
 
 	public static List<Doctor> getDoctors(){
-		if (doctors.size() == 0){
+		if (doctors.isEmpty()){
 			doctors = CSVService.readDoctorsFromCSV();
-			System.out.println("doctors initialzed");
 		}
 		return doctors;
 	}
@@ -163,7 +166,7 @@ public class Doctor extends User {	//ignore the Staff class first
         int choice = -1;
 
 		doctors = getDoctors();
-		if (doctors.size() == 0){
+		if (doctors.isEmpty()){
 			System.out.println("There is currently no doctor at work");
 			return null;
 		}

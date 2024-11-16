@@ -214,8 +214,8 @@ public class AdministratorMenu {
                 System.out.println("\nNew Doctor: \nName: " + name + "\nGender: Female\nAge: " + age);
             }
             do { 
-                System.out.println("Confirm this new Staff? \nY Yes \nN No, re-enter Details \nC Cancel");
-                c =  Validator.validateInt(scanner);
+                System.out.println("\nConfirm this new Staff? \nY Yes \nN No, re-enter Details \nC Cancel");
+                c =  Validator.validateCharToUpper(scanner);
                 switch (c){
                     case 'Y':
                         StaffService.addStaff(name, role, gender, age, defaultPass);
@@ -236,8 +236,8 @@ public class AdministratorMenu {
                 System.out.println("\nNew Pharmacist: \nName: " + name + "\nGender: Female\nAge: " + age);
             }
             do { 
-                System.out.println("Confirm this new Staff? \nY Yes \nN No, re-enter Details \nC Cancel");
-                c =  Validator.validateInt(scanner);
+                System.out.println("\nConfirm this new Staff? \nY Yes \nN No, re-enter Details \nC Cancel");
+                c =  Validator.validateCharToUpper(scanner);
                 switch (c){
                     case 'Y':
                         StaffService.addStaff(name, role, gender, age, defaultPass);
@@ -264,14 +264,18 @@ public class AdministratorMenu {
 
         User u = StaffService.findStaffDetails(ID);
             int c;
-            int r;
-            String name;
+            String name = u.getName();
+            int age = u.getAge();
+            String gender = u.getGender();
+            String role = u.getRole();
+            String opposite = null;
+            String otherRole;
             do { 
                 System.out.println("What detail would you like to update: \n" + 
-                                    "1 Name: " + u.getName() + "\n" +
-                                    "2 Role: " + u.getRole() + "\n" + 
-                                    "3 Gender: " + u.getGender() + "\n" + 
-                                    "4 Age: " + u.getAge() + "\n" +
+                                    "1 Name: " + name + "\n" +
+                                    "2 Role: " + role + "\n" + 
+                                    "3 Gender: " + gender + "\n" + 
+                                    "4 Age: " + age + "\n" +
                                     "5 Finish Updating");
                 c =  Validator.validateInt(scanner);
                 switch (c){
@@ -281,42 +285,40 @@ public class AdministratorMenu {
                             System.out.println("Enter new Name: ");
                             name = Validator.validateName(scanner); 
                         } while (name.isBlank());
-                        StaffService.updateStaff(u, name, "", "", 0);
                         break;
                     case 2:
                         // update role
-                        String role;
-                        do { 
-                            System.out.println("Select the new Role: \nD Doctor \nP Pharmacist");
-                            r =  Validator.validateCharToUpper(scanner);
-                        } while (r!='P' && r!='D' || (r=='D' && u.getRole().matches("doctor")) || (r=='P' && u.getRole().matches("pharmacist")));
-                        if (r == 'D'){
-                            role = "doctor";
-                        } else{
-                            role = "pharmacist";
+                        if (!u.getHospitalID().startsWith("A")){
+                                if (role.startsWith("d")){
+                                    otherRole = "pharmacist";
+                                } else {
+                                    otherRole = "doctor";
+                                }
+                                System.out.println("Switching to " + otherRole);
+                                role = otherRole;
+                        } else {
+                            System.out.println("Admin's role cannot be changed");
                         }
-                        StaffService.updateStaff(u, "", role, "", 0);
                         break;
                     case 3:
                         // update gender
-                        String opposite;
-                        if (u.getGender().startsWith("M")){
+                        if (gender.startsWith("M")){
                             opposite = "Female";
                         } else{
                             opposite = "Male";
                         }
                         System.out.println("Switching gender to " + opposite);
-                        StaffService.updateStaff(u, "", "", opposite, 0);
+                        gender = opposite;
                         break;
                     case 4:
-                        int age;
                         do { 
                             System.out.println("Type the new age: ");
                             age =  Validator.validateInt(scanner);
-                        } while (age<18 || age==u.getAge());
-                        StaffService.updateStaff(u, "", "", "", age);
+                        } while (age<18);
+                        System.out.println("Updating age to " + age);
                         break;
                     case 5:
+                        StaffService.updateStaff(u, name, role, opposite, age);
                         System.out.println("New details for ID: " + ID + "\nName: " + u.getName() + "\nRole: " + u.getRole() + 
                                     "\nGender: " + u.getGender() + "\nAge: " + u.getAge());
                         break;
