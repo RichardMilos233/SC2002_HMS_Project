@@ -40,6 +40,10 @@ public class Administrator extends User { //ignore Staff first
 		return administrator;
 	}
 
+	public static void updateAdministrators(){
+		administrators = CSVService.readAdminsFromCSV();
+	}
+
 	public static List<Administrator> getAdministrators(){
 		if (administrators.size() == 0){
 			administrators = CSVService.readAdminsFromCSV();

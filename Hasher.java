@@ -11,4 +11,12 @@ public class Hasher {
         return hashValue;
     }
 
+    // public static void main (String[] args){
+    //     String password = "default";
+    //     String SALTCHARS = "abcdefghijklmnopqrstuvwxyz";
+    //     for (int i = 0; i<SALTCHARS.length(); i++){
+    //         System.out.println(hash(password+SALTCHARS.charAt(i), "0giyd"));
+    //     }
+    // }
+
 }

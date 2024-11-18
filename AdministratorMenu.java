@@ -103,41 +103,53 @@ public class AdministratorMenu {
         Scanner scanner = new Scanner(System.in);
         int c = 0;
         do {  // inconsistent print method what is the preference
+            // Display a list of staff filtered by role, gender, age, etc
             System.out.println("Would you like to: \n" + 
                                 "1 Display All Staff by Role \n" + 
-                                "2 Display All Staff by ID \n" + 
-                                "3 Display Doctors \n" + 
-                                "4 Display Pharmacists \n" + 
-                                "5 Manage Staff \n" + 
-                                "6 Return to Menu");
+                                "2 Display All Staff by Name \n" + 
+                                "3 Display All Staff by ID \n" + 
+                                "4 Display All Staff by Age \n" + 
+                                "5 Display All Staff by Gender \n" + 
+                                "6 Display Doctors \n" + 
+                                "7 Display Pharmacists \n" + 
+                                "8 Manage Staff \n" + 
+                                "9 Return to Menu");
             c = Validator.validateInt(scanner);
             switch (c){
                 case 1:
                     StaffService.displayStaffList(1);
-                    // TO DO - add option for alphabetical
                     break;
                 case 2:
-                    StaffService.displayStaffList(0);
-                    break; 
+                    StaffService.displayStaffList(2);
+                    break;
                 case 3:
+                    StaffService.displayStaffList(3);
+                    break;
+                case 4:
+                    StaffService.displayStaffList(4);
+                    break;
+                case 5:
+                    StaffService.displayStaffList(5);
+                    break; 
+                case 6:
                     System.out.format("ID     Name                 Gender Age\n");
                     System.out.println("-------------------------------------------");
                     StaffService.displayDoctorList(1);
                     break;
-                case 4:
+                case 7:
                     System.out.format("ID     Name                 Gender Age\n");
                     System.out.println("-------------------------------------------");
                     StaffService.displayPharmacistList(1);
                     break;
-                case 5:
+                case 8:
                     manageStaff();
                     break;
-                case 6:
+                case 9:
                     return;
                 default:
                     break;
             }
-        } while (c!=6);
+        } while (c!=9);
         
     throw new UnsupportedOperationException();
     }

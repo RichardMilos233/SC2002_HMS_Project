@@ -117,6 +117,9 @@ public class User {
 		}
 		return users;
 	}
+	public static void updateUsers(){
+		users = CSVService.readUsersFromCSV();
+	}
 
 	public void display(){
 		System.out.println("Hospital ID: " + this.hospitalID);

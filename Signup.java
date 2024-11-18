@@ -66,7 +66,7 @@ public class Signup {
             System.out.println("Enter your password (at least 8 characters): ");
             password = Validator.validateStringNoSpace(scanner);
         } while (password.isBlank() || password.length()<8);
-        String salt = Salter.createSaltString(id);
+        String salt = Salter.createSaltString();
         int hashValue = Hasher.hash(password, salt);
 
         Patient patient = new Patient(patientID, name, gender, age, birth, contactNumber, email, bloodType);

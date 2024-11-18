@@ -65,13 +65,17 @@ public class CSVService {
         String role = user.getRole();
         if (role.startsWith("d")){
             writeDoctor((Doctor) user, findDoctor(user.getHospitalID()));
+            Doctor.updateDoctors();
         } else if (role.startsWith("p")){
             writePharmacist((Pharmacist) user, findPharmacist(user.getHospitalID()));
+            Pharmacist.updatePharmacists();
         } else if (role.startsWith("a")){
             writeAdmin((Administrator) user, findAdmin(user.getHospitalID()));
+            Administrator.updateAdministrators();
         } else{
             System.out.println("Error");
         }
+        User.updateUsers();
     }
 
     protected static String getSalt(String ID){
@@ -250,7 +254,10 @@ public class CSVService {
 
     public static void removeDoctor(Doctor doctor){
         int index = findDoctor(doctor.getHospitalID());
-        writeDoctor(getLastDoctor(), index);
+        Doctor lastDoc = getLastDoctor();
+        writeDoctor(lastDoc, index);
+        removeLastDoctor();
+        Doctor.updateDoctors();
     }
 
     public static int findDoctor(String doctorID){
@@ -267,12 +274,11 @@ public class CSVService {
 
     public static Doctor getLastDoctor(){
         List<Doctor> doctors = readDoctorsFromCSV();
-        Doctor lastDoc = doctors.get(doctors.size() - 1);
-        removeLastDoctor(doctors);
-        return (lastDoc);
+        return doctors.get(doctors.size() - 1);
     }
 
-    public static void removeLastDoctor( List<Doctor> doctors){
+    public static void removeLastDoctor(){
+        List<Doctor> doctors = readDoctorsFromCSV();
         doctors.remove(doctors.size() - 1);
         writeDoctorsToCSV(doctors);
     }
@@ -318,17 +324,19 @@ public class CSVService {
 
     public static void removePharmacist(Pharmacist pharmacist){
         int index = findDoctor(pharmacist.getHospitalID());
-        writePharmacist(getLastPharmacist(), index);
+        Pharmacist lastPharm = getLastPharmacist();
+        writePharmacist(lastPharm, index);
+        removeLastPharmacist();
+        Pharmacist.updatePharmacists();
     }
 
     public static Pharmacist getLastPharmacist(){
         List<Pharmacist> pharmacists = readPharmacistsFromCSV();
-        Pharmacist lastPharm = pharmacists.get(pharmacists.size() - 1);
-        removeLastPharmacist(pharmacists);
-        return (lastPharm);
+        return (pharmacists.get(pharmacists.size() - 1));
     }
 
-    public static void removeLastPharmacist( List<Pharmacist> pharmacists){
+    public static void removeLastPharmacist(){
+        List<Pharmacist> pharmacists = readPharmacistsFromCSV();
         pharmacists.remove(pharmacists.size() - 1);
         writePharmacistsToCSV(pharmacists);
     }
@@ -404,6 +412,16 @@ public class CSVService {
         //  add the credential of a role being created
         List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
         credentials.add(List.of(id, Integer.toString(hashValue), salt));
+        writeCsv(CREDENTIAL_CSV_PATH, credentials);
+    }
+
+    public static void removeCredention(String id){
+        List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
+        for (int i = 0; i<credentials.size(); i++){
+            if (credentials.get(i).get(0).equals(id)){
+                credentials.remove(i);
+            }
+        }
         writeCsv(CREDENTIAL_CSV_PATH, credentials);
     }
 
