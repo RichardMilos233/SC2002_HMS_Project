@@ -8,12 +8,14 @@ public class PharmacistMenu {
         int choice = 0;
         do{
 
-            System.out.println("Pharmacist Menu: \n" + //
+            System.out.println("\n-------------Pharmacist Menu-------------\n" + //
                                 "1 View Appointment Outcome Record \n" + //
                                 "2 Update Prescription Status \n" + //
                                 "3 View Medication Inventory \n" + //
                                 "4 Submit Replenishment Request \n" + //
-                                "5 Logout");
+                                "5 View Pending Replenishment Requests \n" + //
+                                "6 Change Password \n" + //
+                                "7 Logout");
             List<Medication> medications = inventoryService.retrieveMedications();                    
 
             choice = Validator.validateInt(scanner);
@@ -27,14 +29,11 @@ public class PharmacistMenu {
                     // make: false for not prescribed, true for prescribed 
                     break;
                 case 3:
-                    inventoryService.viewInventory();
+                    inventoryService.viewInventory(0);
                     //call from inventory, return types n stock of each medication 
                     break;
                 case 4:
-                    inventoryService.viewInventory();
-                    for (int i = 0; i < medications.size(); i++) {
-                        System.out.println( (i+1) + " - " + medications.get(i).getMedicationName());
-                    }
+                    inventoryService.viewInventory(1);
                     System.out.println("Choose which medication to Replenish: ");
                     //String medToReplenish = scanner.nextLine();
                     int medToReplenish = Validator.validateInt(scanner);
@@ -44,24 +43,28 @@ public class PharmacistMenu {
                     //submit to inventory -> calls medication
                     break;
                 case 5:
+                    inventoryService.viewReplenishRequests();
+                    break;
+
+                case 6:
                     pharmacist.changePassword();
                     break;
-                case 6:
+                case 7:
                     pharmacist.logout();
-                    break;
+                    return;
                     
                 default:
                     break;
             }
-        }while(choice != 6);
+        }while(choice != 7);
     }
     public static void viewAppointmentOutcomeRecord() {
-        PharmacistAppointmentOutcomeRecordViewer.getAppointmentOutcomes();
+        PharmacistAppointmentOutcomeRecordViewer.displayAppointmentOutcomes(0);
 	}
 
 	public static void updatePrescriptionStatus() {
-		// TODO - implement Pharmacist.updatePrescriptionStatus
-		throw new UnsupportedOperationException();
+        PharmacistAppointmentOutcomeRecordViewer.displayAppointmentOutcomes(1);
+		
 	}
 
 	public static void viewMedicationInventory() {

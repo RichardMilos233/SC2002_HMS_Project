@@ -3,7 +3,7 @@ import java.util.*;
 public class PharmacistAppointmentOutcomeRecordViewer {
     
 
-	public static void getAppointmentOutcomes() {
+	public static List<Appointment> getAppointmentOutcomes() {
 		Scanner scanner = new Scanner(System.in);
 		List<Appointment> appointments = TextService.readAppointmentsFromTxt();
         List<Appointment> appointmentOutcomesList = new ArrayList<>();
@@ -12,27 +12,45 @@ public class PharmacistAppointmentOutcomeRecordViewer {
             if (appointment.getStatus().equals("closed")) {
                  appointmentOutcomesList.add(appointment);
 
-				 
-					System.out.println("Appointment " + appointmentOutcomesList.size() + ": ");
-					System.out.println("Patient ID: " + appointment.getPatientID());
-					System.out.println("Outcome: " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription());
-
 					//System.out.println("Amount to Dispense: " + appointment.getAppointmentOutcome().getAmountToDispense());
 					
                 //System.out.println(appointmentOutcomesList.size() + " - " + appointment.getPatientID() + " - Dispense : " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription());
             }
+		}
+		return appointmentOutcomesList;
+		
 	}
 
+	public static void displayAppointmentOutcomes(int select) {
+		Scanner scanner = new Scanner(System.in);
+        List<Appointment> appointmentOutcomesList = getAppointmentOutcomes();
+    
 		if (appointmentOutcomesList.isEmpty()) {
 			System.out.println("No Outstanding Prescriptions\n");
 		} else {
-			System.out.println(("Enter appointment number to dispense prescription or " + appointmentOutcomesList.size()+1) + " to return\n");
+     	 	for (Appointment appointment: appointmentOutcomesList) {
+				System.out.println("Appointment " + appointmentOutcomesList.size() + ": ");
+				System.out.println("Patient ID: " + appointment.getPatientID());
+				System.out.println("Outcome: " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription() + "\n");
+				//System.out.println("Amount to Dispense: " + appointment.getAppointmentOutcome().getAmountToDispense());
+    			//System.out.println(appointmentOutcomesList.size() + " - " + appointment.getPatientID() + " - Dispense : " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription());
+			}
+		}	
+		if (select==1){
+			int choice;
+			do { 
+				System.out.println("Select\n(Appointment Number) Dispense Prescription\n(" + (appointmentOutcomesList.size()+1) + ") Return");
+				choice = Validator.validateInt(scanner);
+				if (choice == appointmentOutcomesList.size()+1){
+					return;
+				} if (choice>0 && choice<appointmentOutcomesList.size()+1){
+					dispensePrescription(appointmentOutcomesList.get(choice-1));
+				}
+			} while (choice != appointmentOutcomesList.size()+1);
+			
 
-			int choice = Integer.parseInt(scanner.nextLine());
-			if (choice == appointmentOutcomesList.size()+1) return;
-	
-			dispensePrescription(appointmentOutcomesList.get(choice-1));
 		}
+		
 	}
 
 	public static void dispensePrescription (Appointment appointment) {

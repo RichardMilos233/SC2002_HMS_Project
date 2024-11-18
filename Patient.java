@@ -26,24 +26,25 @@ public class Patient extends User {
 	}
 
 	public void updatePersonalInformation() {
-		int newcontactNumber;
+		int newContactNumber;
 		String newEmail;
 		System.out.println("Contact Number: " + this.contactNumber);
 		System.out.println("Email: " + this.email);
-		System.out.println("Choose information to update:");
+		int choice;
+		do {
+		System.out.println("\nChoose information to update:");
 		System.out.println("1. Contact Number");
 		System.out.println("2. Email");
-		int choice;
 		choice = Validator.validateInt(scanner);
-		if (choice < 1 || choice >2){
-			System.out.println("invalid choice");
-			return;
-		}
+		}while (choice < 1 || choice >2);
+
 		switch (choice) {
 			case 1:
-				System.out.println("Enter new contact number:");
-				newcontactNumber = Validator.validateInt(scanner);
-				this.contactNumber = newcontactNumber;
+				do {
+					System.out.println("Enter new contact number:");
+					newContactNumber = Validator.validateInt(scanner);
+				} while (newContactNumber/9999999 < 1 || newContactNumber/9999999 > 9);
+				this.contactNumber = newContactNumber;
 				System.out.println("Your new contact number is " + this.getContactNumber());
 				break;
 			case 2:

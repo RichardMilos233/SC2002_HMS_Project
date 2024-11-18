@@ -22,7 +22,6 @@ public class Appointment {
 	}
 
 	public void displayAppointment() {
-		System.out.println();
 		
 		System.out.println("Appointment date & time: " + date + ' ' + time);
 		System.out.println("Appointment status: " + status);

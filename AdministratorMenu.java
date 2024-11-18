@@ -6,7 +6,7 @@ public class AdministratorMenu {
         Scanner scanner = new Scanner(System.in);
         int choice;
         do{
-            System.out.println("Administrator Menu: \n" + 
+            System.out.println("\n-----------Administrator Menu------------\n" +
                                 "1 View and Manage Hospital Staff \n" + 
                                 "2 View Appointments details \n" + 
                                 "3 View and Manage Medication Inventory \n" + 
@@ -60,7 +60,7 @@ public class AdministratorMenu {
             choice = Validator.validateInt(scanner);
             switch (choice) {
                 case 1:
-                    inventoryService.viewInventory();
+                    inventoryService.viewInventory(0);
                     break;
                 case 2:
                     Medication newMedication = new Medication();
@@ -84,7 +84,7 @@ public class AdministratorMenu {
                     inventoryService.removeMedication(medications.get(medChoice-1));
                     break;
                 case 4:
-                    inventoryService.viewInventory();
+                    inventoryService.viewInventory(1);
                     System.out.println("Enter Medication Name to Update Stock Levels: ");
                     String medToRemove = Validator.validateLine(scanner);
                     System.out.println("Enter Stock Level to Set to: ");
