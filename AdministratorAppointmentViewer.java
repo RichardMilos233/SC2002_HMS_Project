@@ -1,7 +1,18 @@
 import java.util.List;
 
 public class AdministratorAppointmentViewer {
+    /**
+     * Utility class for viewing appointments by an administrator. This class provides
+     * a static method to display all available appointments, excluding those marked as
+     * 'unavailable'.
+     */
 	public static void viewAllAppointment() {
+        /**
+         * Displays all appointments from a text file source that are not marked as 'unavailable'.
+         * It reads the appointments using the TextService, checks the status of each appointment,
+         * and uses the appointment's display method to show details if the status is not 'unavailable'.
+         * If no appointments are available, it outputs a message indicating there are no appointments.
+         */
 		List<Appointment> appointments = TextService.readAppointmentsFromTxt();
     
         for (Appointment appointment: appointments) {

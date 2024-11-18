@@ -1,13 +1,34 @@
 import java.util.*;
 
+/**
+ * Represents an administrator in a system, extending the user functionalities. 
+ * Administrators can be created, retrieved, and listed from a CSV data source.
+ */
 public class Administrator extends User { //ignore Staff first
+	/**
+     * A list of all administrators maintained in memory for quick access.
+     */
 	public static List<Administrator> administrators = new ArrayList<>();
 
+	/**
+     * Constructs an Administrator with specified details.
+     *
+     * @param staffID The unique identifier of the staff member.
+     * @param name The name of the administrator.
+     * @param gender The gender of the administrator.
+     * @param age The age of the administrator.
+     */
 	public Administrator(String staffID, String name, String gender, int age){
 		super(staffID, name, gender, age);
 		this.role = "administrator";
 	}
 
+	/**
+     * Creates an Administrator instance from a CSV formatted string.
+     *
+     * @param data The comma-separated values string containing administrator data.
+     * @return The Administrator instance created from parsed CSV data.
+     */
 	public static Administrator fromCSV(String data) {	// create a new admin then return
 		String[] fields = data.split(",");
         String hospitalID = fields[0];
@@ -19,6 +40,11 @@ public class Administrator extends User { //ignore Staff first
         return admin;
     }
 
+	/**
+     * Lists all administrators and allows the user to select one.
+     *
+     * @return The selected Administrator, or null if an invalid choice is made.
+     */
 	public static Administrator getAdministrator(){	//list out all admins, then select an admin
 		Scanner scanner = new Scanner(System.in);
 		Administrator administrator;
