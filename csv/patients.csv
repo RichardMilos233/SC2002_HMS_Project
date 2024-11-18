@@ -1,4 +1,4 @@
-hospitalID,name,gender,age,role
+hospitalID,name,gender,age,role,dateOfBirth,bloodType,email,contactNumber
 P1001,Alice Brown,Female,44,patient,1980-05-14,A+,alice.brown@example.com,84320011
 P1002,Bob Stone,Male,48,patient,1975-11-22,B+,bob.stone@example.com,114514
 P1003,Charlie White,Male,34,patient,1990-07-08,O-,charlie.white@example.com,1919810
