@@ -185,6 +185,7 @@ public class StaffService {
     }
     
     public static String addStaff(String name, char roleChar, char genderChar, int age, String defaultPass){
+        Hasher hasher = new SimpleAdditiveHash();
         String gender;
         String staffID;
         String role;
@@ -211,7 +212,7 @@ public class StaffService {
         } 
         if (!defaultPass.isBlank()){
             String salt = Salter.createSaltString();
-            CSVService.addCredential(staffID, Hasher.hash(defaultPass, salt), salt);
+            CSVService.addCredential(staffID, hasher.hash(defaultPass, salt), salt);
             System.out.println(roleChar + role.substring(1) + " with ID " + staffID + " created with password " + defaultPass);
             User.updateUsers();
         }

@@ -33,6 +33,7 @@ public class Login {    //can have a Signup.java later
     }
 
     public static List<String> getLoginCredentials(){   //get id and password
+        Hasher hasher = new SimpleAdditiveHash();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your ID");
         String hospitalIdInput = Validator.validateStringNoSpace(scanner);
@@ -50,7 +51,7 @@ public class Login {    //can have a Signup.java later
         List<String> credentials = new ArrayList<>();
         credentials.add(hospitalIdInput);
         String salt = CSVService.getSalt(hospitalIdInput);
-        int hashValue = Hasher.hash(passwordInput,salt); //114514+SaltStr
+        int hashValue = hasher.hash(passwordInput,salt); //114514+SaltStr
         credentials.add(Integer.toString(hashValue));
 
         return credentials;

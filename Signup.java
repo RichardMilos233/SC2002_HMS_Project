@@ -67,7 +67,8 @@ public class Signup {
             password = Validator.validateStringNoSpace(scanner);
         } while (password.isBlank() || password.length()<8);
         String salt = Salter.createSaltString();
-        int hashValue = Hasher.hash(password, salt);
+        Hasher hasher = new SimpleAdditiveHash();
+        int hashValue = hasher.hash(password, salt);
 
         Patient patient = new Patient(patientID, name, gender, age, birth, contactNumber, email, bloodType);
         CSVService.addPatient(patient);
