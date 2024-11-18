@@ -125,6 +125,11 @@ public class Patient extends User {
 		return this.timeTable;
 	}
 
+	public List<Appointment> updateTimeTable(){
+		this.timeTable = TextService.getPatientAppointment(this.hospitalID);
+		return this.timeTable;
+	}
+
 	public void addAppointment(Appointment appointment){
 		this.timeTable.add(appointment);
 	}
