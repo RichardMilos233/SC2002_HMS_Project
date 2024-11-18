@@ -33,8 +33,8 @@ public class Patient extends User {
 		System.out.println("Choose information to update:");
 		System.out.println("1. Contact Number");
 		System.out.println("2. Email");
-		int choice = -1;
-		choice = scanner.nextInt();
+		int choice;
+		choice = Validator.validateInt(scanner);
 		if (choice < 1 || choice >2){
 			System.out.println("invalid choice");
 			return;
@@ -42,14 +42,13 @@ public class Patient extends User {
 		switch (choice) {
 			case 1:
 				System.out.println("Enter new contact number:");
-				newcontactNumber = scanner.nextInt();
+				newcontactNumber = Validator.validateInt(scanner);
 				this.contactNumber = newcontactNumber;
 				System.out.println("Your new contact number is " + this.getContactNumber());
 				break;
 			case 2:
-				System.out.println("Enter new email:");
-				scanner.nextLine();	// buffer, otherwise it would be "\n"
-				newEmail = scanner.nextLine();
+				System.out.println("Enter new email:");	// buffer, otherwise it would be "\n"
+				newEmail = Validator.validateEmail(scanner);
 				this.email = newEmail;
 				System.out.println("Your new email is " + this.getEmail());
 				break;
@@ -165,10 +164,11 @@ public class Patient extends User {
             System.out.println(i+1 + ": " + patient.getName());
         }
 		
-        choice = scanner.nextInt();
-        if (choice < 1 || choice > patients.size()){
-            return null;
-        }
+		do { 
+			System.out.println("Select a patient: ");
+			choice = Validator.validateInt(scanner);
+		} while (choice < 1 || choice > patients.size());
+
         patient = patients.get(choice-1);
 		return patient;
 	}

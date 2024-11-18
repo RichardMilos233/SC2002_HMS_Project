@@ -28,7 +28,7 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 		} else {
 			System.out.println((appointmentOutcomesList.size()+1) + " Back\n");
 
-			int choice = Integer.parseInt(scanner.nextLine());
+			int choice = Validator.validateInt(scanner);
 			if (choice == appointmentOutcomesList.size()+1) return;
 	
 			dispensePrescription(appointmentOutcomesList.get(choice-1));

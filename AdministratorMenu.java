@@ -57,7 +57,7 @@ public class AdministratorMenu {
                                 "5 Exit ");
                                 
             List<Medication> medications = inventoryService.retrieveMedications();
-            choice = Integer.parseInt(scanner.nextLine());
+            choice = Validator.validateInt(scanner);
             switch (choice) {
                 case 1:
                     inventoryService.viewInventory();
@@ -65,12 +65,11 @@ public class AdministratorMenu {
                 case 2:
                     Medication newMedication = new Medication();
                     System.out.println("Enter Medication Name: ");
-                    newMedication.setMedicationName(scanner.nextLine());
+                    newMedication.setMedicationName(Validator.validateLine(scanner));
                     System.out.println("Enter Stock Level: ");
-                    newMedication.setStock(Integer.parseInt(scanner.nextLine()));
+                    newMedication.setStock(Validator.validateInt(scanner));
                     System.out.println("Enter Stock Alert Level: ");
-                    newMedication.setStockAlert(Integer.parseInt(scanner.nextLine()));
-
+                    newMedication.setStockAlert(Validator.validateInt(scanner));
                     inventoryService.addMedication(newMedication); // can wrap this into another method?
                     break;
                 case 3:
@@ -80,16 +79,16 @@ public class AdministratorMenu {
                     }
 
                     System.out.println("Choose Medication to Remove: ");
-                    int medChoice = Integer.parseInt(scanner.nextLine());
+                    int medChoice = Validator.validateInt(scanner);
                     
                     inventoryService.removeMedication(medications.get(medChoice-1));
                     break;
                 case 4:
                     inventoryService.viewInventory();
                     System.out.println("Enter Medication Name to Update Stock Levels: ");
-                    String medToRemove = scanner.nextLine();
+                    String medToRemove = Validator.validateLine(scanner);
                     System.out.println("Enter Stock Level to Set to: ");
-                    int stockLevelToSet = Integer.parseInt(scanner.nextLine());
+                    int stockLevelToSet = Validator.validateInt(scanner);
                     inventoryService.updateStockLevel(medToRemove, stockLevelToSet);
                     break;
                 default:

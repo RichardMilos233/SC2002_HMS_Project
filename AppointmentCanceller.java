@@ -5,7 +5,7 @@ public class AppointmentCanceller {
         Scanner scanner = new Scanner(System.in);
         List<Appointment> scheduledAppointment = patient.getScheduledAppointments(); 
         // this list does not contain any rejected status because it is already eliminated above in viewScheduledAppointment
-        if (scheduledAppointment.size() == 0){
+        if (scheduledAppointment.isEmpty()){
             System.out.println("There is currently no scheduled appointment");
             return;
         }
@@ -14,14 +14,26 @@ public class AppointmentCanceller {
         ScheduledAppointmentViewer.viewScheduledAppointment(patient);
 
         // choose the one to be cancelled, one at a time for now
-        int choice = -1;
-        System.out.println("Enter your choice: ");
-        choice = scanner.nextInt();
+        int choice;
+        /*System.out.print("Choose a slot: ");
+        do { 
+            choice = Validator.validateInt(scanner);
+            if (choice < 1 || choice > unavailableAppointments.size()){
+                System.out.println("invalid choice");
+            }
+        } while (choice < 1 || choice > unavailableAppointments.size());
+         */
+        do { 
+            System.out.println("Enter the slot to cancel or 0 to return: ");
+            choice = Validator.validateInt(scanner);
+            if (choice == 0){
+                return;
+            }
+            if (choice < 0 || choice > scheduledAppointment.size()){
+                System.out.println("Invalid choice. ");
+            }
+        } while (choice < 0 || choice > scheduledAppointment.size());
         
-        if (choice < 1 || choice > scheduledAppointment.size()){
-            System.out.println("invalid choice");
-            return;
-        }
         Appointment appointment = scheduledAppointment.get(choice-1);
         appointment.setStatus("cancelled");
 

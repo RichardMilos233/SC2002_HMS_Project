@@ -16,7 +16,7 @@ public class PatientMenu {
                                 "8 View Past Appointment Outcome Records \n" + 
                                 "9 Change Password \n" + 
                                 "10 Logout");
-            choice = scanner.nextInt();
+            choice = Validator.validateInt(scanner);
             switch (choice) {
                 case 1:
                     PatientMedicalRecordViewer.viewPatientMedicalRecord(patient);
