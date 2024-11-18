@@ -26,12 +26,12 @@ public class Doctor extends User {	//ignore the Staff class first
 		}
 	}
 	public static List<Doctor> doctors = new ArrayList<>();
-	private ArrayList<PatientCount> patientCounts = new ArrayList<>();
+	private ArrayList<PatientCount> patientCounts = new ArrayList<>();	// containing patients who have one or multiple appointments of status "closed", "confirmed", "pending"
 	private List<Appointment> timeTable = new ArrayList<>();
 
 
-	public Doctor(String staffID, String password, String name, String gender, int age){
-		super(staffID, password, name, gender, age);
+	public Doctor(String staffID, String name, String gender, int age){
+		super(staffID, name, gender, age);
 		this.role = "doctor";
 		this.timeTable = getTimeTable();	// read from text first
 		if (timeTable.size() == 0){	// if indeed no time table, initialize it
@@ -46,31 +46,33 @@ public class Doctor extends User {	//ignore the Staff class first
     public static Doctor fromCSV(String data) {	// create a new doc then return
 		String[] fields = data.split(",");
         String hospitalID = fields[0];
-        String password = fields[1];
-        String name = fields[2];
-        String gender = fields[3];
-        int age = Integer.parseInt(fields[4]);
-        String role = fields[5];
-        Doctor doctor = new Doctor(hospitalID, password, name, gender, age);
+        String name = fields[1];
+        String gender = fields[2];
+        int age = Integer.parseInt(fields[3]);
+        String role = fields[4];
+        Doctor doctor = new Doctor(hospitalID, name, gender, age);
         return doctor;
     }
+	public static List<Doctor> updateDoctors(){
+		doctors = CSVService.readDoctorsFromCSV();
+		return doctors;
+	}
 
 	public static List<Doctor> getDoctors(){
-		if (doctors.size() == 0){
+		if (doctors.isEmpty()){
 			doctors = CSVService.readDoctorsFromCSV();
-			System.out.println("doctors initialzed");
 		}
 		return doctors;
 	}
 
-    public List<Appointment> getTimeTable(){
-		if (this.timeTable.size() == 0){
+	public List<Appointment> getTimeTable(){
+		if (this.timeTable.isEmpty()){
 			this.timeTable = TextService.getDoctorAppointment(this.hospitalID);
 		}
 		return this.timeTable;
 	}
 
-	public void initializeTimeTable(){	// TODO linked to apt txt
+	public void initializeTimeTable(){
 		LocalDate currentDate = LocalDate.now();
 		LocalTime startTime = LocalTime.of(9, 0);
 		LocalDate date;
@@ -89,16 +91,50 @@ public class Doctor extends User {	//ignore the Staff class first
 		}
 	}
 
+	public List<PatientCount> getPatientCounts(){
+		List<Appointment> timeTable = new ArrayList<>();
+		Appointment apt;
+		String status;
+		int i;
+		Patient patient;
+		boolean exist;
+		if (patientCounts.size() == 0){
+			timeTable = getTimeTable();
+			if (timeTable.size() == 0){
+				return patientCounts;
+			}
+			for (i = 0; i < timeTable.size(); i++){
+				apt = timeTable.get(i);
+				status = apt.getStatus();
+				if (status.equals("closed") || status.equals("confirmed") || status.equals("pending")){
+					patient = Patient.getByID(apt.getPatientID());
+					exist = false;
+					for (PatientCount patientCount : patientCounts){	// addPatient in essence, but directly calling it will cause cyclic dependency issue
+						if (patientCount.getPatient().equals(patient)){
+							patientCount.addNumOfAppointment();
+							exist = true;
+							break;
+						}
+					}
+					if (!exist){
+						patientCounts.add(new PatientCount(patient));
+					}
+				}
+			}
+		}
+		return patientCounts;
+	}
+
 	public List<Patient> getPatients(){
 		List<Patient> patients = new ArrayList<>();
-		for (PatientCount patientCount : patientCounts){
+		for (PatientCount patientCount : getPatientCounts()){
 			patients.add(patientCount.getPatient());
 		}
 		return patients;
 	}
 
 	public void addPatient(Patient patient){
-		for (PatientCount patientCount : patientCounts){
+		for (PatientCount patientCount : getPatientCounts()){
 			if (patientCount.getPatient().equals(patient)){
 				patientCount.addNumOfAppointment();
 				return;
@@ -109,7 +145,7 @@ public class Doctor extends User {	//ignore the Staff class first
 	}
 
 	public void removePatient(Patient patient){
-		for (PatientCount patientCount : patientCounts){
+		for (PatientCount patientCount : getPatientCounts()){
 			if (patientCount.getPatient().equals(patient)){
 				patientCount.minusNumOfAppointment();
 				if (patientCount.isEmpty()){
@@ -128,7 +164,7 @@ public class Doctor extends User {	//ignore the Staff class first
         int choice = -1;
 
 		doctors = getDoctors();
-		if (doctors.size() == 0){
+		if (doctors.isEmpty()){
 			System.out.println("There is currently no doctor at work");
 			return null;
 		}
@@ -161,5 +197,4 @@ public class Doctor extends User {	//ignore the Staff class first
 		}
 		return null;
     }
-
 }

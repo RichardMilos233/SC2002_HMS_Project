@@ -1,14 +1,14 @@
-import java.util.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.*;
 
 public class TextService {
     private static final String APPOINTMENT_TXT_PATH = "./txt/appointments.txt";
 
     public static void writeAppointmentsToTxt(List<Appointment> appointments) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_TXT_PATH))) {
-            writer.write("patientID,doctorID,status,date,time,date-type-medicationName:dosage-consultationNotes\n");
+            writer.write("patientID,doctorID,status,date,time,date|type|medicationName\\dosage|consultationNotes|diagnosis|resolved\n");
             for (Appointment appointment : appointments) {
                 writer.write(appointment.toTxt() + "\n");
             }
@@ -100,12 +100,12 @@ public class TextService {
         PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");
 
         AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2024, 10, 27), 
-                                                "X-ray", p1, "drink more hot water");
+                                                "X-ray", p1, "drink more hot water", "Diabetes", false);
         AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2023, 5, 8), 
-                                                "consultation", p2, "sleep more");
+                                                "consultation", p2, "sleep more", "possible depression",false);
 
-        Doctor doctor = new Doctor("D001", "defaultStaffPassword", "John Smith", "Male", 45);
-        Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
+        Doctor doctor = new Doctor("D001", "John Smith", "Male", 45);
+        Patient patient = new Patient("P1001", "Alice Brown", "Female", 24, 
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
         String status = "cancelled";
 

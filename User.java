@@ -3,7 +3,7 @@ import java.util.*;
 public class User {
 
 	protected String hospitalID = "U42";
-	protected String password = "user";
+	// protected String password = "user";
 	protected String name = "nobody";
 	protected String gender = "Male";
 	protected int age = -1;
@@ -13,49 +13,66 @@ public class User {
 	Scanner scanner = new Scanner(System.in);
 	public User() {}
 
-	public User(String hospitalID, String password, String name, String gender, int age) {
+	public User(String hospitalID, String name, String gender, int age) {
 		this.hospitalID = hospitalID;
-		this.password = password;
+		// this.password = password;
 		this.name = name;
 		this.gender = gender;
 		this.age = age;
 		this.role = "user";
 	}
 
-	public void login() {
-		String enteredPassword = "";
-		enteredPassword = scanner.nextLine();
-		if (enteredPassword.equals(this.password)){ // can get the user id and password, then check what the user id format is to get the role
-			System.out.println("Logged in successfully");// only for illustration, haven't settled how to tell the role yet
-		}
-		else{
-			System.out.println("Try again");
-		}
-	}
+	// public void login() {
+	// 	String enteredPassword = "";
+	// 	enteredPassword = scanner.nextLine();
+	// 	if (enteredPassword.equals(this.password)){ // can get the user id and password, then check what the user id format is to get the role
+	// 		System.out.println("Logged in successfully");// only for illustration, haven't settled how to tell the role yet
+	// 	}
+	// 	else{
+	// 		System.out.println("Try again");
+	// 	}
+	// }
 
 	public void logout() {}	//do nothing, jump out of the while-switch loop
 
 	public void changePassword() {
-		String newPassword = "";
+		String newPassword = "defaultPassword";
 		System.out.print("Enter new password: ");
 		newPassword = scanner.nextLine();
-		this.password = newPassword;
-		throw new UnsupportedOperationException();
+		// this.password = newPassword;
+		int newHash = Hasher.hash(newPassword, CSVService.getSalt(getHospitalID()));
+		CSVService.changePassword(hospitalID, newHash);
+		// switch (role) {
+		// 	case "patient":
+		// 		CSVService.replacePatient((Patient)this);
+		// 		break;
+		// 	case "doctor":
+		// 		CSVService.replaceDoctor((Doctor)this);
+		// 		break;
+		// 	case "administrator":
+		// 		CSVService.replaceAdmin((Administrator)this);
+		// 		break;
+		// 	case "pharmacist":
+		// 		CSVService.replacePharmacist((Pharmacist)this);
+		// 		break;
+
+		// 	default:
+		// 		break;
+		// }
 	}
 
 	public String toCSV() {
-        return hospitalID + "," + password + "," + name + "," + gender + "," + age + "," + role;
+        return hospitalID + "," + name + "," + gender + "," + age + "," + role;
     }
 
 	public static User fromCSV(String data) {
         String[] fields = data.split(",");
         String hospitalID = fields[0];
-        String password = fields[1];
-        String name = fields[2];
-        String gender = fields[3];
-        int age = Integer.parseInt(fields[4]);
-        String role = fields[5];
-        return new User(hospitalID, password, name, gender, age);
+        String name = fields[1];
+        String gender = fields[2];
+        int age = Integer.parseInt(fields[3]);
+        String role = fields[4];
+        return new User(hospitalID, name, gender, age);
     }
 
 	public String getHospitalID(){
@@ -100,11 +117,14 @@ public class User {
 		}
 		return users;
 	}
+	public static void updateUsers(){
+		users = CSVService.readUsersFromCSV();
+	}
 
 	public void display(){
 		System.out.println("Hospital ID: " + this.hospitalID);
 		System.out.println("Name: " + this.name);
-		System.out.println("Password: " + this.password);
+		// System.out.println("Password: " + this.password);
 		System.out.println("Role: " + this.role);
 		System.out.println("Age: " + this.age);
 		System.out.println("Gender: " + this.gender);

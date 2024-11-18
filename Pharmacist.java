@@ -6,20 +6,19 @@ public class Pharmacist extends User {//ignore the staff first
 	public static List<Pharmacist> pharmacists = new ArrayList<>();
 
 
-	public Pharmacist(String staffID, String password, String name, String gender, int age){
-		super(staffID, password, name, gender, age);
+	public Pharmacist(String staffID, String name, String gender, int age){
+		super(staffID, name, gender, age);
 		this.role = "pharmacist";
 	}
 
 	public static Pharmacist fromCSV(String data) {	// create a new pharmacist then return
 		String[] fields = data.split(",");
         String hospitalID = fields[0];
-        String password = fields[1];
-        String name = fields[2];
-        String gender = fields[3];
-        int age = Integer.parseInt(fields[4]);
-        String role = fields[5];
-        Pharmacist pharmacist = new Pharmacist(hospitalID, password, name, gender, age);
+        String name = fields[1];
+        String gender = fields[2];
+        int age = Integer.parseInt(fields[3]);
+        String role = fields[4];
+        Pharmacist pharmacist = new Pharmacist(hospitalID, name, gender, age);
         return pharmacist;
     }
 
@@ -44,8 +43,13 @@ public class Pharmacist extends User {//ignore the staff first
 		return pharmacist;
 	}
 
+	public static List<Pharmacist> updatePharmacists(){
+		pharmacists = CSVService.readPharmacistsFromCSV();
+		return pharmacists;
+	}
+
 	public static List<Pharmacist> getPharmacists(){
-		if (pharmacists.size() == 0){
+		if (pharmacists.isEmpty()){
 			pharmacists = CSVService.readPharmacistsFromCSV();
 		}
 		return pharmacists;

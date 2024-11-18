@@ -1,5 +1,5 @@
-import java.util.*;
 import java.time.*;
+import java.util.*;
 
 public class Patient extends User {
 	public static List<Patient> patients = new ArrayList<>();
@@ -7,13 +7,16 @@ public class Patient extends User {
 	private int contactNumber = 1919810;
 	private String email = "example@xxx.com";
 	private String bloodType = "A+";
-	private List<Appointment> scheduledAppointment = new ArrayList<>();
+	private List<Appointment> timeTable = new ArrayList<>();
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
+	private String latestMedicalStatus = "status";
+	private ArrayList<String> Diagnoses = new ArrayList<>(); //
+	//new diagnoses, prescriptions, and treatment plans.
 
 	Scanner scanner = new Scanner(System.in);
 
-	public Patient(String patientID, String password, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
-		super(patientID, password, name, gender, age);
+	public Patient(String patientID, String name, String gender, int age, LocalDate birth, int contactNumber, String email, String bloodType){
+		super(patientID, name, gender, age);
 		this.birth = birth;
 		this.contactNumber = contactNumber;
 		this.email = email;
@@ -65,12 +68,11 @@ public class Patient extends User {
 	public static Patient fromCSV(String data){
 		String[] fields = data.split(",");
 		User user = User.fromCSV(data);
-		LocalDate birth = LocalDate.parse(fields[6]);
-		String bloodType = fields[7];
-		String email = fields[8];
-		int contactNumber = Integer.parseInt(fields[9]);
-		Patient patient = new Patient(user.hospitalID, 
-										user.password, 
+		LocalDate birth = LocalDate.parse(fields[5]);
+		String bloodType = fields[6];
+		String email = fields[7];
+		int contactNumber = Integer.parseInt(fields[8]);
+		Patient patient = new Patient(user.hospitalID,
 										user.name, 
 										user.gender, 
 										user.age, 
@@ -107,7 +109,7 @@ public class Patient extends User {
 
 	public PastDiagnoses getPastDiagnoses(){
 		if (pastDiagnoses.size() == 0){
-			for (Appointment appointment : getScheduledAppointment()){
+			for (Appointment appointment : getTimeTable()){
 				if (appointment.getPatient().getHospitalID().equals(this.hospitalID) && appointment.getStatus().equals("closed")){
 					pastDiagnoses.updatePastDiagnoses(appointment.getAppointmentOutcome());
 				}
@@ -116,21 +118,30 @@ public class Patient extends User {
 		return this.pastDiagnoses;
 	}
 
-	public List<Appointment> getScheduledAppointment(){	// all the appointments that have the id of this patient
-		if (this.scheduledAppointment.size() == 0){
-			this.scheduledAppointment = TextService.getPatientAppointment(this.hospitalID);
+	public List<Appointment> getTimeTable(){	// all the appointments that have the id of this patient
+		if (this.timeTable.size() == 0){
+			this.timeTable = TextService.getPatientAppointment(this.hospitalID);
 		}
-		return this.scheduledAppointment;
+		return this.timeTable;
 	}
 
-	public void addScheduledAppointment(Appointment appointment){
-		this.scheduledAppointment.add(appointment);
+	public void addAppointment(Appointment appointment){
+		this.timeTable.add(appointment);
+	}
+
+	public List<Appointment> getScheduledAppointments(){	// scheduled appointments only contain pending and confirmed appointments
+		List<Appointment> scheduledAppointments = new ArrayList<>();
+		for (Appointment appointment : getTimeTable()){
+			if (appointment.getStatus().equals("pending") || appointment.getStatus().equals("confirmed")){
+				scheduledAppointments.add(appointment);
+			}
+		}
+		return scheduledAppointments;
 	}
 
 	public static List<Patient> getPatients(){
 		if (patients.size() == 0) {
             patients = CSVService.readPatientsFromCSV();
-            System.out.println("patients list loaded from CSV");
         }
         return patients;
 	}

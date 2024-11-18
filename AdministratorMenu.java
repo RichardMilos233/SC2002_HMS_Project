@@ -4,15 +4,16 @@ public class AdministratorMenu {
     
     public static void displayAdminMenu(Administrator administrator){
         Scanner scanner = new Scanner(System.in);
-        int choice = 0;
+        int choice;
         do{
-            System.out.println("Administrator Menu: \n" + //
-                                "1 View and Manage Hospital Staff \n" + //
-                                "2 View Appointments details \n" + //
-                                "3 View and Manage Medication Inventory \n" + //
-                                "4 View Replenishment Requests \n" + //
-                                "5 Logout ");
-            choice = Integer.parseInt(scanner.nextLine());
+            System.out.println("Administrator Menu: \n" + 
+                                "1 View and Manage Hospital Staff \n" + 
+                                "2 View Appointments details \n" + 
+                                "3 View and Manage Medication Inventory \n" + 
+                                "4 View Replenishment Requests \n" + 
+                                "5 Change Password \n" + 
+                                "6 Logout");
+            choice = Validator.validateInt(scanner);
 
             switch (choice) {
                 case 1:
@@ -29,12 +30,16 @@ public class AdministratorMenu {
                     // inventoryService.approveReplenishRequest(replenishRequests.get(Integer.parseInt(scanner.nextLine())-1));
                     break;
                 case 5:
+                    administrator.changePassword();
+                    break;
+                case 6:
                     administrator.logout();
                     break;
+
                 default:
-                    break;
+                    System.out.println("Invalid input."); 
             }
-        }while (choice != 5);
+        }while (choice != 6);
     }
   
     private static void displayInventory() { // this moved to somewhere else
@@ -98,54 +103,66 @@ public class AdministratorMenu {
         Scanner scanner = new Scanner(System.in);
         int c = 0;
         do {  // inconsistent print method what is the preference
-            System.out.println("Would you like to: \n" + //
-            "1 Display All Staff by Role \n" + //
-            "2 Display All Staff by ID \n" + //
-            "3 Display Doctors \n" + //
-            "4 Display Pharmacists \n" + //
-            "5 Manage Staff \n" + //
-            "6 Return to Menu");
-            c = scanner.nextInt();
+            // Display a list of staff filtered by role, gender, age, etc
+            System.out.println("Would you like to: \n" + 
+                                "1 Display All Staff by Role \n" + 
+                                "2 Display All Staff by Name \n" + 
+                                "3 Display All Staff by ID \n" + 
+                                "4 Display All Staff by Age \n" + 
+                                "5 Display All Staff by Gender \n" + 
+                                "6 Display Doctors \n" + 
+                                "7 Display Pharmacists \n" + 
+                                "8 Manage Staff \n" + 
+                                "9 Return to Menu");
+            c = Validator.validateInt(scanner);
             switch (c){
                 case 1:
                     StaffService.displayStaffList(1);
-                    // TO DO - add option for alphabetical
                     break;
                 case 2:
-                    StaffService.displayStaffList(0);
-                    break; 
+                    StaffService.displayStaffList(2);
+                    break;
                 case 3:
+                    StaffService.displayStaffList(3);
+                    break;
+                case 4:
+                    StaffService.displayStaffList(4);
+                    break;
+                case 5:
+                    StaffService.displayStaffList(5);
+                    break; 
+                case 6:
                     System.out.format("ID     Name                 Gender Age\n");
                     System.out.println("-------------------------------------------");
                     StaffService.displayDoctorList(1);
                     break;
-                case 4:
+                case 7:
                     System.out.format("ID     Name                 Gender Age\n");
                     System.out.println("-------------------------------------------");
                     StaffService.displayPharmacistList(1);
                     break;
-                case 5:
+                case 8:
                     manageStaff();
                     break;
-                case 6:
+                case 9:
                     return;
                 default:
                     break;
             }
-        } while (c!=6);
+        } while (c!=9);
         
     throw new UnsupportedOperationException();
     }
 
     public static void manageStaff() {
         Scanner scanner = new Scanner(System.in);
-        int c = 0;
+        int c;
         do { System.out.println("Would you like to: \n" + //
                                 "1 Add Staff \n" + //
                                 "2 Update Staff \n" + //
                                 "3 Remove Staff \n" + //
                                 "4 Return to Menu");
-            c = scanner.nextInt();
+            c = Validator.validateInt(scanner);
             switch (c){
                 case 1:
                     // name, role, id automatically allocated i think, gender, age, salary?
@@ -168,105 +185,85 @@ public class AdministratorMenu {
 		throw new UnsupportedOperationException();
 	}
 
-    public static String verifyName(String name){
-        if(name.isBlank() || name.isEmpty() && (name.length()-name.trim().length() > 4 && name.contains("  "))){
-            return "";
-        }
-        // Name formatting
-        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-        for (int i = 0; i<name.length()-1; i++){
-            if (name.charAt(i) == ' ' && name.charAt(i+1)!=' '){
-                name = name.substring(0,i+1) + name.substring(i+1, i+2).toUpperCase() + name.substring(i+2).toLowerCase();
-            }
-        }
-        return name;
-    }
-
 	public static void addStaff() { // cannot add admin
         Scanner scanner = new Scanner(System.in);
         String name, defaultPass;
-        int role, gender, age;
+        int age;
+        char role, gender;
 
         do { // NAME
             System.out.println("Staff's Name: ");
-            name = scanner.nextLine();
-        } while(verifyName(name).isBlank());
-        name = verifyName(name);
+            name = Validator.validateName(scanner);
+        } while(name.isBlank());
         System.out.println("Name entered: " + name);
 
         do { // ROLE
-            System.out.println("\nStaff's Role: \n1 Doctor\n2 Pharmacist");
-            role = scanner.nextInt();
-        } while (role >2 || role<1);
+            System.out.println("\nStaff's Role: \nD Doctor\nP Pharmacist");
+            role = Validator.validateCharToUpper(scanner);
+        } while (role!='D'&& role!='P');
         
         do { // GENDER
-            System.out.println("\nStaff's Gender: \n1 Male\n2 Female");
-            gender = scanner.nextInt();
-        } while (gender >2 || gender<1);
+            System.out.println("\nStaff's Gender: \nM Male\nF Female");
+            gender = Validator.validateCharToUpper(scanner);
+        } while (gender!='M'&& gender!='F');
         
         do { // Age
             System.out.println("\nStaff's Age: ");
-            age = scanner.nextInt();
-            scanner.nextLine();
+            age =  Validator.validateInt(scanner);
         } while (age <18 || age>100);
 
        
         do { // NAME
             System.out.println("\nMake a default password for the new Staff member (at least 8 characters): ");
-            defaultPass = scanner.nextLine();
+            defaultPass = Validator.validateStringNoSpace(scanner);
         } while(defaultPass.isBlank() || defaultPass.isEmpty() || (defaultPass.length()<8));
         
         int c;
-        if (role==1){
-            if (gender==1){
+        if (role=='D'){
+            if (gender=='M'){
                 System.out.println("\nNew Doctor: \nName: " + name + "\nGender: Male\nAge: " + age);
             } else {
                 System.out.println("\nNew Doctor: \nName: " + name + "\nGender: Female\nAge: " + age);
             }
-            c = 0;
             do { 
-                System.out.println("\nConfirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
-                c = scanner.nextInt();
+                System.out.println("\nConfirm this new Staff? \nY Yes \nN No, re-enter Details \nC Cancel");
+                c =  Validator.validateCharToUpper(scanner);
                 switch (c){
-                    case 1:
+                    case 'Y':
                         StaffService.addStaff(name, role, gender, age, defaultPass);
                         break;
-                    case 2:
+                    case 'N':
                         AdministratorMenu.addStaff();
                         break;
-                    case 3: 
+                    case 'C': 
                         return;
                     default:
                         break;
                 } 
-            }   while (c>3 || c<1);
+            }   while (c!='Y' && c!='N' && c!='C');
         } else {
-            if (gender==1){
+            if (gender=='M'){
                 System.out.println("\nNew Pharmacist: \nName: " + name + "\nGender: Male\nAge: " + age);
             } else {
                 System.out.println("\nNew Pharmacist: \nName: " + name + "\nGender: Female\nAge: " + age);
             }
-            c = 0;
             do { 
-                System.out.println("Confirm this new Staff: \n1 Yes \n2 Re-enter Details \n3 Cancel");
-                c = scanner.nextInt();
+                System.out.println("\nConfirm this new Staff? \nY Yes \nN No, re-enter Details \nC Cancel");
+                c =  Validator.validateCharToUpper(scanner);
                 switch (c){
-                    case 1:
+                    case 'Y':
                         StaffService.addStaff(name, role, gender, age, defaultPass);
                         break;
-                    case 2:
+                    case 'N':
                         AdministratorMenu.addStaff();
                         break;
-                    case 3: 
+                    case 'C': 
                         return;
                     default:
                         break;
                 } 
-            }   while (c>3 || c<1);
+            }   while (c!='Y' && c!='N' && c!='C');
         }
-        /* System.out.println("Confirm creating staff: \n" +
-        "Name: " + name + "\n" + "ID: " + id + "\n" + "Role: " + role + "\n" + ); */
-        //throw new UnsupportedOperationException();
 	}
 
 	public static void updateStaff() { // update admin, doctor, or pharmacist
@@ -274,66 +271,72 @@ public class AdministratorMenu {
         String ID;
         do { 
             System.out.println("Enter the ID of the Staff member you want to update: ");
-            ID = scanner.next();
+            ID = Validator.validateStringNoSpace(scanner);
         } while (StaffService.findStaffDetails(ID) == null);
 
         User u = StaffService.findStaffDetails(ID);
-            int c = 0;
-            int d;
-            String name;
+            int c;
+            String name = u.getName();
+            int age = u.getAge();
+            String gender = u.getGender();
+            String role = u.getRole();
+            String opposite = null;
+            String otherRole;
             do { 
-                System.out.println("What detail would you like to update: \n1 Name: " + u.getName() + "\n2 Role: " + u.getRole() + 
-                                    "\n3 Gender: " + u.getGender() + "\n4 Age: " + u.getAge() + "\n5 Finish Updating");
-                c = scanner.nextInt();
-                scanner.nextLine();
+                System.out.println("What detail would you like to update: \n" + 
+                                    "1 Name: " + name + "\n" +
+                                    "2 Role: " + role + "\n" + 
+                                    "3 Gender: " + gender + "\n" + 
+                                    "4 Age: " + age + "\n" +
+                                    "5 Finish Updating" + "\n" +
+                                    "6 Change Password");
+                c =  Validator.validateInt(scanner);
                 switch (c){
                     case 1:
                         // update name
                         do { 
                             System.out.println("Enter new Name: ");
-                            name = scanner.nextLine(); 
-                        } while (verifyName(name).isBlank());
-                        name = verifyName(name);
-                        StaffService.updateStaff(u, name, "", "", 0);
+                            name = Validator.validateName(scanner); 
+                        } while (name.isBlank());
                         break;
                     case 2:
                         // update role
-                        String role;
-                        do { 
-                            System.out.println("Select the new Role: \n1 Doctor \n2 Pharmacist");
-                            d = scanner.nextInt();
-                        } while (d>2 || (d==1 && u.getRole().matches("doctor")) || (d==2 && u.getRole().matches("pharmacist")));
-                        if (d == 1){
-                            role = "doctor";
-                        } else{
-                            role = "pharmacist";
+                        if (!u.getHospitalID().startsWith("A")){
+                                if (role.startsWith("d")){
+                                    otherRole = "pharmacist";
+                                } else {
+                                    otherRole = "doctor";
+                                }
+                                System.out.println("Switching to " + otherRole);
+                                role = otherRole;
+                        } else {
+                            System.out.println("Admin's role cannot be changed");
                         }
-                        StaffService.updateStaff(u, "", role, "", 0);
                         break;
                     case 3:
                         // update gender
-                        String gender;
-                        String opposite;
-                        if (u.getGender().startsWith("M")){
+                        if (gender.startsWith("M")){
                             opposite = "Female";
                         } else{
                             opposite = "Male";
                         }
                         System.out.println("Switching gender to " + opposite);
-                        StaffService.updateStaff(u, "", "", opposite, 0);
+                        gender = opposite;
                         break;
                     case 4:
-                        int age;
                         do { 
                             System.out.println("Type the new age: ");
-                            age = scanner.nextInt();
-                        } while (age<18 || age==u.getAge());
-                        StaffService.updateStaff(u, "", "", "", age);
+                            age =  Validator.validateInt(scanner);
+                        } while (age<18);
+                        System.out.println("Updating age to " + age);
                         break;
                     case 5:
-                        System.out.println("New details for ID: " + ID + "\nName: " + u.getName() + "\nRole: " + u.getRole() + 
-                                    "\nGender: " + u.getGender() + "\nAge: " + u.getAge());
+                        u = StaffService.updateStaff(u, name, role, opposite, age);
+                        System.out.println("New details for ID" + u.getHospitalID() + ":\nName: " + u.getName() + "\nRole: " + u.getRole() + 
+                                    "\nGender: " + u.getGender() + "\nAge: " + u.getAge() + "\n");
                         break;
+                    case 6:
+                        u.changePassword();
                     default:
                         break;
                 }
@@ -346,24 +349,24 @@ public class AdministratorMenu {
         Scanner scanner = new Scanner(System.in);
         String ID;
         System.out.println("Enter the ID of the Staff member you want to remove");
-        ID = scanner.next();
+        ID = Validator.validateStringNoSpace(scanner);
         User u = StaffService.findStaffDetails(ID);
-        int c = 0;
+        char c;
         do { 
             System.out.println("Are you sure you want to remove " + u.getRole().substring(0, 1).toUpperCase() 
-                                + u.getRole().substring(1) +" " + u.getName() + "\n1 Yes \n2 No");
-            c = scanner.nextInt();
+                                + u.getRole().substring(1) +" " + u.getName() + "\nY Yes \nN No");
+            c =  Validator.validateCharToUpper(scanner);
             switch (c){
-                case 1:
+                case 'Y':
                     StaffService.removeStaff(u);
                     System.out.println("Staff removed");
                     break;
-                case 2:
+                case 'N':
                     return;
                 default:
                     break;
             }
-        } while (c>2 || c<1);
+        } while (c!='Y' && c!='N');
 
 		//throw new UnsupportedOperationException();
 	}

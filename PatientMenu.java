@@ -14,7 +14,8 @@ public class PatientMenu {
                                 "6 Cancel an Appointment \n" + 
                                 "7 View Scheduled Appointments \n" + 
                                 "8 View Past Appointment Outcome Records \n" + 
-                                "9 Logout");
+                                "9 Change Password \n" + 
+                                "10 Logout");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -42,11 +43,15 @@ public class PatientMenu {
                     PastAppointmentOutcomeRecordViewer.viewPastAppointmentOutcomeRecord(patient);
                     break;
                 case 9:
+                    patient.changePassword();
+                    break;
+                case 10:
                     patient.logout();
                     break;
+
                 default:
                     break;
             }
-        }while(choice != 9);
+        }while(choice != 10);
     }
 }

@@ -3,20 +3,19 @@ import java.util.*;
 public class Administrator extends User { //ignore Staff first
 	public static List<Administrator> administrators = new ArrayList<>();
 
-	public Administrator(String staffID, String password, String name, String gender, int age){
-		super(staffID, password, name, gender, age);
+	public Administrator(String staffID, String name, String gender, int age){
+		super(staffID, name, gender, age);
 		this.role = "administrator";
 	}
 
 	public static Administrator fromCSV(String data) {	// create a new admin then return
 		String[] fields = data.split(",");
         String hospitalID = fields[0];
-        String password = fields[1];
-        String name = fields[2];
-        String gender = fields[3];
-        int age = Integer.parseInt(fields[4]);
-        String role = fields[5];
-        Administrator admin = new Administrator(hospitalID, password, name, gender, age);
+        String name = fields[1];
+        String gender = fields[2];
+        int age = Integer.parseInt(fields[3]);
+        String role = fields[4];
+        Administrator admin = new Administrator(hospitalID, name, gender, age);
         return admin;
     }
 
@@ -39,6 +38,10 @@ public class Administrator extends User { //ignore Staff first
 		
         administrator = Administrator.administrators.get(choice-1);
 		return administrator;
+	}
+
+	public static void updateAdministrators(){
+		administrators = CSVService.readAdminsFromCSV();
 	}
 
 	public static List<Administrator> getAdministrators(){

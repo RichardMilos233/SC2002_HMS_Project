@@ -6,26 +6,27 @@ public class Test {
         Scanner scanner = new Scanner(System.in);
         // //initialize sample users
         System.out.println("checkpoint 1");
-        Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
+        Patient patient = new Patient("P1001", "Alice Brown", "Female", 24, 
                                     LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
         
         System.out.println("checkpoint 2");
 
-        Doctor doctor = new Doctor("D001", "docpass", "John Smith", "Male", 45);
+        Doctor doctor = new Doctor("D001", "John Smith", "Male", 45);
 
         System.out.println("checkpoint 3");
 
-        Pharmacist pharmacist = new Pharmacist("P001", "phmpass", "Mark Lee", "Male", 29);
-        Administrator administrator = new Administrator("A001", "adminpass", "Sarah Lee", "Male", 40);
+        Pharmacist pharmacist = new Pharmacist("P001", "Mark Lee", "Male", 29);
+        Administrator administrator = new Administrator("A001", "Sarah Lee", "Male", 40);
 
         PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day");
         PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");
 
-        AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2018, 10, 27), 
-                                                "X-ray", p1, "drink more hot water");
-        AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2004, 5, 8), 
-                                                "consultation", p2, "sleep more");
-        
+
+        AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2024, 10, 27), 
+                                                "X-ray", p1, "drink more hot water", "Diabetes", false);
+        AppointmentOutcome b = new AppointmentOutcome(LocalDate.of(2023, 5, 8), 
+                                                "consultation", p2, "sleep more", "possible depression", false);
+    
         String status = "closed";
 
         System.out.println("checkpoint 4");

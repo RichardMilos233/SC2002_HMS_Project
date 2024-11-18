@@ -14,18 +14,22 @@ public class Main {
             System.out.println("----------Home Page----------");
             System.out.println("Select your option:");
             System.out.println("1 Sign in");
-            System.out.println("2 Quit");
-            choice = scanner.nextInt();
+            System.out.println("2 Sign up (for new patients)");
+            System.out.println("3 Quit");
+            choice =  Validator.validateInt(scanner);
 
             switch (choice) {
                 case 1:
                     user = null;
                     user = Login.login(user);
-                    
+                    if (user == null){
+                        System.out.println("incorrect hospital id or password");
+                        break;
+                    }
                     role = user.getRole();
                     switch (role) {
                         case "patient":
-                            PatientMenu.displayPatientMenu((Patient)user);  //so far so good
+                            PatientMenu.displayPatientMenu((Patient)user);
                             break;
                         case "doctor":
                             DoctorMenu.displayDoctorMenu((Doctor)user);
@@ -42,12 +46,13 @@ public class Main {
                     }
                     break;
                 case 2:
+                    user = Signup.signup();
                     break;
 
                 default:
                     break;
             }
-        } while(choice != 2);
+        } while(choice != 3);
 
         System.out.println("Thank you for using our HMS");
     }

@@ -10,6 +10,7 @@ public class Appointment {
 	//When a patient sends a request, status = pending, then if a doctor approves, status = confirmed, else status = rejected
 	//The patient cancels the appointment, status = cancelled
 	//After the appointment, i.e. appointmentOutcome is added to it, status = closed
+	//Pharmacist will dispense medication according to the appointment, after that, status = dispensed
 	private LocalDate date;
 	private LocalTime time;
 	private AppointmentOutcome appointmentOutcome = new AppointmentOutcome();
@@ -25,10 +26,13 @@ public class Appointment {
 		
 		System.out.println("Appointment date & time: " + date + ' ' + time);
 		System.out.println("Appointment status: " + status);
+
+		if (status.equals("confirmed") || status.equals("closed") || status.equals("pending")){
+			System.out.println("Doctor ID: " + doctorID);
+		}
 		
 		if (status.equals("confirmed") || status.equals("closed")){
 			System.out.println("Patient ID: " + patientID);
-			System.out.println("Doctor ID: " + doctorID);
 		}
 
 		if (status.equals("closed")){

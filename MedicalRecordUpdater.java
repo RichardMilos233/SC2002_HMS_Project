@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class MedicalRecordUpdater { 
-    // TODO - Doctors can update the medical records of patients by adding new diagnoses, prescriptions, and treatment plans
     public static void updateMedicalRecord(Doctor doctor){
         Scanner scanner = new Scanner(System.in);
         // choose which patient to update
@@ -16,6 +15,7 @@ public class MedicalRecordUpdater {
             System.out.println("invalid choice");
             return;
         }
+
         // select which appointment outcome to update
         PastDiagnoses pastDiagnoses = patient.getPastDiagnoses();
         List<AppointmentOutcome> appointmentOutcomes = pastDiagnoses.getAppointmentOutcomes();
@@ -23,7 +23,7 @@ public class MedicalRecordUpdater {
         int choice = -1;
         int i;
 
-        System.out.println("Choose the appointment outcome to update");
+        System.out.println("Choose the appointment outcome to resolve");
         for (i = 0; i < appointmentOutcomes.size(); i++){
             appointmentOutcome = appointmentOutcomes.get(i);
             System.out.println();
@@ -32,9 +32,9 @@ public class MedicalRecordUpdater {
         }
 
         while (true) {
-            System.out.print("Enter an integer: ");
+            System.out.print("Select the appointment number: ");
             try {
-                choice = scanner.nextInt();
+                choice = Validator.validateInt(scanner);
                 // If input is valid, break the loop
                 break;
             } catch (java.util.InputMismatchException e) {
@@ -48,29 +48,39 @@ public class MedicalRecordUpdater {
             return;
         }
 
-        List<Appointment> appointments = patient.getScheduledAppointment();
+        //getting the appt outcome we selected 
+        List<Appointment> appointments = patient.getTimeTable();
         Appointment appointment;
         appointments.removeIf(apt -> !apt.getStatus().equals("closed"));    // brutally get the same list of appointments that contains appointmentoutcomes
         appointmentOutcome = appointmentOutcomes.get(choice-1);
         appointment = appointments.get(choice-1);
 
-		String medication;
-		System.out.println("Enter medication: ");
-        scanner.nextLine(); // buffer
-		medication = scanner.nextLine();	//only 1 med for each appointment, for now
-        String dosage;
-        System.out.println("Enter dosage: ");
-        dosage = scanner.nextLine();
-		PrescribedMedication prescribedMedication = new PrescribedMedication(medication, dosage);
-		String consultationNotes;
-		System.out.println("Enter consultation notes: ");
-		consultationNotes = scanner.nextLine();
-
-        appointmentOutcome.setPrescribedMedication(prescribedMedication);
-        appointmentOutcome.setConsultationNotes(consultationNotes);
-
+		// String medication;
+		// System.out.println("Enter medication: ");
+        // scanner.nextLine(); // buffer
+		// medication = scanner.nextLine();	//only 1 med for each appointment, for now
+        // String dosage;
+        // System.out.println("Enter dosage: ");
+        // dosage = scanner.nextLine();
+		// PrescribedMedication prescribedMedication = new PrescribedMedication(medication, dosage);
+		// String consultationNotes;
+		// System.out.println("Enter consultation notes: ");
+		// consultationNotes = scanner.nextLine();
+        char c;
+        do { 
+            System.out.println("Has this diagnosis been resolved?\nY Yes\tN No");
+            c = Validator.validateCharToUpper(scanner);
+        } while (c!='Y' && c!='N');
+        appointmentOutcome.setResolved(c=='Y'); 
         TextService.replaceAppointment(appointment);
+        System.out.println("Medical record has been updated");
 
-        System.out.println("Appointment outcome has been updated");
+
+        // appointmentOutcome.setPrescribedMedication(prescribedMedication);
+        // appointmentOutcome.setConsultationNotes(consultationNotes);
+
+        // TextService.replaceAppointment(appointment);
+
+        // System.out.println("Appointment outcome has been updated");
     }
 }
