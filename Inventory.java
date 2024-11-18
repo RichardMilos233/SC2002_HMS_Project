@@ -247,8 +247,8 @@ public class Inventory implements IInventory {
 
         System.out.println("Medication not found."); 
     }
-
-    public void replenishRequest(String name, int amountToReplenish) {
+// name changd from string to med
+    public void replenishRequest(Medication name, int amountToReplenish) {
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
@@ -258,8 +258,9 @@ public class Inventory implements IInventory {
             if (i == 0) continue; // Skip Headers
 
             // Find The Medication from the List
-            if (medicationList.get(i).get(0).equals(name)) {
+            //if (medicationList.get(i).get(0).equals(name)) 
                 // Update the list with the correct stock number
+            if (name.getMedicationName().equals(medicationList.get(i).get(0))) {    
                 medicationList.get(i).add(String.valueOf(amountToReplenish));
 
                 // Save It!

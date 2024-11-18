@@ -12,7 +12,7 @@ public class PharmacistAppointmentOutcomeRecordViewer {
             if (appointment.getStatus().equals("closed")) {
                  appointmentOutcomesList.add(appointment);
 
-				 //only prints dispense amt, no outcome yet
+				 
 					System.out.println("Appointment " + appointmentOutcomesList.size() + ": ");
 					System.out.println("Patient ID: " + appointment.getPatientID());
 					System.out.println("Outcome: " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription());
