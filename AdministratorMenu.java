@@ -288,7 +288,8 @@ public class AdministratorMenu {
                                     "2 Role: " + role + "\n" + 
                                     "3 Gender: " + gender + "\n" + 
                                     "4 Age: " + age + "\n" +
-                                    "5 Finish Updating");
+                                    "5 Finish Updating" + "\n" +
+                                    "6 Change Password");
                 c =  Validator.validateInt(scanner);
                 switch (c){
                     case 1:
@@ -334,6 +335,8 @@ public class AdministratorMenu {
                         System.out.println("New details for ID: " + ID + "\nName: " + u.getName() + "\nRole: " + u.getRole() + 
                                     "\nGender: " + u.getGender() + "\nAge: " + u.getAge());
                         break;
+                    case 6:
+                        u.changePassword();
                     default:
                         break;
                 }

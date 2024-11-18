@@ -37,7 +37,7 @@ public class User {
 
 	public void changePassword() {
 		String newPassword = "defaultPassword";
-		System.out.print("Enter new password:");
+		System.out.print("Enter new password: ");
 		newPassword = scanner.nextLine();
 		// this.password = newPassword;
 		int newHash = Hasher.hash(newPassword, CSVService.getSalt(getHospitalID()));
