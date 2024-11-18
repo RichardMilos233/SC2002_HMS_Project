@@ -26,9 +26,9 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 		if (appointmentOutcomesList.isEmpty()) {
 			System.out.println("No Outstanding Prescriptions\n");
 		} else {
-			System.out.println((appointmentOutcomesList.size()+1) + " Back\n");
+			System.out.println(("Enter appointment number to dispense prescription or " + appointmentOutcomesList.size()+1) + " to return\n");
 
-			int choice = Validator.validateInt(scanner);
+			int choice = Integer.parseInt(scanner.nextLine());
 			if (choice == appointmentOutcomesList.size()+1) return;
 	
 			dispensePrescription(appointmentOutcomesList.get(choice-1));
@@ -37,7 +37,7 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 
 	public static void dispensePrescription (Appointment appointment) {
 		Inventory inventory = new Inventory();
-		boolean dispensed = inventory.consumeStock(appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName(), appointment.getAppointmentOutcome().getPrescribedMedication().getDosage());
+		boolean dispensed = inventory.consumeStock(appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName(), appointment.getAppointmentOutcome().getPrescribedMedication().gettotalPrescribed());
 		if (dispensed) {
 			appointment.setStatus("dispensed");
 			TextService.replaceAppointment(appointment);

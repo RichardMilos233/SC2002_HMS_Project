@@ -2,16 +2,22 @@ public class PrescribedMedication {
 
 	private String medicationName = "nil";
 	private String dosage = "nil";
+	private int totalPrescribed;
 
 	public PrescribedMedication() {}
 
-	public PrescribedMedication(String medicationName, String dosage){
+	public PrescribedMedication(String medicationName, String dosage, int totalPrescribed){
 		this.medicationName = medicationName;
 		this.dosage = dosage;
+		this.totalPrescribed = totalPrescribed;
 	}
 
 	public void setDosage(String newDosage) {
 		this.dosage = newDosage;
+	}
+
+	public void setTotalPrescribed(int totalPrescribed) {
+		this.totalPrescribed = totalPrescribed;
 	}
 
 	public void displayPrescribedMedication(){
@@ -23,7 +29,12 @@ public class PrescribedMedication {
 	}
 
 	public String getPrescription() {
-		return ( medicationName + " taken " + dosage);
+		String medicationNamePlural = medicationName;
+		if (totalPrescribed>1){
+			medicationNamePlural = medicationName.concat("s");
+		}
+		return (medicationName.toUpperCase().charAt(0) + medicationName.toLowerCase().substring(1) + 
+		" taken " + dosage + ", " + totalPrescribed  + " " + medicationNamePlural + " given to patient");
 	}
 
 
@@ -39,14 +50,19 @@ public class PrescribedMedication {
 		
         String medicationName = lines[0];
         String dosage = lines[1];
-        return new PrescribedMedication(medicationName, dosage);
+		int totalPrescribed = Integer.parseInt(lines[2]);
+        return new PrescribedMedication(medicationName, dosage, totalPrescribed);
     }
 
 	public String getMedicationName() {
 		return medicationName;
 	}
 
-	public int getDosage() {
-		return Integer.parseInt(dosage);
+	public String getDosage() {
+		return dosage;
+	}
+
+	public int gettotalPrescribed() {
+		return totalPrescribed;
 	}
 }

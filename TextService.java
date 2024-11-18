@@ -8,7 +8,7 @@ public class TextService {
 
     public static void writeAppointmentsToTxt(List<Appointment> appointments) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_TXT_PATH))) {
-            writer.write("patientID,doctorID,status,date,time,date|type|medicationName\\dosage|consultationNotes|diagnosis|resolved\n");
+            writer.write("patientID,doctorID,status,date,time,date|type|medicationName\\dosage\\totalPrescribed|consultationNotes|diagnosis|resolved\n");
             for (Appointment appointment : appointments) {
                 writer.write(appointment.toTxt() + "\n");
             }
@@ -96,8 +96,8 @@ public class TextService {
     }
 
     public static void main(String[] args){
-        PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day");
-        PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");
+        PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day", 30);
+        PrescribedMedication p2 = new PrescribedMedication("meth", "5/day", 10);
 
         AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2024, 10, 27), 
                                                 "X-ray", p1, "drink more hot water", "Diabetes", false);
