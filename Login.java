@@ -16,10 +16,11 @@ public class Login {    //can have a Signup.java later
     public static boolean checkCredentials (List<String> credentials){
         //initialize credentials.csv to store the data for user login: first column for hospitalId, second column for password
         // need to specify the format of the credentials.csv, i.e. what value is placed at which column
+        CSVService csvService = new CSVService();
         String hospitalId = credentials.get(0);
         int hashValue = Integer.parseInt(credentials.get(1));
 
-        List<List<String>> accountList = CSVService.readCsv(CREDENTIAL_CSV_PATH);
+        List<List<String>> accountList = csvService.read(CREDENTIAL_CSV_PATH);
         
         for (int i = 1; i < accountList.size(); i++) {
             if (hospitalId.equals(accountList.get(i).get(0))) { //hospitalId match
@@ -33,6 +34,7 @@ public class Login {    //can have a Signup.java later
     }
 
     public static List<String> getLoginCredentials(){   //get id and password
+        CSVService csvService = new CSVService();
         Hasher hasher = new SimpleAdditiveHash();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your ID");
@@ -50,7 +52,7 @@ public class Login {    //can have a Signup.java later
 
         List<String> credentials = new ArrayList<>();
         credentials.add(hospitalIdInput);
-        String salt = CSVService.getSalt(hospitalIdInput);
+        String salt = csvService.getSalt(hospitalIdInput);
         int hashValue = hasher.hash(passwordInput,salt); //114514+SaltStr
         credentials.add(Integer.toString(hashValue));
 

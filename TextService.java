@@ -3,8 +3,42 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-public class TextService {
+public class TextService implements IReadable, IWritable{
     private static final String APPOINTMENT_TXT_PATH = "./txt/appointments.txt";
+
+    @Override
+    public List<List<String>> read(String filePath){
+        List<List<String>> data = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                List<String> row = new ArrayList<>();
+                for (String value : values) {
+                    row.add(value.trim());
+                }
+                data.add(row);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading CSV file: " + e.getMessage());
+        }
+
+        return data;
+    }
+
+    @Override
+    public void write(String filePath, List<List<String>> data){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            for (List<String> row : data) {
+                String line = String.join(",", row);
+                bw.write(line);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing to txt file: " + e.getMessage());
+        }
+    }
 
     public static void writeAppointmentsToTxt(List<Appointment> appointments) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_TXT_PATH))) {

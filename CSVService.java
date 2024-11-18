@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class CSVService {
+public class CSVService implements IReadable, IWritable{
     private static final String DOCTOR_CSV_PATH = "./csv/doctors.csv";
     private static final String PATIENT_CSV_PATH = "./csv/patients.csv";
     private static final String ADMIN_CSV_PATH = "./csv/administrators.csv";
@@ -10,8 +10,9 @@ public class CSVService {
 
     private static final String ROLE_HEADER = "hospitalID,name,gender,age,role";
 
+    @Override
     // Method to read data from a CSV file
-    public static List<List<String>> readCsv(String filePath) {
+    public List<List<String>> read(String filePath) {
         List<List<String>> data = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -31,8 +32,9 @@ public class CSVService {
         return data;
     }
 
+    @Override
     // Method to write data to a CSV file
-    public static void writeCsv(String filePath, List<List<String>> data) {
+    public void write(String filePath, List<List<String>> data) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (List<String> row : data) {
                 String line = String.join(",", row);
@@ -45,9 +47,9 @@ public class CSVService {
     }
 
     // Method to modify a specific cell in the CSV data
-    public static void modifyCsv(String filePath, int rowIndex, int colIndex, String newValue) {
+    public void modifyCsv(String filePath, int rowIndex, int colIndex, String newValue) {
         // Read the existing data
-        List<List<String>> data = readCsv(filePath);
+        List<List<String>> data = read(filePath);
 
         // Modify the specified cell if the row and column indices are valid
         if (rowIndex >= 0 && rowIndex < data.size() && colIndex >= 0 && colIndex < data.get(rowIndex).size()) {
@@ -58,7 +60,7 @@ public class CSVService {
         }
 
         // Write the modified data back to the file
-        writeCsv(filePath, data);
+        write(filePath, data);
     }
 
     public static void replaceUser(User user){
@@ -78,9 +80,9 @@ public class CSVService {
         User.updateUsers();
     }
 
-    protected static String getSalt(String ID){
+    protected String getSalt(String ID){
         String salt;
-        List<List<String>> accountList = readCsv(CREDENTIAL_CSV_PATH);
+        List<List<String>> accountList = read(CREDENTIAL_CSV_PATH);
         for (int i = 0; i < accountList.size(); i++){
             if (accountList.get(i).get(0).equals(ID)){
                 salt = accountList.get(i).get(2);
@@ -369,12 +371,12 @@ public class CSVService {
         writePharmacistsToCSV(pharmacists);
     }
 
-    public static void changePassword(String hospitalID, int newHash){
-        List<List<String>> credentials = CSVService.readCsv(CREDENTIAL_CSV_PATH);
+    public void changePassword(String hospitalID, int newHash){
+        List<List<String>> credentials = read(CREDENTIAL_CSV_PATH);
         for (int i = 1; i < credentials.size(); i++) {
             if (hospitalID.equals(credentials.get(i).get(0))) { //hospitalId match
                 credentials.get(i).set(1, Integer.toString(newHash));
-                writeCsv(CREDENTIAL_CSV_PATH, credentials);
+                write(CREDENTIAL_CSV_PATH, credentials);
                 System.out.println("password sucessfully reset");
                 return;
             }
@@ -408,15 +410,15 @@ public class CSVService {
         Pharmacist.updatePharmacists();
     }
 
-    public static void addCredential(String id, int hashValue, String salt){
+    public void addCredential(String id, int hashValue, String salt){
         //  add the credential of a role being created
-        List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
+        List<List<String>> credentials = read(CREDENTIAL_CSV_PATH);
         credentials.add(List.of(id, Integer.toString(hashValue), salt));
-        writeCsv(CREDENTIAL_CSV_PATH, credentials);
+        write(CREDENTIAL_CSV_PATH, credentials);
     }
-    public static String[] findCredential(String id){
+    public String[] findCredential(String id){
         String[] hashSalt = new String[2];
-        List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
+        List<List<String>> credentials = read(CREDENTIAL_CSV_PATH);
         for (int i = 0; i<credentials.size(); i++){
             if (credentials.get(i).get(0).equals(id)){
                 credentials.get(i).get(1);
@@ -428,14 +430,14 @@ public class CSVService {
         return hashSalt;
     }
 
-    public static void removeCredention(String id){
-        List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
+    public void removeCredention(String id){
+        List<List<String>> credentials = read(CREDENTIAL_CSV_PATH);
         for (int i = 0; i<credentials.size(); i++){
             if (credentials.get(i).get(0).equals(id)){
                 credentials.remove(i);
             }
         }
-        writeCsv(CREDENTIAL_CSV_PATH, credentials);
+        write(CREDENTIAL_CSV_PATH, credentials);
     }
 
     public static void main(String[] args) {
@@ -443,20 +445,22 @@ public class CSVService {
         String staffPath = "csv/Staff_List.csv";
         String credentialPath = "csv/credentials.csv";
 
+        CSVService csvService = new CSVService();
+
         List<List<String>> credentials = new ArrayList<>();
         credentials.add(List.of("hospitalId", "password"));
 
-        List<List<String>> data = CSVService.readCsv(patientPath);
+        List<List<String>> data = csvService.read(patientPath);
         for (List<String> row : data.subList(1, data.size())) {
             credentials.add(List.of(row.get(0), "defaultPatientPassword"));
         }
 
-        data = CSVService.readCsv(staffPath);
+        data = csvService.read(staffPath);
         for (List<String> row : data.subList(1, data.size())){
             credentials.add(List.of(row.get(0), "defaultStaffPassword"));
         }
 
         // Writing to credentials.csv
-        CSVService.writeCsv(credentialPath, credentials);
+        csvService.write(credentialPath, credentials);
     }
 }

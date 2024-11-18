@@ -70,9 +70,10 @@ public class Signup {
         Hasher hasher = new SimpleAdditiveHash();
         int hashValue = hasher.hash(password, salt);
 
+        CSVService csvService = new CSVService();
         Patient patient = new Patient(patientID, name, gender, age, birth, contactNumber, email, bloodType);
         CSVService.addPatient(patient);
-        CSVService.addCredential(patientID, hashValue, salt);
+        csvService.addCredential(patientID, hashValue, salt);
         System.out.println("Your ID is: " + patientID);
 
         return patient;
