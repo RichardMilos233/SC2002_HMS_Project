@@ -136,6 +136,7 @@ public class StaffService {
     }
 
     public static User updateStaff(User u, String name, String role, String gender, int age){
+        CSVService csvService = new CSVService();
         if (!name.equals(u.getName())){
             u.setName(name);
         } if (gender!=null){
@@ -149,12 +150,12 @@ public class StaffService {
         } else { 
             // if changing role, delete the user, instantiate a new one 
             gender = u.getGender();
-            String[] hashSalt = CSVService.findCredential(u.getHospitalID());
+            String[] hashSalt = csvService.findCredential(u.getHospitalID());
             removeStaff(u);
             int hash = Integer.parseInt(hashSalt[0]);
             String salt = hashSalt[1];
             String staffID = addStaff(name, role.toUpperCase().charAt(0), gender.toUpperCase().charAt(0), age, "");
-            CSVService.addCredential(staffID, hash, salt);
+            csvService.addCredential(staffID, hash, salt);
             User.updateUsers();
             System.out.println("Successfully updated to " + role.toUpperCase().charAt(0) + role.substring(1) + " with new ID " + staffID +"\n");
             return findStaffDetails(staffID);
@@ -185,6 +186,7 @@ public class StaffService {
     }
     
     public static String addStaff(String name, char roleChar, char genderChar, int age, String defaultPass){
+        CSVService csvService = new CSVService();
         String gender;
         String staffID;
         String role;
@@ -211,7 +213,7 @@ public class StaffService {
         } 
         if (!defaultPass.isBlank()){
             String salt = Salter.createSaltString();
-            CSVService.addCredential(staffID, Hasher.hash(defaultPass, salt), salt);
+            csvService.addCredential(staffID, Hasher.hash(defaultPass, salt), salt);
             System.out.println(roleChar + role.substring(1) + " with ID " + staffID + " created with password " + defaultPass);
             User.updateUsers();
         }
@@ -247,6 +249,7 @@ public class StaffService {
     }
 
     public static void removeStaff(User u){
+        CSVService csvService = new CSVService();
         String role = u.getRole();
         if (role.startsWith("d")){
             CSVService.removeDoctor((Doctor)u);
@@ -255,7 +258,7 @@ public class StaffService {
             CSVService.removePharmacist((Pharmacist)u);
             Pharmacist.getPharmacists().remove((Pharmacist)u);
         }
-        CSVService.removeCredention(u.getHospitalID());
+        csvService.removeCredention(u.getHospitalID());
         User.getUsers().remove(u);
         User.updateUsers();
     }

@@ -25,13 +25,14 @@ public class Inventory implements IInventory {
     }*/
 
     public void addMedication(Medication medication) {  
+        CSVService csvService = new CSVService();
         // Validation Checks
         if (medication.getMedicationName() == null) {
             System.out.println("Medication Name Missing");
         } else {
             String filePath = "csv/Medicine_List.csv";
             // Current List of Medications
-            List<List<String>> medicationList = CSVService.readCsv(filePath);
+            List<List<String>> medicationList = csvService.read(filePath);
 
             // New Medication Information
             List<String> newMedication = new ArrayList<>();
@@ -43,7 +44,7 @@ public class Inventory implements IInventory {
             medicationList.add(newMedication);
 
             // Save It
-            CSVService.writeCsv(filePath, medicationList);
+            csvService.write(filePath, medicationList);
 
             System.out.println(medication.getMedicationName() + " has been added");
         }
@@ -51,10 +52,11 @@ public class Inventory implements IInventory {
 
 	 // Replenish stock for a specific medication
 	 public void replenishStock(String name, int amount) {
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
         for (int i = 0; i < medicationList.size(); i++) {
             
@@ -88,14 +90,15 @@ public class Inventory implements IInventory {
         }
 
         // Save It!
-        CSVService.writeCsv(filePath, medicationList);
+        csvService.write(filePath, medicationList);
     }
 
 	 // Consume stock for a specific medication
      // Returns true if successfully consumed stock, if false means no
 	 public boolean consumeStock(String medicationName, int amountToConsume) {
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
         System.out.println(medicationName);
         System.out.println(amountToConsume);
@@ -112,7 +115,7 @@ public class Inventory implements IInventory {
                     return false;
                 } else {
                     medicationList.get(i).set(1, String.valueOf((currentStock - amountToConsume)));
-                    CSVService.writeCsv(filePath, medicationList);
+                    csvService.write(filePath, medicationList);
                     System.out.println("Successfully Dispensed " + medicationName);
                     return true;
                 }
@@ -126,11 +129,11 @@ public class Inventory implements IInventory {
 
 
 	public void viewInventory(int index) {
-        
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
         if (index==0){
             System.out.printf("%-25s %-15s %-15s\n", medicationList.get(0).get(0), medicationList.get(0).get(1), medicationList.get(0).get(2));
             for (int i = 1; i < medicationList.size(); i++) {
@@ -146,12 +149,13 @@ public class Inventory implements IInventory {
     }
 
     public List<String> checkStockLevels() {
+        CSVService csvService = new CSVService();
         List<String> medicationsThatNeedToBeRestocked = new ArrayList<>();
 
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
         // Go through medication list 
         for (int i = 0; i < medicationList.size(); i++) {
@@ -171,10 +175,11 @@ public class Inventory implements IInventory {
     }
     
     public void setAlertLine(Medication medication, int alertLineAmount) {
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
         // Go through medication list 
         for (int i = 0; i < medicationList.size(); i++) {
@@ -182,19 +187,20 @@ public class Inventory implements IInventory {
 
             if (medication.getMedicationName().equals(medicationList.get(i).get(0))) {
                 medicationList.get(i).set(2, String.valueOf(alertLineAmount));
-                CSVService.writeCsv(filePath, medicationList);
+                csvService.write(filePath, medicationList);
                 return;
             }
         }
     }
 
     public List<Medication> retrieveMedications() {
+        CSVService csvService = new CSVService();
         List<Medication> medications = new ArrayList<>();
 
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
          // Go through medication list 
          for (int i = 0; i < medicationList.size(); i++) {
@@ -212,10 +218,11 @@ public class Inventory implements IInventory {
     }
 
     public void removeMedication(Medication medicationToRemove) {
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
         // Go through medication list 
         for (int i = 0; i < medicationList.size(); i++) {
@@ -223,7 +230,7 @@ public class Inventory implements IInventory {
 
             if (medicationToRemove.getMedicationName().equals(medicationList.get(i).get(0))) {
                 medicationList.remove(i);
-                CSVService.writeCsv(filePath, medicationList);
+                csvService.write(filePath, medicationList);
                 System.out.println(medicationToRemove.getMedicationName() + " have been removed");
                 return;
             }
@@ -231,10 +238,11 @@ public class Inventory implements IInventory {
     }
 
     public void updateStockLevel(String name, int amountToUpdateTo) {
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
         
         for (int i = 0; i < medicationList.size(); i++) {
             if (i == 0) continue; // Skip Headers
@@ -245,7 +253,7 @@ public class Inventory implements IInventory {
                 medicationList.get(i).set(1, String.valueOf(amountToUpdateTo));
 
                 // Save It!
-                CSVService.writeCsv(filePath, medicationList);
+                csvService.write(filePath, medicationList);
                 System.out.println("Successfully Updated " + name);
                 return;
             }
@@ -255,10 +263,11 @@ public class Inventory implements IInventory {
     }
 // name changd from string to med
     public void replenishRequest(Medication name, int amountToReplenish) {
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
         for (int i = 0; i < medicationList.size(); i++) {
             if (i == 0) continue; // Skip Headers
@@ -273,7 +282,7 @@ public class Inventory implements IInventory {
                 } 
                 medicationList.get(i).add(String.valueOf(amountToReplenish));
                 // Save It!
-                CSVService.writeCsv(filePath, medicationList);
+                csvService.write(filePath, medicationList);
                 System.out.println("Successfully Requested Replenishment for " + name);
                 
 
@@ -294,10 +303,11 @@ public class Inventory implements IInventory {
     }
 
     public List<Medication> viewReplenishRequests() {
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
         List<Medication> medicationsForApproval = new ArrayList<>();
         int j = 1;
@@ -321,10 +331,11 @@ public class Inventory implements IInventory {
     }
 
     public void approveReplenishRequest(String medicationToReplenish) {
+        CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
-        List<List<String>> medicationList = CSVService.readCsv(filePath);
+        List<List<String>> medicationList = csvService.read(filePath);
 
         for (int i = 0; i < medicationList.size(); i++) {
             if (i == 0) continue; // Skip Headers
