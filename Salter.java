@@ -12,7 +12,4 @@ public class Salter {
             return salt;
         }
     
-
-    public static void main(String[] args){
-    }
 }

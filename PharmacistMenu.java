@@ -16,7 +16,7 @@ public class PharmacistMenu {
                                 "5 Logout");
             List<Medication> medications = inventoryService.retrieveMedications();                    
 
-            choice = Integer.parseInt(scanner.nextLine());
+            choice = Validator.validateInt(scanner);
             switch (choice) {
                 case 1:
                     viewAppointmentOutcomeRecord();
@@ -37,9 +37,9 @@ public class PharmacistMenu {
                     }
                     System.out.println("Choose which medication to Replenish: ");
                     //String medToReplenish = scanner.nextLine();
-                    int medToReplenish = Integer.parseInt(scanner.nextLine());
+                    int medToReplenish = Validator.validateInt(scanner);
                     System.out.println("Enter Stock Level: ");
-                    int stockLevelToSet = Integer.parseInt(scanner.nextLine());
+                    int stockLevelToSet = Validator.validateInt(scanner);
                     inventoryService.replenishRequest(medications.get(medToReplenish-1), stockLevelToSet);
                     //submit to inventory -> calls medication
                     break;

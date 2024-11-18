@@ -62,10 +62,7 @@ public class Validator {
         while (true) { 
             if (scanner.hasNextLine()) { 
                 input = scanner.nextLine(); 
-                if (input.isBlank()){
-                    continue;
-                }
-                else if (input.contains(" ") || input.isBlank()){
+                if (input.contains(" ") || input.isBlank()){
                     System.out.println("Invalid. Please enter a string without using space: "); 
                 } else{
                     break;
@@ -79,15 +76,33 @@ public class Validator {
         } 
         return input;
     }
-    public static String validateNotes(Scanner scanner) { // ensures string has no space in it 
+
+    public static String validateEmail(Scanner scanner) { // ensures string has no space in it 
+        String input; 
+        while (true) { 
+            if (scanner.hasNextLine()) { 
+                input = scanner.nextLine(); 
+                if (!input.contains("@") || input.isBlank()){
+                    System.out.println("Invalid. Please enter a valid email: "); 
+                } else{
+                    break;
+                }
+                // Input is valid, exit the loop 
+            } else { 
+                System.out.println("Invalid. Please enter an email: "); 
+                scanner.next();  
+                // Clear the invalid input 
+            }
+        } 
+        return input;
+    }
+
+    public static String validateLine(Scanner scanner) { // ensures string has no space in it 
         String input; 
         while (true) { 
             if (scanner.hasNextLine()) { 
                 input = scanner.nextLine(); 
                 if (input.isBlank()){
-                    continue;
-                }
-                else if (input.isBlank()){
                     System.out.println("Invalid. Please enter a string: "); 
                 } else{
                     break;

@@ -5,7 +5,7 @@ public class MedicalRecordUpdater {
         Scanner scanner = new Scanner(System.in);
         // choose which patient to update
         List<Patient> patients = doctor.getPatients();
-        if (patients.size()==0){
+        if (patients.isEmpty()){
             System.out.println("There is currently no patient under your care");
             System.out.println("Maybe you should reflect on why no one wants to consult you");
             return;
@@ -31,22 +31,10 @@ public class MedicalRecordUpdater {
             appointmentOutcome.displayAppointmentOutcome();
         }
 
-        while (true) {
+        do {
             System.out.print("Select the appointment number: ");
-            try {
-                choice = Validator.validateInt(scanner);
-                // If input is valid, break the loop
-                break;
-            } catch (java.util.InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid integer.");
-                scanner.next(); // Clear the invalid input
-            }
-        }
-
-        if (choice < 1 || choice > appointmentOutcomes.size()){
-            System.out.println("invalid choice");
-            return;
-        }
+            choice = Validator.validateInt(scanner);
+        } while (choice < 1 || choice > appointmentOutcomes.size());
 
         //getting the appt outcome we selected 
         List<Appointment> appointments = patient.getTimeTable();

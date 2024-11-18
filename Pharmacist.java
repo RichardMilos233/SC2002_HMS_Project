@@ -34,7 +34,7 @@ public class Pharmacist extends User {//ignore the staff first
 			System.out.println(i+1 + ": " + pharmacist.getName());
 		}
 
-		choice = scanner.nextInt();
+		choice = Validator.validateInt(scanner);
 		if (choice <1 || choice > Pharmacist.pharmacists.size()){
 			return null;
 		}

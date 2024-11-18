@@ -19,19 +19,19 @@ public class AppointmentOutcomeRecorder {
 		
 		String medication;
 		System.out.println("Enter medication: ");
-		medication = Validator.validateNotes(scanner);	//only 1 med for each appointment, for now
+		medication = Validator.validateLine(scanner);	//only 1 med for each appointment, for now
 		String dosage;
 		System.out.println("Enter dosage: ");
-		dosage = Validator.validateNotes(scanner);
+		dosage = Validator.validateLine(scanner);
 		PrescribedMedication prescribedMedication = new PrescribedMedication(medication, dosage);
 
 		String consultationNotes;
 		System.out.println("Enter consultation notes: ");
-		consultationNotes = Validator.validateNotes(scanner);
+		consultationNotes = Validator.validateLine(scanner);
 
 		String diagnosis;
 		System.out.println("Enter diagnosis: ");
-		diagnosis = Validator.validateNotes(scanner);
+		diagnosis = Validator.validateLine(scanner);
 
 		AppointmentOutcome appointmentOutcome = new AppointmentOutcome(appointment.getDate(), type, prescribedMedication, consultationNotes, diagnosis, false);
 		appointment.setAppointmentOutcome(appointmentOutcome);

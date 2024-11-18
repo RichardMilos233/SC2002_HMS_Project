@@ -175,10 +175,13 @@ public class Doctor extends User {	//ignore the Staff class first
 			System.out.println(i+1 + ": " + doctor.getName());
 		}
 
-		choice = scanner.nextInt();
-		if (choice <1 || choice > Doctor.doctors.size()){
-			return null;
-		}
+		do { 
+			System.out.println("Choose the doctor you want or 0 to return:");
+			choice = Validator.validateInt(scanner);
+			if (choice == 0){
+				return null;
+			}
+		} while (choice <1 || choice > Doctor.doctors.size());
 		
         doctor = Doctor.doctors.get(choice-1);
 		return doctor;

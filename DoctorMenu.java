@@ -6,7 +6,7 @@ public class DoctorMenu {
         // // only for test
         // Patient patient = new Patient("P1001", "pswrd", "Alice Brown", "Female", 24, 
         //                             LocalDate.of(1990, 5, 14), 84320011, "alice.brown@example.com", "A+");
-        int choice = 0;
+        int choice;
         do{
             System.out.println("---------------Doctor Menu---------------\n" + 
                                 "1 View Patient Medical Records\n" + 
@@ -18,7 +18,7 @@ public class DoctorMenu {
                                 "7 Record Appointment Outcome \n" + 
                                 "8 Change Password \n" + 
                                 "9 Logout");
-            choice = scanner.nextInt();
+            choice = Validator.validateInt(scanner);
             switch (choice) {
                 case 1:
                     DoctorMedicalRecordViewer.viewMedicalRecord(doctor);

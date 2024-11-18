@@ -20,22 +20,14 @@ public class DoctorMedicalRecordViewer {
             System.out.println(i+1 + ": " + patient.getName());
         }
 
-        while (true) {
-            System.out.print("Enter an integer: ");
-            try {
-                choice = Validator.validateInt(scanner);
-                // If input is valid, break the loop
-                break;
-            } catch (java.util.InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid integer.");
-                scanner.next(); // Clear the invalid input
+        do {
+            System.out.print("Select a valid Patient or 0 to cancel: ");
+            choice = Validator.validateInt(scanner);
+            if (choice == 0){
+                return;
             }
-        }
+        } while(choice < 1 || choice > patients.size());
 
-        if (choice < 1 || choice > patients.size()){
-            System.out.println("invalid choice");
-            return;
-        }
         patient = patients.get(choice-1);
         // then view
         System.out.println("Name: " + patient.getName());

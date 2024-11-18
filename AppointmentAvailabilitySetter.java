@@ -17,22 +17,14 @@ public class AppointmentAvailabilitySetter {
             appointment.displayAppointment();
         }
 
-        while (true) {
-            System.out.print("Enter an integer: ");
-            try {
-                choice = scanner.nextInt();
-                // If input is valid, break the loop
-                break;
-            } catch (java.util.InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid integer.");
-                scanner.next(); // Clear the invalid input
+        System.out.print("Choose a slot: ");
+        do { 
+            choice = Validator.validateInt(scanner);
+            if (choice < 1 || choice > unavailableAppointments.size()){
+                System.out.print("Invalid. Choose a valid slot: ");
             }
-        }
+        } while (choice < 1 || choice > unavailableAppointments.size());
 
-        if (choice < 1 || choice > unavailableAppointments.size()){
-            System.out.println("invalid choice");
-            return;
-        }
         appointment = unavailableAppointments.get(choice-1);
         appointment.setStatus("available");
         TextService.replaceAppointment(appointment);

@@ -35,9 +35,9 @@ public class Login {    //can have a Signup.java later
     public static List<String> getLoginCredentials(){   //get id and password
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your ID");
-        String hospitalIdInput = scanner.nextLine();
+        String hospitalIdInput = Validator.validateStringNoSpace(scanner);
         System.out.println("Enter your password");
-        String passwordInput = scanner.nextLine();
+        String passwordInput = Validator.validateStringNoSpace(scanner);
 
         List<String> credentials = new ArrayList<>();
         credentials.add(hospitalIdInput);
