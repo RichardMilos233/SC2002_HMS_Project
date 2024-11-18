@@ -23,7 +23,9 @@ public class AppointmentOutcomeRecorder {
 		String dosage;
 		System.out.println("Enter dosage: ");
 		dosage = Validator.validateLine(scanner);
-		PrescribedMedication prescribedMedication = new PrescribedMedication(medication, dosage);
+		System.out.println("Enter total number of bottles/pills to give to the patient: ");
+		int totalPrescribed = Validator.validateInt(scanner);
+		PrescribedMedication prescribedMedication = new PrescribedMedication(medication, dosage, totalPrescribed);
 
 		String consultationNotes;
 		System.out.println("Enter consultation notes: ");

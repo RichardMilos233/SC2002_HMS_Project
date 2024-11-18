@@ -18,8 +18,8 @@ public class Test {
         Pharmacist pharmacist = new Pharmacist("P001", "Mark Lee", "Male", 29);
         Administrator administrator = new Administrator("A001", "Sarah Lee", "Male", 40);
 
-        PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day");
-        PrescribedMedication p2 = new PrescribedMedication("meth", "5/day");
+        PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day", 30);
+        PrescribedMedication p2 = new PrescribedMedication("meth", "5/day", 10);
 
 
         AppointmentOutcome a = new AppointmentOutcome(LocalDate.of(2024, 10, 27), 

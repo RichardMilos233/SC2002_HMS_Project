@@ -93,7 +93,6 @@ public class Inventory implements IInventory {
 
 	 // Consume stock for a specific medication
      // Returns true if successfully consumed stock, if false means no
-     @Override
 	 public boolean consumeStock(String medicationName, int amountToConsume) {
         String filePath = "csv\\Medicine_List.csv";
         List<List<String>> medicationList = CSVService.readCsv(filePath);

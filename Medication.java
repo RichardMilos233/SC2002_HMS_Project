@@ -56,9 +56,6 @@ public class Medication {
         return stockAlert;
     }
 
-    
-
-
     public String toString() {
         return String.format("%s: %d units (Alert Level: %d)", medicationName, stock, stockAlert);
     }
