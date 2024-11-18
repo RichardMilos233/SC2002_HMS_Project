@@ -23,7 +23,7 @@ public class PrescribedMedication {
 	}
 
 	public String getPrescription() {
-		return (dosage + "x " + medicationName);
+		return ( medicationName + " taken " + dosage);
 	}
 
 
