@@ -10,6 +10,7 @@ public class AdministratorInventoryManagement {
             System.out.println("No Replenish Requests");
         }
         else {
+            System.out.println("Select a medicine to approve or deny: ");
             int medicationChoice = Validator.validateInt(scanner);
             if (medicationChoice > replenishRequests.size()) {
                 System.out.println("Invalid Choice");

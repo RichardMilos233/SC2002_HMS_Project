@@ -8,7 +8,6 @@ public class AppointmentScheduler{
         //list out all doctors, then select a doctor
         Doctor doctor = Doctor.getDoctor();
         if (doctor == null){
-            System.out.println("invalid choice");
             return;
         }
 

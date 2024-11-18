@@ -40,7 +40,7 @@ public class PrescribedMedication {
 
 	// for PrescribedMedication, splitter of which is \
 	public String toTxt() {
-        return String.format("%s\\%s", medicationName, dosage);
+        return String.format("%s\\%s\\%d", medicationName, dosage, totalPrescribed);
     }
 
     public static PrescribedMedication fromTxt(String txt) {

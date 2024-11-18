@@ -7,7 +7,7 @@ public class Login {    //can have a Signup.java later
         List<String> credentials = getLoginCredentials();
         if (checkCredentials(credentials)){
             user = allocateAccount(credentials.get(0));
-            System.out.println("Successfully logged in\n");
+            System.out.println("Successfully logged in");
             return user;
         }
         return null;
@@ -37,7 +37,7 @@ public class Login {    //can have a Signup.java later
         System.out.println("Enter your ID");
         String hospitalIdInput = Validator.validateStringNoSpace(scanner);
         System.out.println("Enter your password");
-        String passwordInput = Validator.validateStringNoSpace(scanner);
+        String passwordInput = Validator.validateLine(scanner);
         /* remove after testing */
         if (passwordInput.equals("1")){
             List<String> credentials = new ArrayList<>();
