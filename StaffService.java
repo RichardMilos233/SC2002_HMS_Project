@@ -135,29 +135,47 @@ public class StaffService {
         System.out.println("\n");
     }
 
-    public static void updateStaff(User u, String name, String role, String gender, int age){
-        if (!name.isBlank() && !name.isEmpty()){
+    public static User updateStaff(User u, String name, String role, String gender, int age){
+        if (!name.equals(u.getName())){
             u.setName(name);
-        } if (!gender.isBlank() && !gender.isEmpty()){
+        } if (gender!=null){
             u.setGender(gender);
-        } if (age != 0){
+        } 
+        if (age != u.getAge() && age !=0){
             u.setAge(age);
         }
-        
-        if (!role.isBlank() && !role.isEmpty()){
-            u.setRole(role);
-            u.setHospitalID(createID(role.toUpperCase().charAt(0))); // remove
+        if (role.equals(u.getRole())){
             CSVService.replaceUser(u);
+        } else { 
+            // if changing role, delete the user, instantiate a new one 
+            gender = u.getGender();
+            String[] hashSalt = CSVService.findCredential(u.getHospitalID());
+            removeStaff(u);
+            int hash = Integer.parseInt(hashSalt[0]);
+            String salt = hashSalt[1];
+            String staffID = addStaff(name, role.toUpperCase().charAt(0), gender.toUpperCase().charAt(0), age, "");
+            CSVService.addCredential(staffID, hash, salt);
+            User.updateUsers();
+            System.out.println("Successfully updated to " + role.toUpperCase().charAt(0) + role.substring(1) + " with new ID " + staffID +"\n");
+            return findStaffDetails(staffID);
+            // change the stored hash and the stored salt for this user
+
+            // OR set role of user to change, create a new ID 
+            /* u.setRole(role);
+            // change csv to reflect this, then update Doctor.getDoctors e.g.
             if (role.equals("doctor")){;
                 CSVService.removePharmacist((Pharmacist) u);
-                CSVService.addDoctor((Doctor) u);
+                u.setHospitalID(String.valueOf(createID(role.toUpperCase().charAt(0))));
+                CSVService.replaceUser(u);
             } else{
                 CSVService.removeDoctor((Doctor) u);
-                CSVService.addPharmacist((Pharmacist) u);
-            }
-        } else{
-            CSVService.replaceUser(u);
+                u.setHospitalID(String.valueOf(createID(role.toUpperCase().charAt(0))));
+                CSVService.replaceUser(u);
+            } */
+        
         }
+        return u;
+        
         
         // if (role.contains("doctor")){
         //     Doctor.updateDoctors();
@@ -166,7 +184,7 @@ public class StaffService {
         // }
     }
     
-    public static void addStaff(String name, char roleChar, char genderChar, int age, String defaultPass){
+    public static String addStaff(String name, char roleChar, char genderChar, int age, String defaultPass){
         String gender;
         String staffID;
         String role;
@@ -191,10 +209,13 @@ public class StaffService {
             Pharmacist pharmacist = new Pharmacist(staffID, name, gender, age);
             CSVService.addPharmacist(pharmacist);
         } 
-        String salt = Salter.createSaltString();
-        CSVService.addCredential(staffID, Hasher.hash(defaultPass, salt), salt);
-        System.out.println(roleChar + role.substring(1) + " with ID " + staffID + " created with password " + defaultPass);
-        User.updateUsers();
+        if (!defaultPass.isBlank()){
+            String salt = Salter.createSaltString();
+            CSVService.addCredential(staffID, Hasher.hash(defaultPass, salt), salt);
+            System.out.println(roleChar + role.substring(1) + " with ID " + staffID + " created with password " + defaultPass);
+            User.updateUsers();
+        }
+        return staffID;
     }
 
     public static User findStaffDetails(String ID){
@@ -204,16 +225,23 @@ public class StaffService {
                     return Doctor.getDoctors().get(i);
                 }
             }
-            System.out.println("Error - Doctor with ID" + ID + "not found");
+            System.out.println("Error - Doctor with ID " + ID + " not found");
         } else if (ID.startsWith("P") && ID.length()==4){
             for (int i = 0; i<Pharmacist.getPharmacists().size(); i++){
                 if (Pharmacist.getPharmacists().get(i).getHospitalID().matches(ID)){
                     return Pharmacist.getPharmacists().get(i);
                 }
             }
-            System.out.println("Error - Pharmacist with ID" + ID + "not found");
+            System.out.println("Error - Pharmacist with ID " + ID + " not found");
+        } else if (ID.startsWith("A") && ID.length()==4){
+            for (int i = 0; i<Administrator.getAdministrators().size(); i++){
+                if (Administrator.getAdministrators().get(i).getHospitalID().matches(ID)){
+                    return Administrator.getAdministrators().get(i);
+                }
+            }
+            System.out.println("Error - Administrator with ID " + ID + " not found");
         } else{
-            System.out.println("Error - ID format for staff is incorrect \nPlease follow DXXX or PXXX");
+            System.out.println("Error - ID format for staff is incorrect \nPlease follow DXXX, PXXX, or AXXX");
         }
         return null;
     }

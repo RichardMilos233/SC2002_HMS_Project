@@ -414,6 +414,19 @@ public class CSVService {
         credentials.add(List.of(id, Integer.toString(hashValue), salt));
         writeCsv(CREDENTIAL_CSV_PATH, credentials);
     }
+    public static String[] findCredential(String id){
+        String[] hashSalt = new String[2];
+        List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);
+        for (int i = 0; i<credentials.size(); i++){
+            if (credentials.get(i).get(0).equals(id)){
+                credentials.get(i).get(1);
+                credentials.get(i).get(2);
+                hashSalt[0] = credentials.get(i).get(1);
+                hashSalt[1] = credentials.get(i).get(2);
+            }
+        }
+        return hashSalt;
+    }
 
     public static void removeCredention(String id){
         List<List<String>> credentials = readCsv(CREDENTIAL_CSV_PATH);

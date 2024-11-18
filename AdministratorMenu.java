@@ -331,9 +331,9 @@ public class AdministratorMenu {
                         System.out.println("Updating age to " + age);
                         break;
                     case 5:
-                        StaffService.updateStaff(u, name, role, opposite, age);
-                        System.out.println("New details for ID: " + ID + "\nName: " + u.getName() + "\nRole: " + u.getRole() + 
-                                    "\nGender: " + u.getGender() + "\nAge: " + u.getAge());
+                        u = StaffService.updateStaff(u, name, role, opposite, age);
+                        System.out.println("New details for ID" + u.getHospitalID() + ":\nName: " + u.getName() + "\nRole: " + u.getRole() + 
+                                    "\nGender: " + u.getGender() + "\nAge: " + u.getAge() + "\n");
                         break;
                     case 6:
                         u.changePassword();

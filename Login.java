@@ -7,7 +7,7 @@ public class Login {    //can have a Signup.java later
         List<String> credentials = getLoginCredentials();
         if (checkCredentials(credentials)){
             user = allocateAccount(credentials.get(0));
-            System.out.println("successfully logged in");
+            System.out.println("successfully logged in\n");
             return user;
         }
         return null;
