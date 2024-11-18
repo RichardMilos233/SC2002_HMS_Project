@@ -35,9 +35,11 @@ public class AppointmentCanceller {
         } while (choice < 0 || choice > scheduledAppointment.size());
         
         Appointment appointment = scheduledAppointment.get(choice-1);
-        appointment.setStatus("cancelled");
+        appointment.setStatus("available");
+        appointment.setPatientID("P1000");
 
         TextService.replaceAppointment(appointment);
+        patient.updateTimeTable();
         
         Doctor doctor = appointment.getDoctor();
         doctor.removePatient(appointment.getPatient());

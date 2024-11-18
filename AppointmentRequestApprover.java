@@ -25,7 +25,7 @@ public class AppointmentRequestApprover{
                 appointment.setStatus("confirmed");
                 doctor.addPatient(appointment.getPatient());
             }else if (choice == 0){
-                appointment.setStatus("rejected");
+                appointment.setStatus("available");
             }
             TextService.replaceAppointment(appointment);
         }

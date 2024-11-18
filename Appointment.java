@@ -5,10 +5,10 @@ public class Appointment {
 	// private Doctor doctor;
 	private String patientID = "P1000";
 	private String doctorID;
-	private String status = "unavailable";	//unavailable, available, pending, cancelled, confirmed, rejected, closed
+	private String status = "unavailable";	//unavailable, available, pending, confirmed, closed, dispensed
 	//Upon initialization, status = unavailable, status = available after a doctor sets the availability
-	//When a patient sends a request, status = pending, then if a doctor approves, status = confirmed, else status = rejected
-	//The patient cancels the appointment, status = cancelled
+	//When a patient sends a request, status = pending, then if a doctor approves, status = confirmed, else status = available
+	//The patient cancels the appointment, status = available again
 	//After the appointment, i.e. appointmentOutcome is added to it, status = closed
 	//Pharmacist will dispense medication according to the appointment, after that, status = dispensed
 	private LocalDate date;
@@ -26,15 +26,13 @@ public class Appointment {
 		System.out.println("Appointment date & time: " + date + ' ' + time);
 		System.out.println("Appointment status: " + status);
 
-		if (status.equals("confirmed") || status.equals("closed") || status.equals("pending")){
+		if (status.equals("confirmed") || status.equals("pending") || 
+			status.equals("closed") || status.equals("dispensed")){
 			System.out.println("Doctor ID: " + doctorID);
-		}
-		
-		if (status.equals("confirmed") || status.equals("closed")){
 			System.out.println("Patient ID: " + patientID);
 		}
 
-		if (status.equals("closed")){
+		if (status.equals("closed") || status.equals("dispensed")){
 			appointmentOutcome.displayAppointmentOutcome();
 		}
 
