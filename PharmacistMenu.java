@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class PharmacistMenu {
@@ -6,13 +7,15 @@ public class PharmacistMenu {
         Inventory inventoryService = new Inventory();
         int choice = 0;
         do{
-            System.out.println("Pharmacist Menu: \n" + 
-                                "1 View Appointment Outcome Record \n" + 
-                                "2 Update Prescription Status \n" + 
-                                "3 View Medication Inventory \n" + 
-                                "4 Submit Replenishment Request \n" + 
-                                "5 Change Password \n" + 
-                                "6 Logout");
+
+            System.out.println("Pharmacist Menu: \n" + //
+                                "1 View Appointment Outcome Record \n" + //
+                                "2 Update Prescription Status \n" + //
+                                "3 View Medication Inventory \n" + //
+                                "4 Submit Replenishment Request \n" + //
+                                "5 Logout");
+            List<Medication> medications = inventoryService.retrieveMedications();                    
+
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -29,11 +32,15 @@ public class PharmacistMenu {
                     break;
                 case 4:
                     inventoryService.viewInventory();
-                    System.out.println("Enter Medication Name to Replenish: ");
-                    String medToReplenish = scanner.nextLine();
+                    for (int i = 0; i < medications.size(); i++) {
+                        System.out.println( (i+1) + " - " + medications.get(i).getMedicationName());
+                    }
+                    System.out.println("Choose which medication to Replenish: ");
+                    //String medToReplenish = scanner.nextLine();
+                    int medToReplenish = Integer.parseInt(scanner.nextLine());
                     System.out.println("Enter Stock Level: ");
                     int stockLevelToSet = Integer.parseInt(scanner.nextLine());
-                    inventoryService.replenishRequest(medToReplenish, stockLevelToSet);
+                    inventoryService.replenishRequest(medications.get(medToReplenish-1), stockLevelToSet);
                     //submit to inventory -> calls medication
                     break;
                 case 5:

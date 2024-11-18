@@ -9,7 +9,7 @@ public interface IInventory {
     void setAlertLine(Medication medication, int alertLineAmount);
     void removeMedication(Medication medicationToRemove);
     void updateStockLevel(String name, int amountToUpdateTo);
-    void replenishRequest(String name, int amountToReplenish);
+    void replenishRequest(Medication name, int amountToReplenish);
     List<Medication> viewReplenishRequests();
     void approveReplenishRequest(String medicationToReplenish);
     void viewReplenishRequestOptions(List<String> replenishRequest);
