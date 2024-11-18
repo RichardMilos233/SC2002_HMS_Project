@@ -31,7 +31,7 @@ public class Administrator extends User { //ignore Staff first
 			System.out.println(i+1 + ": " + administrator.getName());
 		}
 
-		choice = scanner.nextInt();
+		choice = Validator.validateInt(scanner);
 		if (choice <1 || choice > Administrator.administrators.size()){
 			return null;
 		}
@@ -45,7 +45,7 @@ public class Administrator extends User { //ignore Staff first
 	}
 
 	public static List<Administrator> getAdministrators(){
-		if (administrators.size() == 0){
+		if (administrators.isEmpty()){
 			administrators = CSVService.readAdminsFromCSV();
 		}
 		return administrators;
