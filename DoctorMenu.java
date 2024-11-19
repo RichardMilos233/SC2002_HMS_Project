@@ -64,33 +64,4 @@ public class DoctorMenu {
             }
         }while (choice != 9);
     }
-
-    // public static void viewMedicalRecord(Doctor d){
-    //     // TO DO - DoctorMedicalRecordViewer.
-    // }
-    
-    // public static void updateMedicalRecord(Doctor d){
-    //     // TO DO - MedicalRecordUpdater.
-    // }
-
-    // public static void viewPersonalSchedule(Doctor d){
-    //     // TO DO - PersonalScheduleViewer.
-    // }
-
-    // public static void setAppointmentAvailability(Doctor d){
-    //     // TO DO - AppointmentAvailabilitySetter.
-    // }
-
-    // public static void approveAppointmentRequest(Doctor d){
-    //     // TO DO - AppointmentRequestApprover.
-    // }
-
-    // public static void viewUpcomingAppointment(Doctor d){
-    //     // TO DO - UpcomingAppointmentViewer.
-    // }
-    
-    // public static void recordAppointmentOutcome(Doctor d){
-    //     // TO DO - AppointmentOutcomeRecorder.
-    // }
-
 }
