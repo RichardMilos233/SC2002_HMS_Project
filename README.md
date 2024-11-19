@@ -37,9 +37,3 @@ To run the HMS application locally:
 3. Open the HMS folder in your preferred Java IDE.
 4. Compile and run the main file.
 5. Follow the prompts to navigate the system.
-
-## Dependencies
-| Library | Version | Purpose |
-|---------|---------|---------|
-| Example | 1.0.0   | Description |
-
