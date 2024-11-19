@@ -1,0 +1,9 @@
+hms
+hms.account
+hms.appointment
+hms.inventory
+hms.medicalrecords
+hms.storage
+hms.utils
+hms.utils.cryptography
+hms.views
