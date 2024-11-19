@@ -230,7 +230,8 @@ public class StaffService {
         //     Pharmacist.updatePharmacists();
         // }
     }
-        /**
+
+    /**
      * Adds a new staff member to the system and generates a unique ID for them.
      * 
      * @param name The name of the new staff member.
@@ -275,6 +276,7 @@ public class StaffService {
         }
         return staffID;
     }
+
     /**
      * Finds and returns details of a staff member based on their ID.
      * 
@@ -308,6 +310,7 @@ public class StaffService {
         }
         return null;
     }
+
      /**
      * Removes a staff member from the system based on their User object.
      * 
@@ -334,6 +337,7 @@ public class StaffService {
         
         System.out.println("Staff removed");
     }
+    
     /**
      * Creates a unique ID for a new staff member based on the role character.
      * 

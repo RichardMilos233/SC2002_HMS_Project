@@ -38,6 +38,10 @@ public class MedicalRecordUpdater {
         // select which appointment outcome to update
         PastDiagnoses pastDiagnoses = patient.getPastDiagnoses();
         List<AppointmentOutcome> appointmentOutcomes = pastDiagnoses.getAppointmentOutcomes();
+        if (appointmentOutcomes.size() == 0){
+            System.out.println("Patient has no past medical record under your care");
+            return;
+        }
         AppointmentOutcome appointmentOutcome;
         int choice = -1;
         int i;
@@ -70,11 +74,11 @@ public class MedicalRecordUpdater {
         System.out.println("Enter a new diagnois:");
         newDiagnosis = scanner.nextLine();
         diagnosis = diagnosis + " " + newDiagnosis;
-        
+
         appointmentOutcome.setDiagnosis(diagnosis);
         appointment.setAppointmentOutcome(appointmentOutcome);
         TextService.replaceAppointment(appointment);
-        System.out.println("Medical record has been updated");
+        System.out.println("Medical record has been updated.");
 
 
 		// String medication;

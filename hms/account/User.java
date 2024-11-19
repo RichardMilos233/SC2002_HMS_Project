@@ -51,12 +51,13 @@ public class User {
     //      System.out.println("Try again");
     //  }
     // }
+
 	/**
      * Logs out the user from the system. This method is typically used to break the login session.
      */
-
     public void logout() {} //do nothing, jump out of the while-switch loop
-		/**
+
+    /**
      * Changes the user's password in the system.
      */
     public void changePassword() {
@@ -91,10 +92,10 @@ public class User {
 	 * Converts user details to a CSV format string.
 	 * @return A string represnting the user details in CSV format
 	 */
-    
 	public String toCSV() {
         return hospitalID + "," + name + "," + gender + "," + age + "," + role;
     }
+
 	/**
      * Creates a User instance from a CSV formatted string.
      *
@@ -110,6 +111,7 @@ public class User {
         String role = fields[4];
         return new User(hospitalID, name, gender, age);
     }
+
 	/**
      * Gets the hospital ID of the user.
      *
@@ -118,6 +120,7 @@ public class User {
     public String getHospitalID(){
         return this.hospitalID;
     }
+
 	/**
      * Gets the name of the user.
      *
@@ -126,6 +129,7 @@ public class User {
     public String getName(){
         return this.name;
     }
+
 	/**
      * Gets the gender of the user.
      *
@@ -134,6 +138,7 @@ public class User {
     public String getGender(){
         return this.gender;
     }
+
 	/**
      * Gets the age of the user.
      *
@@ -142,6 +147,7 @@ public class User {
     public int getAge(){
         return this.age;
     }
+
 	/**
      * Gets the role of the user within the system.
      *
@@ -150,6 +156,7 @@ public class User {
     public String getRole(){
         return this.role;
     }
+
 	/**
      * Sets the hospital ID for the user.
      *
@@ -158,6 +165,7 @@ public class User {
     public void setHospitalID(String newHospitalID){
         this.hospitalID = newHospitalID;
     }
+
 	/**
      * Sets the name for the user.
      *
@@ -175,6 +183,7 @@ public class User {
     public void setGender(String gender){
         this.gender = gender;
     }
+
 	/**
      * Sets the age for the user.
      *
@@ -183,6 +192,7 @@ public class User {
     public void setAge(int age){
         this.age = age;
     }
+
 	/**
      * Sets the role for the user.
      *
@@ -191,6 +201,7 @@ public class User {
     public void setRole(String role){
         this.role = role;
     }
+
 	/**
      * Retrieves all users from the system.
      *
@@ -202,12 +213,14 @@ public class User {
         }
         return users;
     }
+
 	/**
      * Updates the list of all users by reading from the CSV.
      */
     public static void updateUsers(){
         users = CSVService.readUsersFromCSV();
     }
+
 	/**
      * Displays user information.
      */
@@ -220,9 +233,18 @@ public class User {
         System.out.println("Age: " + this.age + "\n");
     }
 
+    /**
+     * Displays the user's information in a table format including role.
+     * The output includes hospital ID, role, name, gender, and age, formatted for alignment in columns.
+     */
     public void displayTableFormatRole(){
         System.out.format("%-6s %-13s %-20s %-10s %-2d\n", this.hospitalID, this.role, this.name, this.gender, this.age);
     }
+
+    /**
+     * Displays the user's information in a simplified table format excluding role.
+     * The output includes hospital ID, name, gender, and age, formatted for alignment in columns.
+     */
     public void displayTableFormat(){
         System.out.format("%-6s %-20s %-10s %-2d\n", this.hospitalID, this.name, this.gender, this.age);
     }

@@ -101,21 +101,4 @@ public class Pharmacist extends User {//ignore the staff first
 		PharmacistAppointmentOutcomeRecordViewer.getAppointmentOutcomes();
 		throw new UnsupportedOperationException();
 	}
-
-	/* 
-	public void updatePrescriptionStatus() {
-		// TODO - implement Pharmacist.updatePrescriptionStatus
-		throw new UnsupportedOperationException();
-	}
-
-	public void viewMedicationInventory() {
-		// TODO - implement Pharmacist.viewMedicationInventory
-		throw new UnsupportedOperationException();
-	}
-
-	public void submitReplenishmentRequest() {
-		// TODO - implement Pharmacist.submitReplenishmentRequest
-		throw new UnsupportedOperationException();
-	}
- 	*/
 }
