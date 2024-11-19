@@ -99,8 +99,16 @@ public class AdministratorMenu {
                         System.out.println( (i+1) + " - " + medications.get(i).getMedicationName());
                     }
 
-                    System.out.println("Choose Medication to Remove: ");
-                    int medChoice = Validator.validateInt(scanner);
+                    int medChoice;
+                    do { 
+                        System.out.println("Choose Medication to Remove OR 0 to Return: "); 
+                        medChoice = Validator.validateInt(scanner);
+                        if (medChoice == 0){
+                            return;
+                        }
+                    }
+                    while (medChoice<1 || medChoice>medications.size());
+                    
                     
                     inventoryService.removeMedication(medications.get(medChoice-1));
                     break;

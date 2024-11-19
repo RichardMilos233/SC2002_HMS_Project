@@ -37,16 +37,16 @@ public class AppointmentRequestApprover{
             
             do { 
                 System.out.println("Approve?\nY Yes\tN No \t0 Return");
-                choice = Validator.validateInt(scanner);
+                choice = Validator.validateCharToUpper(scanner);
                 if (choice == 0){
                     return;
                 }
             } while (choice != 'Y' && choice != 'N');
 
-            if (choice == 1){
+            if (choice == 'Y'){
                 appointment.setStatus("confirmed");
                 doctor.addPatient(appointment.getPatient());
-            }else if (choice == 0){
+            }else if (choice == 'N'){
                 appointment.setStatus("available");
             }
             TextService.replaceAppointment(appointment);

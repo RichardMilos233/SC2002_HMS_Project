@@ -1,10 +1,11 @@
 package hms.appointment;
 
 import hms.account.Doctor;
+import hms.inventory.Inventory;
+import hms.inventory.Medication;
 import hms.medicalrecords.PrescribedMedication;
 import hms.storage.TextService;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Utility class to record the outcomes of appointments for a given doctor.
@@ -31,27 +32,62 @@ public class AppointmentOutcomeRecorder {
 
 		appointment.displayAppointment();
         
-        String type;
-        System.out.println("Enter type (consultation, xray, or surgery): ");
-        type = Validator.validateStringNoSpace(scanner);
+        char c;
+		String type = "";
+        do { 
+			System.out.println("Select type:\tC Consultation\tX X-ray\tS Surgery");
+			c = Validator.validateCharToUpper(scanner);
+		}	while (c != 'C' && c != 'X' && c !='S');
+		switch (c){
+			case 'C':
+				type = "consultation";
+				break;
+			case 'X':
+				type = "xray";
+				break;
+			case 'S':
+				type = "surgery";
+				break;
+			default:
+				break;
+		}
 		
-		String medication;
-		System.out.println("Enter medication: ");
-		medication = Validator.validateLine(scanner);	//only 1 med for each appointment, for now
-		String dosage;
-		System.out.println("Enter dosage: ");
-		dosage = Validator.validateLine(scanner);
-		System.out.println("Enter total number of bottles/pills to give to the patient: ");
-		int totalPrescribed = Validator.validateInt(scanner);
-		PrescribedMedication prescribedMedication = new PrescribedMedication(medication, dosage, totalPrescribed);
+		int medication;
+		String meds;
+		Inventory inventoryService = new Inventory();
+		List<Medication> medications = inventoryService.retrieveMedications();
+		inventoryService.viewInventory();
+		do {System.out.println("Select medication OR 0 to prescribe none: ");
+			medication = Validator.validateInt(scanner);	//only 1 med for each appointment, for now
+		}	while (medication<0 || medication>medications.size());
+		if (medication !=0){
+			meds = medications.get(medication-1).getMedicationName();
+		} else{
+			meds = "";
+		}
+
+
+		String dosage = "";
+		int totalPrescribed = 0;
+		if (medication != 0){
+			System.out.println("Enter dosage for patient's reference: ");
+			dosage = Validator.validateStringforFile(scanner);
+		
+			do { 
+				System.out.println("Enter total number of bottles/pills for pharmacist to give to the patient: ");
+				totalPrescribed = Validator.validateInt(scanner);
+			} while (totalPrescribed<1);
+		}
+		PrescribedMedication prescribedMedication = new PrescribedMedication(meds, dosage, totalPrescribed);
+		
 
 		String consultationNotes;
 		System.out.println("Enter consultation notes: ");
-		consultationNotes = Validator.validateLine(scanner);
+		consultationNotes = Validator.validateStringforFile(scanner);
 
 		String diagnosis;
 		System.out.println("Enter diagnosis: ");
-		diagnosis = Validator.validateLine(scanner);
+		diagnosis = Validator.validateStringforFile(scanner);
 
 		AppointmentOutcome appointmentOutcome = new AppointmentOutcome(appointment.getDate(), type, prescribedMedication, consultationNotes, diagnosis, false);
 		appointment.setAppointmentOutcome(appointmentOutcome);

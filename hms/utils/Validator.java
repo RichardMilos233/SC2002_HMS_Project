@@ -68,6 +68,34 @@ public class Validator {
     }
 
     /**
+     * Validates that the input from the scanner is a proper 8digit phone number, following convention
+     *
+     * @param scanner The scanner to read the input from.
+     * @return The validated number
+     */
+    public static int validateContact(Scanner scanner) { // ensure int is entered
+        int input; 
+        while (true) { 
+            if (scanner.hasNextInt()) { 
+                input = scanner.nextInt();
+                if (String.valueOf(input).length()!=8){
+                    System.out.println("Invalid. Please enter a valid phone number: "); 
+                } else{
+                    break;
+                }
+                break; 
+                // Input is valid, exit the loop 
+            } else { 
+                System.out.println("Invalid. Please enter a valid phone number: "); 
+                scanner.next();  
+                // Clear the invalid input 
+            }
+        } 
+        handleExtraInput(scanner);
+        return input;
+    }
+
+    /**
      * Formats the input name string to have each word start with an uppercase letter followed by lowercase letters.
      *
      * @param name The name string to format.
@@ -103,6 +131,32 @@ public class Validator {
                 // Input is valid, exit the loop 
             } else { 
                 System.out.println("Invalid. Please enter a string without using space: "); 
+                scanner.next();  
+                // Clear the invalid input 
+            }
+        } 
+        return input;
+    }
+
+     /**
+     * Validates that the input string contains no commas or special characters that can interfere with file reading.
+     *
+     * @param scanner The scanner to read the input from.
+     * @return The validated string.
+     */
+    public static String validateStringforFile(Scanner scanner) { // ensures string has no comma etc in it 
+        String input; 
+        while (true) { 
+            if (scanner.hasNextLine()) { 
+                input = scanner.nextLine(); 
+                if (input.contains(",") || input.isBlank() || input.contains("|")||input.contains("\\")){
+                    System.out.println("Invalid. Please enter a string without using , | \\: "); 
+                } else{
+                    break;
+                }
+                // Input is valid, exit the loop 
+            } else { 
+                System.out.println("Please enter a string: "); 
                 scanner.next();  
                 // Clear the invalid input 
             }

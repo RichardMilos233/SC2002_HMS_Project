@@ -196,6 +196,12 @@ public class Inventory {
                 medicationsThatNeedToBeRestocked.add(medicationList.get(i).get(0));
             }
         }
+        
+		if (!medicationsThatNeedToBeRestocked.isEmpty()){
+			for (int i = 0; i< medicationsThatNeedToBeRestocked.size() ;i++){
+				System.out.println("\n---------------" +medicationsThatNeedToBeRestocked.get(i).toUpperCase() + " IS BELOW THE STOCK ALERT LINE---------------");
+			}
+		}
 
         return medicationsThatNeedToBeRestocked;
     }
