@@ -42,7 +42,7 @@ public class MedicalRecordUpdater {
         int choice = -1;
         int i;
 
-        System.out.println("Choose the appointment outcome to resolve or 0 to return");
+        System.out.println("Choose the appointment outcome to udpate");
         for (i = 0; i < appointmentOutcomes.size(); i++){
             appointmentOutcome = appointmentOutcomes.get(i);
             System.out.println();
@@ -65,6 +65,18 @@ public class MedicalRecordUpdater {
         appointmentOutcome = appointmentOutcomes.get(choice-1);
         appointment = appointments.get(choice-1);
 
+        String newDiagnosis;
+        String diagnosis = appointmentOutcome.getDiagnosis();
+        System.out.println("Enter a new diagnois:");
+        newDiagnosis = scanner.nextLine();
+        diagnosis = diagnosis + " " + newDiagnosis;
+        
+        appointmentOutcome.setDiagnosis(diagnosis);
+        appointment.setAppointmentOutcome(appointmentOutcome);
+        TextService.replaceAppointment(appointment);
+        System.out.println("Medical record has been updated");
+
+
 		// String medication;
 		// System.out.println("Enter medication: ");
         // scanner.nextLine(); // buffer
@@ -76,15 +88,15 @@ public class MedicalRecordUpdater {
 		// String consultationNotes;
 		// System.out.println("Enter consultation notes: ");
 		// consultationNotes = scanner.nextLine();
-        char c;
-        do { 
-            System.out.println("Has this diagnosis been resolved?\nY Yes\tN No");
-            c = Validator.validateCharToUpper(scanner);
-        } while (c!='Y' && c!='N');
-        appointmentOutcome.setResolved(c=='Y'); 
-        TextService.replaceAppointment(appointment);
-        System.out.println("Medical record has been updated");
 
+        // char c;
+        // do { 
+        //     System.out.println("Has this diagnosis been resolved?\nY Yes\tN No");
+        //     c = Validator.validateCharToUpper(scanner);
+        // } while (c!='Y' && c!='N');
+        // appointmentOutcome.setResolved(c=='Y'); 
+        // TextService.replaceAppointment(appointment);
+        
 
         // appointmentOutcome.setPrescribedMedication(prescribedMedication);
         // appointmentOutcome.setConsultationNotes(consultationNotes);

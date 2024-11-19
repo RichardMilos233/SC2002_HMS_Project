@@ -32,7 +32,12 @@ public class AppointmentOutcome {
 	 * @param diagnosis The medical diagnosis given during the appointment.
 	 * @param resolved Boolean flag indicating if the issues addressed in the appointment are resolved.
 	 */
-	public AppointmentOutcome(LocalDate date, String type, PrescribedMedication prescribedMedication, String cosultationNotes, String diagnosis, boolean resolved){
+	public AppointmentOutcome(LocalDate date, 
+								String type, 
+								PrescribedMedication prescribedMedication, 
+								String cosultationNotes, 
+								String diagnosis, 
+								boolean resolved){
 		this.date = date;
 		this.type = type;
 		this.prescribedMedication = prescribedMedication;
@@ -67,6 +72,14 @@ public class AppointmentOutcome {
 			System.out.printf(diagnosis);
 	}
 
+	public String getDiagnosis(){
+		return this.diagnosis;
+	}
+
+	public void setDiagnosis(String newDiagnosis){
+		this.diagnosis = newDiagnosis;
+	}
+	
 	/**
 	 * Displays the medications prescribed during the appointment.
 	 */
