@@ -60,14 +60,13 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 		if (select==1){
 			int choice;
 			do { 
-				System.out.println("Select\n(Appointment Number) Dispense Prescription\n(" + (appointmentOutcomesList.size()+1) + ") Return");
+				System.out.println("Select\n(Appointment Number) Dispense Prescription\n" + "OR 0 to Return");
 				choice = Validator.validateInt(scanner);
-				if (choice == appointmentOutcomesList.size()+1){
+				if (choice == 0){
 					return;
-				} if (choice>0 && choice<appointmentOutcomesList.size()+1){
-					dispensePrescription(appointmentOutcomesList.get(choice-1));
 				}
-			} while (choice != appointmentOutcomesList.size()+1);
+			} while (choice <0 || choice>appointmentOutcomesList.size()+1);
+			dispensePrescription(appointmentOutcomesList.get(choice-1));
 		}
 	}
 
@@ -79,12 +78,22 @@ public class PharmacistAppointmentOutcomeRecordViewer {
      */
 	public static void dispensePrescription (Appointment appointment) {
 		Inventory inventory = new Inventory();
-		boolean dispensed = inventory.consumeStock(appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName(), appointment.getAppointmentOutcome().getPrescribedMedication().gettotalPrescribed());
-		List<String> medicationsAlert = inventory.checkStockLevels();
-		if (!medicationsAlert.isEmpty()){
-			System.out.println("\n---------------" +medicationsAlert.get(0).toUpperCase() + " IS BELOW THE STOCK ALERT LINE---------------");
+		boolean dispensed = false;
+		if (appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName().isBlank()){
+			System.out.println("Patient does not require medicine");
+			appointment.setStatus("dispensed");
+			TextService.replaceAppointment(appointment);
+			return;
+		} else if (appointment.getAppointmentOutcome().getPrescribedMedication().gettotalPrescribed()==0){
+			System.out.println("Patient receiving medicine elsewhere");
+			appointment.setStatus("dispensed");
+			TextService.replaceAppointment(appointment);
+			return;
+		} else{
+			dispensed = inventory.consumeStock(appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName(), appointment.getAppointmentOutcome().getPrescribedMedication().gettotalPrescribed());
 		}
-		if (dispensed) {
+		inventory.checkStockLevels();
+		if (dispensed){
 			appointment.setStatus("dispensed");
 			TextService.replaceAppointment(appointment);
 		}

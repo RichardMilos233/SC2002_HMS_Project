@@ -1,7 +1,6 @@
 package hms.appointment;
 
 import hms.medicalrecords.PrescribedMedication;
-
 import java.time.*;
 /**
  * Represents the outcome of a medical appointment, detailing the diagnosis, medication prescribed,

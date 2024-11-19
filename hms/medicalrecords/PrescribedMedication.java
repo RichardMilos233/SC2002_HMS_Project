@@ -66,11 +66,20 @@ public class PrescribedMedication {
      */
 	public String getPrescription() {
 		String medicationNamePlural = medicationName;
-		if (totalPrescribed>1){
-			medicationNamePlural = medicationName.concat("s");
-		}
-		return (medicationName.toUpperCase().charAt(0) + medicationName.toLowerCase().substring(1) + 
+		if (totalPrescribed>=1){
+               if (totalPrescribed > 1){
+                    medicationNamePlural = medicationName.concat("s");
+               }
+               return (medicationName.toUpperCase().charAt(0) + medicationName.toLowerCase().substring(1) + 
 		" taken " + dosage + ", " + totalPrescribed  + " " + medicationNamePlural + " given to patient");
+		} else{
+               if (medicationName.isEmpty()){
+                    return "No medication given to patient";
+               } else{
+                    return (medicationName + "recommended to patient");
+               }
+          }
+		
 	}
 
 
