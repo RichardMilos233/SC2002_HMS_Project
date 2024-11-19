@@ -1,4 +1,5 @@
 Medicine Name,Initial Stock,Low Stock Level Alert
-Paracetamol,60,20
-Ibuprofen,50,10
+Paracetamol,35,20
 Amoxicillin,15,15
+Inhaler,40,30
+Ibuprofen,50,10

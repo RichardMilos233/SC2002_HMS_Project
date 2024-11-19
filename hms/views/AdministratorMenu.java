@@ -1,14 +1,13 @@
 package hms.views;
 
-import hms.appointment.AdministratorAppointmentViewer;
 import hms.account.Administrator;
 import hms.account.StaffService;
 import hms.account.User;
+import hms.appointment.AdministratorAppointmentViewer;
 import hms.inventory.AdministratorInventoryManagement;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Manages the administrator menu interface, providing various functionalities
@@ -82,7 +81,7 @@ public class AdministratorMenu {
             choice = Validator.validateInt(scanner);
             switch (choice) {
                 case 1:
-                    inventoryService.viewInventory(0);
+                    inventoryService.viewInventory();
                     break;
                 case 2:
                     Medication newMedication = new Medication();
@@ -106,12 +105,25 @@ public class AdministratorMenu {
                     inventoryService.removeMedication(medications.get(medChoice-1));
                     break;
                 case 4:
-                    inventoryService.viewInventory(1);
-                    System.out.println("Enter Medication Name to Update Stock Levels: ");
-                    String medToRemove = Validator.validateLine(scanner);
-                    System.out.println("Enter Stock Level to Set to: ");
-                    int stockLevelToSet = Validator.validateInt(scanner);
-                    inventoryService.updateStockLevel(medToRemove, stockLevelToSet);
+                    inventoryService.viewInventory();
+                    int medToUpdate;
+                    do {
+                        System.out.println("Select Medication to Replenish OR 0 to Return: ");
+                        medToUpdate = Validator.validateInt(scanner);
+                        if (medToUpdate == 0){
+                            return;
+                        }
+                    } while (medToUpdate<0 || medToUpdate>medications.size());
+                    
+                    int stockLevelToSet;
+                    do { 
+                        System.out.println("Set Level of Stock OR 0 to Return: ");
+                        stockLevelToSet = Validator.validateInt(scanner);
+                        if (stockLevelToSet == 0){
+                            return;
+                        }
+                    } while (stockLevelToSet<0);
+                    inventoryService.updateStockLevel(medications.get(medToUpdate-1), stockLevelToSet);
                     break;
                 default:
                     break;

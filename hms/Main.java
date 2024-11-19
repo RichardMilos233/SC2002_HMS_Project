@@ -6,7 +6,6 @@ import hms.views.AdministratorMenu;
 import hms.views.DoctorMenu;
 import hms.views.PatientMenu;
 import hms.views.PharmacistMenu;
-
 import java.util.*;
 /**
  * This class serves as the main entry point for the Hospital Management System (HMS).
@@ -42,7 +41,7 @@ public class Main {
                     user = null;
                     user = Login.login(user);
                     if (user == null){
-                        System.out.println("incorrect hospital id or password");
+                        System.out.println("Incorrect hospital id or password");
                         break;
                     }
                     role = user.getRole();

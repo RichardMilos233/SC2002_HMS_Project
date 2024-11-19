@@ -1,11 +1,10 @@
 package hms.views;
 
+import hms.account.Pharmacist;
+import hms.appointment.PharmacistAppointmentOutcomeRecordViewer;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
-import hms.account.Pharmacist;
 import hms.utils.Validator;
-import hms.appointment.PharmacistAppointmentOutcomeRecordViewer;
-
 import java.util.List;
 import java.util.Scanner;
 /**
@@ -47,20 +46,15 @@ public class PharmacistMenu {
                     // make: false for not prescribed, true for prescribed 
                     break;
                 case 3:
-                    inventoryService.viewInventory(0);
+                    inventoryService.viewInventory();
                     //call from inventory, return types n stock of each medication 
                     break;
                 case 4:
-                    inventoryService.viewInventory(1);
-                    for (int i = 0; i < medications.size(); i++) {
-                        System.out.println( (i+1) + " - " + medications.get(i).getMedicationName());
-                    }
-                    System.out.println("Choose which medication to Replenish: ");
-                    //String medToReplenish = scanner.nextLine();
-                    int medToReplenish = Validator.validateInt(scanner);
-                    System.out.println("Enter Stock Level: ");
-                    int stockLevelToSet = Validator.validateInt(scanner);
-                    inventoryService.replenishRequest(medications.get(medToReplenish-1), stockLevelToSet);
+                    inventoryService.viewInventory();
+                    // for (int i = 0; i < medications.size(); i++) {
+                    //     System.out.println( (i+1) + " - " + medications.get(i).getMedicationName());
+                    // }
+                    sendReplenishRequest(medications, inventoryService, scanner);
                     //submit to inventory -> calls medication
                     break;
                 case 5:
@@ -91,6 +85,27 @@ public class PharmacistMenu {
         PharmacistAppointmentOutcomeRecordViewer.displayAppointmentOutcomes(1);
 		
 	}
+
+    public static void sendReplenishRequest(List<Medication> medications, Inventory inventoryService, Scanner scanner){
+        int medToReplenish;
+        do {
+            System.out.println("Select Medication to Replenish OR 0 to Return: ");
+            medToReplenish = Validator.validateInt(scanner);
+            if (medToReplenish == 0){
+                return;
+            }
+        } while (medToReplenish<0 || medToReplenish>medications.size());
+        
+        int stockLevelToSet;
+        do { 
+            System.out.println("Enter Amount of Stock to Add OR 0 to Return: ");
+            stockLevelToSet = Validator.validateInt(scanner);
+            if (stockLevelToSet == 0){
+                return;
+            }
+        } while (stockLevelToSet<0);
+        inventoryService.replenishRequest(medications.get(medToReplenish-1), stockLevelToSet);
+    }
 
 	// public static void viewMedicationInventory() {
 	// 	// TODO - implement Pharmacist.viewMedicationInventory

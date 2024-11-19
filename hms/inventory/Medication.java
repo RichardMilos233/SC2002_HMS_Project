@@ -102,7 +102,7 @@ public class Medication {
      * @return A formatted string with the medication's name, stock, and alert level.
      */
     public String toString() {
-        return String.format("%s: %d units (Alert Level: %d)", medicationName, stock, stockAlert);
+        return String.format("%s: %d->%d units (Alert Level: %d)", medicationName, stock, replenishAmount, stockAlert);
     }
 
     /**

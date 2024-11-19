@@ -1,7 +1,6 @@
 package hms.inventory;
 
 import hms.utils.Validator;
-
 import java.util.List;
 import java.util.Scanner;
 /**
@@ -25,20 +24,23 @@ public class AdministratorInventoryManagement {
             System.out.println("No Replenish Requests");
         }
         else {
-            System.out.println("Select a medicine to approve or deny: ");
-            int medicationChoice = Validator.validateInt(scanner);
-            if (medicationChoice > replenishRequests.size()) {
-                System.out.println("Invalid Choice");
-            } else {
-                System.out.println("1 Approve");
-                System.out.println("2 Decline");
-                int approveOrDeclineChoice = Validator.validateInt(scanner);
-                int amountToReplenish = 0; // Default 0 to replenish if decline
-                if (approveOrDeclineChoice == 1) {
-                    amountToReplenish = replenishRequests.get(medicationChoice-1).getReplenishAmount();
-                 }
-                 inventoryService.replenishStock(replenishRequests.get(medicationChoice-1).getMedicationName(), amountToReplenish);
-             }
+            int medicationChoice;
+            do { 
+                System.out.println("Select a Medicine to Approve or Deny OR 0 to Return: ");
+                medicationChoice = Validator.validateInt(scanner);
+                if (medicationChoice == 0){
+                    return;
+                }
+            } while (medicationChoice > replenishRequests.size());
+            System.out.println("1 Approve");
+            System.out.println("2 Decline");
+            int approveOrDeclineChoice = Validator.validateInt(scanner);
+            int amountToReplenish = 0; // Default 0 to replenish if decline
+            if (approveOrDeclineChoice == 1) {
+                amountToReplenish = replenishRequests.get(medicationChoice-1).getReplenishAmount();
+            }
+            inventoryService.replenishStock(replenishRequests.get(medicationChoice-1).getMedicationName(), amountToReplenish);
+        
         }            
     }
 }

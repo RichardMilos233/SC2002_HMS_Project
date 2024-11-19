@@ -1,7 +1,6 @@
 package hms.inventory;
 
 import hms.storage.CSVService;
-
 import java.util.*;
 /**
  * Manages the inventory of medications in a healthcare setting. This includes tracking stock levels,
@@ -157,16 +156,16 @@ public class Inventory {
     /**
      * Prints the current inventory to the standard output, listing all medications and their stock levels.
      */
-	public void viewInventory(int index) {
+	public void viewInventory() {
         CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
         // Get Medication List
         List<List<String>> medicationList = csvService.read(filePath);
+        System.out.printf("(  ) %-25s %-10s %-15s\n", "Medication name", "Stock", "Alert Level");
 
-        for (int i = 0; i < medicationList.size(); i++) {
-            System.out.println(medicationList.get(i).get(0) +
-            " | " + medicationList.get(i).get(1) + " | " + medicationList.get(i).get(2));
+        for (int i = 1; i < medicationList.size(); i++) {
+            System.out.printf("(%2s) %-25s %-10s %-15s\n", i, medicationList.get(i).get(0), medicationList.get(i).get(1), medicationList.get(i).get(2));
         }
     }
 
@@ -286,7 +285,7 @@ public class Inventory {
      * @param name The name of the medication whose stock level is to be updated.
      * @param amountToUpdateTo The new stock amount to set for the medication.
      */
-    public void updateStockLevel(String name, int amountToUpdateTo) {
+    public void updateStockLevel(Medication medication, int amountToUpdateTo) {
         CSVService csvService = new CSVService();
         String filePath = "csv/Medicine_List.csv";
 
@@ -297,13 +296,14 @@ public class Inventory {
             if (i == 0) continue; // Skip Headers
 
             // Find The Medication from the List
-            if (medicationList.get(i).get(0).equals(name)) {
+            if (medicationList.get(i).get(0).equalsIgnoreCase(medication.getMedicationName())) {
                 // Update the list with the correct stock number
                 medicationList.get(i).set(1, String.valueOf(amountToUpdateTo));
 
                 // Save It!
                 csvService.write(filePath, medicationList);
-                System.out.println("Successfully Updated " + name);
+                medication.setReplenishAmount(amountToUpdateTo);
+                System.out.println("Successfully Updated " + medication);
                 return;
             }
         }
@@ -338,9 +338,9 @@ public class Inventory {
                 } 
                 medicationList.get(i).add(String.valueOf(amountToReplenish));
                 // Save It!
+                name.setReplenishAmount(amountToReplenish+name.getStock());
                 csvService.write(filePath, medicationList);
-                System.out.println("Successfully Requested Replenishment for " + name);
-                
+                System.out.println("Successfully Requested Replenishment for " + name); 
 
                 return;
             }

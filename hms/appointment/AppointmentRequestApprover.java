@@ -3,7 +3,6 @@ package hms.appointment;
 import hms.account.Doctor;
 import hms.storage.TextService;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Handles the approval process of pending appointment requests for a doctor.
@@ -37,9 +36,12 @@ public class AppointmentRequestApprover{
             appointment.displayAppointment();
             
             do { 
-                System.out.println("Approve?\n1 Yes\t0 No");
+                System.out.println("Approve?\nY Yes\tN No \t0 Return");
                 choice = Validator.validateInt(scanner);
-            } while (choice != 1 && choice != 0);
+                if (choice == 0){
+                    return;
+                }
+            } while (choice != 'Y' && choice != 'N');
 
             if (choice == 1){
                 appointment.setStatus("confirmed");
