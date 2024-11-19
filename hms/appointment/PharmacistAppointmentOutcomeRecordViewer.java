@@ -3,7 +3,6 @@ package hms.appointment;
 import hms.inventory.Inventory;
 import hms.storage.TextService;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Provides functionality for pharmacists to view and manage prescriptions based on appointment outcomes.
@@ -81,10 +80,13 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 	public static void dispensePrescription (Appointment appointment) {
 		Inventory inventory = new Inventory();
 		boolean dispensed = inventory.consumeStock(appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName(), appointment.getAppointmentOutcome().getPrescribedMedication().gettotalPrescribed());
+		List<String> medicationsAlert = inventory.checkStockLevels();
+		if (!medicationsAlert.isEmpty()){
+			System.out.println("\n---------------" +medicationsAlert.get(0).toUpperCase() + " IS BELOW THE STOCK ALERT LINE---------------");
+		}
 		if (dispensed) {
 			appointment.setStatus("dispensed");
 			TextService.replaceAppointment(appointment);
-			System.out.println("Medication has been dispensed\n");
 		}
 	}
 }

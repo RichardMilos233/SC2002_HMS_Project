@@ -4,7 +4,6 @@ import hms.storage.CSVService;
 import hms.utils.cryptography.Hasher;
 import hms.utils.cryptography.Salter;
 import hms.utils.cryptography.SimpleAdditiveHash;
-
 import java.util.*;
 /**
  * Provides services for managing and displaying staff information within a healthcare system. 
@@ -319,13 +318,13 @@ public class StaffService {
     public static void removeStaff(User u){
         CSVService csvService = new CSVService();
         String role = u.getRole();
-        if (role.startsWith("d")){
-            CSVService.removeDoctor((Doctor)u);
-            Doctor.getDoctors().remove((Doctor)u);
-        } else if (role.startsWith("p")){
-            CSVService.removePharmacist((Pharmacist)u);
-            Pharmacist.getPharmacists().remove((Pharmacist)u);
-        } else if (role.startsWith("a")) {
+        if (u instanceof Doctor doctor){
+            CSVService.removeDoctor(doctor);
+            Doctor.getDoctors().remove(doctor);
+        } else if (u instanceof Pharmacist pharmacist){
+            CSVService.removePharmacist(pharmacist);
+            Pharmacist.getPharmacists().remove(pharmacist);
+        } else if (u instanceof Administrator) {
             System.out.println("Admin cannot be deleted");
             return;
         } else{

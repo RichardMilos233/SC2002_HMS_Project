@@ -1,7 +1,7 @@
 package hms.storage;
 
 import hms.account.*;
-
+import hms.appointment.AppointmentRemover;
 import java.io.*;
 import java.util.*;
 
@@ -393,8 +393,10 @@ public class CSVService implements IReadable, IWritable{
      * This method ensures that the CSV file is compacted after removal to avoid any gaps in the data.
      *
      * @param doctor The doctor object to be removed from the CSV file.
-     */
+     * calls Appointment remover to ensure all pending and future appointments are also removed
+     */ 
     public static void removeDoctor(Doctor doctor){
+        AppointmentRemover.removeIncompleteAppointments(doctor.getHospitalID());
         int index = findDoctor(doctor.getHospitalID());
         Doctor lastDoc = getLastDoctor();
         writeDoctor(lastDoc, index);

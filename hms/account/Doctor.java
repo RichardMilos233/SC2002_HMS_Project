@@ -1,10 +1,9 @@
 package hms.account;
 
+import hms.appointment.Appointment;
 import hms.storage.CSVService;
 import hms.storage.TextService;
 import hms.utils.Validator;
-import hms.appointment.Appointment;
-
 import java.time.*;
 import java.util.*;
 /**
@@ -136,6 +135,16 @@ public class Doctor extends User {
 		}
 		return this.timeTable;
 	}
+
+	 /*
+	 * Updates the doctor's appointment timetable
+	 * 
+	 */
+	/* 
+	public List<Appointment> updateTimeTable(){
+		this.timeTable = TextService.getDoctorAppointment(this.hospitalID);
+		return this.timeTable;
+	} */
 
 	/**
 	 * Initializes a new timetable for the doctor with appointments for the next three days.
