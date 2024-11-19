@@ -3,7 +3,7 @@ import java.time.*;
  * Represents an appointment between a patient and a doctor, encapsulating all relevant details
  * such as the participating IDs, date, time, and status of the appointment.
  * The status lifecycle includes various states such as unavailable, available, pending,
- * confirmed, rejected, cancelled, closed, and dispensed, describing the progression of an appointment.
+ * confirmed, closed, and dispensed, describing the progression of an appointment.
  */
 public class Appointment {
 	// private Patient patient;
