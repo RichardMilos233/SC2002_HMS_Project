@@ -1,7 +1,16 @@
 import java.time.*;
 import java.util.*;
-
+/**
+ * Handles the sign-up process for new patients in a healthcare system. It guides users through the process of
+ * entering their personal details, creating an account, and generating secure login credentials.
+ */
 public class Signup {
+    /**
+     * Registers a new patient by collecting their details, generating a unique patient ID, and storing their information.
+     * It also handles the generation of a secure password.
+     *
+     * @return The newly created {@link Patient} object.
+     */
     public static Patient signup(){
         //  for a patient who's new to the hospital to sign up
         Scanner scanner = new Scanner(System.in);
@@ -67,11 +76,13 @@ public class Signup {
             password = Validator.validateStringNoSpace(scanner);
         } while (password.isBlank() || password.length()<8);
         String salt = Salter.createSaltString();
-        int hashValue = Hasher.hash(password, salt);
+        Hasher hasher = new SimpleAdditiveHash();
+        int hashValue = hasher.hash(password, salt);
 
+        CSVService csvService = new CSVService();
         Patient patient = new Patient(patientID, name, gender, age, birth, contactNumber, email, bloodType);
         CSVService.addPatient(patient);
-        CSVService.addCredential(patientID, hashValue, salt);
+        csvService.addCredential(patientID, hashValue, salt);
         System.out.println("Your ID is: " + patientID);
 
         return patient;

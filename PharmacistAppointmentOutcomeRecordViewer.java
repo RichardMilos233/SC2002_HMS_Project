@@ -1,8 +1,16 @@
 import java.util.*;
-
+/**
+ * Provides functionality for pharmacists to view and manage prescriptions based on appointment outcomes.
+ * This class interacts with appointment data, primarily focusing on those with a "closed" status, to process
+ * and dispense medications as needed.
+ */
 public class PharmacistAppointmentOutcomeRecordViewer {
-    
-
+	/**
+     * Retrieves a list of appointments with a status of "closed" from the text file storage.
+     * This method is used to identify which prescriptions need to be dispensed based on closed appointments.
+     *
+     * @return A list of appointments that have a "closed" status and require action for prescription dispensing.
+     */
 	public static List<Appointment> getAppointmentOutcomes() {
 		Scanner scanner = new Scanner(System.in);
 		List<Appointment> appointments = TextService.readAppointmentsFromTxt();
@@ -18,9 +26,15 @@ public class PharmacistAppointmentOutcomeRecordViewer {
             }
 		}
 		return appointmentOutcomesList;
-		
 	}
 
+	/**
+     * Displays the appointment outcomes with prescriptions that need to be dispensed.
+     * Pharmacists can select an appointment from the list to dispense the prescribed medication.
+     *
+     * @param select An indicator to determine if the pharmacist will be selecting an appointment
+     *               to dispense medication (1) or just viewing the list (0).
+     */
 	public static void displayAppointmentOutcomes(int select) {
 		Scanner scanner = new Scanner(System.in);
         List<Appointment> appointmentOutcomesList = getAppointmentOutcomes();
@@ -47,12 +61,15 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 					dispensePrescription(appointmentOutcomesList.get(choice-1));
 				}
 			} while (choice != appointmentOutcomesList.size()+1);
-			
-
 		}
-		
 	}
 
+	/**
+     * Dispenses the prescribed medication for a given appointment by updating the inventory and changing the
+     * status of the appointment in the text file storage to "dispensed".
+     *
+     * @param appointment The appointment for which the medication is to be dispensed.
+     */
 	public static void dispensePrescription (Appointment appointment) {
 		Inventory inventory = new Inventory();
 		boolean dispensed = inventory.consumeStock(appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName(), appointment.getAppointmentOutcome().getPrescribedMedication().gettotalPrescribed());

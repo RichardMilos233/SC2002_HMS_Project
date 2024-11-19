@@ -1,87 +1,111 @@
+
+
 import java.util.*;
-
+/**
+ * Provides services for managing and displaying staff information within a healthcare system. 
+ * This class includes methods for listing staff by various categories, updating staff information,
+ * and handling unique identification for new staff members.
+ */
 public class StaffService {
-
+     /**
+     * Displays a list of all staff members filtered by specific categories such as role, name, ID, age, or gender.
+     * 
+     * @param byCategory An integer representing the filter type: 
+     *                   1 - by role, 2 - by name, 3 - by ID, 4 - by age, 5 - by gender.
+     */
     public static void displayStaffList(int byCategory){
         // role = 1, name = 2, ID= 3, age=4, gender=5
         //Display a list of staff filtered by role, gender, age, etc
-        if (byCategory == 1){
-            System.out.println("--------------Doctors----------------------");
-            System.out.format("ID     Name                 Gender     Age\n");
-            System.out.println("-------------------------------------------");
-            displayDoctorList(byCategory);
-
-            System.out.println("--------------Pharmacists------------------");
-            System.out.format("ID     Name                 Gender     Age\n");
-            System.out.println("-------------------------------------------");
-            displayPharmacistList(byCategory);
-
-            System.out.println("--------------Admins-----------------------");
-            System.out.format("ID     Name                 Gender     Age\n");
-            System.out.println("-------------------------------------------");
-            displayAdminList(byCategory);
-
-        } else if (byCategory==2){
-            System.out.format("ID     Role          Name                 Gender     Age\n");
-            System.out.println("-----------------------------------------------------------");
-            Collections.sort(User.getUsers(), Comparator.comparing(User::getName));
-            User e;
-            for (int i = 0; i<User.getUsers().size(); i++){
-                e = User.getUsers().get(i);
-                if (!e.getRole().equals("patient")){
-                    System.out.format("%-6s %-13s %-20s %-10s %-2d\n", e.getHospitalID(), e.getRole(), e.getName(), e.getGender(), e.getAge());
-                    //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+        switch (byCategory) {
+            case 1:
+                System.out.println("--------------Doctors----------------------");
+                System.out.format("ID     Name                 Gender     Age\n");
+                System.out.println("-------------------------------------------");
+                displayDoctorList(byCategory);
+                System.out.println("--------------Pharmacists------------------");
+                System.out.format("ID     Name                 Gender     Age\n");
+                System.out.println("-------------------------------------------");
+                displayPharmacistList(byCategory);
+                System.out.println("--------------Admins-----------------------");
+                System.out.format("ID     Name                 Gender     Age\n");
+                System.out.println("-------------------------------------------");
+                displayAdminList(byCategory);
+                break;
+            case 2:
+                {
+                    System.out.format("ID     Role          Name                 Gender     Age\n");
+                    System.out.println("-----------------------------------------------------------");
+                    Collections.sort(User.getUsers(), Comparator.comparing(User::getName));
+                    User e;
+                    for (int i = 0; i<User.getUsers().size(); i++){
+                        e = User.getUsers().get(i);
+                        if (!e.getRole().equals("patient")){
+                            e.displayTableFormatRole();
+                            //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+                        }
+                    }       System.out.println("-----------------------------------------------------------");
+                    break;
                 }
-            }
-            System.out.println("-----------------------------------------------------------");
-        } else if (byCategory==3){
-            System.out.format("ID     Role          Name                 Gender     Age\n");
-            System.out.println("-----------------------------------------------------------");
-            Collections.sort(User.getUsers(), Comparator.comparing(User::getHospitalID));
-            User e;
-            for (int i = 0; i<User.getUsers().size(); i++){
-                e = User.getUsers().get(i);
-                if (!e.getRole().equals("patient")){
-                    System.out.format("%-6s %-13s %-20s %-10s %-2d\n", e.getHospitalID(), e.getRole(), e.getName(), e.getGender(), e.getAge());
-                    //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+            case 3:
+                {
+                    System.out.format("ID     Role          Name                 Gender     Age\n");
+                    System.out.println("-----------------------------------------------------------");
+                    Collections.sort(User.getUsers(), Comparator.comparing(User::getHospitalID));
+                    User e;
+                    for (int i = 0; i<User.getUsers().size(); i++){
+                        e = User.getUsers().get(i);
+                        if (!e.getRole().equals("patient")){
+                            e.displayTableFormatRole();
+                            //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+                        }
+                    }       System.out.println("-----------------------------------------------------------");
+                    break;
                 }
-            }
-            System.out.println("-----------------------------------------------------------");
-        } else if (byCategory==4){
-            System.out.format("ID     Role          Name                 Gender     Age\n");
-            System.out.println("-----------------------------------------------------------");
-            Collections.sort(User.getUsers(), Comparator.comparing(User::getAge));
-            User e;
-            for (int i = 0; i<User.getUsers().size(); i++){
-                e = User.getUsers().get(i);
-                if (!e.getRole().equals("patient")){
-                    System.out.format("%-6s %-13s %-20s %-10s %-2d\n", e.getHospitalID(), e.getRole(), e.getName(), e.getGender(), e.getAge());
-                    //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+            case 4:
+                {
+                    System.out.format("ID     Role          Name                 Gender     Age\n");
+                    System.out.println("-----------------------------------------------------------");
+                    Collections.sort(User.getUsers(), Comparator.comparing(User::getAge));
+                    User e;
+                    for (int i = 0; i<User.getUsers().size(); i++){
+                        e = User.getUsers().get(i);
+                        if (!e.getRole().equals("patient")){
+                            e.displayTableFormatRole();
+                            //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+                        }
+                    }       System.out.println("-----------------------------------------------------------");
+                    break;
                 }
-            }
-            System.out.println("-----------------------------------------------------------");
-        } else if (byCategory==5){
-            System.out.format("ID     Role          Name                 Gender     Age\n");
-            System.out.println("-----------------------------------------------------------");
-            Collections.sort(User.getUsers(), Comparator.comparing(User::getGender));
-            User e;
-            for (int i = 0; i<User.getUsers().size(); i++){
-                e = User.getUsers().get(i);
-                if (!e.getRole().equals("patient")){
-                    System.out.format("%-6s %-13s %-20s %-10s %-2d\n", e.getHospitalID(), e.getRole(), e.getName(), e.getGender(), e.getAge());
-                    //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+            case 5:
+                {
+                    System.out.format("ID     Role          Name                 Gender     Age\n");
+                    System.out.println("-----------------------------------------------------------");
+                    Collections.sort(User.getUsers(), Comparator.comparing(User::getGender));
+                    User e;
+                    for (int i = 0; i<User.getUsers().size(); i++){
+                        e = User.getUsers().get(i);
+                        if (!e.getRole().equals("patient")){
+                            e.displayTableFormatRole();
+                            //System.out.println(e.getHospitalID() + '\t' + '\t' + e.getRole() + '\t' + e.getName() + '\t' + e.getGender() + '\t' + e.getAge());
+                        }
+                    }       System.out.println("-----------------------------------------------------------");
+                    break;
                 }
-            }
-            System.out.println("-----------------------------------------------------------");
+            default:
+                break;
         }
     }
-
+    /**
+     * Displays a formatted list of all administrators in the system.
+     * 
+     * @param role Specifies the context in which this method is called, affecting output formatting.
+     */
     public static void displayAdminList(int role){
         Administrator admin;
         if (role == 1){
             for (int i = 0; i<Administrator.getAdministrators().size(); i++){
                 admin = Administrator.getAdministrators().get(i);
-                System.out.format("%-6s %-20s %-10s %-2d\n", admin.getHospitalID(), admin.getName(), admin.getGender(), admin.getAge());
+                admin.displayTableFormat();
                 //System.out.println(admin.getHospitalID() + '\t' + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
              }
              System.out.println("-------------------------------------------");
@@ -90,19 +114,23 @@ public class StaffService {
             System.out.format("ID     Role          Name                 Gender     Age\n");
             for (int i = 0; i<Administrator.getAdministrators().size(); i++){
                 admin = Administrator.getAdministrators().get(i);
-                System.out.format("%-6s %-13s %-20s %-10s %-2d\n", admin.getHospitalID(), admin.getRole(), admin.getName(), admin.getGender(), admin.getAge());
+                admin.displayTableFormatRole();
              }
         }
         System.out.println("\n");
         
     }
-
+    /**
+     * Displays a formatted list of all doctors in the system.
+     * 
+     * @param role Specifies the context in which this method is called, affecting output formatting.
+     */
     public static void displayDoctorList(int role){
         Doctor doctor;
         if (role == 1){
             for (int i = 0; i<Doctor.getDoctors().size(); i++){
                 doctor = Doctor.getDoctors().get(i);
-                System.out.format("%-6s %-20s %-10s %-2d\n", doctor.getHospitalID(), doctor.getName(), doctor.getGender(), doctor.getAge());
+                doctor.displayTableFormat();
              }
              System.out.println("-------------------------------------------");
 
@@ -110,18 +138,22 @@ public class StaffService {
             System.out.format("ID     Role          Name                 Gender     Age\n");
             for (int i = 0; i<Doctor.getDoctors().size(); i++){
                 doctor = Doctor.getDoctors().get(i);
-                System.out.format("%-6s %-13s %-20s %-10s %-2d\n", doctor.getHospitalID(), doctor.getRole(), doctor.getName(), doctor.getGender(), doctor.getAge());
+                doctor.displayTableFormatRole();
              }
         }
         System.out.println("\n");
     }
-
+    /**
+     * Displays a formatted list of all pharmacists in the system.
+     * 
+     * @param role Specifies the context in which this method is called, affecting output formatting.
+     */
     public static void displayPharmacistList(int role){
         Pharmacist pharma;
         if (role == 1){
             for (int i = 0; i<Pharmacist.getPharmacists().size(); i++){
                 pharma = Pharmacist.getPharmacists().get(i);
-                System.out.format("%-6s %-20s %-10s %-2d\n", pharma.getHospitalID(), pharma.getName(), pharma.getGender(), pharma.getAge());
+                pharma.displayTableFormat();
              }
              System.out.println("-------------------------------------------");
 
@@ -129,13 +161,23 @@ public class StaffService {
             System.out.format("ID     Role          Name                 Gender     Age\n");
             for (int i = 0; i<Pharmacist.getPharmacists().size(); i++){
                 pharma = Pharmacist.getPharmacists().get(i);
-                System.out.format("%-6s %-13s %-20s %-10s %-2d\n", pharma.getHospitalID(), pharma.getRole(), pharma.getName(), pharma.getGender(), pharma.getAge());
+                pharma.displayTableFormatRole();
              }
         }
         System.out.println("\n");
     }
-
+    /**
+     * Updates the information of an existing staff member, possibly changing their role and reallocating a new ID.
+     * 
+     * @param u The user to update.
+     * @param name The new name for the user.
+     * @param role The new role for the user if applicable.
+     * @param gender The new gender for the user.
+     * @param age The new age for the user.
+     * @return The updated user object, potentially as a new instance if the role was changed.
+     */
     public static User updateStaff(User u, String name, String role, String gender, int age){
+        CSVService csvService = new CSVService();
         if (!name.equals(u.getName())){
             u.setName(name);
         } if (gender!=null){
@@ -149,12 +191,12 @@ public class StaffService {
         } else { 
             // if changing role, delete the user, instantiate a new one 
             gender = u.getGender();
-            String[] hashSalt = CSVService.findCredential(u.getHospitalID());
+            String[] hashSalt = csvService.findCredential(u.getHospitalID());
             removeStaff(u);
             int hash = Integer.parseInt(hashSalt[0]);
             String salt = hashSalt[1];
             String staffID = addStaff(name, role.toUpperCase().charAt(0), gender.toUpperCase().charAt(0), age, "");
-            CSVService.addCredential(staffID, hash, salt);
+            csvService.addCredential(staffID, hash, salt);
             User.updateUsers();
             System.out.println("Successfully updated to " + role.toUpperCase().charAt(0) + role.substring(1) + " with new ID " + staffID +"\n");
             return findStaffDetails(staffID);
@@ -183,8 +225,19 @@ public class StaffService {
         //     Pharmacist.updatePharmacists();
         // }
     }
-    
+        /**
+     * Adds a new staff member to the system and generates a unique ID for them.
+     * 
+     * @param name The name of the new staff member.
+     * @param roleChar The initial character indicating the staff's role ('D' for Doctor, 'P' for Pharmacist).
+     * @param genderChar The initial character indicating the staff's gender ('M' for Male, 'F' for Female).
+     * @param age The age of the new staff member.
+     * @param defaultPass The default password for the new staff member.
+     * @return The unique hospital ID assigned to the new staff member.
+     */
     public static String addStaff(String name, char roleChar, char genderChar, int age, String defaultPass){
+        CSVService csvService = new CSVService();
+        Hasher hasher = new SimpleAdditiveHash();
         String gender;
         String staffID;
         String role;
@@ -211,13 +264,18 @@ public class StaffService {
         } 
         if (!defaultPass.isBlank()){
             String salt = Salter.createSaltString();
-            CSVService.addCredential(staffID, Hasher.hash(defaultPass, salt), salt);
+            csvService.addCredential(staffID, hasher.hash(defaultPass, salt), salt);
             System.out.println(roleChar + role.substring(1) + " with ID " + staffID + " created with password " + defaultPass);
             User.updateUsers();
         }
         return staffID;
     }
-
+    /**
+     * Finds and returns details of a staff member based on their ID.
+     * 
+     * @param ID The unique hospital ID of the staff member.
+     * @return The User object representing the staff member, or null if not found.
+     */
     public static User findStaffDetails(String ID){
         if (ID.startsWith("D") && ID.length()==4){
             for (int i = 0; i<Doctor.getDoctors().size(); i++){
@@ -245,8 +303,13 @@ public class StaffService {
         }
         return null;
     }
-
+     /**
+     * Removes a staff member from the system based on their User object.
+     * 
+     * @param u The User object representing the staff member to be removed.
+     */
     public static void removeStaff(User u){
+        CSVService csvService = new CSVService();
         String role = u.getRole();
         if (role.startsWith("d")){
             CSVService.removeDoctor((Doctor)u);
@@ -255,10 +318,17 @@ public class StaffService {
             CSVService.removePharmacist((Pharmacist)u);
             Pharmacist.getPharmacists().remove((Pharmacist)u);
         }
-        CSVService.removeCredention(u.getHospitalID());
+        csvService.removeCredention(u.getHospitalID());
         User.getUsers().remove(u);
         User.updateUsers();
+       
     }
+    /**
+     * Creates a unique ID for a new staff member based on the role character.
+     * 
+     * @param r The character representing the role of the staff ('D' for Doctor, 'P' for Pharmacist).
+     * @return A unique ID string for the new staff member.
+     */
 
     public static String createID(char r){
         char[] charID;
@@ -327,3 +397,4 @@ public class StaffService {
         } 
     }
 }
+

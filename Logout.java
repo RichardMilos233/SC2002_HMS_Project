@@ -1,3 +1,11 @@
+/**
+ * Handles the logout process for the system, ensuring that users can securely exit their session.
+ */
 public class Logout {
-    public static void logout(){}
+    /**
+     * Logs the current user out of the system.
+     */
+    public static void logout(){
+        System.out.println("Logged out successfully");
+    }
 }

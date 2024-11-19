@@ -1,6 +1,16 @@
 import java.util.*;
-
+/**
+ * Handles the display and functionality of the patient menu in the healthcare management system.
+ * This class provides various options for a patient to manage their profile and interact with
+ * the system to book, reschedule, or cancel appointments, view medical records, and update personal details.
+ */
 public class PatientMenu {
+    /**
+     * Displays the main menu for patient interactions and handles user input to navigate
+     * through different functionalities based on the patient's choices.
+     *
+     * @param patient The patient who is interacting with the system.
+     */
     public static void displayPatientMenu(Patient patient){
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
