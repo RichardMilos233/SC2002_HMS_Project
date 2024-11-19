@@ -48,10 +48,12 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 		if (appointmentOutcomesList.isEmpty()) {
 			System.out.println("No Outstanding Prescriptions\n");
 		} else {
+			int counter = 1;
      	 	for (Appointment appointment: appointmentOutcomesList) {
-				System.out.println("Appointment " + appointmentOutcomesList.size() + ": ");
+				System.out.println("Appointment " + counter + ": ");
 				System.out.println("Patient ID: " + appointment.getPatientID());
 				System.out.println("Outcome: " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription() + "\n");
+				counter++;
 				//System.out.println("Amount to Dispense: " + appointment.getAppointmentOutcome().getAmountToDispense());
     			//System.out.println(appointmentOutcomesList.size() + " - " + appointment.getPatientID() + " - Dispense : " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription());
 			}
