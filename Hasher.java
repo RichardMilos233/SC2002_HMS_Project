@@ -1,3 +1,7 @@
+/**
+ * Provides hashing functionality for strings, typically used for password hashing in combination with a salt.
+ * Utilizes a polynomial rolling hash algorithm to compute hash values.
+ */
 public class Hasher {
     private static final int P = 31;
     private static final int Q = 1000003;
