@@ -4,20 +4,19 @@ import java.util.*;
  */
 public class User {
 
-	protected String hospitalID = "U42";
-	// protected String password = "user";
-	protected String name = "nobody";
-	protected String gender = "Male";
-	protected int age = -1;
-	protected String role = "user"; 
-	static public List<User> users = new ArrayList<>();
+    protected String hospitalID = "U42";
+    // protected String password = "user";
+    protected String name = "nobody";
+    protected String gender = "Male";
+    protected int age = -1;
+    protected String role = "user"; 
+    static public List<User> users = new ArrayList<>();
 
-	Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 	/**
      * Default constructor, initializes user with default values.
      */
-	public User() {}
-
+    public User() {}
 	/**
      * Constructor with parameters to set the user's basic attributes.
      *
@@ -26,78 +25,76 @@ public class User {
      * @param gender     The gender of the user.
      * @param age        The age of the user.
      */
-	public User(String hospitalID, String name, String gender, int age) {
-		this.hospitalID = hospitalID;
-		// this.password = password;
-		this.name = name;
-		this.gender = gender;
-		this.age = age;
-		this.role = "user";
-	}
+    public User(String hospitalID, String name, String gender, int age) {
+        this.hospitalID = hospitalID;
+        // this.password = password;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.role = "user";
+    }
 
-	// public void login() {
-	// 	String enteredPassword = "";
-	// 	enteredPassword = scanner.nextLine();
-	// 	if (enteredPassword.equals(this.password)){ // can get the user id and password, then check what the user id format is to get the role
-	// 		System.out.println("Logged in successfully");// only for illustration, haven't settled how to tell the role yet
-	// 	}
-	// 	else{
-	// 		System.out.println("Try again");
-	// 	}
-	// }
-
+    // public void login() {
+    //  String enteredPassword = "";
+    //  enteredPassword = scanner.nextLine();
+    //  if (enteredPassword.equals(this.password)){ // can get the user id and password, then check what the user id format is to get the role
+    //      System.out.println("Logged in successfully");// only for illustration, haven't settled how to tell the role yet
+    //  }
+    //  else{
+    //      System.out.println("Try again");
+    //  }
+    // }
 	/**
      * Logs out the user from the system. This method is typically used to break the login session.
      */
-	public void logout() {}	//do nothing, jump out of the while-switch loop
 
-	/**
+    public void logout() {} //do nothing, jump out of the while-switch loop
+		/**
      * Changes the user's password in the system.
      */
-	public void changePassword() {
-		CSVService csvService = new CSVService();
-		Hasher hasher = new SimpleAdditiveHash();
-		String newPassword = "defaultPassword";
-		System.out.print("Enter new password: ");
-		newPassword = Validator.validateStringNoSpace(scanner);
-		// this.password = newPassword;
-		int newHash = hasher.hash(newPassword, csvService.getSalt(getHospitalID()));
-		csvService.changePassword(hospitalID, newHash);
-		// switch (role) {
-		// 	case "patient":
-		// 		CSVService.replacePatient((Patient)this);
-		// 		break;
-		// 	case "doctor":
-		// 		CSVService.replaceDoctor((Doctor)this);
-		// 		break;
-		// 	case "administrator":
-		// 		CSVService.replaceAdmin((Administrator)this);
-		// 		break;
-		// 	case "pharmacist":
-		// 		CSVService.replacePharmacist((Pharmacist)this);
-		// 		break;
+    public void changePassword() {
+        CSVService csvService = new CSVService();
+        Hasher hasher = new SimpleAdditiveHash();
+        String newPassword = "defaultPassword";
+        System.out.print("Enter new password: ");
+        newPassword = Validator.validateStringNoSpace(scanner);
+        // this.password = newPassword;
+        int newHash = hasher.hash(newPassword, csvService.getSalt(getHospitalID()));
+        csvService.changePassword(hospitalID, newHash);
+        // switch (role) {
+        //  case "patient":
+        //      CSVService.replacePatient((Patient)this);
+        //      break;
+        //  case "doctor":
+        //      CSVService.replaceDoctor((Doctor)this);
+        //      break;
+        //  case "administrator":
+        //      CSVService.replaceAdmin((Administrator)this);
+        //      break;
+        //  case "pharmacist":
+        //      CSVService.replacePharmacist((Pharmacist)this);
+        //      break;
 
-		// 	default:
-		// 		break;
-		// }
-	}
+        //  default:
+        //      break;
+        // }
+    }
 
-	/**
-     * Converts user details to a CSV format string.
-     *
-     * @return A string representing the user details in CSV format.
-     */
+	/** 
+	 * Converts user details to a CSV format string.
+	 * @return A string represnting the user details in CSV format
+	 */
+    
 	public String toCSV() {
         return hospitalID + "," + name + "," + gender + "," + age + "," + role;
     }
-
 	/**
      * Creates a User instance from a CSV formatted string.
      *
      * @param data CSV string containing user details.
      * @return A new User instance with the details provided in the CSV.
      */
-	public static User fromCSV(String data) {
+    public static User fromCSV(String data) {
         String[] fields = data.split(",");
         String hospitalID = fields[0];
         String name = fields[1];
@@ -106,125 +103,120 @@ public class User {
         String role = fields[4];
         return new User(hospitalID, name, gender, age);
     }
-
 	/**
      * Gets the hospital ID of the user.
      *
      * @return The hospital ID as a string.
      */
-	public String getHospitalID(){
-		return this.hospitalID;
-	}
-
+    public String getHospitalID(){
+        return this.hospitalID;
+    }
 	/**
      * Gets the name of the user.
      *
      * @return The name of the user.
      */
-	public String getName(){
-		return this.name;
-	}
-
+    public String getName(){
+        return this.name;
+    }
 	/**
      * Gets the gender of the user.
      *
      * @return The gender of the user.
      */
-	public String getGender(){
-		return this.gender;
-	}
-
+    public String getGender(){
+        return this.gender;
+    }
 	/**
      * Gets the age of the user.
      *
      * @return The age of the user.
      */
-	public int getAge(){
-		return this.age;
-	}
-
+    public int getAge(){
+        return this.age;
+    }
 	/**
      * Gets the role of the user within the system.
      *
      * @return The role of the user.
      */
-	public String getRole(){
-		return this.role;
-	}
-
+    public String getRole(){
+        return this.role;
+    }
 	/**
      * Sets the hospital ID for the user.
      *
      * @param newHospitalID The new hospital ID to be set.
      */
-	public void setHospitalID(String newHospitalID){
-		this.hospitalID = newHospitalID;
-	}
-
+    public void setHospitalID(String newHospitalID){
+        this.hospitalID = newHospitalID;
+    }
 	/**
      * Sets the name for the user.
      *
      * @param name The new name to be set.
      */
-	public void setName(String name){
-		this.name = name;
-	}
-
+    public void setName(String name){
+        this.name = name;
+    }
+	
 	/**
      * Sets the gender for the user.
      *
      * @param gender The new gender to be set.
      */
-	public void setGender(String gender){
-		this.gender = gender;
-	}
-
+    public void setGender(String gender){
+        this.gender = gender;
+    }
 	/**
      * Sets the age for the user.
      *
      * @param age The new age to be set.
      */
-	public void setAge(int age){
-		this.age = age;
-	}
-
+    public void setAge(int age){
+        this.age = age;
+    }
 	/**
      * Sets the role for the user.
      *
      * @param role The new role to be set.
      */
-	public void setRole(String role){
-		this.role = role;
-	}
-
+    public void setRole(String role){
+        this.role = role;
+    }
 	/**
      * Retrieves all users from the system.
      *
      * @return A list of all users.
      */
-	public static List<User> getUsers(){
-		if (users.size() == 0){
-			users = CSVService.readUsersFromCSV();
-		}
-		return users;
-	}
-
+    public static List<User> getUsers(){
+        if (users.isEmpty()){
+            users = CSVService.readUsersFromCSV();
+        }
+        return users;
+    }
 	/**
      * Updates the list of all users by reading from the CSV.
      */
-	public static void updateUsers(){
-		users = CSVService.readUsersFromCSV();
-	}
-
+    public static void updateUsers(){
+        users = CSVService.readUsersFromCSV();
+    }
 	/**
      * Displays user information.
      */
-	public void display(){
-		System.out.println("Hospital ID: " + this.hospitalID);
-		System.out.println("Name: " + this.name);
-		// System.out.println("Password: " + this.password);
-		System.out.println("Role: " + this.role);
-		System.out.println("Age: " + this.age);
-		System.out.println("Gender: " + this.gender);
-	}
+    public void display(){
+        System.out.println("Hospital ID: " + this.hospitalID);
+        System.out.println("Name: " + this.name);
+        // System.out.println("Password: " + this.password);
+        System.out.println("Role: " + this.role);
+        System.out.println("Gender: " + this.gender);
+        System.out.println("Age: " + this.age + "\n");
+    }
+
+    public void displayTableFormatRole(){
+        System.out.format("%-6s %-13s %-20s %-10s %-2d\n", this.hospitalID, this.role, this.name, this.gender, this.age);
+    }
+    public void displayTableFormat(){
+        System.out.format("%-6s %-20s %-10s %-2d\n", this.hospitalID, this.name, this.gender, this.age);
+    }
 }
