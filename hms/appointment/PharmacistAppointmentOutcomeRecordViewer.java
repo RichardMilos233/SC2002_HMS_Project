@@ -1,8 +1,13 @@
 package hms.appointment;
 
 import hms.inventory.Inventory;
+import hms.medicalrecords.PrescribedMedication;
 import hms.storage.TextService;
 import hms.utils.Validator;
+import hms.utils.billing.AmoxicillinFee;
+import hms.utils.billing.IbuprofenFee;
+import hms.utils.billing.MedicationFee;
+import hms.utils.billing.ParacetamolFee;
 import java.util.*;
 /**
  * Provides functionality for pharmacists to view and manage prescriptions based on appointment outcomes.
@@ -52,6 +57,10 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 				System.out.println("Appointment " + counter + ": ");
 				System.out.println("Patient ID: " + appointment.getPatientID());
 				System.out.println("Outcome: " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription() + "\n");
+				// Calculate and display the medication fee for the prescribed medication
+                double price = calculateMedicationFee(appointment.getAppointmentOutcome());
+                System.out.println("Amount to Dispense: " + appointment.getAppointmentOutcome().getPrescribedMedication().gettotalPrescribed());
+                System.out.println("Total Medication Cost: " + price + "\n");
 				counter++;
 				//System.out.println("Amount to Dispense: " + appointment.getAppointmentOutcome().getAmountToDispense());
     			//System.out.println(appointmentOutcomesList.size() + " - " + appointment.getPatientID() + " - Dispense : " + appointment.getAppointmentOutcome().getPrescribedMedication().getPrescription());
@@ -70,6 +79,46 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 			} while (choice != appointmentOutcomesList.size()+1);
 		}
 	}
+	/**
+     * Calculates the fee for the prescribed medication in the appointment outcome.
+     *
+     * @param appointmentOutcome The appointment outcome for the medication fee calculation.
+     * @return The calculated medication fee.
+     */
+    public static double calculateMedicationFee(AppointmentOutcome appointmentOutcome) {
+        // Get the prescribed medication
+        PrescribedMedication prescribedMedication = appointmentOutcome.getPrescribedMedication();
+        
+        // Get the appropriate MedicationFee implementation
+        MedicationFee medicationFee = getMedicationFee(prescribedMedication.getMedicationName());
+        
+        // Calculate and return the fee based on the prescribed quantity
+        return medicationFee.calculateFee(prescribedMedication.gettotalPrescribed());
+    }
+
+    /**
+     * Retrieves the appropriate MedicationFee implementation based on medication name.
+     *
+     * @param medicationName The name of the medication.
+     * @return The corresponding MedicationFee implementation.
+     */
+    private static MedicationFee getMedicationFee(String medicationName) {
+        switch (medicationName.toLowerCase()) {
+            case "ibuprofen":
+                return new IbuprofenFee();
+            case "amoxicillin":
+                return new AmoxicillinFee();
+            case "paracetamol":
+                return new ParacetamolFee();
+            default:
+                throw new IllegalArgumentException("No fee calculation available for this medication");
+        }
+    }
+
+
+
+
+
 
 	/**
      * Dispenses the prescribed medication for a given appointment by updating the inventory and changing the
