@@ -1,7 +1,17 @@
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * Provides a user interface menu specifically for pharmacists to manage their daily tasks and interactions within
+ * the healthcare system. This includes managing prescriptions, viewing medication inventories, and handling
+ * replenishment requests.
+ */
 public class PharmacistMenu {
+    /**
+     * Displays a menu for pharmacists, allowing them to select and perform various operations related to their role.
+     * This method continuously displays options until the pharmacist decides to logout.
+     *
+     * @param pharmacist The pharmacist who is interacting with the system.
+     */
     public static void displayPharmacistMenu(Pharmacist pharmacist){
         Scanner scanner = new Scanner(System.in);
         Inventory inventoryService = new Inventory();
@@ -55,23 +65,27 @@ public class PharmacistMenu {
             }
         }while(choice != 6);
     }
+
+    /**
+     * A method to view appointment outcomes, specifically called within the pharmacist menu.
+     */
     public static void viewAppointmentOutcomeRecord() {
         PharmacistAppointmentOutcomeRecordViewer.getAppointmentOutcomes();
 	}
 
-	public static void updatePrescriptionStatus() {
-		// TODO - implement Pharmacist.updatePrescriptionStatus
-		throw new UnsupportedOperationException();
-	}
+	// public static void updatePrescriptionStatus() {
+	// 	// TODO - implement Pharmacist.updatePrescriptionStatus
+	// 	throw new UnsupportedOperationException();
+	// }
 
-	public static void viewMedicationInventory() {
-		// TODO - implement Pharmacist.viewMedicationInventory
-		throw new UnsupportedOperationException();
-	}
+	// public static void viewMedicationInventory() {
+	// 	// TODO - implement Pharmacist.viewMedicationInventory
+	// 	throw new UnsupportedOperationException();
+	// }
 
-	public static void submitReplenishmentRequest() {
-		// TODO - implement Pharmacist.submitReplenishmentRequest
-		throw new UnsupportedOperationException();
-	}
+	// public static void submitReplenishmentRequest() {
+	// 	// TODO - implement Pharmacist.submitReplenishmentRequest
+	// 	throw new UnsupportedOperationException();
+	// }
 }
 

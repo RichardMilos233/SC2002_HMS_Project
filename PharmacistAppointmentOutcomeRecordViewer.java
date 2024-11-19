@@ -1,8 +1,14 @@
 import java.util.*;
-
+/**
+ * Provides functionality for pharmacists to view and manage prescriptions based on appointment outcomes.
+ * This class interacts with appointment data, primarily focusing on those with a "closed" status, to process
+ * and dispense medications as needed.
+ */
 public class PharmacistAppointmentOutcomeRecordViewer {
-    
-
+	/**
+     * Displays all closed appointments with their respective prescription outcomes.
+     * Allows the pharmacist to select an appointment for which to dispense medication.
+     */
 	public static void getAppointmentOutcomes() {
 		Scanner scanner = new Scanner(System.in);
 		List<Appointment> appointments = TextService.readAppointmentsFromTxt();
@@ -35,6 +41,12 @@ public class PharmacistAppointmentOutcomeRecordViewer {
 		}
 	}
 
+	/**
+     * Dispenses the prescribed medication for a selected appointment.
+     * This method updates the inventory and the appointment status to "dispensed".
+     *
+     * @param appointment The appointment for which medication is to be dispensed.
+     */
 	public static void dispensePrescription (Appointment appointment) {
 		Inventory inventory = new Inventory();
 		boolean dispensed = inventory.consumeStock(appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName(), appointment.getAppointmentOutcome().getPrescribedMedication().gettotalPrescribed());

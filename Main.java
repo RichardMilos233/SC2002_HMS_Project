@@ -1,6 +1,16 @@
 import java.util.*;
-
+/**
+ * This class serves as the main entry point for the Hospital Management System (HMS).
+ * It handles user authentication and navigation to different menus based on user roles.
+ */
 public class Main {
+    /**
+     * The main method that launches the application, providing options to sign in, sign up,
+     * or quit the system. It directs users to specific menus according to their roles
+     * such as patient, doctor, pharmacist, or administrator after successful login.
+     *
+     * @param args Command line arguments (not used in this application).
+     */
     public static void main (String[] args){
         Scanner scanner = new Scanner(System.in);
         int choice = -1;
