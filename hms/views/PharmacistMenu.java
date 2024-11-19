@@ -52,6 +52,9 @@ public class PharmacistMenu {
                     break;
                 case 4:
                     inventoryService.viewInventory(1);
+                    for (int i = 0; i < medications.size(); i++) {
+                        System.out.println( (i+1) + " - " + medications.get(i).getMedicationName());
+                    }
                     System.out.println("Choose which medication to Replenish: ");
                     //String medToReplenish = scanner.nextLine();
                     int medToReplenish = Validator.validateInt(scanner);
