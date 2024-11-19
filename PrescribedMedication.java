@@ -95,7 +95,7 @@ public class PrescribedMedication {
 		
         String medicationName = lines[0];
         String dosage = lines[1];
-		int totalPrescribed = Integer.parseInt(lines[2]);
+	     int totalPrescribed = Integer.parseInt(lines[2]);
         return new PrescribedMedication(medicationName, dosage, totalPrescribed);
     }
 

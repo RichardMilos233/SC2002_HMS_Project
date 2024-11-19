@@ -49,7 +49,7 @@ public class MedicalRecordUpdater {
         //getting the appt outcome we selected 
         List<Appointment> appointments = patient.getTimeTable();
         Appointment appointment;
-        appointments.removeIf(apt -> !apt.getStatus().equals("closed"));    // brutally get the same list of appointments that contains appointmentoutcomes
+        appointments.removeIf(apt -> !(apt.getStatus().equals("closed") || apt.getStatus().equals("dispensed")));    // brutally get the same list of appointments that contains appointmentoutcomes
         appointmentOutcome = appointmentOutcomes.get(choice-1);
         appointment = appointments.get(choice-1);
 

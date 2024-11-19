@@ -36,7 +36,6 @@ public class AppointmentOutcome {
 		this.diagnosis = diagnosis;
 		this.resolved = resolved;
 	}
-
 	/**
 	 * Displays the complete details of the appointment outcome.
 	 */
@@ -44,7 +43,7 @@ public class AppointmentOutcome {
 		System.out.println("Appointment date: " + date);
 		System.out.println("Type: " + type);
 		System.out.println("Diagnosis: " + diagnosis);
-		prescribedMedication.displayPrescribedMedication();
+		prescribedMedication.displayPrescribedMedication(); // MEDICINE NAME, dosage for patients, totsl prescribed (pharmacisst ref)
 		System.out.println("Consultation notes: " + consultationNotes);
 	}
 
@@ -60,7 +59,7 @@ public class AppointmentOutcome {
 	 * Displays the past medical diagnosis of the appointment. (This method might need more context or renaming for clarity)
 	 */
 	public void displayAppointmentPastDiagnosis() {
-			System.out.printf(diagnosis);
+			System.out.printf(diagnosis); // WRONG TODO
 	}
 
 	/**

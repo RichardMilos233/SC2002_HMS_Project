@@ -52,6 +52,8 @@ public class AppointmentCanceller {
         appointment.setPatientID("P1000");
 
         TextService.replaceAppointment(appointment);
-        patient.updateTimeTable();      
+        patient.updateTimeTable();
+        
+        System.out.println("Appointment cancelled successfully");    
     }
 }

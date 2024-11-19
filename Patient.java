@@ -12,7 +12,7 @@ public class Patient extends User {
 	private String bloodType = "A+";
 	private List<Appointment> timeTable = new ArrayList<>();
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
-	// private String latestMedicalStatus = "status";
+	private String latestDiagnosis = "nil";
 	// private ArrayList<String> Diagnoses = new ArrayList<>(); 
 	//new diagnoses, prescriptions, and treatment plans.
 
@@ -166,7 +166,8 @@ public class Patient extends User {
 	public PastDiagnoses getPastDiagnoses(){
 		if (pastDiagnoses.size() == 0){
 			for (Appointment appointment : getTimeTable()){
-				if (appointment.getPatient().getHospitalID().equals(this.hospitalID) && appointment.getStatus().equals("closed")){
+				if (appointment.getPatient().getHospitalID().equals(this.hospitalID) && 
+					(appointment.getStatus().equals("closed") || appointment.getStatus().equals("dispensed"))){
 					pastDiagnoses.updatePastDiagnoses(appointment.getAppointmentOutcome());
 				}
 			}

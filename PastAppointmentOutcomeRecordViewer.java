@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * Provides functionality to view past appointment outcomes for patients. 
  * This class is responsible for accessing and displaying the historical medical records of a patient.
@@ -10,10 +12,18 @@ public class PastAppointmentOutcomeRecordViewer{
      * @param patient The patient whose past appointment outcomes are to be viewed.
      */
     public static void viewPastAppointmentOutcomeRecord(Patient patient){
-        if (patient.getPastDiagnoses().size() == 0){
+        List<Appointment> pastAppointments = new ArrayList<>();
+        for (Appointment appointment : patient.getTimeTable()){
+            if (appointment.getStatus().equals("closed") || appointment.getStatus().equals("dispensed")){
+                pastAppointments.add(appointment);
+            }
+        }
+        if (pastAppointments.size() == 0){
             System.out.println("There is currently no record");
             return;
         }
-        patient.getPastDiagnoses().displayPastDiagnoses();
+        for (Appointment appointment : pastAppointments){
+            appointment.displayAppointment();
+        }
     }
 }
