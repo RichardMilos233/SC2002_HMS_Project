@@ -42,7 +42,7 @@ public class MedicalRecordUpdater {
         int choice = -1;
         int i;
 
-        System.out.println("Choose the appointment outcome to resolve");
+        System.out.println("Choose the appointment outcome to resolve or 0 to return");
         for (i = 0; i < appointmentOutcomes.size(); i++){
             appointmentOutcome = appointmentOutcomes.get(i);
             System.out.println();
@@ -53,6 +53,9 @@ public class MedicalRecordUpdater {
         do {
             System.out.print("Select the appointment number: ");
             choice = Validator.validateInt(scanner);
+            if (choice == 0){
+                return;
+            }
         } while (choice < 1 || choice > appointmentOutcomes.size());
 
         //getting the appt outcome we selected 

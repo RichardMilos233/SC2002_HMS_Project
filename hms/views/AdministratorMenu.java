@@ -408,14 +408,7 @@ public class AdministratorMenu {
             c =  Validator.validateCharToUpper(scanner);
             switch (c){
                 case 'Y':
-                try { 
-                        StaffService.removeStaff(u);
-                        System.out.println("Staff removed");
-                    } catch (ClassCastException e){
-                            e.getMessage();
-                    }  finally {
-                        System.out.println("Cannot remove Admin, you can change their name, gender and age.");
-                    }
+                    StaffService.removeStaff(u);
                     break;
                 case 'N':
                     return;

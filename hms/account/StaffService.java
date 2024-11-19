@@ -319,14 +319,20 @@ public class StaffService {
         if (role.startsWith("d")){
             CSVService.removeDoctor((Doctor)u);
             Doctor.getDoctors().remove((Doctor)u);
-        } else {
+        } else if (role.startsWith("p")){
             CSVService.removePharmacist((Pharmacist)u);
             Pharmacist.getPharmacists().remove((Pharmacist)u);
+        } else if (role.startsWith("a")) {
+            System.out.println("Admin cannot be deleted");
+            return;
+        } else{
+            System.out.println("Error - ID format for staff is incorrect \nPlease follow DXXX, or PXXX");
         }
         csvService.removeCredention(u.getHospitalID());
         User.getUsers().remove(u);
         User.updateUsers();
-       
+        
+        System.out.println("Staff removed");
     }
     /**
      * Creates a unique ID for a new staff member based on the role character.

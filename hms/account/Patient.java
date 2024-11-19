@@ -175,7 +175,8 @@ public class Patient extends User {
 	public PastDiagnoses getPastDiagnoses(){
 		if (pastDiagnoses.size() == 0){
 			for (Appointment appointment : getTimeTable()){
-				if (appointment.getPatient().getHospitalID().equals(this.hospitalID) && appointment.getStatus().equals("closed")){
+				if (appointment.getPatient().getHospitalID().equals(this.hospitalID) &&
+					(appointment.getStatus().equals("closed") || appointment.getStatus().equals("dispensed"))){
 					pastDiagnoses.updatePastDiagnoses(appointment.getAppointmentOutcome());
 				}
 			}
