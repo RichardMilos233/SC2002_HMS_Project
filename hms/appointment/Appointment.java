@@ -48,10 +48,10 @@ public class Appointment {
 		
 		System.out.println("Appointment date & time: " + date + ' ' + time);
 		System.out.println("Appointment status: " + status);
+		System.out.println("Doctor ID: " + doctorID);
 
 		if (status.equals("confirmed") || status.equals("pending") || 
 			status.equals("closed") || status.equals("dispensed")){
-			System.out.println("Doctor ID: " + doctorID);
 			System.out.println("Patient ID: " + patientID);
 		}
 
