@@ -66,10 +66,18 @@ public class Administrator extends User { //ignore Staff first
 		return administrator;
 	}
 
+	/**
+     * Updates the list of administrators by reading from a CSV file.
+     */
 	public static void updateAdministrators(){
 		administrators = CSVService.readAdminsFromCSV();
 	}
 
+	/**
+     * Retrieves a list of all administrators, refreshing from a CSV file if the list is empty.
+     *
+     * @return A list of Administrator objects.
+     */
 	public static List<Administrator> getAdministrators(){
 		if (administrators.isEmpty()){
 			administrators = CSVService.readAdminsFromCSV();

@@ -1,6 +1,17 @@
 import java.util.*;
-
+/**
+ * Utility class to record the outcomes of appointments for a given doctor.
+ * Handles the recording of details such as the type of appointment, medications prescribed,
+ * consultation notes, and the final diagnosis.
+ */
 public class AppointmentOutcomeRecorder {
+	/**
+	 * Records the outcome of the nearest upcoming appointment for a specified doctor.
+	 * Prompts the user to enter details for the appointment type, prescribed medication, consultation notes,
+	 * and diagnosis. Updates the appointment status to "closed" after recording these details.
+	 *
+	 * @param doctor The doctor whose appointment outcome is to be recorded.
+	 */
     public static void recordAppointmentOutcome(Doctor doctor) {	// record the nearest appointment outcome of a doctor
 		Scanner scanner = new Scanner(System.in);
 		List<Appointment> upcomingAppointment = UpcomingAppointmentViewer.getUpcomingAppointment(doctor);

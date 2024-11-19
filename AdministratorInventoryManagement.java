@@ -1,7 +1,18 @@
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * Provides functionalities for managing the medication inventory by an administrator.
+ * This class includes methods to handle replenish requests for medications within the inventory.
+ */
 public class AdministratorInventoryManagement {
+    /**
+     * Manages inventory by processing replenish requests for medications.
+     * The method lists all current replenish requests. If there are any, it allows the administrator
+     * to approve or decline each request. The administrator first selects a medication from the list
+     * of requests, then decides whether to approve or decline the replenish request.
+     * If approved, the medication stock is replenished by the requested amount; if declined,
+     * no replenishment occurs.
+     */
     public static void manageInventory() {
         Scanner scanner = new Scanner(System.in);
         Inventory inventoryService = new Inventory();

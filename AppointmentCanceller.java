@@ -1,6 +1,16 @@
 import java.util.*;
-
+/**
+ * Utility class to manage the cancellation of appointments for a given patient.
+ * Facilitates the user in selecting an appointment from the list of scheduled appointments to cancel.
+ */
 public class AppointmentCanceller {
+    /**
+     * Cancels a selected appointment for the specified patient. This method allows the patient to view
+     * and select a scheduled appointment to cancel. Validates the user's input to ensure a valid selection.
+     * Updates the appointment status to "cancelled" and removes the patient from the doctor's list.
+     * 
+     * @param patient The patient whose appointment is to be cancelled.
+     */
     public static void cancelAppointment(Patient patient){
         Scanner scanner = new Scanner(System.in);
         List<Appointment> scheduledAppointment = patient.getScheduledAppointments(); 
