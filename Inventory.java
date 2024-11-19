@@ -3,7 +3,7 @@ import java.util.*;
  * Manages the inventory of medications in a healthcare setting. This includes tracking stock levels,
  * adding new medications, updating existing stocks, and handling stock replenishments.
  */
-public class Inventory implements IInventory {
+public class Inventory {
 
 
 	//private int medications;
