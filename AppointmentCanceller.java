@@ -25,14 +25,13 @@ public class AppointmentCanceller {
 
         // choose the one to be cancelled, one at a time for now
         int choice;
-        /*System.out.print("Choose a slot: ");
-        do { 
-            choice = Validator.validateInt(scanner);
-            if (choice < 1 || choice > unavailableAppointments.size()){
-                System.out.println("invalid choice");
-            }
-        } while (choice < 1 || choice > unavailableAppointments.size());
-         */
+        // System.out.print("Choose a slot: ");
+        // do { 
+        //     choice = Validator.validateInt(scanner);
+        //     if (choice < 1 || choice > unavailableAppointments.size()){
+        //         System.out.println("invalid choice");
+        //     }
+        // } while (choice < 1 || choice > unavailableAppointments.size());
         do { 
             System.out.println("Enter the slot to cancel or 0 to return: ");
             choice = Validator.validateInt(scanner);

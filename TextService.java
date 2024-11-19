@@ -9,6 +9,13 @@ import java.util.*;
 public class TextService implements IReadable, IWritable{
     private static final String APPOINTMENT_TXT_PATH = "./txt/appointments.txt";
 
+    /**
+     * Reads data from a specified file path and returns it as a list of list of strings.
+     * Each sublist represents a line in the file, and each string within the sublist represents a field in that line.
+     *
+     * @param filePath The path to the file to be read.
+     * @return A list of lists, where each inner list represents a row of the file.
+     */
     @Override
     public List<List<String>> read(String filePath){
         List<List<String>> data = new ArrayList<>();
@@ -30,6 +37,13 @@ public class TextService implements IReadable, IWritable{
         return data;
     }
 
+    /**
+     * Writes data from a list of list of strings to a specified file path.
+     * Each sublist is written as a line in the file, with each string in the sublist separated by a comma.
+     *
+     * @param filePath The path to the file where the data should be written.
+     * @param data The list of lists representing the data to write, where each inner list represents a row to be written to the file.
+     */
     @Override
     public void write(String filePath, List<List<String>> data){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {

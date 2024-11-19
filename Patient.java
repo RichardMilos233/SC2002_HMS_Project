@@ -186,11 +186,26 @@ public class Patient extends User {
 		return this.timeTable;
 	}
 
+	/**
+	 * Updates the patient's appointment timetable by fetching the latest list of appointments from the data source.
+	 * This method ensures that the patient's timetable reflects any changes or new appointments that have been added
+	 * since the last update.
+	 *
+	 * @return The updated list of appointments for the patient.
+	 */
 	public List<Appointment> updateTimeTable(){
 		this.timeTable = TextService.getPatientAppointment(this.hospitalID);
 		return this.timeTable;
 	}
 
+	/**
+	 * Adds a new appointment to the patient's appointment timetable. This method allows for the direct insertion
+	 * of an appointment into the patient's current list of appointments without needing to fetch the entire list
+	 * from the data source again.
+	 *
+	 * @param appointment The appointment object to be added to the timetable. This appointment should contain
+	 *                    all necessary details such as the date, time, and status.
+	 */
 	public void addAppointment(Appointment appointment){
 		this.timeTable.add(appointment);
 	}
