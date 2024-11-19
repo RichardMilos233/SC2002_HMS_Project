@@ -1,7 +1,16 @@
 import java.util.*;
-
+/**
+ * Manages the administrator menu interface, providing various functionalities
+ * such as viewing and managing hospital staff, appointments, and medication inventory.
+ */
 public class AdministratorMenu {
-    
+    /**
+     * Displays the main menu for an administrator and processes the user's choices.
+     * The menu allows access to functions like managing staff, viewing appointment details,
+     * managing medication inventory, and changing the administrator's password.
+     *
+     * @param administrator The administrator currently logged in and using the menu.
+     */
     public static void displayAdminMenu(Administrator administrator){
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -41,7 +50,10 @@ public class AdministratorMenu {
             }
         }while (choice != 6);
     }
-  
+
+    /**
+     * Manages the inventory options in a sub-menu for an administrator.
+     */
     private static void displayInventory() { // this moved to somewhere else
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
@@ -97,7 +109,12 @@ public class AdministratorMenu {
         } while (choice != 5);
     }
   
-  
+    /**
+     * Displays a menu to select different staff display options, handling the selection to show staff
+     * based on various criteria like role, name, ID, age, or gender, or to manage staff directly.
+     * Continues to display the menu until the user chooses to return to the main menu.
+     * @throws UnsupportedOperationException if an unsupported operation is performed.
+     */
     public static void displayStaffList() {
         Scanner scanner = new Scanner(System.in);
         int c = 0;
@@ -153,6 +170,11 @@ public class AdministratorMenu {
     throw new UnsupportedOperationException();
     }
 
+    /**
+     * Provides a management interface for staff, allowing addition, updating, or removal of staff records.
+     * Continues to display the management options until the user chooses to return to the main menu.
+     * @throws UnsupportedOperationException if an unsupported operation is performed.
+     */
     public static void manageStaff() {
         Scanner scanner = new Scanner(System.in);
         int c;
@@ -184,6 +206,11 @@ public class AdministratorMenu {
 		throw new UnsupportedOperationException();
 	}
 
+    /**
+     * Interactively collects information to add a new staff member to the system, excluding administrators.
+     * Prompts for staff details such as name, role, gender, age, and a default password. Provides a confirmation
+     * step before finalizing the addition of a new staff member.
+     */
 	public static void addStaff() { // cannot add admin
         Scanner scanner = new Scanner(System.in);
         String name, defaultPass;
@@ -265,6 +292,11 @@ public class AdministratorMenu {
         }
 	}
 
+    /**
+     * Provides an interface for updating existing staff details. Allows updating of name, role, gender,
+     * age, or password. The staff ID must be provided by the user to fetch the correct staff details for updating.
+     * Changes are applied once all desired updates are confirmed.
+     */
 	public static void updateStaff() { // update admin, doctor, or pharmacist
         Scanner scanner = new Scanner(System.in);
         String ID;
@@ -340,10 +372,13 @@ public class AdministratorMenu {
                         break;
                 }
             } while (c!=5); 
-        
-        //throw new UnsupportedOperationException();
 	}
 
+    /**
+     * Allows the removal of a staff member from the system. Requires confirmation from the user
+     * before removal is finalized. The staff ID must be entered to identify the staff member for removal.
+     * Note: Administrators cannot be removed using this method.
+     */
 	public static void removeStaff() { // cannot remove admin
         Scanner scanner = new Scanner(System.in);
         String ID;
@@ -370,32 +405,35 @@ public class AdministratorMenu {
 		//throw new UnsupportedOperationException();
 	}
 
+    /**
+     * Displays a list of all appointments using a method from {@link AdministratorAppointmentViewer}.
+     */ 
 	public static void viewAppointmentDetails() {
         AdministratorAppointmentViewer.viewAllAppointment();
 	}
 
-	public void addStock() {
-		// TODO - implement Administrator.addStock
-		throw new UnsupportedOperationException();
-	}
+	// public void addStock() {
+	// 	// TODO - implement Administrator.addStock
+	// 	throw new UnsupportedOperationException();
+	// }
 
-	public void removeStock() {
-		// TODO - implement Administrator.removeStock
-		throw new UnsupportedOperationException();
-	}
+	// public void removeStock() {
+	// 	// TODO - implement Administrator.removeStock
+	// 	throw new UnsupportedOperationException();
+	// }
 
-	public void updateStock() {
-		// TODO - implement Administrator.updateStock
-		throw new UnsupportedOperationException();
-	}
+	// public void updateStock() {
+	// 	// TODO - implement Administrator.updateStock
+	// 	throw new UnsupportedOperationException();
+	// }
 
-	public void updateStockAlert() {
-		// TODO - implement Administrator.updateStockAlert
-		throw new UnsupportedOperationException();
-	}
+	// public void updateStockAlert() {
+	// 	// TODO - implement Administrator.updateStockAlert
+	// 	throw new UnsupportedOperationException();
+	// }
 
-	public static void approveReplenishmentRequest() {
-		// TODO - implement Administrator.approveReplenishmentRequest
-		throw new UnsupportedOperationException();
-	}
+	// public static void approveReplenishmentRequest() {
+	// 	// TODO - implement Administrator.approveReplenishmentRequest
+	// 	throw new UnsupportedOperationException();
+	// }
 }

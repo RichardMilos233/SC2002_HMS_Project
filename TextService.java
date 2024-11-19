@@ -2,7 +2,10 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
-
+/**
+ * Handles all operations related to reading from and writing to the appointment text file.
+ * This includes CRUD operations for appointments based on unique identifiers such as doctor ID, patient ID, date, and time.
+ */
 public class TextService implements IReadable, IWritable{
     private static final String APPOINTMENT_TXT_PATH = "./txt/appointments.txt";
 
@@ -40,6 +43,11 @@ public class TextService implements IReadable, IWritable{
         }
     }
 
+    /**
+     * Writes a list of appointments to a text file.
+     *
+     * @param appointments The list of Appointment objects to write to the file.
+     */
     public static void writeAppointmentsToTxt(List<Appointment> appointments) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_TXT_PATH))) {
             writer.write("patientID,doctorID,status,date,time,date|type|medicationName\\dosage\\totalPrescribed|consultationNotes|diagnosis|resolved\n");
@@ -51,6 +59,11 @@ public class TextService implements IReadable, IWritable{
         }
     }
 
+    /**
+     * Reads appointments from a text file and returns them as a list of Appointment objects.
+     *
+     * @return A list of Appointment objects read from the file.
+     */
     public static List<Appointment> readAppointmentsFromTxt() {
         List<Appointment> appointments = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(APPOINTMENT_TXT_PATH))) {
@@ -66,6 +79,12 @@ public class TextService implements IReadable, IWritable{
         return appointments;
     }
 
+    /**
+     * Retrieves all appointments associated with a specific patient ID.
+     *
+     * @param patientID The patient ID to filter appointments by.
+     * @return A list of Appointment objects matching the given patient ID.
+     */
     public static List<Appointment> getPatientAppointment(String patientID){
         List<Appointment> appointments = new ArrayList<>();
         List<Appointment> timeTable = readAppointmentsFromTxt();
@@ -77,6 +96,12 @@ public class TextService implements IReadable, IWritable{
         return appointments;
     }
 
+    /**
+     * Retrieves all appointments associated with a specific doctor ID.
+     *
+     * @param doctorID The doctor ID to filter appointments by.
+     * @return A list of Appointment objects matching the given doctor ID.
+     */
     public static List<Appointment> getDoctorAppointment(String doctorID){
         List<Appointment> appointments = new ArrayList<>();
         List<Appointment> timeTable = readAppointmentsFromTxt();
@@ -88,11 +113,22 @@ public class TextService implements IReadable, IWritable{
         return appointments;
     }
 
+    /**
+     * Replaces an existing appointment in the text file with new data.
+     *
+     * @param apt_new The updated Appointment object to replace the old one.
+     */
     public static void replaceAppointment(Appointment apt_new){ // this find the old apt in txt (by doc id, date, time), update its info by  refreshing all of its info
         int index = findAppointment(apt_new);
         writeAppointment(apt_new, index);
     }
 
+    /**
+     * Finds the index of a specific appointment in the text file based on multiple attributes.
+     *
+     * @param apt_new The Appointment object to find in the text file.
+     * @return The index of the appointment in the list, or -1 if not found.
+     */
     public static int findAppointment(Appointment apt_new){
         int i;  // # of row of appointment in txt
         Appointment apt_old;
@@ -112,6 +148,12 @@ public class TextService implements IReadable, IWritable{
         return -1;  // -1 indicates not found
     }
 
+    /**
+     * Writes a specific Appointment object to the text file at a specified index.
+     *
+     * @param apt_new The new Appointment object to write to the file.
+     * @param index The index at which to write the appointment.
+     */
     public static void writeAppointment(Appointment apt_new, int index){
         List<Appointment> appointments = readAppointmentsFromTxt();
         int size = appointments.size();
@@ -123,12 +165,22 @@ public class TextService implements IReadable, IWritable{
         writeAppointmentsToTxt(appointments);
         }
 
+    /**
+     * Appends a new Appointment object to the end of the text file.
+     *
+     * @param apt The new Appointment object to add to the file.
+     */
     public static void appendAppointment(Appointment apt){
         List<Appointment> appointments = readAppointmentsFromTxt();
         appointments.add(apt);
         writeAppointmentsToTxt(appointments);
     }
 
+    /**
+     * Main method for testing purposes, simulating file writing and reading operations.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args){
         PrescribedMedication p1 = new PrescribedMedication("panadol", "2/day", 30);
         PrescribedMedication p2 = new PrescribedMedication("meth", "5/day", 10);

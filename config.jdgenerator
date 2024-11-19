@@ -169,5 +169,16 @@
 ��������d:\Nanyang Technological University\Year 2\SC2002 Object Oriented Programming\Proj\SC2002_HMS_Project\javadoc\allclasses.html...
 ��������d:\Nanyang Technological University\Year 2\SC2002 Object Oriented Programming\Proj\SC2002_HMS_Project\javadoc\index.html...
 ��������d:\Nanyang Technological University\Year 2\SC2002 Object Oriented Programming\Proj\SC2002_HMS_Project\javadoc\help-doc.html...
+1 ������
+2 ������
+d:\Nanyang Technological University\Year 2\SC2002 Object Oriented Programming\Proj\SC2002_HMS_Project\AppointmentOutcome.java:27: ����: @param name δ�ҵ�
+	 * @param consultationNotes Notes made during the consultation.
+	          ^
+d:\Nanyang Technological University\Year 2\SC2002 Object Oriented Programming\Proj\SC2002_HMS_Project\AppointmentOutcome.java:31: ����: cosultationNotesû�� @param
+	public AppointmentOutcome(LocalDate date, String type, PrescribedMedication prescribedMedication, String cosultationNotes, String diagnosis, boolean resolved){
+	       ^
+d:\Nanyang Technological University\Year 2\SC2002 Object Oriented Programming\Proj\SC2002_HMS_Project\CSVService.java:521: ����: argsû�� @param
+    public static void main(String[] args) {
+                       ^
 
 

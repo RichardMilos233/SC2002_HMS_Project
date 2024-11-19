@@ -1,8 +1,16 @@
 import java.util.*;
-
+/**
+ * Manages the login process for the system, handling user authentication and account allocation based on credentials.
+ */
 public class Login {    //can have a Signup.java later
     private static final String CREDENTIAL_CSV_PATH = "./csv/credentials.csv";
 
+    /**
+     * Attempts to log a user into the system using provided credentials.
+     *
+     * @param user An initial user object which might be updated based on successful login credentials.
+     * @return The logged-in user object if authentication is successful, otherwise null.
+     */
     public static User login(User user){
         List<String> credentials = getLoginCredentials();
         if (checkCredentials(credentials)){
@@ -12,7 +20,13 @@ public class Login {    //can have a Signup.java later
         }
         return null;
     }
-  
+    
+    /**
+     * Checks if the provided credentials match those stored in the system's credential storage.
+     *
+     * @param credentials A list containing the hospital ID and hashed password.
+     * @return true if the credentials match an existing account, false otherwise.
+     */
     public static boolean checkCredentials (List<String> credentials){
         //initialize credentials.csv to store the data for user login: first column for hospitalId, second column for password
         // need to specify the format of the credentials.csv, i.e. what value is placed at which column
@@ -33,6 +47,11 @@ public class Login {    //can have a Signup.java later
         return false;
     }
 
+    /**
+     * Retrieves login credentials from the user via the console.
+     *
+     * @return A list containing the user's hospital ID and the hashed password.
+     */
     public static List<String> getLoginCredentials(){   //get id and password
         CSVService csvService = new CSVService();
         Hasher hasher = new SimpleAdditiveHash();
@@ -59,6 +78,12 @@ public class Login {    //can have a Signup.java later
         return credentials;
     }
 
+    /**
+     * Allocates an account based on the hospital ID provided after successful login.
+     *
+     * @param hospitalId The hospital ID of the user attempting to log in.
+     * @return A User object corresponding to the hospital ID if found, otherwise null.
+     */
     public static User allocateAccount(String hospitalId){   //allocate acc info from existing files
         if (hospitalId.length() == 5){  //patient
             List<Patient> patients = CSVService.readPatientsFromCSV();

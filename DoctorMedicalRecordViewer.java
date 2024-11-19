@@ -1,6 +1,17 @@
 import java.util.*;
-
+/**
+ * Provides functionality for doctors to view the medical records of patients under their care.
+ * This class enables the doctor to select a patient from their list and displays comprehensive
+ * medical information about the chosen patient.
+ */
 public class DoctorMedicalRecordViewer {
+    /**
+     * Displays the medical record of a selected patient for a given doctor. The method prompts the
+     * doctor to choose one of their patients and displays detailed information such as name, gender,
+     * blood type, age, and past diagnoses.
+     *
+     * @param doctor The doctor who wants to view the medical record of a patient.
+     */
     public static void viewMedicalRecord(Doctor doctor){
         Scanner scanner = new Scanner(System.in);
         // choose the patient the doctor want to view

@@ -1,7 +1,16 @@
 import java.util.*;
-
+/**
+ * Provides services for managing and displaying staff information within a healthcare system. 
+ * This class includes methods for listing staff by various categories, updating staff information,
+ * and handling unique identification for new staff members.
+ */
 public class StaffService {
-
+    /**
+     * Displays a list of all staff members filtered by specific categories such as role, name, ID, age, or gender.
+     * 
+     * @param byCategory An integer representing the filter type: 
+     *                   1 - by role, 2 - by name, 3 - by ID, 4 - by age, 5 - by gender.
+     */
     public static void displayStaffList(int byCategory){
         // role = 1, name = 2, ID= 3, age=4, gender=5
         //Display a list of staff filtered by role, gender, age, etc
@@ -76,6 +85,11 @@ public class StaffService {
         }
     }
 
+    /**
+     * Displays a formatted list of all administrators in the system.
+     * 
+     * @param role Specifies the context in which this method is called, affecting output formatting.
+     */
     public static void displayAdminList(int role){
         Administrator admin;
         if (role == 1){
@@ -97,6 +111,11 @@ public class StaffService {
         
     }
 
+    /**
+     * Displays a formatted list of all doctors in the system.
+     * 
+     * @param role Specifies the context in which this method is called, affecting output formatting.
+     */
     public static void displayDoctorList(int role){
         Doctor doctor;
         if (role == 1){
@@ -116,6 +135,11 @@ public class StaffService {
         System.out.println("\n");
     }
 
+    /**
+     * Displays a formatted list of all pharmacists in the system.
+     * 
+     * @param role Specifies the context in which this method is called, affecting output formatting.
+     */
     public static void displayPharmacistList(int role){
         Pharmacist pharma;
         if (role == 1){
@@ -135,6 +159,16 @@ public class StaffService {
         System.out.println("\n");
     }
 
+    /**
+     * Updates the information of an existing staff member, possibly changing their role and reallocating a new ID.
+     * 
+     * @param u The user to update.
+     * @param name The new name for the user.
+     * @param role The new role for the user if applicable.
+     * @param gender The new gender for the user.
+     * @param age The new age for the user.
+     * @return The updated user object, potentially as a new instance if the role was changed.
+     */
     public static User updateStaff(User u, String name, String role, String gender, int age){
         CSVService csvService = new CSVService();
         if (!name.equals(u.getName())){
@@ -185,6 +219,16 @@ public class StaffService {
         // }
     }
     
+    /**
+     * Adds a new staff member to the system and generates a unique ID for them.
+     * 
+     * @param name The name of the new staff member.
+     * @param roleChar The initial character indicating the staff's role ('D' for Doctor, 'P' for Pharmacist).
+     * @param genderChar The initial character indicating the staff's gender ('M' for Male, 'F' for Female).
+     * @param age The age of the new staff member.
+     * @param defaultPass The default password for the new staff member.
+     * @return The unique hospital ID assigned to the new staff member.
+     */
     public static String addStaff(String name, char roleChar, char genderChar, int age, String defaultPass){
         CSVService csvService = new CSVService();
         Hasher hasher = new SimpleAdditiveHash();
@@ -221,6 +265,12 @@ public class StaffService {
         return staffID;
     }
 
+    /**
+     * Finds and returns details of a staff member based on their ID.
+     * 
+     * @param ID The unique hospital ID of the staff member.
+     * @return The User object representing the staff member, or null if not found.
+     */
     public static User findStaffDetails(String ID){
         if (ID.startsWith("D") && ID.length()==4){
             for (int i = 0; i<Doctor.getDoctors().size(); i++){
@@ -249,6 +299,11 @@ public class StaffService {
         return null;
     }
 
+    /**
+     * Removes a staff member from the system based on their User object.
+     * 
+     * @param u The User object representing the staff member to be removed.
+     */
     public static void removeStaff(User u){
         CSVService csvService = new CSVService();
         String role = u.getRole();
@@ -264,6 +319,12 @@ public class StaffService {
         User.updateUsers();
     }
 
+    /**
+     * Creates a unique ID for a new staff member based on the role character.
+     * 
+     * @param r The character representing the role of the staff ('D' for Doctor, 'P' for Pharmacist).
+     * @return A unique ID string for the new staff member.
+     */
     public static String createID(char r){
         char[] charID;
         String staffID;

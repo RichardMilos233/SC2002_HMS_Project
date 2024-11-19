@@ -1,6 +1,15 @@
 import java.util.*;
-
+/**
+ * Utility class to manage the availability of appointments for a given doctor.
+ * Allows setting appointments from an "unavailable" status to an "available" status.
+ */
 public class AppointmentAvailabilitySetter {
+    /**
+     * Sets the availability of an appointment for the specified doctor. Allows the user to select an 
+     * unavailable appointment slot to change its status to "available". Provides feedback on the action taken.
+     * 
+     * @param doctor The doctor whose appointments are to be managed for availability settings.
+     */
     public static void setAppointmentAvailability(Doctor doctor){
         Scanner scanner = new Scanner(System.in);
         List<Appointment> unavailableAppointments = getUnavailableAppointments(doctor);
@@ -32,6 +41,12 @@ public class AppointmentAvailabilitySetter {
         appointment.displayAppointment();
     }
 
+    /**
+     * Retrieves a list of appointments for a specific doctor that are currently marked as "unavailable".
+     * 
+     * @param doctor The doctor whose unavailable appointments are to be retrieved.
+     * @return A list of appointments that are currently marked as unavailable.
+     */
     public static List<Appointment> getUnavailableAppointments(Doctor doctor){
         List<Appointment> timeTable = doctor.getTimeTable();
         List<Appointment> unavailableAppointments = new ArrayList<>();

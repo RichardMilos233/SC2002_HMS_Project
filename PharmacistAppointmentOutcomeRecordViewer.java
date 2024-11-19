@@ -1,5 +1,9 @@
 import java.util.*;
-
+/**
+ * Provides functionality for pharmacists to view and manage prescriptions based on appointment outcomes.
+ * This class interacts with appointment data, primarily focusing on those with a "closed" status, to process
+ * and dispense medications as needed.
+ */
 public class PharmacistAppointmentOutcomeRecordViewer {
     
 

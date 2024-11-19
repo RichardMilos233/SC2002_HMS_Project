@@ -1,6 +1,16 @@
 import java.util.*;
-
+/**
+ * Provides functionality for doctors to update medical records of their patients.
+ * This class allows doctors to choose a specific patient and update the outcomes of their appointments,
+ * such as resolving diagnoses or updating treatment details.
+ */
 public class MedicalRecordUpdater { 
+    /**
+     * Updates the medical record of a selected patient under a doctor's care. It allows the doctor to choose a specific
+     * appointment outcome to update, such as setting the diagnosis as resolved or adjusting treatment details.
+     *
+     * @param doctor The doctor performing the update operation.
+     */
     public static void updateMedicalRecord(Doctor doctor){
         Scanner scanner = new Scanner(System.in);
         // choose which patient to update
