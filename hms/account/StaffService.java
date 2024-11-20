@@ -318,12 +318,12 @@ public class StaffService {
     public static void removeStaff(User u){
         CSVService csvService = new CSVService();
         String role = u.getRole();
-        if (u instanceof Doctor doctor){
-            CSVService.removeDoctor(doctor);
-            Doctor.getDoctors().remove(doctor);
-        } else if (u instanceof Pharmacist pharmacist){
-            CSVService.removePharmacist(pharmacist);
-            Pharmacist.getPharmacists().remove(pharmacist);
+        if (u instanceof Doctor){
+            CSVService.removeDoctor((Doctor)u);
+            Doctor.getDoctors().remove((Doctor)u);
+        } else if (u instanceof Pharmacist){
+            CSVService.removePharmacist((Pharmacist)u);
+            Pharmacist.getPharmacists().remove((Pharmacist)u);
         } else if (u instanceof Administrator) {
             System.out.println("Admin cannot be deleted");
             return;
