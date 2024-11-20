@@ -10,7 +10,7 @@ This project was done as part of our SC2002 Object-oriented Programming module. 
 - **Ryan Paulo** - [ryanpaulo13](https://github.com/ryanpaulo13)
 
 ## Project Directory
-- **HMS:** The application's source code, data files, and libraries.
+- **hms:** The application's source code, data files, and libraries.
 - **UML:** The class diagram of our application.
 - **docs:** The report and javadocs for our application.
 
