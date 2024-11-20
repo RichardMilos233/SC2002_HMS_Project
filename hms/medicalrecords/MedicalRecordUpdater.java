@@ -1,12 +1,11 @@
 package hms.medicalrecords;
 
-import hms.storage.TextService;
 import hms.appointment.Appointment;
 import hms.appointment.AppointmentOutcome;
-import hms.account.Doctor;
-import hms.account.Patient;
+import hms.storage.TextService;
+import hms.users.Doctor;
+import hms.users.Patient;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Provides functionality for doctors to update medical records of their patients.
@@ -38,7 +37,7 @@ public class MedicalRecordUpdater {
         // select which appointment outcome to update
         PastDiagnoses pastDiagnoses = patient.getPastDiagnoses();
         List<AppointmentOutcome> appointmentOutcomes = pastDiagnoses.getAppointmentOutcomes();
-        if (appointmentOutcomes.size() == 0){
+        if (appointmentOutcomes.isEmpty()){
             System.out.println("Patient has no past medical record under your care");
             return;
         }

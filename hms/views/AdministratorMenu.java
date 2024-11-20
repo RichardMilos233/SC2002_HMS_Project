@@ -1,12 +1,17 @@
 package hms.views;
 
-import hms.account.Administrator;
-import hms.account.StaffService;
-import hms.account.User;
 import hms.appointment.AdministratorAppointmentViewer;
 import hms.inventory.AdministratorInventoryManagement;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
+import hms.staff.DisplayRole;
+import hms.staff.IDisplay;
+import hms.staff.StaffAdder;
+import hms.staff.StaffFinder;
+import hms.staff.StaffRemover;
+import hms.staff.StaffUpdater;
+import hms.users.Administrator;
+import hms.users.User;
 import hms.utils.Validator;
 import java.util.*;
 /**
@@ -66,7 +71,7 @@ public class AdministratorMenu {
      */
     private static void displayInventory() { // this moved to somewhere else
         Scanner scanner = new Scanner(System.in);
-        int choice = 0;
+        int choice;
         
         Inventory inventoryService = new Inventory();
 
@@ -148,7 +153,8 @@ public class AdministratorMenu {
      */
     public static void displayStaffList() {
         Scanner scanner = new Scanner(System.in);
-        int c = 0;
+        int c;
+        IDisplay displayRole = new DisplayRole();
         do {  // inconsistent print method what is the preference
             // Display a list of staff filtered by role, gender, age, etc
             System.out.println("Would you like to: \n" + 
@@ -164,29 +170,25 @@ public class AdministratorMenu {
             c = Validator.validateInt(scanner);
             switch (c){
                 case 1:
-                    StaffService.displayStaffList(1);
+                    displayRole.displayByRole();
                     break;
                 case 2:
-                    StaffService.displayStaffList(2);
+                    displayRole.displayByAttribute(Comparator.comparing(User::getName));
                     break;
                 case 3:
-                    StaffService.displayStaffList(3);
+                    displayRole.displayByAttribute(Comparator.comparing(User::getHospitalID));
                     break;
                 case 4:
-                    StaffService.displayStaffList(4);
+                    displayRole.displayByAttribute(Comparator.comparing(User::getAge));
                     break;
                 case 5:
-                    StaffService.displayStaffList(5);
+                    displayRole.displayByAttribute(Comparator.comparing(User::getGender));
                     break; 
                 case 6:
-                    System.out.format("ID     Name                 Gender     Age\n");
-                    System.out.println("-------------------------------------------");
-                    StaffService.displayDoctorList(1);
+                    DisplayRole.displayDoctorList();
                     break;
                 case 7:
-                    System.out.format("ID     Name                 Gender     Age\n");
-                    System.out.println("-------------------------------------------");
-                    StaffService.displayPharmacistList(1);
+                    DisplayRole.displayPharmacistList();
                     break;
                 case 8:
                     manageStaff();
@@ -285,7 +287,7 @@ public class AdministratorMenu {
                 c =  Validator.validateCharToUpper(scanner);
                 switch (c){
                     case 'Y':
-                        StaffService.addStaff(name, role, gender, age, defaultPass);
+                        StaffAdder.addStaff(name, role, gender, age, defaultPass);
                         break;
                     case 'N':
                         AdministratorMenu.addStaff();
@@ -307,7 +309,7 @@ public class AdministratorMenu {
                 c =  Validator.validateCharToUpper(scanner);
                 switch (c){
                     case 'Y':
-                        StaffService.addStaff(name, role, gender, age, defaultPass);
+                        StaffAdder.addStaff(name, role, gender, age, defaultPass);
                         break;
                     case 'N':
                         AdministratorMenu.addStaff();
@@ -331,9 +333,9 @@ public class AdministratorMenu {
         do { 
             System.out.println("Enter the ID of the Staff member you want to update: ");
             ID = Validator.validateStringNoSpace(scanner);
-        } while (StaffService.findStaffDetails(ID) == null);
+        } while (StaffFinder.findStaffDetails(ID) == null);
 
-        User u = StaffService.findStaffDetails(ID);
+        User u = StaffFinder.findStaffDetails(ID);
             int c;
             String name = u.getName();
             int age = u.getAge();
@@ -390,7 +392,7 @@ public class AdministratorMenu {
                         System.out.println("Updating age to " + age);
                         break;
                     case 5:
-                        u = StaffService.updateStaff(u, name, role, opposite, age);
+                        u = StaffUpdater.updateStaff(u, name, role, opposite, age);
                         u.display();
                         break;
                     case 6:
@@ -418,7 +420,7 @@ public class AdministratorMenu {
             if (ID.equals("0")){
                 return;
             }
-            u = StaffService.findStaffDetails(ID);
+            u = StaffFinder.findStaffDetails(ID);
         } while (u==null);
        
         char c;
@@ -429,7 +431,7 @@ public class AdministratorMenu {
             c =  Validator.validateCharToUpper(scanner);
             switch (c){
                 case 'Y':
-                    StaffService.removeStaff(u);
+                    StaffRemover.removeStaff(u);
                     break;
                 case 'N':
                     return;
@@ -446,29 +448,4 @@ public class AdministratorMenu {
     public static void viewAppointmentDetails() {
         AdministratorAppointmentViewer.viewAllAppointment();
     }
-
-    // public void addStock() {
-    //     // TODO - implement Administrator.addStock
-    //     throw new UnsupportedOperationException();
-    // }
-
-    // public void removeStock() {
-    //     // TODO - implement Administrator.removeStock
-    //     throw new UnsupportedOperationException();
-    // }
-
-    // public void updateStock() {
-    //     // TODO - implement Administrator.updateStock
-    //     throw new UnsupportedOperationException();
-    // }
-
-    // public void updateStockAlert() {
-    //     // TODO - implement Administrator.updateStockAlert
-    //     throw new UnsupportedOperationException();
-    // }
-
-    // public static void approveReplenishmentRequest() {
-    //     // TODO - implement Administrator.approveReplenishmentRequest
-    //     throw new UnsupportedOperationException();
-    // }
 }

@@ -1,6 +1,5 @@
 package hms.appointment;
 
-import hms.account.Doctor;
 import hms.storage.TextService;
 import java.util.*;
 

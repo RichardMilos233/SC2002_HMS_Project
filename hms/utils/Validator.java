@@ -51,7 +51,7 @@ public class Validator {
         while (true) { 
             if (scanner.hasNextLine()) { 
                 name = scanner.nextLine(); 
-                if (name.contains("  ") || (name.length()-name.trim().length()>4) || name.isBlank() || name.isEmpty() || name.length()<4){
+                if (name.contains("  ") || (name.length()-name.trim().length()>4) || name.isBlank() || name.isEmpty() || name.length()<4 || preventCSVorTXTAlteration(name)==0){
                     System.out.println("Invalid. Please enter a Name: "); 
                 } else{
                     break;
@@ -123,7 +123,7 @@ public class Validator {
         while (true) { 
             if (scanner.hasNextLine()) { 
                 input = scanner.nextLine(); 
-                if (input.contains(" ") || input.isBlank()){
+                if ((input.contains(" ") || input.isBlank()) || preventCSVorTXTAlteration(input)==0){
                     System.out.println("Invalid. Please enter a string without using space: "); 
                 } else{
                     break;
@@ -165,6 +165,19 @@ public class Validator {
     }
 
     /**
+     * Validates that the input string contains no commas or special characters that can interfere with file reading.
+     *@param input String
+     */
+    public static int preventCSVorTXTAlteration(String input) { // ensures string has no comma etc in it 
+        if (input.contains(",") || input.isBlank() || input.contains("|")||input.contains("\\")){
+                System.out.println("Invalid. Please enter a string without using , | \\: "); 
+                return 0;
+        }
+        return 1;
+        
+    }
+
+    /**
      * Validates that the input string is a valid email address. Assumes an email contains '@'.
      *
      * @param scanner The scanner to read the input from.
@@ -175,7 +188,7 @@ public class Validator {
         while (true) { 
             if (scanner.hasNextLine()) { 
                 input = scanner.nextLine(); 
-                if (!input.contains("@") || input.isBlank()){
+                if (!input.contains("@") || input.isBlank() || preventCSVorTXTAlteration(input)==0){
                     System.out.println("Invalid. Please enter a valid email: "); 
                 } else{
                     break;
@@ -202,7 +215,7 @@ public class Validator {
         while (true) { 
             if (scanner.hasNextLine()) { 
                 input = scanner.nextLine(); 
-                if (input.isBlank()){
+                if (input.isBlank() || preventCSVorTXTAlteration(input)==0){
                     System.out.println("Invalid. Please enter a string: "); 
                 } else{
                     break;
@@ -232,11 +245,11 @@ public class Validator {
                 if (input.length()==1){
                     break;
                 } else{
-                    System.out.println("Invalid. Please enter a string without using space: "); 
+                    System.out.println("Invalid. Please enter a character: "); 
                 }
                 // Input is valid, exit the loop 
             } else { 
-                System.out.println("Invalid. Please enter a string without using space: "); 
+                System.out.println("Invalid. Please enter a character: "); 
                 scanner.next();  
                 // Clear the invalid input 
             }
@@ -259,11 +272,11 @@ public class Validator {
                 if (input.length()==1){
                     break;
                 } else{
-                    System.out.println("Invalid. Please enter a string without using space: "); 
+                    System.out.println("Invalid. Please enter a character: "); 
                 }
                 // Input is valid, exit the loop 
             } else { 
-                System.out.println("Invalid. Please enter a string without using space: "); 
+                System.out.println("Invalid. Please enter a character: "); 
                 scanner.next();  
                 // Clear the invalid input 
             }

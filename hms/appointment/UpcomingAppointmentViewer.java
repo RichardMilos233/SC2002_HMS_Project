@@ -1,8 +1,8 @@
 package hms.appointment;
 
-import hms.account.Doctor;
-
 import java.util.*;
+
+import hms.users.Doctor;
 /**
  * Provides functionality to view and manage upcoming appointments for a specific doctor.
  */

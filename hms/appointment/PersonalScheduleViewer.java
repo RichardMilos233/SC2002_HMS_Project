@@ -1,8 +1,8 @@
 package hms.appointment;
 
-import hms.account.Doctor;
-
 import java.util.*;
+
+import hms.users.Doctor;
 /**
  * Provides the functionality to view the personal schedule of a doctor. 
  * This class focuses on displaying only confirmed appointments from the doctor's schedule.

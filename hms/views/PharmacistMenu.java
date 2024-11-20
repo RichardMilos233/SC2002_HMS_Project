@@ -1,9 +1,9 @@
 package hms.views;
 
-import hms.account.Pharmacist;
 import hms.appointment.PharmacistAppointmentOutcomeRecordViewer;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
+import hms.users.Pharmacist;
 import hms.utils.Validator;
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +22,7 @@ public class PharmacistMenu {
     public static void displayPharmacistMenu(Pharmacist pharmacist){
         Scanner scanner = new Scanner(System.in);
         Inventory inventoryService = new Inventory();
-        int choice = 0;
+        int choice;
         do{
 
             System.out.println("-------------Pharmacist Menu-------------\n" + 
@@ -107,15 +107,5 @@ public class PharmacistMenu {
         } while (stockLevelToSet<0);
         inventoryService.replenishRequest(medications.get(medToReplenish-1), stockLevelToSet);
     }
-
-	// public static void viewMedicationInventory() {
-	// 	// TODO - implement Pharmacist.viewMedicationInventory
-	// 	throw new UnsupportedOperationException();
-	// }
-
-	// public static void submitReplenishmentRequest() {
-	// 	// TODO - implement Pharmacist.submitReplenishmentRequest
-	// 	throw new UnsupportedOperationException();
-	// }
 }
 

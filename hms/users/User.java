@@ -1,10 +1,9 @@
-package hms.account;
+package hms.users;
 
 import hms.storage.CSVService;
+import hms.utils.Validator;
 import hms.utils.cryptography.Hasher;
 import hms.utils.cryptography.SimpleAdditiveHash;
-import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Base class for all user types in the system including patients, doctors, administrators, and pharmacists.
@@ -66,8 +65,10 @@ public class User {
         CSVService csvService = new CSVService();
         Hasher hasher = new SimpleAdditiveHash();
         String newPassword = "defaultPassword";
-        System.out.print("Enter new password: ");
-        newPassword = Validator.validateStringNoSpace(scanner);
+        do { 
+            System.out.print("Enter new password (at least 8 characters): ");
+            newPassword = Validator.validateStringNoSpace(scanner);
+        } while (newPassword.length()>7);
         // this.password = newPassword;
         int newHash = hasher.hash(newPassword, csvService.getSalt(getHospitalID()));
         csvService.changePassword(hospitalID, newHash);
@@ -233,21 +234,5 @@ public class User {
         System.out.println("Role: " + this.role);
         System.out.println("Gender: " + this.gender);
         System.out.println("Age: " + this.age + "\n");
-    }
-
-    /**
-     * Displays the user's information in a table format including role.
-     * The output includes hospital ID, role, name, gender, and age, formatted for alignment in columns.
-     */
-    public void displayTableFormatRole(){
-        System.out.format("%-6s %-13s %-20s %-10s %-2d\n", this.hospitalID, this.role, this.name, this.gender, this.age);
-    }
-
-    /**
-     * Displays the user's information in a simplified table format excluding role.
-     * The output includes hospital ID, name, gender, and age, formatted for alignment in columns.
-     */
-    public void displayTableFormat(){
-        System.out.format("%-6s %-20s %-10s %-2d\n", this.hospitalID, this.name, this.gender, this.age);
     }
 }

@@ -1,7 +1,6 @@
 package hms.appointment;
 
-import hms.account.Patient;
-
+import hms.users.Patient;
 import java.util.List;
 /**
  * Facilitates the rescheduling of appointments for a patient. 

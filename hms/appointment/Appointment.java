@@ -1,8 +1,7 @@
 package hms.appointment;
 
-import hms.account.Doctor;
-import hms.account.Patient;
-
+import hms.users.Doctor;
+import hms.users.Patient;
 import java.time.*;
 /**
  * Represents an appointment between a patient and a doctor, encapsulating all relevant details

@@ -20,6 +20,7 @@ public class XORHash implements Hasher {
      * @param salt A unique salt for hashing to enhance security.
      * @return The resulting hash value as an integer, bounded by the specified modulus.
      */
+    @Override
     public int hash(String password, String salt) {
         int hashValue = 0;
         String combined = password + salt;

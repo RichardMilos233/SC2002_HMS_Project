@@ -1,12 +1,11 @@
-package hms.account;
+package hms.users;
 
+import hms.appointment.*;
+import java.util.*;
 import hms.storage.CSVService;
 import hms.utils.Validator;
-import hms.appointment.PharmacistAppointmentOutcomeRecordViewer;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 /**
  * Represents a pharmacist within the healthcare system. This class extends the User class,
  * adding specific functionalities that are pertinent to pharmacists, such as managing prescriptions

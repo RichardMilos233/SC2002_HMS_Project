@@ -1,9 +1,8 @@
 package hms.appointment;
 
-import hms.account.Doctor;
 import hms.storage.TextService;
+import hms.users.Doctor;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Utility class to manage the availability of appointments for a given doctor.

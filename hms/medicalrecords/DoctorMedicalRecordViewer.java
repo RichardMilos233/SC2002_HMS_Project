@@ -1,9 +1,8 @@
 package hms.medicalrecords;
 
-import hms.account.Doctor;
-import hms.account.Patient;
+import hms.users.Doctor;
+import hms.users.Patient;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Provides functionality for doctors to view the medical records of patients under their care.
@@ -23,7 +22,7 @@ public class DoctorMedicalRecordViewer {
         // choose the patient the doctor want to view
         List<Patient> patients = doctor.getPatients();
         
-        if (patients.size()==0){
+        if (patients.isEmpty()){
             System.out.println("There is currently no patient under your care");
             System.out.println("Maybe you should reflect on why no one wants to consult you");
             return;

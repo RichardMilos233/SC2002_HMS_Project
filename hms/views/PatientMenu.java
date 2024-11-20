@@ -1,10 +1,9 @@
 package hms.views;
 
-import hms.account.Patient;
-import hms.medicalrecords.PatientMedicalRecordViewer;
-import hms.utils.Validator;
 import hms.appointment.*;
-
+import hms.medicalrecords.PatientMedicalRecordViewer;
+import hms.users.Patient;
+import hms.utils.Validator;
 import java.util.*;
 /**
  * Handles the display and functionality of the patient menu in the healthcare management system.
@@ -20,7 +19,7 @@ public class PatientMenu {
      */
     public static void displayPatientMenu(Patient patient){
         Scanner scanner = new Scanner(System.in);
-        int choice = 0;
+        int choice;
         do{
             System.out.println("---------------Patient Menu---------------\n" + 
                                 "1 View Medical Record \n" + 
