@@ -1,7 +1,8 @@
 package hms.appointment;
 
-import hms.account.users.Patient;
 import java.util.List;
+
+import hms.account.users.Patient;
 /**
  * Facilitates the rescheduling of appointments for a patient. 
  * This class provides a method to cancel an existing appointment and immediately schedule a new one.
