@@ -400,12 +400,17 @@ public class CSVService implements IReadable, IWritable{
      * calls Appointment remover to ensure all pending and future appointments are also removed
      */ 
     public static void removeDoctor(Doctor doctor){
-        AppointmentRemover.removeIncompleteAppointments(doctor.getHospitalID());
-        int index = findDoctor(doctor.getHospitalID());
-        Doctor lastDoc = getLastDoctor();
+        String hospitalID = doctor.getHospitalID();
+        int index = findDoctorIndex(hospitalID);
+        if (index == -1){
+            System.out.println("Error removing doctor.");
+            return;
+        }
+        Doctor lastDoc = Doctor.getLastDoctor();
         writeDoctor(lastDoc, index);
         removeLastDoctor();
         Doctor.updateDoctors();
+        AppointmentRemover.removeIncompleteAppointments(hospitalID);
     }
 
     /**
@@ -426,15 +431,41 @@ public class CSVService implements IReadable, IWritable{
         return -1;
     }
 
+    
+
     /**
-     * Retrieves the last doctor from the CSV file.
+     * Reads a list of Doctor objects from a CSV file
+     * Assumes the first row of the CSV file is a header row.
      *
-     * @return The last doctor in the list if available, null otherwise.
+     * @return the index of the doctor
      */
-    public static Doctor getLastDoctor(){
-        List<Doctor> doctors = readDoctorsFromCSV();
-        return doctors.get(doctors.size() - 1);
+    public static int findDoctorIndex(String doctorID){
+        int index = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(DOCTOR_CSV_PATH))) {
+            reader.readLine(); // Skip header
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields[0].equals(doctorID)){
+                    return index;
+                }
+                ++index;
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading CSV file: " + e.getMessage());
+        }
+        return -1;
     }
+
+    // /**
+    //  * Retrieves the last doctor from the CSV file.
+    //  *
+    //  * @return The last doctor in the list if available, null otherwise.
+    //  */
+    // public static Doctor getLastDoctor(){
+    //     List<Doctor> doctors = readDoctorsFromCSV();
+    //     return doctors.get(doctors.size() - 1);
+    // }
 
     /**
      * Removes the last doctor from the CSV file, effectively deleting the record.
@@ -603,11 +634,11 @@ public class CSVService implements IReadable, IWritable{
             if (hospitalID.equals(credentials.get(i).get(0))) { //hospitalId match
                 credentials.get(i).set(1, Integer.toString(newHash));
                 write(CREDENTIAL_CSV_PATH, credentials);
-                System.out.println("password sucessfully reset");
+                System.out.println("Password sucessfully reset");
                 return;
             }
         }
-        System.out.println("unable to reset password");
+        System.out.println("Unable to reset password");
     }
 
     /**

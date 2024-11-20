@@ -199,4 +199,8 @@ public class Appointment {
 	public AppointmentOutcome getAppointmentOutcome(){
 		return this.appointmentOutcome;
 	}
+
+	public void setDeletedDoctor(){
+		this.doctorID = "D000";
+	}
 }

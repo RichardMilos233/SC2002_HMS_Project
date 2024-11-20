@@ -304,4 +304,11 @@ public class Doctor extends User {
 		}
 		return null;
     }
+
+
+	public static Doctor getLastDoctor(){
+		int size = doctors.size();
+		return doctors.get(size-1);
+	}
+
 }

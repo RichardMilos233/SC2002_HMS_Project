@@ -199,6 +199,18 @@ public class TextService implements IReadable, IWritable {
     }
 
     /**
+     * Clears all appointment data from the text file while keeping the header line intact.
+     */
+    public static void clearTxt() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_TXT_PATH))) {
+            // Write the header back into the file
+            writer.write("patientID,doctorID,status,date,time,date|type|medicationName\\dosage\\totalPrescribed|consultationNotes|diagnosis|resolved\n");
+        } catch (IOException e) {
+            System.err.println("Error clearing the text file: " + e.getMessage());
+        }
+    }
+
+    /**
      * Main method for testing purposes, simulating file writing and reading operations.
      *
      * @param args Command-line arguments.
