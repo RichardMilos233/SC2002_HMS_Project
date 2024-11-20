@@ -1,7 +1,7 @@
 package hms.account;
 
-import hms.account.users.User;
 import hms.storage.CSVService;
+import hms.users.User;
 
 public class StaffUpdater {
     /**

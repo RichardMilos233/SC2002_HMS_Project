@@ -1,11 +1,12 @@
 package hms.account;
 
-import hms.account.users.Doctor;
-import hms.account.users.Pharmacist;
-import hms.account.users.User;
 import hms.storage.*;
 import hms.storage.CSVService;
+import hms.users.Doctor;
+import hms.users.Pharmacist;
+import hms.users.User;
 import hms.utils.cryptography.Salter;
+import hms.utils.cryptography.SimpleAdditiveHash;
 import hms.utils.cryptography.Hasher;
 import java.util.*;
 

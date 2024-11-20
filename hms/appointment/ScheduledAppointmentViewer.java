@@ -2,7 +2,7 @@ package hms.appointment;
 
 import java.util.*;
 
-import hms.account.users.Patient;
+import hms.users.Patient;
 /**
  * This class provides functionality to view all scheduled appointments for a specific patient.
  * It is used within the healthcare system to allow patients to review their upcoming medical appointments.

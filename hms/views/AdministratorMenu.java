@@ -6,12 +6,12 @@ import hms.account.StaffAdder;
 import hms.account.StaffFinder;
 import hms.account.StaffRemover;
 import hms.account.StaffUpdater;
-import hms.account.users.Administrator;
-import hms.account.users.User;
 import hms.appointment.AdministratorAppointmentViewer;
 import hms.inventory.AdministratorInventoryManagement;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
+import hms.users.Administrator;
+import hms.users.User;
 import hms.utils.Validator;
 import java.util.*;
 /**
@@ -70,7 +70,7 @@ public class AdministratorMenu {
      */
     private static void displayInventory() { // this moved to somewhere else
         Scanner scanner = new Scanner(System.in);
-        int choice = 0;
+        int choice;
         
         Inventory inventoryService = new Inventory();
 
@@ -152,7 +152,7 @@ public class AdministratorMenu {
      */
     public static void displayStaffList() {
         Scanner scanner = new Scanner(System.in);
-        int c = 0;
+        int c;
         IDisplay displayRole = new DisplayRole();
         do {  // inconsistent print method what is the preference
             // Display a list of staff filtered by role, gender, age, etc
@@ -447,29 +447,4 @@ public class AdministratorMenu {
     public static void viewAppointmentDetails() {
         AdministratorAppointmentViewer.viewAllAppointment();
     }
-
-    // public void addStock() {
-    //     // TODO - implement Administrator.addStock
-    //     throw new UnsupportedOperationException();
-    // }
-
-    // public void removeStock() {
-    //     // TODO - implement Administrator.removeStock
-    //     throw new UnsupportedOperationException();
-    // }
-
-    // public void updateStock() {
-    //     // TODO - implement Administrator.updateStock
-    //     throw new UnsupportedOperationException();
-    // }
-
-    // public void updateStockAlert() {
-    //     // TODO - implement Administrator.updateStockAlert
-    //     throw new UnsupportedOperationException();
-    // }
-
-    // public static void approveReplenishmentRequest() {
-    //     // TODO - implement Administrator.approveReplenishmentRequest
-    //     throw new UnsupportedOperationException();
-    // }
 }

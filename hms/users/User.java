@@ -1,4 +1,4 @@
-package hms.account.users;
+package hms.users;
 
 import hms.storage.CSVService;
 import hms.utils.Validator;
@@ -63,8 +63,10 @@ public class User {
         CSVService csvService = new CSVService();
         Hasher hasher = new SimpleAdditiveHash();
         String newPassword = "defaultPassword";
-        System.out.print("Enter new password: ");
-        newPassword = Validator.validateStringNoSpace(scanner);
+        do { 
+            System.out.print("Enter new password (at least 8 characters): ");
+            newPassword = Validator.validateStringNoSpace(scanner);
+        } while (newPassword.length()>7);
         // this.password = newPassword;
         int newHash = hasher.hash(newPassword, csvService.getSalt(getHospitalID()));
         csvService.changePassword(hospitalID, newHash);

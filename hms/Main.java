@@ -1,7 +1,7 @@
 package hms;
 
 import hms.account.*;
-import hms.account.users.*;
+import hms.users.*;
 import hms.utils.Validator;
 import hms.views.AdministratorMenu;
 import hms.views.DoctorMenu;

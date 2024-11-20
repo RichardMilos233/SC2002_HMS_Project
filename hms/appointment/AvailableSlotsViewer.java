@@ -1,6 +1,6 @@
 package hms.appointment;
 
-import hms.account.users.Doctor;
+import hms.users.Doctor;
 import java.util.*;
 /**
  * Provides functionality to view and display available appointment slots for doctors.

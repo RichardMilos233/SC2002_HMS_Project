@@ -1,8 +1,8 @@
 package hms.appointment;
 
-import hms.account.users.Doctor;
-import hms.account.users.Patient;
 import hms.storage.TextService;
+import hms.users.Doctor;
+import hms.users.Patient;
 import hms.utils.Validator;
 import java.util.*;
 /**

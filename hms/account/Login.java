@@ -1,7 +1,7 @@
 package hms.account;
 
-import hms.account.users.*;
 import hms.storage.CSVService;
+import hms.users.*;
 import hms.utils.Validator;
 import hms.utils.cryptography.Hasher;
 import hms.utils.cryptography.SimpleAdditiveHash;

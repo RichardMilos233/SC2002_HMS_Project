@@ -1,10 +1,10 @@
 package hms.appointment;
 
-import hms.account.users.Doctor;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
 import hms.medicalrecords.PrescribedMedication;
 import hms.storage.TextService;
+import hms.users.Doctor;
 import hms.utils.Validator;
 import java.util.*;
 /**

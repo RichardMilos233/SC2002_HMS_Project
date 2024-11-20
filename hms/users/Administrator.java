@@ -1,4 +1,4 @@
-package hms.account.users;
+package hms.users;
 
 import hms.storage.CSVService;
 import hms.utils.Validator;
@@ -53,7 +53,7 @@ public class Administrator extends User { //ignore Staff first
 		Scanner scanner = new Scanner(System.in);
 		Administrator administrator;
         int i;
-        int choice = -1;
+        int choice;
 
 		System.out.println("Choose the administrator you want:");
 		for (i = 0; i < Administrator.administrators.size(); i++){

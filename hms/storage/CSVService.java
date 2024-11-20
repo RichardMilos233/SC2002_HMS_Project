@@ -1,11 +1,11 @@
 package hms.storage;
 
-import hms.account.users.Administrator;
-import hms.account.users.Doctor;
-import hms.account.users.Patient;
-import hms.account.users.Pharmacist;
-import hms.account.users.User;
 import hms.appointment.AppointmentRemover;
+import hms.users.Administrator;
+import hms.users.Doctor;
+import hms.users.Patient;
+import hms.users.Pharmacist;
+import hms.users.User;
 import java.io.*;
 import java.util.*;
 

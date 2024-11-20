@@ -24,6 +24,7 @@ public class SimpleAdditiveHash implements Hasher {
      * @param salt A unique salt for hashing to enhance security.
      * @return The resulting hash value as an integer.
      */
+    @Override
     public int hash(String password, String salt){
         int hashValue = 0;
         String whole = password + salt;

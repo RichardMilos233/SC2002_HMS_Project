@@ -1,4 +1,4 @@
-package hms.account.users;
+package hms.users;
 
 import hms.appointment.PharmacistAppointmentOutcomeRecordViewer;
 import hms.storage.CSVService;

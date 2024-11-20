@@ -1,4 +1,4 @@
-package hms.account.users;
+package hms.users;
 
 import hms.appointment.Appointment;
 import hms.medicalrecords.PastDiagnoses;
@@ -190,7 +190,7 @@ public class Patient extends User {
 	 * @return A list of Appointment objects representing the patient's appointments.
 	 */
 	public List<Appointment> getTimeTable(){	// all the appointments that have the id of this patient
-		if (this.timeTable.size() == 0){
+		if (this.timeTable.isEmpty()){
 			this.timeTable = TextService.getPatientAppointment(this.hospitalID);
 		}
 		return this.timeTable;
@@ -240,7 +240,7 @@ public class Patient extends User {
      * @return A list of all patients.
      */
 	public static List<Patient> getPatients(){
-		if (patients.size() == 0) {
+		if (patients.isEmpty()) {
             patients = CSVService.readPatientsFromCSV();
         }
         return patients;
@@ -290,7 +290,7 @@ public class Patient extends User {
 	public static Patient getByID(String patientID){
 		patients = getPatients();
         Patient patient;
-		int i = 0;
+		int i;
 		for (i=0; i<patients.size(); i++){
 			patient = patients.get(i);
 			if (patient.hospitalID.equals(patientID)){

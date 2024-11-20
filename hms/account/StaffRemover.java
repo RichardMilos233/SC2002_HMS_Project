@@ -1,10 +1,10 @@
 package hms.account;
 
-import hms.account.users.Administrator;
-import hms.account.users.Doctor;
-import hms.account.users.Pharmacist;
-import hms.account.users.User;
 import hms.storage.CSVService;
+import hms.users.Administrator;
+import hms.users.Doctor;
+import hms.users.Pharmacist;
+import hms.users.User;
 
 public class StaffRemover {
      /**

@@ -1,7 +1,7 @@
 package hms.account;
 
-import hms.account.users.Patient;
 import hms.storage.CSVService;
+import hms.users.Patient;
 import hms.utils.DateConverter;
 import hms.utils.Validator;
 import hms.utils.cryptography.Hasher;

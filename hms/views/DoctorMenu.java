@@ -1,9 +1,9 @@
 package hms.views;
 
-import hms.account.users.Doctor;
 import hms.appointment.*;
 import hms.medicalrecords.DoctorMedicalRecordViewer;
 import hms.medicalrecords.MedicalRecordUpdater;
+import hms.users.Doctor;
 import hms.utils.Validator;
 import java.util.*;
 /**

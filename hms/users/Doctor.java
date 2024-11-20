@@ -1,4 +1,4 @@
-package hms.account.users;
+package hms.users;
 
 import hms.appointment.Appointment;
 import hms.storage.CSVService;
@@ -74,7 +74,7 @@ public class Doctor extends User {
 		super(staffID, name, gender, age);
 		this.role = "doctor";
 		this.timeTable = getTimeTable();	// read from text first
-		if (timeTable.size() == 0){	// if indeed no time table, initialize it
+		if (timeTable.isEmpty()){	// if indeed no time table, initialize it
 			initializeTimeTable();
 		}
 	}
@@ -179,9 +179,9 @@ public class Doctor extends User {
 		int i;
 		Patient patient;
 		boolean exist;
-		if (patientCounts.size() == 0){
+		if (patientCounts.isEmpty()){
 			timeTable = getTimeTable();
-			if (timeTable.size() == 0){
+			if (timeTable.isEmpty()){
 				return patientCounts;
 			}
 			for (i = 0; i < timeTable.size(); i++){
@@ -296,8 +296,7 @@ public class Doctor extends User {
         List<Doctor> doctors;
 		doctors = CSVService.readDoctorsFromCSV();
         Doctor doctor;
-		int i = 0;
-		for (i=0; i<doctors.size(); i++){
+		for (int i=0; i<doctors.size(); i++){
 			doctor = doctors.get(i);
 			if (doctor.hospitalID.equals(doctorID)){
 				return doctor;

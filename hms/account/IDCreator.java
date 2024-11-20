@@ -1,9 +1,10 @@
 package hms.account;
 
-import hms.account.users.Doctor;
-import hms.account.users.Pharmacist;
 import java.util.Collections;
 import java.util.Comparator;
+
+import hms.users.Doctor;
+import hms.users.Pharmacist;
 
 public class IDCreator {
     /**

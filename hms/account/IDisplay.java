@@ -1,7 +1,8 @@
 package hms.account;
 
-import hms.account.users.User;
 import java.util.Comparator;
+
+import hms.users.User;
 
 public interface IDisplay {
      /**

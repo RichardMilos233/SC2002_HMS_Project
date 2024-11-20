@@ -1,6 +1,6 @@
 package hms.account;
 
-import hms.account.users.User;
+import hms.users.User;
 
 public class DisplayFormat implements IDisplayHeader{
 
