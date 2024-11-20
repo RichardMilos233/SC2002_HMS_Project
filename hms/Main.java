@@ -36,6 +36,7 @@ public class Main {
             System.out.println("1 Sign in");
             System.out.println("2 Sign up (for new patients)");
             System.out.println("3 Quit");
+            System.out.println("Enter your choice:");
             choice =  Validator.validateInt(scanner);
 
             switch (choice) {
