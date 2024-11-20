@@ -1,10 +1,9 @@
 package hms.appointment;
 
-import hms.account.Doctor;
-import hms.account.Patient;
+import hms.account.users.Doctor;
+import hms.account.users.Patient;
 import hms.storage.TextService;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Facilitates the scheduling of appointments for patients by interacting with available system resources

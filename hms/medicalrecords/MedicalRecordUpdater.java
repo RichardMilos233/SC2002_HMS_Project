@@ -1,12 +1,11 @@
 package hms.medicalrecords;
 
-import hms.storage.TextService;
+import hms.account.users.Doctor;
+import hms.account.users.Patient;
 import hms.appointment.Appointment;
 import hms.appointment.AppointmentOutcome;
-import hms.account.Doctor;
-import hms.account.Patient;
+import hms.storage.TextService;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Provides functionality for doctors to update medical records of their patients.

@@ -1,6 +1,6 @@
 package hms.medicalrecords;
 
-import hms.account.Patient;
+import hms.account.users.Patient;
 
 /**
  * Provides the functionality to display the medical records of a patient.

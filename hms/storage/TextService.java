@@ -1,11 +1,10 @@
 package hms.storage;
 
+import hms.account.users.Doctor;
+import hms.account.users.Patient;
 import hms.appointment.Appointment;
 import hms.appointment.AppointmentOutcome;
-import hms.account.Doctor;
-import hms.account.Patient;
 import hms.medicalrecords.PrescribedMedication;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;

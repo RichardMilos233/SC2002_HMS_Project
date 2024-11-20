@@ -1,9 +1,8 @@
-package hms.account;
+package hms.account.users;
 
+import hms.appointment.PharmacistAppointmentOutcomeRecordViewer;
 import hms.storage.CSVService;
 import hms.utils.Validator;
-import hms.appointment.PharmacistAppointmentOutcomeRecordViewer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

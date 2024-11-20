@@ -1,11 +1,9 @@
 package hms.views;
 
-import hms.appointment.AvailableSlotsViewer;
-import hms.account.Patient;
+import hms.account.users.Patient;
+import hms.appointment.*;
 import hms.medicalrecords.PatientMedicalRecordViewer;
 import hms.utils.Validator;
-import hms.appointment.*;
-
 import java.util.*;
 /**
  * Handles the display and functionality of the patient menu in the healthcare management system.

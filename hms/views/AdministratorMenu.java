@@ -1,8 +1,8 @@
 package hms.views;
 
-import hms.account.Administrator;
 import hms.account.StaffService;
-import hms.account.User;
+import hms.account.users.Administrator;
+import hms.account.users.User;
 import hms.appointment.AdministratorAppointmentViewer;
 import hms.inventory.AdministratorInventoryManagement;
 import hms.inventory.Inventory;

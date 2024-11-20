@@ -1,6 +1,6 @@
 package hms.appointment;
 
-import hms.account.Patient;
+import hms.account.users.Patient;
 
 /**
  * Provides functionality to view past appointment outcomes for patients. 

@@ -1,9 +1,8 @@
 package hms.medicalrecords;
 
-import hms.account.Doctor;
-import hms.account.Patient;
+import hms.account.users.Doctor;
+import hms.account.users.Patient;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Provides functionality for doctors to view the medical records of patients under their care.

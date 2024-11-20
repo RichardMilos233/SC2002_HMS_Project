@@ -1,6 +1,6 @@
 package hms.appointment;
 
-import hms.account.Doctor;
+import hms.account.users.Doctor;
 import hms.storage.TextService;
 import hms.utils.Validator;
 import java.util.*;

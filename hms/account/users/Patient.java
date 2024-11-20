@@ -1,4 +1,4 @@
-package hms.account;
+package hms.account.users;
 
 import hms.appointment.Appointment;
 import hms.medicalrecords.PastDiagnoses;

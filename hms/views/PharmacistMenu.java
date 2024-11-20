@@ -1,6 +1,6 @@
 package hms.views;
 
-import hms.account.Pharmacist;
+import hms.account.users.Pharmacist;
 import hms.appointment.PharmacistAppointmentOutcomeRecordViewer;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;

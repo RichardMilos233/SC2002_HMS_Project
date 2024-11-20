@@ -1,6 +1,6 @@
 package hms.appointment;
 
-import hms.account.Doctor;
+import hms.account.users.Doctor;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
 import hms.medicalrecords.PrescribedMedication;

@@ -1,11 +1,10 @@
 package hms.views;
 
+import hms.account.users.Doctor;
 import hms.appointment.*;
-import hms.account.Doctor;
 import hms.medicalrecords.DoctorMedicalRecordViewer;
 import hms.medicalrecords.MedicalRecordUpdater;
 import hms.utils.Validator;
-
 import java.util.*;
 /**
  * Handles the interactive menu for doctors within the medical system. This class provides
