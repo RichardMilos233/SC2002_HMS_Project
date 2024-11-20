@@ -1,10 +1,13 @@
-package hms.account;
+package hms.staff;
 
 import hms.users.Administrator;
 import hms.users.Doctor;
 import hms.users.Pharmacist;
 import hms.users.User;
 
+/**
+ * Provides functionality to find staff members in the system based on their ID.
+ */
 public class StaffFinder {
     /**
      * Finds and returns details of a staff member based on their ID.

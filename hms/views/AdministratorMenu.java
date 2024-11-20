@@ -1,15 +1,15 @@
 package hms.views;
 
-import hms.account.DisplayRole;
-import hms.account.IDisplay;
-import hms.account.StaffAdder;
-import hms.account.StaffFinder;
-import hms.account.StaffRemover;
-import hms.account.StaffUpdater;
 import hms.appointment.AdministratorAppointmentViewer;
 import hms.inventory.AdministratorInventoryManagement;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
+import hms.staff.DisplayRole;
+import hms.staff.IDisplay;
+import hms.staff.StaffAdder;
+import hms.staff.StaffFinder;
+import hms.staff.StaffRemover;
+import hms.staff.StaffUpdater;
 import hms.users.Administrator;
 import hms.users.User;
 import hms.utils.Validator;

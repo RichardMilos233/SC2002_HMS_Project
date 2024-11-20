@@ -1,4 +1,4 @@
-package hms.account;
+package hms.staff;
 
 import hms.storage.*;
 import hms.storage.CSVService;
@@ -10,6 +10,9 @@ import hms.utils.cryptography.SimpleAdditiveHash;
 import hms.utils.cryptography.Hasher;
 import java.util.*;
 
+/**
+ * Provides functionality to add staff members to the system.
+ */
 public class StaffAdder {
      /**
      * Adds a new staff member to the system and generates a unique ID for them.

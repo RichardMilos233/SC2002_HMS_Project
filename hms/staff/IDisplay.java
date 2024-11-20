@@ -1,9 +1,12 @@
-package hms.account;
+package hms.staff;
 
 import java.util.Comparator;
 
 import hms.users.User;
 
+/**
+ * Interface defining methods for displaying information in different formats.
+ */
 public interface IDisplay {
      /**
      * Displays information in a default format.

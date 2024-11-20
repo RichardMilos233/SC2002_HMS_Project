@@ -1,7 +1,11 @@
-package hms.account;
+package hms.staff;
 
 import hms.users.User;
 
+/**
+ * Implements methods for displaying user information in various formatted styles.
+ * It can display both with and without the role information.
+ */
 public class DisplayFormat implements IDisplayHeader{
 
     /**

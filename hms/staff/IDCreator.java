@@ -1,4 +1,4 @@
-package hms.account;
+package hms.staff;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -6,6 +6,9 @@ import java.util.Comparator;
 import hms.users.Doctor;
 import hms.users.Pharmacist;
 
+/**
+ * Generates unique IDs for new staff members based on the role character.
+ */
 public class IDCreator {
     /**
      * Creates a unique ID for a new staff member based on the role character.

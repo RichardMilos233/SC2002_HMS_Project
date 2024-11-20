@@ -1,4 +1,4 @@
-package hms.account;
+package hms.staff;
 
 // import hms.account.users.Doctor;
 // import hms.account.users.Pharmacist;

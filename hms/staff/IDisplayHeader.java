@@ -1,5 +1,8 @@
-package hms.account;
+package hms.staff;
 
+/**
+ * Interface defining methods for displaying headers in formatted styles.
+ */
 public interface IDisplayHeader {
     /**
      * Displays a formatted header.

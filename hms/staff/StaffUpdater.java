@@ -1,8 +1,11 @@
-package hms.account;
+package hms.staff;
 
 import hms.storage.CSVService;
 import hms.users.User;
 
+/**
+ * Provides methods to update existing staff member information.
+ */
 public class StaffUpdater {
     /**
      * Updates the information of an existing staff member, possibly changing their role and reallocating a new ID.

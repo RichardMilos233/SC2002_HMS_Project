@@ -1,4 +1,4 @@
-package hms.account;
+package hms.staff;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,6 +8,9 @@ import hms.users.Doctor;
 import hms.users.Pharmacist;
 import hms.users.User;
 
+/**
+ * Handles the display operations based on staff roles or attributes using the IDisplay interface.
+ */
 public class DisplayRole implements IDisplay{
     /**
      * Displays a list of all staff members filtered by specific categories such as role
