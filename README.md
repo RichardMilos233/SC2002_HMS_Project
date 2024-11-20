@@ -11,8 +11,10 @@ This project was done as part of our SC2002 Object-oriented Programming module. 
 
 ## Project Directory
 - **hms:** The application's source code, data files, and libraries.
-- **UML:** The class diagram of our application.
-- **docs:** The report and javadocs for our application.
+- **csv:** csv files to store user and medication information.
+- **txt:** txt files to store appointment information
+- **UML:** The UML class diagram of our application.
+- **javadoc:** The javadoc for our application.
 
 ## Features
 - **App Interface:** Main interface for actions.
