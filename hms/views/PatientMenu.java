@@ -1,6 +1,5 @@
 package hms.views;
 
-import hms.appointment.AvailableSlotsViewer;
 import hms.account.Patient;
 import hms.medicalrecords.PatientMedicalRecordViewer;
 import hms.utils.Validator;
@@ -33,7 +32,8 @@ public class PatientMenu {
                                 "7 View Scheduled Appointments \n" + 
                                 "8 View Past Appointment Outcome Records \n" + 
                                 "9 Change Password \n" + 
-                                "10 Logout");
+                                "10 Logout\n" + 
+                                "Enter your choice:");
             choice = Validator.validateInt(scanner);
             switch (choice) {
                 case 1:

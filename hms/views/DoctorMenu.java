@@ -36,7 +36,8 @@ public class DoctorMenu {
                                 "6 View Upcoming Appointments \n" + 
                                 "7 Record Appointment Outcome \n" + 
                                 "8 Change Password \n" + 
-                                "9 Logout");
+                                "9 Logout\n" + 
+                                "Enter your choice:");
             choice = Validator.validateInt(scanner);
             switch (choice) {
                 case 1:

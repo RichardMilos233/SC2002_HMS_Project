@@ -31,7 +31,8 @@ public class AdministratorMenu {
                                 "3 View and Manage Medication Inventory \n" + 
                                 "4 View Replenishment Requests \n" + 
                                 "5 Change Password \n" + 
-                                "6 Logout");
+                                "6 Logout\n" + 
+                                "Enter your choice:");
             choice = Validator.validateInt(scanner);
 
             switch (choice) {

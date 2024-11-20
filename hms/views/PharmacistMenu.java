@@ -25,14 +25,15 @@ public class PharmacistMenu {
         int choice = 0;
         do{
 
-            System.out.println("\n-------------Pharmacist Menu-------------\n" + //
-                                "1 View Appointment Outcome Record \n" + //
-                                "2 Update Prescription Status \n" + //
-                                "3 View Medication Inventory \n" + //
-                                "4 Submit Replenishment Request \n" + //
-                                "5 View Pending Replenishment Requests \n" + //
-                                "6 Change Password \n" + //
-                                "7 Logout");
+            System.out.println("-------------Pharmacist Menu-------------\n" + 
+                                "1 View Appointment Outcome Record \n" + 
+                                "2 Update Prescription Status \n" + 
+                                "3 View Medication Inventory \n" + 
+                                "4 Submit Replenishment Request \n" + 
+                                "5 View Pending Replenishment Requests \n" + 
+                                "6 Change Password \n" + 
+                                "7 Logout\n" + 
+                                "Enter your choice:");
             List<Medication> medications = inventoryService.retrieveMedications();
 
             choice = Validator.validateInt(scanner);
