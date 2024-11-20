@@ -53,9 +53,11 @@ public class User {
     // }
 
 	/**
-     * Logs out the user from the system. This method is typically used to break the login session.
+     * Logs out the user from the system.
      */
-    public void logout() {} //do nothing, jump out of the while-switch loop
+    public void logout() {
+        System.out.println("Logged out successfully");
+    }
 
     /**
      * Changes the user's password in the system.

@@ -29,7 +29,7 @@ public class Main {
         System.out.println("Welcome to HMS");
 
         do{
-            System.out.println("----------Home Page----------");
+            System.out.println("---------------Home Page---------------");
             System.out.println("Select your option:");
             System.out.println("1 Sign in");
             System.out.println("2 Sign up (for new patients)");
