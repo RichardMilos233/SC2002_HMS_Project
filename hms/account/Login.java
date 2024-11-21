@@ -79,7 +79,7 @@ public class Login {    //can have a Signup.java later
         List<String> credentials = new ArrayList<>();
         credentials.add(hospitalIdInput);
         String salt = csvService.getSalt(hospitalIdInput);
-        int hashValue = hasher.hash(passwordInput,salt); //114514+SaltStr
+        int hashValue = hasher.hash(passwordInput,salt);
         credentials.add(Integer.toString(hashValue));
 
         return credentials;
