@@ -19,14 +19,11 @@ public class DisplayRole implements IDisplay{
     @Override
     public void displayByRole(){
         IDisplayHeader display = getDisplayHeader();
-        System.out.println("--------------Doctors----------------------");
-        display.displayHeaderNoRole();
+        System.out.println("----------------Doctors------------------------");
         displayDoctorList();
-        System.out.println("--------------Pharmacists------------------");
-        display.displayHeaderNoRole();
+        System.out.println("----------------Pharmacists--------------------");
         displayPharmacistList();
-        System.out.println("--------------Admins-----------------------");
-        display.displayHeaderNoRole();
+        System.out.println("----------------Admins-------------------------");
         displayAdminList();
     }
 
@@ -46,7 +43,7 @@ public class DisplayRole implements IDisplay{
                 DisplayFormat.displayUserFormatRole(user);
             }
         }
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------");
     }
     
     /**
@@ -57,13 +54,13 @@ public class DisplayRole implements IDisplay{
      */
     public void displayAdminList(){
         Administrator admin;
-        getDisplayHeader().displayHeader();
+        getDisplayHeader().displayHeaderNoRole();
         for (int i = 0; i<Administrator.getAdministrators().size(); i++){
             admin = Administrator.getAdministrators().get(i);
             DisplayFormat.displayUserFormat((User) admin);
             //System.out.println(admin.getHospitalID() + '\t' + '\t' + admin.getName() + '\t' + admin.getGender() + '\t' + admin.getAge());
         }
-        System.out.println("-------------------------------------------");
+        System.out.println("-----------------------------------------------");
         System.out.println("\n");
         
     }
@@ -75,12 +72,12 @@ public class DisplayRole implements IDisplay{
      */
     public static void displayDoctorList(){
         Doctor doctor;
-        getDisplayHeader().displayHeader();
+        getDisplayHeader().displayHeaderNoRole();
         for (int i = 0; i<Doctor.getDoctors().size(); i++){
             doctor = Doctor.getDoctors().get(i);
             DisplayFormat.displayUserFormat((User) doctor);
         }
-        System.out.println("-------------------------------------------");
+        System.out.println("-----------------------------------------------");
         System.out.println("\n");
     }
 
@@ -91,12 +88,12 @@ public class DisplayRole implements IDisplay{
      */
     public static void displayPharmacistList(){
         Pharmacist pharma;
-        getDisplayHeader().displayHeader();
+        getDisplayHeader().displayHeaderNoRole();
         for (int i = 0; i<Pharmacist.getPharmacists().size(); i++){
             pharma = Pharmacist.getPharmacists().get(i);
             DisplayFormat.displayUserFormat((User) pharma);
         }
-        System.out.println("-------------------------------------------");
+        System.out.println("-----------------------------------------------");
         System.out.println("\n");
     }
 

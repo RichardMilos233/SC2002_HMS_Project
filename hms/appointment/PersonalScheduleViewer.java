@@ -30,7 +30,7 @@ public class PersonalScheduleViewer {
             }
         }
         if (appointments.isEmpty()){
-            System.out.println("There are no cofirmed or available appointment");
+            System.out.println("There are no confirmed or available appointment");
             return;
         } 
         PrintAppointmentsSchedule.printChosenSlotsWithPatientName(appointments);
