@@ -59,6 +59,7 @@ public class Signup {
         String[] birthday;
         do { 
             System.out.println("Enter your birth in the form YYYY/MM/DD");
+            scanner.nextLine();
             entry = Validator.validateStringNoSpace(scanner);
         } while (!entry.contains("/") || entry.length()>10 || entry.length()<10 || entry.split("/").length !=3);
 
