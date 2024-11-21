@@ -524,7 +524,6 @@ public class PrintAppointmentsSchedule {
             }
             appointmentsByDate.add(current); // Add the current list even if it's empty
         }
-    
         return appointmentsByDate;
     }
 }
