@@ -1,15 +1,15 @@
 patientID,doctorID,status,date,time,date|type|medicationName\dosage\totalPrescribed|consultationNotes|diagnosis|resolved
-P1000,D001,unavailable,2024-11-20,09:00,2024-11-19|nil|nil\nil\0|nil|nil|false
-P1000,D001,unavailable,2024-11-20,10:00,2024-11-19|nil|nil\nil\0|nil|nil|false
+P1000,D001,available,2024-11-20,09:00,2024-11-19|nil|nil\nil\0|nil|nil|false
+P1001,D001,pending,2024-11-20,10:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-20,11:00,2024-11-19|nil|nil\nil\0|nil|nil|false
-P1000,D001,unavailable,2024-11-20,12:00,2024-11-19|nil|nil\nil\0|nil|nil|false
+P1000,D001,available,2024-11-20,12:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-20,13:00,2024-11-19|nil|nil\nil\0|nil|nil|false
-P1000,D001,available,2024-11-20,14:00,2024-11-19|nil|nil\nil\0|nil|nil|false
+P1001,D001,confirmed,2024-11-20,14:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-20,15:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1001,D001,dispensed,2024-11-20,16:00,2024-11-20|consultation|Paracetamol\2 pills a day\40|drink more water|Concussion|false
 P1000,D001,unavailable,2024-11-20,17:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-21,09:00,2024-11-19|nil|nil\nil\0|nil|nil|false
-P1000,D001,unavailable,2024-11-21,10:00,2024-11-19|nil|nil\nil\0|nil|nil|false
+P1000,D001,available,2024-11-21,10:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-21,11:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-21,12:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-21,13:00,2024-11-19|nil|nil\nil\0|nil|nil|false
@@ -23,9 +23,9 @@ P1000,D001,unavailable,2024-11-22,11:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-22,12:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-22,13:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1001,D001,available,2024-11-22,14:00,2024-11-19|nil|nil\nil\0|nil|nil|false
-P1000,D001,unavailable,2024-11-22,15:00,2024-11-19|nil|nil\nil\0|nil|nil|false
-P1001,D001,pending,2024-11-22,16:00,2024-11-19|nil|nil\nil\0|nil|nil|false
-P1000,D001,unavailable,2024-11-22,17:00,2024-11-19|nil|nil\nil\0|nil|nil|false
+P1000,D001,available,2024-11-22,15:00,2024-11-19|nil|nil\nil\0|nil|nil|false
+P1001,D001,confirmed,2024-11-22,16:00,2024-11-19|nil|nil\nil\0|nil|nil|false
+P1000,D001,available,2024-11-22,17:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D002,unavailable,2024-11-20,09:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D002,unavailable,2024-11-20,10:00,2024-11-19|nil|nil\nil\0|nil|nil|false
 P1000,D002,unavailable,2024-11-20,11:00,2024-11-19|nil|nil\nil\0|nil|nil|false

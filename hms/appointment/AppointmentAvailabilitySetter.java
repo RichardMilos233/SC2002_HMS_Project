@@ -3,6 +3,8 @@ package hms.appointment;
 import hms.storage.TextService;
 import hms.users.Doctor;
 import hms.utils.Validator;
+
+import java.time.LocalDate;
 import java.util.*;
 /**
  * Utility class to manage the availability of appointments for a given doctor.
@@ -24,20 +26,25 @@ public class AppointmentAvailabilitySetter {
         
         Appointment appointment;
         System.out.println("Choose a time slot to be available");
-        int i, choice = -1;
-        for (i = 0; i < unavailableAppointments.size(); i++){
-            appointment = unavailableAppointments.get(i);
-            System.out.println("Time slot " + (i+1) +": ");
-            appointment.displayAppointment();
-        }
+        int choice = -1;
+        // for (i = 0; i < unavailableAppointments.size(); i++){
+        //     appointment = unavailableAppointments.get(i);
+        //     System.out.println("Time slot " + (i+1) +": ");
+        //     appointment.displayAppointment();
+        // }
+        PrintAppointmentsSchedule.printChosenSlotsofDoctor(doctor, unavailableAppointments);
+        
 
-        System.out.print("Choose a slot: ");
+        System.out.print("Choose a slot or 0 to return: ");
         do { 
             choice = Validator.validateInt(scanner);
+            if (choice == 0){
+                return;
+            }
             if (choice < 1 || choice > unavailableAppointments.size()){
                 System.out.print("Invalid. Choose a valid slot: ");
             }
-        } while (choice < 1 || choice > unavailableAppointments.size());
+        } while (choice != 0);
 
         appointment = unavailableAppointments.get(choice-1);
         appointment.setStatus("available");

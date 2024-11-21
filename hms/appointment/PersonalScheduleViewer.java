@@ -21,16 +21,18 @@ public class PersonalScheduleViewer {
         int i;
         String status;
         int count = 0;
+        List<Appointment> appointments = new ArrayList<>();
         for (i = 0; i < timeTable.size(); i++){
             appointment = timeTable.get(i);
             status = appointment.getStatus();
-            if (status.equals("confirmed") || status.equals("available")){
-                appointment.displayAppointment();
-                count ++;
+            if (status.equals("confirmed") || status.equals("available") || status.equals("pending")){
+                appointments.add(appointment);
             }
         }
-        if (count == 0){
-            System.out.println("There is no cofirmed or available appointment");
-        }
+        if (appointments.isEmpty()){
+            System.out.println("There are no cofirmed or available appointment");
+            return;
+        } 
+        PrintAppointmentsSchedule.printChosenSlotsWithPatientName(appointments);
     }
 }

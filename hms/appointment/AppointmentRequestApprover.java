@@ -31,26 +31,36 @@ public class AppointmentRequestApprover{
             return;
         }
         int choice = -1;
+        char c1;
         // decide them all, for now
-        for (Appointment appointment : pendingList){
-            appointment.displayAppointment();
-            
-            do { 
-                System.out.println("Approve?\nY Yes\tN No \t0 Return");
-                choice = Validator.validateCharToUpper(scanner);
-                if (choice == 0){
-                    return;
-                }
-            } while (choice != 'Y' && choice != 'N');
-
-            if (choice == 'Y'){
-                appointment.setStatus("confirmed");
-                doctor.addPatient(appointment.getPatient());
-            }else if (choice == 'N'){
-                appointment.setStatus("available");
+            PrintAppointmentsSchedule.printPendingSlots(pendingList);
+        do { 
+            System.out.println("Select an appointment to Approve or Decline OR 0 to return: ");
+            choice = Validator.validateInt(scanner);
+            if (choice == 0){
+                return;
             }
-            TextService.replaceAppointment(appointment);
-        }
+            if (choice < 0 || choice >= pendingList.size()){
+                System.out.println("Invalid.");
+            } else{
+                do { 
+                    System.out.println("Approve?\nY Yes\tN No \tC Return");
+                    c1 = Validator.validateCharToUpper(scanner);
+                    if (c1 == 'C'){
+                        return;
+                    }
+                } while (c1 != 'Y' && c1 != 'N');
+                Appointment appointment = pendingList.get(choice);
+                if (c1 == 'Y'){
+                    appointment.setStatus("confirmed");
+                    doctor.addPatient(appointment.getPatient());
+                }else if (c1 == 'N'){
+                    appointment.setStatus("available");
+                }
+                TextService.replaceAppointment(appointment);
+            }
+        } while (choice != 0);
+        
     }
 
     /**
