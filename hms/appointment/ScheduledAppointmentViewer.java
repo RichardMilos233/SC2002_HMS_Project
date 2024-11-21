@@ -22,10 +22,11 @@ public class ScheduledAppointmentViewer {
         }
         int i;
         Appointment appointment;
-        for (i = 0; i < scheduledAppointment.size(); i++){
-            appointment = scheduledAppointment.get(i);
-            System.out.println("Appointment " + (i+1) +": ");
-            appointment.displayAppointment();
-        }
+        PrintAppointmentsSchedule.printChosenSlotsPatientScheduled(scheduledAppointment);
+        // for (i = 0; i < scheduledAppointment.size(); i++){
+        //     appointment = scheduledAppointment.get(i);
+        //     System.out.println("Appointment " + (i+1) +": ");
+        //     appointment.displayAppointment();
+        // }
     }
 }

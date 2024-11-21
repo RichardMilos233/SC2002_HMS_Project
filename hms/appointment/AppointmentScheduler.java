@@ -45,8 +45,11 @@ public class AppointmentScheduler{
         int choice;
         do{
             AvailableSlotsViewer.printAvailableSlots(doctor, availableSlots);
-            System.out.println("Enter your desired slot:");
+            System.out.println("Enter your desired slot or 0 to return");
             choice = Validator.validateInt(scanner);
+            if (choice==0){
+                return;
+            }
         } while(choice < 1 || choice > availableSlots.size());
         Appointment selectedAppointment = availableSlots.get(choice-1);
 

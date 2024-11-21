@@ -62,6 +62,7 @@ public class MedicalRecordUpdater {
         } while (choice < 1 || choice > appointmentOutcomes.size());
 
         //getting the appt outcome we selected 
+        patient.updateTimeTable();
         List<Appointment> appointments = patient.getTimeTable();
         Appointment appointment;
         appointments.removeIf(apt -> !(apt.getStatus().equals("closed") || apt.getStatus().equals("dispensed")));    // brutally get the same list of appointments that contains appointmentoutcomes
@@ -72,7 +73,7 @@ public class MedicalRecordUpdater {
         String diagnosis = appointmentOutcome.getDiagnosis();
         System.out.println("Enter a new diagnois:");
         newDiagnosis = scanner.nextLine();
-        diagnosis = diagnosis + " " + newDiagnosis;
+        diagnosis = diagnosis + ";" + newDiagnosis;
 
         appointmentOutcome.setDiagnosis(diagnosis);
         appointment.setAppointmentOutcome(appointmentOutcome);

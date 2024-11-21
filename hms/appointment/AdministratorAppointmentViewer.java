@@ -2,6 +2,7 @@ package hms.appointment;
 
 import hms.storage.TextService;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Utility class for viewing appointments by an administrator. This class provides
@@ -17,9 +18,11 @@ public class AdministratorAppointmentViewer {
      */
 	public static void viewAllAppointment() {
 		List<Appointment> appointments = TextService.readAppointmentsFromTxt();
+        List<Appointment> validAppointments = new ArrayList<>();
     
         for (Appointment appointment: appointments) {
             if (!appointment.getStatus().equals("unavailable")) {
+                validAppointments.add(appointment);
 				// Print Appointment Details
                 // System.out.println("\n--- Appointment ---");
                 // System.out.println("Patient ID: " + appointment.getPatientID());
@@ -27,12 +30,13 @@ public class AdministratorAppointmentViewer {
                 // System.out.println("Status: " + appointment.getStatus());
                 // System.out.println("Date and Time: " + appointment.getDate() + " " + appointment.getTime());
                 // System.out.println("----------------------");
-                appointment.displayAppointment();
             }
         }
-
 		if (appointments.isEmpty()) {
 			System.out.println("No Appointments\n");
+            return;
 		} 
+
+        PrintAppointmentsSchedule.printChosenSlots(validAppointments);
 	}
 }

@@ -23,7 +23,7 @@ public class Main {
      */
     public static void main (String[] args){
         Scanner scanner = new Scanner(System.in);
-        int choice = -1;
+        int choice;
         User user = null;
         String role;
 
