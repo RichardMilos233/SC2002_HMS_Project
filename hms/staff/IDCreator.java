@@ -32,11 +32,11 @@ public class IDCreator {
                 } else{
                     if (intID > previous + 1){
                         if ((previous+1)/100 > 0){
-                            staffID = "P" + String.valueOf(previous+1);
+                            staffID = "D" + String.valueOf(previous+1);
                         } else if ((previous+1)/10 > 0){
-                            staffID = "P" + "0" + String.valueOf(previous+1);
+                            staffID = "D" + "0" + String.valueOf(previous+1);
                         } else {
-                            staffID = "P" + "0" + "0" + String.valueOf(previous+1);
+                            staffID = "D" + "0" + "0" + String.valueOf(previous+1);
                         }
                         return staffID;
                     }

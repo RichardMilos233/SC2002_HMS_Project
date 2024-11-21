@@ -35,8 +35,9 @@ public class AppointmentAvailabilitySetter {
         PrintAppointmentsSchedule.printChosenSlotsofDoctor(doctor, unavailableAppointments);
         
 
-        System.out.print("Choose a slot or 0 to return: ");
+        
         do { 
+            System.out.print("Choose a slot or 0 to return: ");
             choice = Validator.validateInt(scanner);
             if (choice == 0){
                 return;
@@ -44,13 +45,13 @@ public class AppointmentAvailabilitySetter {
             if (choice < 1 || choice > unavailableAppointments.size()){
                 System.out.print("Invalid. Choose a valid slot: ");
             }
+            appointment = unavailableAppointments.get(choice-1);
+            appointment.setStatus("available");
+            TextService.replaceAppointment(appointment);
+            System.out.println("The following slot is set to be available");
+            appointment.displayAppointment();
         } while (choice != 0);
 
-        appointment = unavailableAppointments.get(choice-1);
-        appointment.setStatus("available");
-        TextService.replaceAppointment(appointment);
-        System.out.println("The following slot is set to be available");
-        appointment.displayAppointment();
     }
 
     /**

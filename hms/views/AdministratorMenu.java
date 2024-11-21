@@ -5,6 +5,7 @@ import hms.inventory.AdministratorInventoryManagement;
 import hms.inventory.Inventory;
 import hms.inventory.Medication;
 import hms.staff.DisplayRole;
+import hms.staff.DisplayFormat;
 import hms.staff.IDisplay;
 import hms.staff.StaffAdder;
 import hms.staff.StaffFinder;

@@ -200,9 +200,16 @@ public class PrintAppointmentsSchedule {
         int appointmentNumber = 1; // Initialize appointment counter
 
         
-        int day1 = appointmentsByDate.get(0).size();
-        int day2 = appointmentsByDate.get(1).size();
-        int day3 = appointmentsByDate.get(2).size();
+        int day1 =0; int day2=0;int day3=0;
+        if (appointmentsByDate.size()>0){
+            day1 = appointmentsByDate.get(0).size();
+        }
+        if (appointmentsByDate.size()>1){
+            day2 = appointmentsByDate.get(1).size();
+        }
+        if (appointmentsByDate.size()>2){
+            day3 = appointmentsByDate.get(2).size();
+        }
         int firstDay = 1;
         int secondDay = day1+1;
         int thirdDay = day1+day2+1;
@@ -264,9 +271,17 @@ public class PrintAppointmentsSchedule {
     public static void printSchedulePatientName(List<List<Appointment>> appointmentsByDate, int maxAppointments) {
         int appointmentNumber = 1; // Initialize appointment counter
 
-        int day1 = appointmentsByDate.get(0).size();
-        int day2 = appointmentsByDate.get(1).size();
-        int day3 = appointmentsByDate.get(2).size();
+        int day1 =0; int day2=0;int day3=0;
+        if (appointmentsByDate.size()>0){
+            day1 = appointmentsByDate.get(0).size();
+        }
+        if (appointmentsByDate.size()>1){
+            day2 = appointmentsByDate.get(1).size();
+        }
+        if (appointmentsByDate.size()>2){
+            day3 = appointmentsByDate.get(2).size();
+        }
+
         int firstDay = 1;
         int secondDay = day1+1;
         int thirdDay = day1+day2+1;
@@ -329,11 +344,16 @@ public class PrintAppointmentsSchedule {
      * @param maxAppointments largest number of appointments out of each date
      */
     public static void printSchedule(List<List<Appointment>> appointmentsByDate, int maxAppointments) {
-        int appointmentNumber = 1; // Initialize appointment counter
-
-        int day1 = appointmentsByDate.get(0).size();
-        int day2 = appointmentsByDate.get(1).size();
-        int day3 = appointmentsByDate.get(2).size();
+        int day1 =0; int day2=0;int day3=0;
+        if (appointmentsByDate.size()>0){
+            day1 = appointmentsByDate.get(0).size();
+        }
+        if (appointmentsByDate.size()>1){
+            day2 = appointmentsByDate.get(1).size();
+        }
+        if (appointmentsByDate.size()>2){
+            day3 = appointmentsByDate.get(2).size();
+        }
         int firstDay = 1;
         int secondDay = day1+1;
         int thirdDay = day1+day2+1;
@@ -389,11 +409,16 @@ public class PrintAppointmentsSchedule {
     }
 
     public static void printScheduleDoctorName(List<List<Appointment>> appointmentsByDate, int maxAppointments) {
-        int appointmentNumber = 1; // Initialize appointment counter
-
-        int day1 = appointmentsByDate.get(0).size();
-        int day2 = appointmentsByDate.get(1).size();
-        int day3 = appointmentsByDate.get(2).size();
+        int day1 =0; int day2=0;int day3=0;
+        if (appointmentsByDate.size()>0){
+            day1 = appointmentsByDate.get(0).size();
+        }
+        if (appointmentsByDate.size()>1){
+            day2 = appointmentsByDate.get(1).size();
+        }
+        if (appointmentsByDate.size()>2){
+            day3 = appointmentsByDate.get(2).size();
+        }
         int firstDay = 1;
         int secondDay = day1+1;
         int thirdDay = day1+day2+1;

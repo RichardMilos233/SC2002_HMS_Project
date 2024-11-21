@@ -14,7 +14,7 @@ public class DisplayFormat implements IDisplayHeader{
     @Override
     public void displayHeader(){
         System.out.format("ID     Role          Name                      Gender     Age\n");
-        System.out.println("----------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------");
     }
 
     /**
@@ -23,7 +23,7 @@ public class DisplayFormat implements IDisplayHeader{
     @Override
     public void displayHeaderNoRole(){
         System.out.format("ID     Name                      Gender     Age\n");
-        System.out.println("------------------------------------------------");
+        System.out.println("-----------------------------------------------");
     }
 
     /**
