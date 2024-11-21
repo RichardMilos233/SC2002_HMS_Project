@@ -1,8 +1,7 @@
 package hms.staff;
 
-import java.util.Comparator;
-
 import hms.users.User;
+import java.util.Comparator;
 
 /**
  * Interface defining methods for displaying information in different formats.

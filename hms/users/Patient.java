@@ -21,9 +21,6 @@ public class Patient extends User {
 	private String bloodType = "A+";
 	private List<Appointment> timeTable = new ArrayList<>();
 	private PastDiagnoses pastDiagnoses = new PastDiagnoses();
-	// private String latestMedicalStatus = "status";
-	// private ArrayList<String> Diagnoses = new ArrayList<>(); 
-	//new diagnoses, prescriptions, and treatment plans.
 
 	Scanner scanner = new Scanner(System.in);
 

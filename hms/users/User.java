@@ -40,17 +40,6 @@ public class User {
         this.role = "user";
     }
 
-    // public void login() {
-    //  String enteredPassword = "";
-    //  enteredPassword = scanner.nextLine();
-    //  if (enteredPassword.equals(this.password)){ // can get the user id and password, then check what the user id format is to get the role
-    //      System.out.println("Logged in successfully");// only for illustration, haven't settled how to tell the role yet
-    //  }
-    //  else{
-    //      System.out.println("Try again");
-    //  }
-    // }
-
 	/**
      * Logs out the user from the system.
      */
@@ -72,23 +61,6 @@ public class User {
         // this.password = newPassword;
         int newHash = hasher.hash(newPassword, csvService.getSalt(getHospitalID()));
         csvService.changePassword(hospitalID, newHash);
-        // switch (role) {
-        //  case "patient":
-        //      CSVService.replacePatient((Patient)this);
-        //      break;
-        //  case "doctor":
-        //      CSVService.replaceDoctor((Doctor)this);
-        //      break;
-        //  case "administrator":
-        //      CSVService.replaceAdmin((Administrator)this);
-        //      break;
-        //  case "pharmacist":
-        //      CSVService.replacePharmacist((Pharmacist)this);
-        //      break;
-
-        //  default:
-        //      break;
-        // }
     }
 
 	/** 

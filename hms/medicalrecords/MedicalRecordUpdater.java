@@ -79,34 +79,5 @@ public class MedicalRecordUpdater {
         appointment.setAppointmentOutcome(appointmentOutcome);
         TextService.replaceAppointment(appointment);
         System.out.println("Medical record has been updated.");
-
-
-		// String medication;
-		// System.out.println("Enter medication: ");
-        // scanner.nextLine(); // buffer
-		// medication = scanner.nextLine();	//only 1 med for each appointment, for now
-        // String dosage;
-        // System.out.println("Enter dosage: ");
-        // dosage = scanner.nextLine();
-		// PrescribedMedication prescribedMedication = new PrescribedMedication(medication, dosage);
-		// String consultationNotes;
-		// System.out.println("Enter consultation notes: ");
-		// consultationNotes = scanner.nextLine();
-
-        // char c;
-        // do { 
-        //     System.out.println("Has this diagnosis been resolved?\nY Yes\tN No");
-        //     c = Validator.validateCharToUpper(scanner);
-        // } while (c!='Y' && c!='N');
-        // appointmentOutcome.setResolved(c=='Y'); 
-        // TextService.replaceAppointment(appointment);
-        
-
-        // appointmentOutcome.setPrescribedMedication(prescribedMedication);
-        // appointmentOutcome.setConsultationNotes(consultationNotes);
-
-        // TextService.replaceAppointment(appointment);
-
-        // System.out.println("Appointment outcome has been updated");
     }
 }

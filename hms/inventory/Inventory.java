@@ -7,30 +7,10 @@ import java.util.*;
  * adding new medications, updating existing stocks, and handling stock replenishments.
  */
 public class Inventory {
-
-
-	//private int medications;
-	// private List<Medication> medications;
-   
     /**
      * Constructs an empty Inventory.
      */
-	public Inventory() {
-        // medications = new ArrayList<>();
-    }
-    /*public Inventory(int capacity) {
-        medications = new Medication[capacity]; // use array list instead
-        count = 0;
-
-	 // add a new medication (idk if inventoru will ever be full?)
-	 public void addMedication(String name, int initialStock, int stockAlert) {
-        if (count < medications.length) {
-            medications[count++] = new Medication(name, initialStock, stockAlert);
-            System.out.println(name + " added to inventory.");
-        } else {
-            System.out.println("Inventory is full. Cannot add " + name);
-        }
-    }*/
+	public Inventory() {}
 
     /**
      * Adds a new medication to the inventory. This method updates the medication list in the CSV file.
@@ -316,7 +296,7 @@ public class Inventory {
 
         System.out.println("Medication not found."); 
     }
-// name changd from string to med
+    // name changd from string to med
     /**
      * Submits a replenishment request for a specific medication, adding the request amount to the pending replenish queue.
      *
@@ -424,8 +404,6 @@ public class Inventory {
                 return;
             }
         }
-
         System.out.println("Medication not found."); 
-
     }
 }

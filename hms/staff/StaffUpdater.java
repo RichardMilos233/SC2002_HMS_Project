@@ -58,13 +58,6 @@ public class StaffUpdater {
         
         }
         return u;
-        
-        
-        // if (role.contains("doctor")){
-        //     Doctor.updateDoctors();
-        // } else{
-        //     Pharmacist.updatePharmacists();
-        // }
     }
 
 }

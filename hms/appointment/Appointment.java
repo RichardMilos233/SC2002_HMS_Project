@@ -10,8 +10,6 @@ import java.time.*;
  * confirmed, closed, and dispensed, describing the progression of an appointment.
  */
 public class Appointment {
-	// private Patient patient;
-	// private Doctor doctor;
 	private String patientID = "P1000";
 	private String doctorID;
 	private String status = "unavailable";	//unavailable, available, pending, confirmed, closed, dispensed

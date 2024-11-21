@@ -457,16 +457,6 @@ public class CSVService implements IReadable, IWritable{
         return -1;
     }
 
-    // /**
-    //  * Retrieves the last doctor from the CSV file.
-    //  *
-    //  * @return The last doctor in the list if available, null otherwise.
-    //  */
-    // public static Doctor getLastDoctor(){
-    //     List<Doctor> doctors = readDoctorsFromCSV();
-    //     return doctors.get(doctors.size() - 1);
-    // }
-
     /**
      * Removes the last doctor from the CSV file, effectively deleting the record.
      */

@@ -6,7 +6,6 @@ import java.util.*;
 import hms.users.Doctor;
 
 public class UpcomingAppointmentViewer {
-
     /**
      * Displays all upcoming appointments for a specified doctor in a timetable format.
      * Appointments are grouped by date, and appointment numbers increment globally across dates.

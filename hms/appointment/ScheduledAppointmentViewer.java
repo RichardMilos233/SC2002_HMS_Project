@@ -20,13 +20,6 @@ public class ScheduledAppointmentViewer {
             System.out.println("There is currently no scheduled appointment");
             return;
         }
-        int i;
-        Appointment appointment;
         PrintAppointmentsSchedule.printChosenSlotsPatientScheduled(scheduledAppointment);
-        // for (i = 0; i < scheduledAppointment.size(); i++){
-        //     appointment = scheduledAppointment.get(i);
-        //     System.out.println("Appointment " + (i+1) +": ");
-        //     appointment.displayAppointment();
-        // }
     }
 }

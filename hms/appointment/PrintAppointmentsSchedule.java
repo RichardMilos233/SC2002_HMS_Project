@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import hms.users.User;
 import hms.users.Doctor;
 import hms.users.Patient;
 
@@ -41,11 +40,6 @@ public class PrintAppointmentsSchedule {
         System.out.printf("%-50s|","--------------------------------------------------");
         System.out.printf("\n");
         printScheduleDoctorAndPatientID(appointmentsByDate, size);
-        
-        // for (int i = 0; i < availableSlots.size(); i++){
-        //     System.out.println("Slot: " + (i+1));
-        //     availableSlots.get(i).displayAppointment();
-        // }
     }
 
     public static void printPendingSlots(List<Appointment> availableSlots){
@@ -115,11 +109,6 @@ public class PrintAppointmentsSchedule {
         System.out.printf("%-50s|","--------------------------------------------------");
         System.out.printf("\n");
         printScheduleDoctorName(appointmentsByDate, size);
-        
-        // for (int i = 0; i < availableSlots.size(); i++){
-        //     System.out.println("Slot: " + (i+1));
-        //     availableSlots.get(i).displayAppointment();
-        // }
     }
 
     public static void printChosenSlotsWithPatientName( List<Appointment> availableSlots){
@@ -152,11 +141,6 @@ public class PrintAppointmentsSchedule {
         System.out.printf("%-50s|","--------------------------------------------------");
         System.out.printf("\n");
         printSchedulePatientName(appointmentsByDate, size);
-        
-        // for (int i = 0; i < availableSlots.size(); i++){
-        //     System.out.println("Slot: " + (i+1));
-        //     availableSlots.get(i).displayAppointment();
-        // }
     }
 
     public static void printChosenSlotsofDoctor(Doctor doctor , List<Appointment> availableSlots){
@@ -189,11 +173,6 @@ public class PrintAppointmentsSchedule {
         System.out.printf("%-50s|","--------------------------------------------------");
         System.out.printf("\n");
         printSchedule(appointmentsByDate, size);
-        
-        // for (int i = 0; i < availableSlots.size(); i++){
-        //     System.out.println("Slot: " + (i+1));
-        //     availableSlots.get(i).displayAppointment();
-        // }
     }
 
     public static void printSchedulePending(List<List<Appointment>> appointmentsByDate, int maxAppointments) {
@@ -502,15 +481,14 @@ public class PrintAppointmentsSchedule {
             System.out.printf("\n");
          }
     }
-    /*
-     * System.out.println("Appointment date & time: " + date + ' ' + time);
-		System.out.println("Appointment status: " + status);
-		System.out.println("Doctor ID: " + doctorID);
-		}
 
-		System.out.println();
+     /**
+     * This method takes a list of appointment slots and returns a sorted list of dates from the earliest to the latest date available.
+     * The list includes every consecutive date between the start and end date found in the appointment slots.
+     *
+     * @param availableSlots the list of appointments from which to extract and sort dates
+     * @return a list of {@link LocalDate} objects representing each consecutive date between the earliest and latest dates found in the slots
      */
-
     public static List<LocalDate> findSlotDates(List<Appointment> availableSlots){
         Collections.sort(availableSlots, Comparator.comparing(Appointment ::getDate));
         List<LocalDate> dates = new ArrayList<LocalDate>();
@@ -526,6 +504,14 @@ public class PrintAppointmentsSchedule {
         return dates;
     }
 
+    /**
+     * This method divides a list of appointments into sublists, each containing all appointments for a particular date.
+     * It uses a sorted list of dates to organize appointments into these date-specific lists.
+     *
+     * @param availableSlots the complete list of appointments to be categorized by date
+     * @param dates a sorted list of dates for which appointments need to be organized
+     * @return a list of lists, where each sublist contains all appointments for a specific date
+     */
     public static List<List<Appointment>> splitAppointmentDates(List<Appointment> availableSlots, List<LocalDate> dates) {
         List<List<Appointment>> appointmentsByDate = new ArrayList<>();
         int lastIndex = 0;
@@ -541,5 +527,4 @@ public class PrintAppointmentsSchedule {
     
         return appointmentsByDate;
     }
-
 }

@@ -23,13 +23,6 @@ public class AdministratorAppointmentViewer {
         for (Appointment appointment: appointments) {
             if (!appointment.getStatus().equals("unavailable")) {
                 validAppointments.add(appointment);
-				// Print Appointment Details
-                // System.out.println("\n--- Appointment ---");
-                // System.out.println("Patient ID: " + appointment.getPatientID());
-                // System.out.println("Doctor ID: " + appointment.getDoctorID());
-                // System.out.println("Status: " + appointment.getStatus());
-                // System.out.println("Date and Time: " + appointment.getDate() + " " + appointment.getTime());
-                // System.out.println("----------------------");
             }
         }
 		if (appointments.isEmpty()) {
