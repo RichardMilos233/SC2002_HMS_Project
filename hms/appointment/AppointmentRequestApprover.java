@@ -40,7 +40,7 @@ public class AppointmentRequestApprover{
             if (choice == 0){
                 return;
             }
-            if (choice < 0 || choice >= pendingList.size()){
+            if (choice < 0 || choice > pendingList.size()){
                 System.out.println("Invalid.");
             } else{
                 do { 
