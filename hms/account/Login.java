@@ -45,7 +45,7 @@ public class Login {    //can have a Signup.java later
         
         for (int i = 1; i < accountList.size(); i++) {
             if (hospitalId.equals(accountList.get(i).get(0))) { //hospitalId match
-                if (hashValue == Integer.parseInt(accountList.get(i).get(1)) || hashValue == 1){
+                if (hashValue == Integer.parseInt(accountList.get(i).get(1))){
                     return true;
                 }
                 
@@ -67,14 +67,6 @@ public class Login {    //can have a Signup.java later
         String hospitalIdInput = Validator.validateStringNoSpace(scanner);
         System.out.println("Enter your password");
         String passwordInput = Validator.validateLine(scanner);
-        /* remove after testing */
-        if (passwordInput.equals("1")){
-            List<String> credentials = new ArrayList<>();
-            credentials.add(hospitalIdInput);
-            credentials.add("1");
-            return credentials;
-        }
-        /* remove after testing */
 
         List<String> credentials = new ArrayList<>();
         credentials.add(hospitalIdInput);
