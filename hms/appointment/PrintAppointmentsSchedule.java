@@ -520,6 +520,26 @@ public class PrintAppointmentsSchedule {
                     System.out.printf("%-50s|", " ");
                 }
             }
+            System.out.println(); // Move to next row
+
+            // Appointment outcome
+            for (List<Appointment> dailyAppointments : appointmentsByDate) {
+                if (i < dailyAppointments.size() && (dailyAppointments.get(i).getStatus().equals("closed") || dailyAppointments.get(i).getStatus().equals("dispensed"))) {
+                    Appointment appointment = dailyAppointments.get(i);
+                    System.out.printf("%-50s|", "Diagnosis: " + appointment.getAppointmentOutcome().getDiagnosis());
+                } else {
+                    System.out.printf("%-50s|", " ");
+                }
+            }
+            System.out.println(); // Move to next row
+            for (List<Appointment> dailyAppointments : appointmentsByDate) {
+                if (i < dailyAppointments.size() && (dailyAppointments.get(i).getStatus().equals("closed") || dailyAppointments.get(i).getStatus().equals("dispensed"))) {
+                    Appointment appointment = dailyAppointments.get(i);
+                    System.out.printf("%-25s%-25s|", "Medicine: " + appointment.getAppointmentOutcome().getPrescribedMedication().getMedicationName(), "Dosage: " + appointment.getAppointmentOutcome().getPrescribedMedication().getDosage());
+                } else {
+                    System.out.printf("%-50s|", " ");
+                }
+            }
             System.out.printf("\n");
             System.out.printf("%-50s|","--------------------------------------------------");
             System.out.printf("%-50s|","--------------------------------------------------");
