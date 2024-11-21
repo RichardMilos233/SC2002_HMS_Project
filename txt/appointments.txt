@@ -1,14 +1,14 @@
 patientID,doctorID,status,date,time,date|type|medicationName\dosage\totalPrescribed|consultationNotes|diagnosis|resolved
-P1001,D001,dispensed,2024-11-22,09:00,2024-11-22|consultation|Paracetamol\1/day\15|Rest more|Flu;Covid|false
-P1001,D001,confirmed,2024-11-22,10:00,2024-11-22|nil|nil\nil\0|nil|nil|false
-P1001,D001,confirmed,2024-11-22,11:00,2024-11-21|nil|nil\nil\0|nil|nil|false
-P1000,D001,available,2024-11-22,12:00,2024-11-21|nil|nil\nil\0|nil|nil|false
-P1000,D001,available,2024-11-22,13:00,2024-11-21|nil|nil\nil\0|nil|nil|false
-P1001,D001,confirmed,2024-11-22,14:00,2024-11-21|nil|nil\nil\0|nil|nil|false
+P1000,D001,unavailable,2024-11-22,09:00,2024-11-21|nil|nil\nil\0|nil|nil|false
+P1000,D001,unavailable,2024-11-22,10:00,2024-11-21|nil|nil\nil\0|nil|nil|false
+P1000,D001,unavailable,2024-11-22,11:00,2024-11-21|nil|nil\nil\0|nil|nil|false
+P1000,D001,unavailable,2024-11-22,12:00,2024-11-21|nil|nil\nil\0|nil|nil|false
+P1000,D001,unavailable,2024-11-22,13:00,2024-11-21|nil|nil\nil\0|nil|nil|false
+P1000,D001,unavailable,2024-11-22,14:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-22,15:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-22,16:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-22,17:00,2024-11-21|nil|nil\nil\0|nil|nil|false
-P1001,D001,closed,2024-11-23,09:00,2024-11-21|consultation|Paracetamol\1/day\15|Rest more|Flu;Covid|false
+P1000,D001,unavailable,2024-11-23,09:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-23,10:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-23,11:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-23,12:00,2024-11-21|nil|nil\nil\0|nil|nil|false
@@ -26,4 +26,3 @@ P1000,D001,unavailable,2024-11-24,14:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-24,15:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-24,16:00,2024-11-21|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-24,17:00,2024-11-21|nil|nil\nil\0|nil|nil|false
-
