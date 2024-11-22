@@ -40,7 +40,7 @@ public class AppointmentRequestApprover{
             if (choice == 0){
                 return;
             }
-            if (choice < 0 || choice >= pendingList.size()){
+            if (choice < 1 || choice > pendingList.size()){
                 System.out.println("Invalid.");
             } else{
                 do { 
@@ -50,7 +50,7 @@ public class AppointmentRequestApprover{
                         return;
                     }
                 } while (c1 != 'Y' && c1 != 'N');
-                Appointment appointment = pendingList.get(choice);
+                Appointment appointment = pendingList.get(choice - 1);
                 if (c1 == 'Y'){
                     appointment.setStatus("confirmed");
                     doctor.addPatient(appointment.getPatient());
