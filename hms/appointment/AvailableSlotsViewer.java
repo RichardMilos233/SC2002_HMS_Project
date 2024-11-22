@@ -136,7 +136,7 @@ public class AvailableSlotsViewer {
                 if (i < dailyAppointments.size()) {
                     Appointment appointment = dailyAppointments.get(i);
                     System.out.printf("%-50s|", 
-                        ": Date & Time: " + appointment.getDate() + " " + appointment.getTime());
+                        "Date & Time: " + appointment.getDate() + " " + appointment.getTime());
                 } else {
                     System.out.printf("%-50s|", " ");
                 }
