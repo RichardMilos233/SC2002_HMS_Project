@@ -1,10 +1,10 @@
 patientID,doctorID,status,date,time,date|type|medicationName\dosage\totalPrescribed|consultationNotes|diagnosis|resolved
-P1001,D001,pending,2024-11-23,09:00,2024-11-22|nil|nil\nil\0|nil|nil|false
+P1001,D001,closed,2024-11-23,09:00,2024-11-23|consultation|Paracetamol\5 per day\30|Take more sleep|Fever|false
 P1000,D001,available,2024-11-23,10:00,2024-11-22|nil|nil\nil\0|nil|nil|false
 P1000,D001,available,2024-11-23,11:00,2024-11-22|nil|nil\nil\0|nil|nil|false
-P1000,D001,unavailable,2024-11-23,12:00,2024-11-22|nil|nil\nil\0|nil|nil|false
-P1000,D001,unavailable,2024-11-23,13:00,2024-11-22|nil|nil\nil\0|nil|nil|false
-P1000,D001,unavailable,2024-11-23,14:00,2024-11-22|nil|nil\nil\0|nil|nil|false
+P1000,D001,available,2024-11-23,12:00,2024-11-22|nil|nil\nil\0|nil|nil|false
+P1000,D001,available,2024-11-23,13:00,2024-11-22|nil|nil\nil\0|nil|nil|false
+P1000,D001,available,2024-11-23,14:00,2024-11-22|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-23,15:00,2024-11-22|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-23,16:00,2024-11-22|nil|nil\nil\0|nil|nil|false
 P1000,D001,unavailable,2024-11-23,17:00,2024-11-22|nil|nil\nil\0|nil|nil|false
