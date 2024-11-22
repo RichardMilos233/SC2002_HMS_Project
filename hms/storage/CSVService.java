@@ -538,7 +538,7 @@ public class CSVService implements IReadable, IWritable{
      * @param pharmacist The pharmacist object to be removed from the CSV file.
      */
     public static void removePharmacist(Pharmacist pharmacist){
-        int index = findDoctor(pharmacist.getHospitalID());
+        int index = findPharmacist(pharmacist.getHospitalID());
         Pharmacist lastPharm = getLastPharmacist();
         writePharmacist(lastPharm, index);
         removeLastPharmacist();
